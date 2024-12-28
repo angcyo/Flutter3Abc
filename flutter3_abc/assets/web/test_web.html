@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Test InAppWebView</title>
+</head>
+<body>
+<h1>test...</h1>
+<p><span id="result">...</span></p>
+<button onclick="window.open('https://www.baidu.com', '_blank')">Open Baidu</button>
+<button onclick="window.open('https://www.google.com', '_self')">Open Google</button>
+<button onclick="window.callFlutter()">callFlutter</button>
+</body>
+<script>
+  window['callJs'] = function (msg, msg2, msg3) {
+    console.log('callJs: ' + msg);
+    document.getElementById('result').innerText = msg + msg2 + msg3;
+    const date = new Date();
+    return `Hello from JavaScript:${date}`;
+  }
+
+  function callFlutter() {
+    console.log('callFlutter');
+    //获取当前时间
+    const date = new Date();
+    window.flutter_inappwebview.callHandler('callFlutter', 'Hello from JavaScript:', date).then(function (result) {
+      document.getElementById('result').innerText = result;
+    });
+  }
+</script>
+</html>

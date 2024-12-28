@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>UDP客户端列表</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            word-wrap: break-word;
+            padding: 0;
+            margin: 0;
+        }
+
+        * span {
+            line-height: 24px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .card {
+            background-color: #f9f9f9;
+            border: 1px solid #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+            box-shadow: 0 0 5px #ccc;
+            transition: box-shadow 0.3s;
+        }
+
+        .card:hover {
+            border: 1px solid #0aa6ec;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        .self-card {
+            border: 1px solid #c702fd;
+        }
+
+    </style>
+</head>
+<body style="padding: 10px;">
+<h1>UDP客户端列表
+    <input type="checkbox" id="refresh_check" checked>
+    <label for="refresh_check" style="font-size: 16px">自动刷新</label>
+</h1>
+<!--复选框-->
+<div style="display: flex; flex-wrap: wrap;">
+    <a href="udp_client.html" target="_blank">
+        <div class="card self-card">
+            <p>
+                <strong>Android</strong>
+                <span style="margin-left: 4px">com.angcyo.xxx</span>
+                <span style="margin-left: 4px">Android</span>
+                <span style="margin-left: 4px">Android</span>
+            </p>
+            <p><span>Android</span></p>
+            <span>Android</span>
+            <span>Android</span>
+            <span>Android</span>
+            <span>Android</span>
+            <span>Android</span>
+            <span>Android</span>
+            <p><span>Android</span></p>
+        </div>
+    </a>
+    <a href="udp_client.html">
+        <div class="card">
+            <p><strong>Android</strong></p>
+            <span>Android</span>
+            <span>Android</span>
+            <span>Android</span>
+            <span style="margin-right: 4px">Android</span>
+            <span>Android</span>
+            <span>Android</span>
+            <span>Android</span>
+        </div>
+    </a>
+    <script>
+        setInterval(() => {
+            if (document.getElementById('refresh_check').checked) {
+                location.reload();
+            }
+        }, 5000);
+    </script>
+</div>
+</body>
+</html>

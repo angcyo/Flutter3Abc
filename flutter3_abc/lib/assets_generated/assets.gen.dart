@@ -31,10 +31,50 @@ class $AssetsPngGen {
   List<AssetGenImage> get values => [allIn2, face, flutter];
 }
 
+class $AssetsWebGen {
+  const $AssetsWebGen();
+
+  /// File path: assets/web/files_browse.html
+  String get filesBrowse => 'assets/web/files_browse.html';
+
+  /// File path: assets/web/index.html
+  String get index => 'assets/web/index.html';
+
+  /// File path: assets/web/receive_file.html
+  String get receiveFile => 'assets/web/receive_file.html';
+
+  /// File path: assets/web/receive_succeed.html
+  String get receiveSucceed => 'assets/web/receive_succeed.html';
+
+  /// File path: assets/web/test_web.html
+  String get testWeb => 'assets/web/test_web.html';
+
+  /// File path: assets/web/udp_client_list.html
+  String get udpClientList => 'assets/web/udp_client_list.html';
+
+  /// File path: assets/web/web_socket.html
+  String get webSocket => 'assets/web/web_socket.html';
+
+  /// Directory path: assets/web
+  String get path => 'assets/web';
+
+  /// List of all assets
+  List<String> get values => [
+        filesBrowse,
+        index,
+        receiveFile,
+        receiveSucceed,
+        testWeb,
+        udpClientList,
+        webSocket
+      ];
+}
+
 class Assets {
   Assets._();
 
   static const $AssetsPngGen png = $AssetsPngGen();
+  static const $AssetsWebGen web = $AssetsWebGen();
 }
 
 class AssetGenImage {

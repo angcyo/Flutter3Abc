@@ -22,11 +22,22 @@ dependencies:
 
   flutter3_excel:
     path: ../../Flutter3Core/flutter3_excel
+  flutter3_code:
+    path: ../../Flutter3Core/flutter3_code
+  flutter3_web:
+    path: ../../Flutter3Core/flutter3_web
+  flutter3_scanner:
+    path: ../../Flutter3Core/flutter3_scanner
+
+  flutter3_pub_core:
+    path: ../../Flutter3Core/flutter3_pub_core
 
   lp_device:
     path: ../../Flutter3Extend/lp_device
   lp_canvas:
     path: ../../Flutter3Extend/lp_canvas
+  lp_plugin:
+    path: ../../Flutter3Extend/lp_plugin
 
   # https://pub.dev/packages/xpath_selector_html_parser
   # https://pub.dev/packages/xpath_selector
@@ -41,6 +52,10 @@ dependencies:
 
   # https://pub.dev/packages/multicast_dns
   multicast_dns: any #in lp_device
+
+  # https://pub.dev/packages/web_socket_channel
+  web_socket_channel: any #in flutter3_shelf
+
 
 dependency_overrides:
   # Because flutter_html 3.0.0-beta.2 depends on csslib ^0.17.2 and no versions of flutter_html match >3.0.0-beta.2 <4.0.0, flutter_html ^3.0.0-beta.2 requires csslib ^0.17.2.
@@ -109,3 +124,4 @@ flutter:
 
   assets:
     - assets/png/
+    - assets/web/
