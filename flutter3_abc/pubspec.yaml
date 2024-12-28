@@ -17,6 +17,8 @@ dependencies:
     path: ../../Flutter3Core/flutter3_fonts
   flutter3_app:
     path: ../../Flutter3Core/flutter3_app
+  flutter3_canvas:
+    path: ../../Flutter3Core/flutter3_canvas
 
   flutter3_excel:
     path: ../../Flutter3Core/flutter3_excel
@@ -36,6 +38,9 @@ dependencies:
   # https://pub.dev/packages/source_span
   # https://pub.dev/packages/csslib
   html: ^0.15.5
+
+  # https://pub.dev/packages/multicast_dns
+  multicast_dns: any #in lp_device
 
 dependency_overrides:
   # Because flutter_html 3.0.0-beta.2 depends on csslib ^0.17.2 and no versions of flutter_html match >3.0.0-beta.2 <4.0.0, flutter_html ^3.0.0-beta.2 requires csslib ^0.17.2.
