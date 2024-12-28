@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# Turn off echo 关闭回显
+set +x
+
+# 将工作目录设置为脚本所在目录
+cd "$(dirname "$0")"
+
+#echo $PUB_HOSTED_URL
+#export PUB_HOSTED_URL=https://pub.flutter-io.cn
+#echo $PUB_HOSTED_URL
+dart run build_runner build --delete-conflicting-outputs

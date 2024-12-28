@@ -11,11 +11,59 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter3_basics:
+    path: ../../Flutter3Core/flutter3_basics
+  flutter3_fonts:
+    path: ../../Flutter3Core/flutter3_fonts
+  flutter3_app:
+    path: ../../Flutter3Core/flutter3_app
+
+  flutter3_excel:
+    path: ../../Flutter3Core/flutter3_excel
+
+  lp_device:
+    path: ../../Flutter3Extend/lp_device
+  lp_canvas:
+    path: ../../Flutter3Extend/lp_canvas
+
+  # https://pub.dev/packages/xpath_selector_html_parser
+  # https://pub.dev/packages/xpath_selector
+  # https://pub.dev/packages/html
+  xpath_selector_html_parser: ^3.0.1
+  # https://pub.dev/packages/xpath_selector
+  xpath_selector: ^3.0.2
+  # https://pub.dev/packages/html
+  # https://pub.dev/packages/source_span
+  # https://pub.dev/packages/csslib
+  html: ^0.15.5
+
+dependency_overrides:
+  # Because flutter_html 3.0.0-beta.2 depends on csslib ^0.17.2 and no versions of flutter_html match >3.0.0-beta.2 <4.0.0, flutter_html ^3.0.0-beta.2 requires csslib ^0.17.2.
+  #And because html >=0.15.5 depends on csslib ^1.0.0, html >=0.15.5 is incompatible with flutter_html ^3.0.0-beta.2.
+  csslib: ^1.0.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+  intl_utils: ^2.8.7
+  build_runner: any
+  json_serializable: any
+  flutter_gen: any
+  flutter_gen_runner: any
+
+# https://pub.dev/packages/flutter_gen#configuration-file
+# dart run build_runner build
+# flutter pub run build_runner build
+flutter_gen:
+  output: lib/assets_generated/ # Optional (default: lib/gen/)
+  parse_metadata: true
+  assets:
+    outputs:
+      package_parameter_enabled: false
+      directory_path_enabled: true
+  integrations:
+  #flutter_svg: true
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -53,3 +101,6 @@ flutter:
   #
   # For details regarding fonts in packages, see
   # https://flutter.dev/to/font-from-package
+
+  assets:
+    - assets/png/
