@@ -50,6 +50,7 @@ part 'src/custom_scroll_abc.dart';
 part 'src/dialog_abc.dart';
 part 'src/dismissible_abc.dart';
 part 'src/draggable_abc.dart';
+part 'src/event_abc.dart';
 part 'src/excel_abc.dart';
 part 'src/expandable_abc.dart';
 part 'src/flow_layout_abc.dart';
@@ -248,4 +249,5 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ),
   ("/simulation", 'SimulationAbc', (context) => const SimulationAbc()),
   ("/path", 'PathAbc', (context) => const PathAbc()),
+  ("/event", 'EventAbc', (context) => const EventAbc()),
 ];
