@@ -32,30 +32,40 @@ class _EventAbcState extends State<EventAbc> with KeyEventMixin {
         .mouse(
           onEnter: (event) {
             //debugger();
-            l.d(event);
+            l.d("mouse->$event");
             mouseEvent = event;
             updateState();
           },
           onExit: (event) {
-            l.d(event);
+            l.d("mouse->$event");
             mouseEvent = event;
             updateState();
           },
           onHover: (event) {
-            l.d(event);
+            l.d("mouse->$event");
             mouseEvent = event;
             updateState();
           },
           cursor: SystemMouseCursors.wait,
         )
         .pointerListener((event) {
+      l.i("pointer->$event");
       pointerEvent = event;
       updateState();
     });
   }
 
   String _buildPointerEventText(PointerEvent? event) {
-    return "${event.runtimeType} ${event?.kind} ${event?.buttons} ${event?.pressure} ${event?.size}\n position:${event?.position} localPosition:${event?.localPosition}";
+    return stringBuilder((builder) {
+      builder.appendLine(
+          "${event.runtimeType} ${event?.kind} ${event?.buttons} ${event?.pressure} ${event?.size}");
+      builder.appendLine(
+          "position:${event?.position} localPosition:${event?.localPosition}");
+      if (event is PointerPanZoomUpdateEvent) {
+        builder.appendLine(
+            "pan:${event.pan} localPan:${event.localPan} panDelta:${event.panDelta} localPanDelta:${event.localPanDelta} scale:${event.scale} rotation:${event.rotation}");
+      }
+    });
   }
 
   /// 按键当前的状态
