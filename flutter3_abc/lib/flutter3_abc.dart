@@ -44,6 +44,7 @@ part 'src/box_shadow_abc.dart';
 part 'src/button_abc.dart';
 part 'src/canvas_abc.dart';
 part 'src/canvas_abc2.dart';
+part 'src/canvas_desktop_abc.dart';
 part 'src/code_abc.dart';
 part 'src/cover_camera_abc.dart';
 part 'src/custom_scroll_abc.dart';
@@ -192,6 +193,11 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ("/Image", 'ImageAbc ', (context) => const ImageAbc()),
   ("/canvas", 'CanvasAbc $kGo', (context) => const CanvasAbc()),
   ("/canvas2", 'CanvasAbc2 ', (context) => const CanvasAbc2()),
+  (
+    "/canvasDesktop",
+    'CanvasDesktopAbc $kGo',
+    (context) => const CanvasDesktopAbc()
+  ),
   ("/LpCreationPage", 'LpCreationPage', (context) => const LpCreationPage()),
   ("/LpCreationPage2", 'LpCreationPage2', (context) => const LpCreationPage2()),
   ("/matrix", 'MatrixAbc', (context) => const MatrixAbc()),
