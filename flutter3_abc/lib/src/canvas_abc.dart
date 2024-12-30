@@ -31,7 +31,8 @@ class _CanvasAbcState extends State<CanvasAbc>
     super.initState();
     canvasDelegate.addCanvasListener(canvasListener2);
 
-    loadAssetImage("all_in2.webp")?.getValue((image, error) async {
+    loadAssetImage("all_in2.webp", package: Assets.package)
+        .getValue((image, error) async {
       //debugger();
       if (image != null) {
         //final base64 = await image.toBase64();
@@ -43,7 +44,8 @@ class _CanvasAbcState extends State<CanvasAbc>
       }
     });
 
-    loadAssetImage("flutter.png")?.getValue((image, error) async {
+    loadAssetImage("flutter.png", package: Assets.package)
+        .getValue((image, error) async {
       //debugger();
       if (image != null) {
         //final base64 = await image.toBase64();

@@ -35,25 +35,29 @@ class $AssetsWebGen {
   const $AssetsWebGen();
 
   /// File path: assets/web/files_browse.html
-  String get filesBrowse => 'assets/web/files_browse.html';
+  String get filesBrowse =>
+      'packages/flutter3_abc/assets/web/files_browse.html';
 
   /// File path: assets/web/index.html
-  String get index => 'assets/web/index.html';
+  String get index => 'packages/flutter3_abc/assets/web/index.html';
 
   /// File path: assets/web/receive_file.html
-  String get receiveFile => 'assets/web/receive_file.html';
+  String get receiveFile =>
+      'packages/flutter3_abc/assets/web/receive_file.html';
 
   /// File path: assets/web/receive_succeed.html
-  String get receiveSucceed => 'assets/web/receive_succeed.html';
+  String get receiveSucceed =>
+      'packages/flutter3_abc/assets/web/receive_succeed.html';
 
   /// File path: assets/web/test_web.html
-  String get testWeb => 'assets/web/test_web.html';
+  String get testWeb => 'packages/flutter3_abc/assets/web/test_web.html';
 
   /// File path: assets/web/udp_client_list.html
-  String get udpClientList => 'assets/web/udp_client_list.html';
+  String get udpClientList =>
+      'packages/flutter3_abc/assets/web/udp_client_list.html';
 
   /// File path: assets/web/web_socket.html
-  String get webSocket => 'assets/web/web_socket.html';
+  String get webSocket => 'packages/flutter3_abc/assets/web/web_socket.html';
 
   /// Directory path: assets/web
   String get path => 'assets/web';
@@ -73,6 +77,8 @@ class $AssetsWebGen {
 class Assets {
   Assets._();
 
+  static const String package = 'flutter3_abc';
+
   static const $AssetsPngGen png = $AssetsPngGen();
   static const $AssetsWebGen web = $AssetsWebGen();
 }
@@ -85,6 +91,8 @@ class AssetGenImage {
   });
 
   final String _assetName;
+
+  static const String package = 'flutter3_abc';
 
   final Size? size;
   final Set<String> flavors;
@@ -109,7 +117,8 @@ class AssetGenImage {
     bool matchTextDirection = false,
     bool gaplessPlayback = true,
     bool isAntiAlias = false,
-    String? package,
+    @Deprecated('Do not specify package for a generated library asset')
+    String? package = package,
     FilterQuality filterQuality = FilterQuality.low,
     int? cacheWidth,
     int? cacheHeight,
@@ -144,7 +153,8 @@ class AssetGenImage {
 
   ImageProvider provider({
     AssetBundle? bundle,
-    String? package,
+    @Deprecated('Do not specify package for a generated library asset')
+    String? package = package,
   }) {
     return AssetImage(
       _assetName,
@@ -155,5 +165,5 @@ class AssetGenImage {
 
   String get path => _assetName;
 
-  String get keyName => _assetName;
+  String get keyName => 'packages/flutter3_abc/$_assetName';
 }
