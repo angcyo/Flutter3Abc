@@ -189,7 +189,7 @@ class GestureTestBox extends RenderBox {
 
     var hitInterceptBox = GestureHitInterceptScope.of(context);
     hitInterceptBox?.interceptHitBox = this;
-    if (event.isTouchEvent) {
+    if (event.isTouchPointerEvent) {
       //debugger();
       pointerMap[event.pointer] = event;
     }
