@@ -116,6 +116,7 @@ part 'src/web_socket_abc.dart';
 part 'src/webview_abc.dart';
 part 'src/wheel_abc.dart';
 part 'src/widget_abc.dart';
+part 'src/mouse_region_abc.dart';
 
 ///
 /// Email:angcyo@126.com
@@ -256,4 +257,5 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ("/simulation", 'SimulationAbc', (context) => const SimulationAbc()),
   ("/path", 'PathAbc', (context) => const PathAbc()),
   ("/event", 'EventAbc', (context) => const EventAbc()),
+  ("/mouseRegion", 'MouseRegionAbc', (context) => const MouseRegionAbc()),
 ];

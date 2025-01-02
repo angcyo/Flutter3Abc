@@ -46,7 +46,9 @@ class _EventAbcState extends State<EventAbc> with KeyEventMixin {
             mouseEvent = event;
             updateState();
           },
-          cursor: SystemMouseCursors.wait,
+          cursor: isSpacePressed
+              ? SystemMouseCursors.help
+              : SystemMouseCursors.progress,
         )
         .pointerListener((event) {
       l.i("pointer->$event");
