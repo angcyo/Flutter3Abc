@@ -16,6 +16,39 @@ class _CanvasDesktopAbcState extends State<CanvasDesktopAbc> {
 
   @override
   Widget build(BuildContext context) {
-    return CanvasWidget(canvasDelegate);
+    return cLayout(() {
+      _buildLeftNavigation(context).alignParentConstraint(
+        width: 54,
+      );
+      CanvasWidget(canvasDelegate).alignParentConstraint(
+        alignment: Alignment.centerRight,
+        width: matchConstraint,
+        left: sId(-1).right,
+      );
+    });
+  }
+
+  /// 构建导航
+  Widget _buildLeftNavigation(BuildContext context) {
+    final OverlayPortalController controller = OverlayPortalController();
+    return [
+      lpAbcSvgWidget(Assets.svg.addImage),
+      lpAbcSvgWidget(Assets.svg.addShape),
+      lpAbcSvgWidget(Assets.svg.addShape),
+      HoverAnchorLayout(
+        anchor: lpAbcSvgWidget(Assets.svg.addImage).icon(() {
+          lpToast("click1".text());
+        }),
+        content: [
+          lpAbcSvgWidget(Assets.svg.addShape),
+          lpAbcSvgWidget(Assets.svg.addImage).icon(() {
+            lpToast("click2".text());
+          }),
+        ]
+            .column()!
+            .backgroundColor(Colors.black12)
+            .size(width: 100, height: 80),
+      ),
+    ].scroll(axis: Axis.vertical)!;
   }
 }

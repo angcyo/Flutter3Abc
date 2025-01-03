@@ -31,6 +31,25 @@ class $AssetsPngGen {
   List<AssetGenImage> get values => [allIn2, face, flutter];
 }
 
+class $AssetsSvgGen {
+  const $AssetsSvgGen();
+
+  /// File path: assets/svg/add_image.svg
+  String get addImage => 'packages/flutter3_abc/assets/svg/add_image.svg';
+
+  /// File path: assets/svg/add_shape.svg
+  String get addShape => 'packages/flutter3_abc/assets/svg/add_shape.svg';
+
+  /// File path: assets/svg/more_tip.svg
+  String get moreTip => 'packages/flutter3_abc/assets/svg/more_tip.svg';
+
+  /// Directory path: assets/svg
+  String get path => 'assets/svg';
+
+  /// List of all assets
+  List<String> get values => [addImage, addShape, moreTip];
+}
+
 class $AssetsWebGen {
   const $AssetsWebGen();
 
@@ -80,6 +99,7 @@ class Assets {
   static const String package = 'flutter3_abc';
 
   static const $AssetsPngGen png = $AssetsPngGen();
+  static const $AssetsSvgGen svg = $AssetsSvgGen();
   static const $AssetsWebGen web = $AssetsWebGen();
 }
 

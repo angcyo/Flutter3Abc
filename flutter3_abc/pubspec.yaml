@@ -125,3 +125,4 @@ flutter:
   assets:
     - assets/png/
     - assets/web/
+    - assets/svg/

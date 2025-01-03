@@ -259,3 +259,41 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ("/event", 'EventAbc', (context) => const EventAbc()),
   ("/mouseRegion", 'MouseRegionAbc', (context) => const MouseRegionAbc()),
 ];
+
+/// [loadAssetSvgWidget]
+Widget lpAbcSvgWidget(
+  String key, {
+  Color? tintColor,
+  UiColorFilter? colorFilter,
+  BoxFit fit = BoxFit.contain,
+  double? size,
+  double? width,
+  double? height,
+}) =>
+    loadAssetSvgWidget(
+      key,
+      package: Assets.package,
+      tintColor: tintColor,
+      colorFilter: colorFilter,
+      size: size,
+      width: width,
+      height: height,
+      fit: fit,
+    );
+
+/// [loadAssetImageWidget]
+Widget? lpAbcImageWidget(
+  String? key, {
+  BoxFit? fit,
+  double? size,
+  double? width,
+  double? height,
+}) =>
+    loadAssetImageWidget(
+      key,
+      package: Assets.package,
+      fit: fit,
+      size: size,
+      width: width,
+      height: height,
+    );
