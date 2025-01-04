@@ -12,7 +12,7 @@ class MouseRegionAbc extends StatefulWidget {
 }
 
 class _MouseRegionAbcState extends State<MouseRegionAbc> {
-  List<MouseCursor> mouseCursorList = [
+  final List<MouseCursor> mouseCursorList = [
     SystemMouseCursors.none,
     SystemMouseCursors.basic,
     SystemMouseCursors.click,

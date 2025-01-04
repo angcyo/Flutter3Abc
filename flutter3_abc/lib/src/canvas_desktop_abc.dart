@@ -32,6 +32,18 @@ class _CanvasDesktopAbcState extends State<CanvasDesktopAbc> {
   Widget _buildLeftNavigation(BuildContext context) {
     final OverlayPortalController controller = OverlayPortalController();
     return [
+      HoverAnchorLayout(
+        anchor: lpAbcSvgWidget(Assets.svg.addImage).icon(() {
+          lpToast("click1".text());
+        }),
+        content: [
+          ArrowWidget().size(size: 20),
+          lpAbcSvgWidget(Assets.svg.addShape),
+          lpAbcSvgWidget(Assets.svg.addImage).icon(() {
+            lpToast("click2".text());
+          }),
+        ].column()!.backgroundColor(Colors.black12),
+      ),
       lpAbcSvgWidget(Assets.svg.addImage),
       lpAbcSvgWidget(Assets.svg.addShape),
       lpAbcSvgWidget(Assets.svg.addShape),
@@ -40,14 +52,12 @@ class _CanvasDesktopAbcState extends State<CanvasDesktopAbc> {
           lpToast("click1".text());
         }),
         content: [
+          ArrowWidget().size(size: 20),
           lpAbcSvgWidget(Assets.svg.addShape),
           lpAbcSvgWidget(Assets.svg.addImage).icon(() {
             lpToast("click2".text());
           }),
-        ]
-            .column()!
-            .backgroundColor(Colors.black12)
-            .size(width: 100, height: 80),
+        ].column()!.backgroundColor(Colors.black12),
       ),
     ].scroll(axis: Axis.vertical)!;
   }
