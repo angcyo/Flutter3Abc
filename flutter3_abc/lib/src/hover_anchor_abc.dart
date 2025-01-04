@@ -41,6 +41,8 @@ class _HoveAnchorAbcState extends State<HoveAnchorAbc> with BaseAbcStateMixin {
     (ArrowPosition.leftEnd, null, null, null, offset, Alignment.bottomRight),
   ];
 
+  bool _showArrow = true;
+
   @override
   Widget build(BuildContext context) {
     return $anyContainer(children: [
@@ -50,16 +52,14 @@ class _HoveAnchorAbcState extends State<HoveAnchorAbc> with BaseAbcStateMixin {
               .text()
               .paddingOnly(all: kX)
               .backgroundDecoration(fillDecoration()),
-          content: "${item.$1}"
-              .text()
-              .rowOf(GradientButton(
-                  child: "close".text(),
-                  onTap: () {
-                    lpToast("click:${item.$1}".text());
-                  }))
-              /*.paddingAll(kX)*/,
+          content: "${item.$1}".text().rowOf(GradientButton(
+              child: "close".text(),
+              onTap: () {
+                lpToast("click:${item.$1}".text());
+              })) /*.paddingAll(kX)*/,
           backgroundColor: Colors.redAccent,
           arrowPosition: item.$1,
+          showArrow: _showArrow,
         ).anyParentData(
           left: item.$2,
           top: item.$3,
@@ -67,6 +67,16 @@ class _HoveAnchorAbcState extends State<HoveAnchorAbc> with BaseAbcStateMixin {
           bottom: item.$5,
           alignment: item.$6,
         ),
+      SwitchListTile(
+          value: _showArrow,
+          title: "是否显示箭头".text(),
+          onChanged: (value) {
+            _showArrow = value;
+            updateState();
+          }).anyParentData(
+        maxWidth: 240,
+        alignment: Alignment.center,
+      ),
     ]);
   }
 }
