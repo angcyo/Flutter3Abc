@@ -41,7 +41,15 @@ class _HoveAnchorAbcState extends State<HoveAnchorAbc> with BaseAbcStateMixin {
     (ArrowPosition.leftEnd, null, null, null, offset, Alignment.bottomRight),
   ];
 
+  final _controllerMap = <ArrowPosition, HoverAnchorLayoutController>{};
+
+  HoverAnchorLayoutController? ensureController(ArrowPosition position) {
+    return _controllerMap.putIfAbsent(
+        position, () => HoverAnchorLayoutController());
+  }
+
   bool _showArrow = true;
+  bool _autoControl = true;
 
   @override
   Widget build(BuildContext context) {
@@ -51,15 +59,21 @@ class _HoveAnchorAbcState extends State<HoveAnchorAbc> with BaseAbcStateMixin {
           anchor: "${item.$1}"
               .text()
               .paddingOnly(all: kX)
-              .backgroundDecoration(fillDecoration()),
+              .backgroundDecoration(fillDecoration())
+              .click(() {
+            //debugger();
+            ensureController(item.$1)?.toggle();
+          }),
           content: "${item.$1}".text().rowOf(GradientButton(
               child: "close".text(),
               onTap: () {
                 lpToast("click:${item.$1}".text());
               })) /*.paddingAll(kX)*/,
+          controller: ensureController(item.$1),
           backgroundColor: Colors.redAccent,
           arrowPosition: item.$1,
           showArrow: _showArrow,
+          enableHoverShow: _autoControl,
         ).anyParentData(
           left: item.$2,
           top: item.$3,
@@ -74,6 +88,17 @@ class _HoveAnchorAbcState extends State<HoveAnchorAbc> with BaseAbcStateMixin {
             _showArrow = value;
             updateState();
           }).anyParentData(
+        maxWidth: 240,
+        alignment: Alignment.center,
+      ),
+      SwitchListTile(
+          value: _autoControl,
+          title: "是否悬停显示".text(),
+          onChanged: (value) {
+            _autoControl = value;
+            updateState();
+          }).anyParentData(
+        afterOffset: Offset(0, 50),
         maxWidth: 240,
         alignment: Alignment.center,
       ),
