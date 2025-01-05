@@ -26,7 +26,7 @@ class _EventAbcState extends State<EventAbc> with KeyEventMixin {
 
   @override
   Widget build(BuildContext context) {
-    return "${_buildPointerEventText(mouseEvent)}\n\n${_buildPointerEventText(pointerEvent)}\n\n$keyEvent\n\n${_buildHardwareKeyboardText(context)}"
+    return "${_buildPointerEventText("鼠标事件", mouseEvent)}\n\n${_buildPointerEventText("指针事件", pointerEvent)}\n\n$keyEvent\n\n${_buildHardwareKeyboardText(context)}"
         .text(textAlign: TextAlign.center)
         .center()
         .mouse(
@@ -57,10 +57,10 @@ class _EventAbcState extends State<EventAbc> with KeyEventMixin {
     });
   }
 
-  String _buildPointerEventText(PointerEvent? event) {
+  String _buildPointerEventText(String type, PointerEvent? event) {
     return stringBuilder((builder) {
       builder.appendLine(
-          "${event.runtimeType} ${event?.kind} ${event?.buttons} ${event?.pressure} ${event?.size}");
+          "$type->${event.runtimeType} ${event?.kind} ${event?.buttons} ${event?.pressure} ${event?.size}");
       builder.appendLine(
           "position:${event?.position} localPosition:${event?.localPosition}");
       if (event is PointerPanZoomUpdateEvent) {
