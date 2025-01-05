@@ -50,6 +50,7 @@ class _HoveAnchorAbcState extends State<HoveAnchorAbc> with BaseAbcStateMixin {
 
   bool _showArrow = true;
   bool _autoControl = true;
+  bool _enableAnimate = true;
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +75,7 @@ class _HoveAnchorAbcState extends State<HoveAnchorAbc> with BaseAbcStateMixin {
           arrowPosition: item.$1,
           showArrow: _showArrow,
           enableHoverShow: _autoControl,
+          enableAnimate: _enableAnimate,
         ).anyParentData(
           left: item.$2,
           top: item.$3,
@@ -99,6 +101,17 @@ class _HoveAnchorAbcState extends State<HoveAnchorAbc> with BaseAbcStateMixin {
             updateState();
           }).anyParentData(
         afterOffset: Offset(0, 50),
+        maxWidth: 240,
+        alignment: Alignment.center,
+      ),
+      SwitchListTile(
+          value: _enableAnimate,
+          title: "是否激活动画".text(),
+          onChanged: (value) {
+            _enableAnimate = value;
+            updateState();
+          }).anyParentData(
+        afterOffset: Offset(0, 50 * 2),
         maxWidth: 240,
         alignment: Alignment.center,
       ),
