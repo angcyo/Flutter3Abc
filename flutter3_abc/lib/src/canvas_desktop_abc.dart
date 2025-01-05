@@ -28,37 +28,27 @@ class _CanvasDesktopAbcState extends State<CanvasDesktopAbc> {
     });
   }
 
+  final double _navItemSize = 42;
+
   /// 构建导航
   Widget _buildLeftNavigation(BuildContext context) {
-    final OverlayPortalController controller = OverlayPortalController();
     return [
+      Empty.height(kL),
+      lpAbcSvgWidget(Assets.svg.addImage).icon(() {
+        lpToast("click1".text());
+      }).size(size: _navItemSize),
       HoverAnchorLayout(
-        anchor: lpAbcSvgWidget(Assets.svg.addImage).icon(() {
+        anchor: lpAbcSvgWidget(Assets.svg.addShape).icon(() {
           lpToast("click1".text());
-        }),
+        }).size(size: _navItemSize),
         content: [
           ArrowWidget().size(size: 20),
           lpAbcSvgWidget(Assets.svg.addShape),
           lpAbcSvgWidget(Assets.svg.addImage).icon(() {
             lpToast("click2".text());
           }),
-        ].column()!.backgroundColor(Colors.black12),
+        ].column(),
       ),
-      lpAbcSvgWidget(Assets.svg.addImage),
-      lpAbcSvgWidget(Assets.svg.addShape),
-      lpAbcSvgWidget(Assets.svg.addShape),
-      HoverAnchorLayout(
-        anchor: lpAbcSvgWidget(Assets.svg.addImage).icon(() {
-          lpToast("click1".text());
-        }),
-        content: [
-          ArrowWidget().size(size: 20),
-          lpAbcSvgWidget(Assets.svg.addShape),
-          lpAbcSvgWidget(Assets.svg.addImage).icon(() {
-            lpToast("click2".text());
-          }),
-        ].column()!.backgroundColor(Colors.black12),
-      ),
-    ].scroll(axis: Axis.vertical)!;
+    ].scroll(axis: Axis.vertical, gap: kX)!;
   }
 }
