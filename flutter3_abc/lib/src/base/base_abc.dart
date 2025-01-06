@@ -18,6 +18,9 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
   /// [build]
   bool useSafeArea = false;
 
+  /// 桌面端, 是否使用AppBar
+  bool usbAppBarInDesktop = false;
+
   /// 离屏
   bool isOffstage = false;
 
@@ -65,7 +68,10 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
 
   /// 构建标题栏
   @protected
-  PreferredSizeWidget buildAppBar(BuildContext context) {
+  PreferredSizeWidget? buildAppBar(BuildContext context) {
+    if (isDesktopOrWeb && !usbAppBarInDesktop) {
+      return null;
+    }
     final themeData = Theme.of(context);
     return AppBar(
       title: Text(title ?? '${widget.runtimeType}'),

@@ -5,6 +5,7 @@ part of '../flutter3_abc.dart';
 /// @author angcyo
 /// @date 2024/06/10
 ///
+/// 只支持在Flutter App内的拖拽
 class DraggableAbc extends StatefulWidget {
   const DraggableAbc({super.key});
 
@@ -20,7 +21,7 @@ class _DraggableAbcState extends State<DraggableAbc> with BaseAbcStateMixin {
         data: "data1",
         feedback: "feedback1".text().min().material(),
         childWhenDragging: "childWhenDragging1".text().min(),
-        child: "Draggable1".text().min(),
+        child: "Draggable1(拖拽数据-data1)".text().min(),
       ),
       horizontalLine(context),
       Empty.height(30),
@@ -28,7 +29,7 @@ class _DraggableAbcState extends State<DraggableAbc> with BaseAbcStateMixin {
         data: "data2",
         feedback: "feedback2".text().min().material(),
         childWhenDragging: "childWhenDragging2".text().min(),
-        child: "Draggable2".text().min(),
+        child: "Draggable2(拖拽数据-data2)".text().min(),
       ),
       horizontalLine(context),
       Empty.height(30),
@@ -36,7 +37,7 @@ class _DraggableAbcState extends State<DraggableAbc> with BaseAbcStateMixin {
         data: "data3",
         feedback: "feedback3".text().min().material(),
         childWhenDragging: "childWhenDragging3".text().min(),
-        child: "Draggable3".text().min(),
+        child: "Draggable3(拖拽数据-data3)".text().min(),
       ),
       horizontalLine(context),
       Empty.height(30),
@@ -44,7 +45,7 @@ class _DraggableAbcState extends State<DraggableAbc> with BaseAbcStateMixin {
         data: "data4",
         feedback: "feedback4".text().min().material(),
         childWhenDragging: "childWhenDragging4".text().min(),
-        child: "Draggable4".text().min(),
+        child: "Draggable4(拖拽数据-data4)".text().min(),
       ),
       horizontalLine(context),
       Empty.height(50),
@@ -53,7 +54,10 @@ class _DraggableAbcState extends State<DraggableAbc> with BaseAbcStateMixin {
           //candidateData:感兴趣的数据
           //rejectedData:不感兴趣的数据
           l.d("1: candidateData:$candidateData rejectedData:$rejectedData");
-          return "$candidateData\n$rejectedData".text().min().material();
+          return "感兴趣数据->$candidateData\n拒绝的数据->$rejectedData"
+              .text()
+              .min()
+              .material();
         },
         onWillAcceptWithDetails: (details) {
           //拖拽的数据进入时, 是否感兴趣?
@@ -78,7 +82,10 @@ class _DraggableAbcState extends State<DraggableAbc> with BaseAbcStateMixin {
       DragTarget(
         builder: (context, candidateData, rejectedData) {
           l.d("2: candidateData:$candidateData rejectedData:$rejectedData");
-          return "$candidateData\n$rejectedData".text().min().material();
+          return "感兴趣数据->$candidateData\n拒绝的数据->$rejectedData"
+              .text()
+              .min()
+              .material();
         },
         onWillAcceptWithDetails: (details) {
           l.d("2: onWillAcceptWithDetails:$details");
