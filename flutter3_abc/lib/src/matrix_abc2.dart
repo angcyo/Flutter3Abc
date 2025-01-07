@@ -74,6 +74,32 @@ class _MatrixAbc2State extends State<MatrixAbc2> with AbsScrollPage, TileMixin {
           to.reset(from);
         });
       }).bounds(),
+      $any(onPaint: (render, canvas, size) {
+        Matrix4 matrix = perspectiveMatrix(from, to);
+        final transformString = matrix.toTransformString();
+        l.d("transformString: $transformString");
+        matrix = transformString.transformMatrix!;
+        canvas.withMatrix(
+            matrix * createTranslateMatrix(tx: from[0].dx, ty: from[0].dy), () {
+          canvas.drawImageInRect(_face,
+              fit: BoxFit.fill,
+              dst: Rect.fromLTWH(0, 0, right - left, bottom - top));
+          canvas.drawText(
+            matrix.toMatrixString(lineNumber: false, padWidth: 20),
+            fontSize: 12,
+            offset: from[0],
+            textColor: Colors.white,
+            bold: true,
+            shadow: true,
+          );
+        });
+        _drawPoint(canvas, from, Colors.black);
+        _drawPoint(canvas, to, Colors.red);
+      }).size(height: 120).click(() {
+        setState(() {
+          to.reset(from);
+        });
+      }).bounds(),
       ..._buildToSlider(context, 0),
       ..._buildToSlider(context, 1),
       ..._buildToSlider(context, 2),
