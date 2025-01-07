@@ -111,6 +111,7 @@ part 'src/svg_abc.dart';
 part 'src/tab_bar_abc.dart';
 part 'src/tab_layout_abc.dart';
 part 'src/text_field_abc.dart';
+part 'src/udp_service_abc.dart';
 part 'src/url_launcher_abc.dart';
 part 'src/verify_code_abc.dart';
 part 'src/web_socket_abc.dart';
@@ -244,6 +245,7 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ),
   ("/shelf", 'ShelfAbc', (context) => const ShelfAbc()),
   ("/webSocket", 'WebSocketAbc', (context) => const WebSocketAbc()),
+  ("/udpService", 'UdpServiceAbc', (context) => const UdpServiceAbc()),
   (
     "/CoverCameraUpgrade",
     'CoverCameraUpgradeAbc',
