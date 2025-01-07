@@ -26,7 +26,9 @@ class _EventAbcState extends State<EventAbc> with KeyEventMixin {
 
   @override
   Widget build(BuildContext context) {
-    return "${_buildPointerEventText("鼠标事件", mouseEvent)}\n\n${_buildPointerEventText("指针事件", pointerEvent)}\n\n$keyEvent\n\n${_buildHardwareKeyboardText(context)}"
+    return "${_buildPointerEventText("鼠标事件", mouseEvent)}\n\n${_buildPointerEventText("指针事件", pointerEvent)}\n\n$keyEvent\n\n${_buildHardwareKeyboardText(context)}\n\n"
+            "isControlPressed->${HardwareKeyboard.instance.isControlPressed}\nisAltPressed->${HardwareKeyboard.instance.isAltPressed}\n"
+            "isMetaPressed->${HardwareKeyboard.instance.isMetaPressed}\nisShiftPressed->${HardwareKeyboard.instance.isShiftPressed}"
         .text(textAlign: TextAlign.center)
         .center()
         .mouse(
