@@ -50,6 +50,7 @@ class _MatrixAbc2State extends State<MatrixAbc2> with AbsScrollPage, TileMixin {
 
   @override
   WidgetList? buildScrollBody(BuildContext context) {
+    testMatrix();
     return [
       $any(onPaint: (render, canvas, size) {
         final matrix = perspectiveMatrix(from, to);
@@ -145,6 +146,42 @@ class _MatrixAbc2State extends State<MatrixAbc2> with AbsScrollPage, TileMixin {
     path.close();
     paint.style = PaintingStyle.stroke;
     canvas.drawPath(path, paint);
+  }
+
+  void testMatrix() {
+    //toString() row
+    //```
+    //[0] [1.0,0.0,0.0]
+    //[1] [0.0,1.0,0.0]
+    //[2] [0.0,0.0,1.0]
+    //旋转45°
+    //[0] [0.7071067811865476,-0.7071067811865475,0.0]
+    //[1] [0.7071067811865475,0.7071067811865476,0.0]
+    //[2] [0.0,0.0,1.0]
+    //```
+    final matrix3 = Matrix3.identity()..setRotationZ(45.hd);
+    //1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+    //0.7071067811865476,0.7071067811865475,0.0,-0.7071067811865475,0.7071067811865476,0.0,0.0,0.0,1.0
+    matrix3.storage;
+    //toString() row
+    //```
+    //[0] 1.0,0.0,0.0,0.0
+    //[1] 0.0,1.0,0.0,0.0
+    //[2] 0.0,0.0,1.0,0.0
+    //[3] 0.0,0.0,0.0,1.0
+    //先平移, 旋转45°
+    //[0] 0.7071067811865476,-0.7071067811865475,0.0,50.0
+    //[1] 0.7071067811865475,0.7071067811865476,0.0,100.0
+    //[2] 0.0,0.0,1.0,0.0
+    //[3] 0.0,0.0,0.0,1.0
+    //```
+    final matrix4 = Matrix4.identity()
+      ..translate(50.0, 100.0)
+      ..setRotationZ(45.hd);
+    //1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0
+    //0.7071067811865476,0.7071067811865475,0.0,0.0,-0.7071067811865475,0.7071067811865476,0.0,0.0,0.0,0.0,1.0,0.0,50.0,100.0,0.0,1.0
+    matrix4.storage;
+    debugger();
   }
 }
 
