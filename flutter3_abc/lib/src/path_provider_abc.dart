@@ -4,7 +4,10 @@ part of '../flutter3_abc.dart';
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
 /// @since 2023/11/17
 ///
-
+/// ```
+/// '${Platform.resolvedExecutable} | ${Platform.script} | ${Platform.executable} | ${Platform.resolvedExecutable}')
+/// ```
+///
 class PathProviderAbc extends StatefulWidget {
   const PathProviderAbc({super.key});
 
