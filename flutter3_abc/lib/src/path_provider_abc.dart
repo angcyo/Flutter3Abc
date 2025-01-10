@@ -46,7 +46,9 @@ class _PathProviderAbcState extends State<PathProviderAbc>
   List<Widget> buildBodyList(BuildContext context) {
     var map = pathViewModel.pathMap.value;
     if (pathViewModel.pathMap.value == null) {
-      pathViewModel.loadPath().whenComplete(() => context.tryUpdateState());
+      pathViewModel
+          .loadPath()
+          .whenComplete(() => context.buildContext?.tryUpdateState());
       return [
         const Text(
           'loading...',
@@ -55,10 +57,17 @@ class _PathProviderAbcState extends State<PathProviderAbc>
       ];
     } else {
       //遍历map
-      WidgetList list = [];
-      l.i(defaultTargetPlatform);
-      list.add("$defaultTargetPlatform PathViewModel↓"
-          .text(style: const TextStyle(color: Colors.purpleAccent)));
+      final WidgetList list = [];
+      final platform =
+          "$defaultTargetPlatform ${Platform.operatingSystemVersion} ${Platform.localHostname}";
+      l.i(platform);
+      list.add("$platform PathViewModel↓"
+          .text(
+              style: const TextStyle(color: Colors.purpleAccent),
+              selectable: true)
+          .click(() {
+        platform.copy();
+      }));
       map!.forEach((key, value) {
         l.i('$key->${value?.path}');
         list.add(ListTile(

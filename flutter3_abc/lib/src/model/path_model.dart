@@ -5,9 +5,8 @@ part of '../../flutter3_abc.dart';
 /// @since 2023/11/17
 ///
 
-///
+/// # TargetPlatform.android
 /// ```
-/// TargetPlatform.android
 ///   getTemporaryDirectory->/data/user/0/com.angcyo.flutter3_abc/cache
 ///   getApplicationSupportDirectory->/data/user/0/com.angcyo.flutter3_abc/files
 ///   getLibraryDirectory->null
@@ -19,7 +18,7 @@ part of '../../flutter3_abc.dart';
 ///   current->/
 ///   systemTemp->/data/user/0/com.angcyo.flutter3_abc/code_cache
 /// ```
-/// # Debug
+/// ## Debug
 /// ```
 /// 默认文件路径->/storage/emulated/0/Android/data/com.angcyo.flutter3.abc/files
 /// 默认缓存路径->/storage/emulated/0/Android/data/com.angcyo.flutter3.abc/cache
@@ -34,24 +33,32 @@ part of '../../flutter3_abc.dart';
 /// current->/
 /// systemTemp->/data/user/0/com.angcyo.flutter3.abc/code_cache
 /// ```
-/// # Release 之后
+/// ## Release 之后
 /// 需要添加混淆规则`-keep class * implements io.flutter.embedding.engine.plugins.FlutterPlugin`
+///
+/// # TargetPlatform.windows "Windows 10 Pro" 10.0 (Build 19045)
+///
 /// ```
-/// 默认文件路径->/data/user/0/com.angcyo.flutter3.abc/code_cache
-/// 默认缓存路径->/data/user/0/com.angcyo.flutter3.abc/code_cache
-/// getTemporaryDirectory->null
-/// getApplicationSupportDirectory->null
+/// resolvedExecutable->E:\FlutterProjects\Flutter3DesktopAbc\build\windows\x64\runner\Debug\flutter3_desktop_abc_bn.exe
+/// script->E:\FlutterProjects\Flutter3DesktopAbc\main.dart
+/// executable->flutter3_desktop_abc_bn.exe
+/// 默认文件路径->C:\Users\angcy\AppData\Local\Temp
+/// 默认缓存路径->C:\Users\angcy\AppData\Local\Temp
+/// getTemporaryDirectory->C:\Users\angcy\AppData\Local\Temp
+/// getApplicationSupportDirectory->C:\Users\angcy\AppData\Roaming\com.angcyo.flutter3.desktop.abc\flutter3_desktop_abc_pn
 /// getLibraryDirectory->null
-/// getApplicationDocumentsDirectory->null
-/// getApplicationCacheDirectory->null
+/// getApplicationDocumentsDirectory->C:\Users\angcy\Documents
+/// getApplicationCacheDirectory->C:\Users\angcy\AppData\Local\com.angcyo.flutter3.desktop.abc\flutter3_desktop_abc_pn
 /// getExternalStorageDirectory->null
 /// externalCacheDirectory->null
-/// getDownloadsDirectory->null
-/// current->/
-/// systemTemp->/data/user/0/com.angcyo.flutter3.abc/code_cache
+/// getDownloadsDirectory->C:\Users\angcy\Downloads
+/// current->E:\FlutterProjects\Flutter3DesktopAbc
+/// systemTemp->C:\Users\angcy\AppData\Local\Temp
 /// ```
 ///
 class PathViewModel extends ViewModel {
+  /// [String]
+  /// [Directory]
   final MutableLiveData<Map<String, Directory?>?> pathMap = vmData();
 
   Future<void> loadPath() async {
@@ -129,6 +136,10 @@ class PathViewModel extends ViewModel {
     }
 
     pathMap.value = {
+      'resolvedExecutable': Platform.resolvedExecutable.directory(),
+      'script': Platform.script.filePath.directory(),
+      //可执行的程序名称, 非路径
+      'executable': Platform.executable.directory(),
       '默认文件路径': await fileDirectory(),
       '默认缓存路径': await cacheDirectory(),
       'getTemporaryDirectory': temporaryDirectory ?? Directory('null'),

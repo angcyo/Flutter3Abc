@@ -106,7 +106,7 @@ class _BasicsAbcState extends State<BasicsAbc> with BaseAbcStateMixin {
             '${Platform.operatingSystemVersion} | ${Platform.version} | ${Platform.localHostname}')
         ..addText(lineSeparator)
         ..addText(
-            '${Platform.resolvedExecutable} | ${Platform.script} | ${Platform.executable} | ${Platform.resolvedExecutable}')
+            '${Platform.resolvedExecutable} | ${Platform.script} | ${Platform.executable}}')
         ..addText(lineSeparator)
         ..addText(
             '${Platform.packageConfig} | ${Platform.executableArguments} | ${Platform.lineTerminator}')
