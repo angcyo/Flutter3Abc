@@ -71,7 +71,7 @@ class _WebviewAbcState extends State<WebviewAbc>
         }, child: "callJs".text()),
         GradientButton.normal(() {
           isOffstage = true;
-          buildContext?.popRoute();
+          buildContext?.maybePop();
         }, child: "close".text()),
         GradientButton.normal(() {}, onContextTap: (context) {
           const ProgressStateNotification(progress: -1).dispatch(context);
