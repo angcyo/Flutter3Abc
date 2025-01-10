@@ -6,6 +6,7 @@ part of '../../flutter3_abc.dart';
 ///
 
 /// 有状态的Abc混入
+/// 重写[buildBodyList]方法, 创建对应的demo
 mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
   /// 构建标题栏
   String? title;
