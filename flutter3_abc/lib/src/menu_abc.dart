@@ -1,6 +1,5 @@
 part of '../flutter3_abc.dart';
 
-
 ///
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
 /// @date 2024/03/28
@@ -13,7 +12,7 @@ class MenuAbc extends StatefulWidget {
 }
 
 class _MenuAbcState extends State<MenuAbc> with BaseAbcStateMixin {
-  String? initialValue;
+  String? initialValue = "1";
 
   MenuController menuController = MenuController();
 
@@ -23,7 +22,7 @@ class _MenuAbcState extends State<MenuAbc> with BaseAbcStateMixin {
       "MenuAnchor↓".text(textAlign: TextAlign.center),
       MenuAnchor(
         controller: menuController,
-        menuChildren: buildMenu(),
+        menuChildren: buildMenuWidget(),
         style: const MenuStyle(
           backgroundColor: MaterialStatePropertyAll(Colors.white),
         ),
@@ -49,9 +48,12 @@ class _MenuAbcState extends State<MenuAbc> with BaseAbcStateMixin {
       "MenuBar↓".text(textAlign: TextAlign.center),
       MenuBar(
         children: [
-          SubmenuButton(menuChildren: buildMenu(), child: "Submenu1".text()),
-          SubmenuButton(menuChildren: buildMenu(), child: "Submenu2".text()),
-          SubmenuButton(menuChildren: buildMenu(), child: "Submenu3".text()),
+          SubmenuButton(
+              menuChildren: buildMenuWidget(), child: "Submenu1".text()),
+          SubmenuButton(
+              menuChildren: buildMenuWidget(), child: "Submenu2".text()),
+          SubmenuButton(
+              menuChildren: buildMenuWidget(), child: "Submenu3".text()),
           MenuItemButton(child: "Menu1".text()),
           MenuItemButton(
             child: "Menu2".text(),
@@ -61,7 +63,8 @@ class _MenuAbcState extends State<MenuAbc> with BaseAbcStateMixin {
         ],
       ),
       "SubmenuButton↓".text(textAlign: TextAlign.center),
-      SubmenuButton(menuChildren: buildMenu(), child: "SubmenuButton".text()),
+      SubmenuButton(
+          menuChildren: buildMenuWidget(), child: "SubmenuButton".text()),
       "MenuItemButton↓".text(textAlign: TextAlign.center),
       MenuItemButton(child: "Menu1".text()),
       "DropdownMenu↓".text(textAlign: TextAlign.center),
@@ -116,26 +119,28 @@ class _MenuAbcState extends State<MenuAbc> with BaseAbcStateMixin {
       ).size(height: 48),
       "DropdownButton↓".text(textAlign: TextAlign.center),
       DropdownButton(
-          items: buildDropdownMenuItems(),
-          value: initialValue,
-          /*icon: nil,*/
-          iconSize: 0,
-          onChanged: (value) {
-            initialValue = value;
-            updateState();
-          }),
+        items: buildDropdownMenuItems(),
+        value: initialValue,
+        /*icon: nil,*/
+        iconSize: 0,
+        onChanged: (value) {
+          initialValue = value;
+          updateState();
+        },
+      ),
       DropdownButton(
-          items: buildDropdownMenuItems(),
-          value: initialValue,
-          underline: nil,
-          icon: const Icon(Icons.add_a_photo_outlined),
-          /*isDense: true,*/
-          itemHeight: kMinInteractiveDimension,
-          //高度必须≥kMinInteractiveDimension
-          onChanged: (value) {
-            initialValue = value;
-            updateState();
-          }),
+        items: buildDropdownMenuItems(),
+        value: initialValue,
+        underline: nil,
+        icon: const Icon(Icons.add_a_photo_outlined),
+        /*isDense: true,*/
+        itemHeight: kMinInteractiveDimension,
+        //高度必须≥kMinInteractiveDimension
+        onChanged: (value) {
+          initialValue = value;
+          updateState();
+        },
+      ),
       "DropdownButtonFormField↓".text(textAlign: TextAlign.center),
       //内部就是用[DropdownButton]实现的
       DropdownButtonFormField(
@@ -156,10 +161,74 @@ class _MenuAbcState extends State<MenuAbc> with BaseAbcStateMixin {
         },
       ),
       DropdownMenuItem(child: 'text'.text()),
+      "showMenu↓".text(textAlign: TextAlign.center),
+      [
+        GradientButton.normal(() {}, onContextTap: (ctx) {
+          ctx
+              .showWidgetMenu(null, items: buildPopupMenu(ctx))
+              .get((value, error) {
+            l.d("value:$value,error:$error");
+          });
+        }, child: "showMenu-items".text()),
+        GradientButton.normal(() {}, onContextTap: (ctx) {
+          ctx
+              .showWidgetMenu(null, items: buildPopupMenu2(ctx))
+              .get((value, error) {
+            l.d("value:$value,error:$error");
+          });
+        }, child: "showMenu2-items".text()),
+        GradientButton.normal(() {}, onContextTap: (ctx) {
+          ctx.showWidgetMenu(buildMenuWidget());
+        }, child: "showMenu-widget".text()),
+      ].flowLayout(padding: kXInsets, childGap: kX)!,
+      "...↑".text(textAlign: TextAlign.center),
     ];
   }
 
-  List<Widget> buildMenu() {
+  List<PopupMenuEntry<String>> buildPopupMenu(BuildContext context) {
+    return <PopupMenuEntry<String>>[
+      PopupMenuItem(
+        value: randomText(),
+        child: randomTextWidget(length: 5),
+      ),
+      PopupMenuItem(
+        value: randomText(),
+        child: randomTextWidget(length: 5),
+      ),
+      PopupMenuItem(
+        value: randomText(),
+        child: randomTextWidget(length: 5),
+      ),
+    ];
+  }
+
+  List<PopupMenuEntry<String>> buildPopupMenu2(BuildContext context) {
+    return <PopupMenuEntry<String>>[
+      PopupMenuItem(
+        value: "1",
+        child: randomTextWidget(length: 5).click(() {
+          toastInfo("1");
+          context.popMenu();
+        }),
+      ),
+      PopupMenuItem(
+        value: "2",
+        child: randomTextWidget(length: 5).click(() {
+          toastInfo("2");
+          buildContext?.popMenu("pop 2");
+        }),
+      ),
+      PopupMenuItem(
+        value: "3",
+        child: randomTextWidget(length: 5).click(() {
+          toastInfo("3");
+          buildContext?.popMenu("pop 3");
+        }),
+      ),
+    ];
+  }
+
+  List<Widget> buildMenuWidget() {
     return [
       IconTextTile(
         text: 'Item 1',
