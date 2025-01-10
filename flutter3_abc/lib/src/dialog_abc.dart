@@ -295,7 +295,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
         ),
         GradientButton.normal(
           () {
-            context.push(
+            context.pushRoute(
               ModalBottomSheetRoute(
                 builder: (context) {
                   return BottomSheet(

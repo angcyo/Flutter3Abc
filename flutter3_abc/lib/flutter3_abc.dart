@@ -30,6 +30,7 @@ import 'assets_generated/assets.gen.dart';
 import 'src/bean/http_test_bean.dart';
 
 export 'assets_generated/assets.gen.dart';
+export 'package:flutter3_pub_core/flutter3_pub_core.dart';
 
 part 'src/animated_abc.dart';
 part 'src/app_bar_abc.dart';

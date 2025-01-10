@@ -222,7 +222,7 @@ class _CanvasAbcState extends State<CanvasAbc>
                 ),
                 GradientButton.normal(
                   () {
-                    context.push(TestRoute());
+                    context.pushRoute(TestRoute());
                   },
                   child: "test-route".text(),
                 ),
