@@ -56,6 +56,25 @@ part of '../../flutter3_abc.dart';
 /// systemTemp->C:\Users\angcy\AppData\Local\Temp
 /// ```
 ///
+/// # TargetPlatform.windows "Windows 10 Pro" 10.0 (Build 22631) XLB-20240902UHB
+/// ```
+/// resolvedExecutable->E:\projects\flutter\Flutter3DesktopAbc\build\windows\x64\runner\Debug\flutter3_desktop_abc_bn.exe
+/// script->E:\projects\flutter\Flutter3DesktopAbc\main.dart
+/// executable->flutter3_desktop_abc_bn.exe
+/// 默认文件路径->C:\Users\ADMINI~1\AppData\Local\Temp
+/// 默认缓存路径->C:\Users\ADMINI~1\AppData\Local\Temp
+/// getTemporaryDirectory->C:\Users\ADMINI~1\AppData\Local\Temp
+/// getApplicationSupportDirectory->C:\Users\Administrator\AppData\Roaming\com.angcyo.flutter3.desktop.abc\flutter3_desktop_abc_pn
+/// getLibraryDirectory->null
+/// getApplicationDocumentsDirectory->D:\文档
+/// getApplicationCacheDirectory->C:\Users\Administrator\AppData\Local\com.angcyo.flutter3.desktop.abc\flutter3_desktop_abc_pn
+/// getExternalStorageDirectory->null
+/// externalCacheDirectory->null
+/// getDownloadsDirectory->C:\Users\Administrator\Downloads
+/// current->E:\projects\flutter\Flutter3DesktopAbc
+/// systemTemp->C:\Users\ADMINI~1\AppData\Local\Temp
+/// ```
+///
 class PathViewModel extends ViewModel {
   /// [String]
   /// [Directory]

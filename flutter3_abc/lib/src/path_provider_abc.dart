@@ -70,10 +70,16 @@ class _PathProviderAbcState extends State<PathProviderAbc>
       }));
       map!.forEach((key, value) {
         l.i('$key->${value?.path}');
-        list.add(ListTile(
-          title: Text(key),
-          subtitle: Text("$value"),
-        ));
+        list.add(
+          ListTile(
+            title: Text(key),
+            subtitle: Text("$value"),
+            onTap: () {
+              //launchUrl('file://C:'.toUri()!);
+              openFilePath(value?.path);
+            },
+          ),
+        );
       });
 
       //hive abc
