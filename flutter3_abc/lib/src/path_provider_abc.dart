@@ -59,7 +59,7 @@ class _PathProviderAbcState extends State<PathProviderAbc>
       //遍历map
       final WidgetList list = [];
       final platform =
-          "$defaultTargetPlatform ${Platform.operatingSystemVersion} ${Platform.localHostname}";
+          "$defaultTargetPlatform ${Platform.operatingSystemVersion} ${Platform.localHostname} / ${Platform.version}";
       l.i(platform);
       list.add("$platform PathViewModel↓"
           .text(
