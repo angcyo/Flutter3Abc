@@ -75,6 +75,26 @@ part of '../../flutter3_abc.dart';
 /// systemTemp->C:\Users\ADMINI~1\AppData\Local\Temp
 /// ```
 ///
+/// # TargetPlatform.macOS Version 15.2 (Build 24C101) angcyo-m2-Max.local
+///
+/// ```
+/// resolvedExecutable->/Users/angcyo/project/Flutter/Flutter3DesktopAbc/build/macos/Build/Products/Debug/flutter3_desktop_abc.app/Contents/MacOS/flutter3_desktop_abc
+/// script->/Users/angcyo/Library/Containers/com.angcyo.flutter3.desktop.abc.flutter3DesktopAbc/Data/main.dart
+/// executable->/Users/angcyo/project/Flutter/Flutter3DesktopAbc/build/macos/Build/Products/Debug/flutter3_desktop_abc.app/Contents/MacOS/flutter3_desktop_abc
+/// 默认文件路径->/Users/angcyo/Library/Containers/com.angcyo.flutter3.desktop.abc.flutter3DesktopAbc/Data/Library/Application Support/com.angcyo.flutter3.desktop.abc.flutter3DesktopAbc
+/// 默认缓存路径->/Users/angcyo/Library/Containers/com.angcyo.flutter3.desktop.abc.flutter3DesktopAbc/Data/Library/Caches
+/// getTemporaryDirectory->/Users/angcyo/Library/Containers/com.angcyo.flutter3.desktop.abc.flutter3DesktopAbc/Data/Library/Caches
+/// getApplicationSupportDirectory->/Users/angcyo/Library/Containers/com.angcyo.flutter3.desktop.abc.flutter3DesktopAbc/Data/Library/Application Support/com.angcyo.flutter3.desktop.abc.flutter3DesktopAbc
+/// getLibraryDirectory->/Users/angcyo/Library/Containers/com.angcyo.flutter3.desktop.abc.flutter3DesktopAbc/Data/Library
+/// getApplicationDocumentsDirectory->/Users/angcyo/Library/Containers/com.angcyo.flutter3.desktop.abc.flutter3DesktopAbc/Data/Documents
+/// getApplicationCacheDirectory->/Users/angcyo/Library/Containers/com.angcyo.flutter3.desktop.abc.flutter3DesktopAbc/Data/Library/Caches/com.angcyo.flutter3.desktop.abc.flutter3DesktopAbc
+/// getExternalStorageDirectory->null
+/// externalCacheDirectory->null
+/// getDownloadsDirectory->/Users/angcyo/Library/Containers/com.angcyo.flutter3.desktop.abc.flutter3DesktopAbc/Data/Downloads
+/// current->/Users/angcyo/Library/Containers/com.angcyo.flutter3.desktop.abc.flutter3DesktopAbc/Data
+/// systemTemp->/Users/angcyo/Library/Containers/com.angcyo.flutter3.desktop.abc.flutter3DesktopAbc/Data/tmp
+/// ```
+///
 class PathViewModel extends ViewModel {
   /// [String]
   /// [Directory]
