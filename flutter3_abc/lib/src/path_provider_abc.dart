@@ -131,13 +131,13 @@ class _PathProviderAbcState extends State<PathProviderAbc>
       list.add([
         GradientButton(
           onTap: () async {
-            var output = await cacheFilePath("test.zip");
+            final output = await cacheFilePath("${nowTimeFileName()}.zip");
             //var path = await fileFolderPath(kLogPathName);
-            var path = await fileFolder();
+            final path = (await fileFolder()).path;
             path.ofList<String>().zip(output).ignore();
-            var log =
+            final log =
                 "压缩完成:$output :${(await output.file().fileSize()).toSizeStr()}";
-            l.i(log);
+            l.d(log);
             toastInfo("压缩完成:$output");
             output.shareFile().ignore();
             files = Text(log);
@@ -147,7 +147,7 @@ class _PathProviderAbcState extends State<PathProviderAbc>
         ),
         GradientButton(
           onTap: () async {
-            final output = await cacheFilePath("test.zip");
+            final output = await cacheFilePath("${nowTimeFileName()}.zip");
             final result = await output.unzip(
                 (AbcConfig.getAndIncrementClickCount() % 2 == 0)
                     ? null

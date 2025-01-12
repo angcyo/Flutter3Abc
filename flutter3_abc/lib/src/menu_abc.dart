@@ -165,20 +165,20 @@ class _MenuAbcState extends State<MenuAbc> with BaseAbcStateMixin {
       [
         GradientButton.normal(() {}, onContextTap: (ctx) {
           ctx
-              .showWidgetMenu(null, items: buildPopupMenu(ctx))
+              .showMenus(null, items: buildPopupMenu(ctx))
               .get((value, error) {
             l.d("value:$value,error:$error");
           });
         }, child: "showMenu-items".text()),
         GradientButton.normal(() {}, onContextTap: (ctx) {
           ctx
-              .showWidgetMenu(null, items: buildPopupMenu2(ctx))
+              .showMenus(null, items: buildPopupMenu2(ctx))
               .get((value, error) {
             l.d("value:$value,error:$error");
           });
         }, child: "showMenu2-items".text()),
         GradientButton.normal(() {}, onContextTap: (ctx) {
-          ctx.showWidgetMenu(buildMenuWidget());
+          ctx.showMenus(buildMenuWidget());
         }, child: "showMenu-widget".text()),
       ].flowLayout(padding: kXInsets, childGap: kX)!,
       "...↑".text(textAlign: TextAlign.center),
