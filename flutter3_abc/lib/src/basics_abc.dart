@@ -59,8 +59,16 @@ class _BasicsAbcState extends State<BasicsAbc> with BaseAbcStateMixin {
       });*/
 
       builder
-        ..addText(nowTimeString(), style: textStyle)
+        ..addText(
+            "${nowTimeString()} ${Platform.operatingSystemVersion}/${Platform.version}",
+            style: textStyle)
         ..addText(lineSeparator)
+        ..addText(Platform.resolvedExecutable)
+        ..addText(lineSeparator)
+        ..addText("${Platform.script}")
+        ..addText(lineSeparator)
+        ..addText("${Platform.packageConfig}")
+        ..addText(lineSeparator * 2)
         ..addText(String.fromEnvironment("test_yaml_value", defaultValue: "--"))
         ..addText(lineSeparator)
         ..addText(lineSeparator)

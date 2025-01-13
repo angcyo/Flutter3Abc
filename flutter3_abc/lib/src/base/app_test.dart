@@ -128,7 +128,8 @@ class AppTest {
           ..addText(
               '主题:${themeData.platform} ${themeData.brightness} $currentLocale')
           ..newLine()
-          ..addText('系统:$platformBrightness $platformLocale $platformLocales');
+          ..addText(
+              '本机:${platformDispatcher.platformBrightness} 系统:$platformBrightness $platformLocale $platformLocales');
       },
       textAlign: TextAlign.center,
       style: const TextStyle(fontSize: 9, color: Colors.grey),
