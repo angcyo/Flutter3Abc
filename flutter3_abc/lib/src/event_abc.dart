@@ -12,7 +12,8 @@ class EventAbc extends StatefulWidget {
   State<EventAbc> createState() => _EventAbcState();
 }
 
-class _EventAbcState extends State<EventAbc> with KeyEventMixin {
+class _EventAbcState extends State<EventAbc>
+    with KeyEventMixin, KeyEventStateMixin {
   PointerEvent? mouseEvent;
   PointerEvent? pointerEvent;
   KeyEvent? keyEvent;
