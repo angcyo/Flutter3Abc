@@ -148,6 +148,10 @@ class _BasicsAbcState extends State<BasicsAbc> with BaseAbcStateMixin {
         ..addText(lineSeparator)
         ..addText("手势配置->", style: textStyle)
         ..addText("${flutterView.gestureSettings}")
+        ..addText(lineSeparator)
+        ..addText("系统字体->", style: textStyle)
+        ..addText(
+            "${PlatformDispatcher.instance.systemFontFamily} frameData:${PlatformDispatcher.instance.frameData.frameNumber}")
         ..addText(lineSeparator * 2);
 
       /*debugger();
