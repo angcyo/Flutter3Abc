@@ -68,4 +68,72 @@ class AppTest {
       return buffer.toString();
     });
   }
+
+  /// 底部显示信息小部件
+  static Widget buildBottomWidget(BuildContext context) {
+    final themeData = Theme.of(context);
+    final mediaData = context.mediaQueryData;
+
+    final Brightness platformBrightness =
+        MediaQuery.platformBrightnessOf(context);
+
+    //当前语言
+    final currentLocale = Localizations.localeOf(context);
+
+    /*Text(
+      StringBuilder()
+          .append(
+          '种子颜色:${themeData.colorScheme.primary.toHexColor()} ${themeData.colorScheme.secondary.toHexColor()}')
+          .newLine()
+          .append(
+          '主题颜色:${themeData.primaryColor.toHexColor()} ${themeData.primaryColorDark.toHexColor()}')
+          .newLine()
+          .append(
+          '${themeData.platform} ${themeData.colorScheme.brightness} $platformBrightness')
+          .toString(),
+      textAlign: TextAlign.center,
+      style: const TextStyle(fontSize: 9, color: Colors.grey),
+    ),*/
+
+    final bottomTextWidget = textSpanBuilder(
+      (builder) {
+        builder
+          ..addText("种子颜色:")
+          ..addTextColor(themeData.colorScheme.primary.toHexColor(),
+              themeData.colorScheme.primary)
+          ..addText(" ")
+          ..addTextColor(themeData.colorScheme.secondary.toHexColor(),
+              themeData.colorScheme.secondary)
+          ..newLine()
+          ..addText("主题颜色:")
+          ..addTextBackgroundColor(
+              themeData.primaryColor.toHexColor(), themeData.primaryColor)
+          ..addText(" ")
+          ..addTextBackgroundColor(
+              themeData.indicatorColor.toHexColor(), themeData.indicatorColor)
+          ..addText(" ")
+          ..addTextBackgroundColor(themeData.primaryColorDark.toHexColor(),
+              themeData.primaryColorDark)
+          ..newLine()
+          ..addText(
+              'w:${mediaData.size.width.toDigits()}/${(mediaData.size.width * mediaData.devicePixelRatio).toInt()}/${deviceWidthPixel.toInt()}')
+          ..addText(
+              ' h:${mediaData.size.height.toDigits()}/${(mediaData.size.height * mediaData.devicePixelRatio).toInt()}/${deviceHeightPixel.toInt()}') //高度没有包含导航栏
+          ..addText(
+              ' s:${mediaData.devicePixelRatio} sf:${mediaData.textScaleFactor}')
+          ..newLine()
+          ..addText(
+              '$appFlavor ${$buildFlavor} M3:${themeData.useMaterial3} ${themeData.colorScheme.brightness}')
+          ..newLine()
+          ..addText(
+              '主题:${themeData.platform} ${themeData.brightness} $currentLocale')
+          ..newLine()
+          ..addText('系统:$platformBrightness $platformLocale $platformLocales');
+      },
+      textAlign: TextAlign.center,
+      style: const TextStyle(fontSize: 9, color: Colors.grey),
+    );
+
+    return bottomTextWidget;
+  }
 }
