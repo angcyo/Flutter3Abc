@@ -34,11 +34,23 @@ class $AssetsPngGen {
 class $AssetsSvgGen {
   const $AssetsSvgGen();
 
+  /// File path: assets/svg/add_apps.svg
+  String get addApps => 'packages/flutter3_abc/assets/svg/add_apps.svg';
+
   /// File path: assets/svg/add_image.svg
   String get addImage => 'packages/flutter3_abc/assets/svg/add_image.svg';
 
+  /// File path: assets/svg/add_material.svg
+  String get addMaterial => 'packages/flutter3_abc/assets/svg/add_material.svg';
+
+  /// File path: assets/svg/add_pen.svg
+  String get addPen => 'packages/flutter3_abc/assets/svg/add_pen.svg';
+
   /// File path: assets/svg/add_shape.svg
   String get addShape => 'packages/flutter3_abc/assets/svg/add_shape.svg';
+
+  /// File path: assets/svg/add_text.svg
+  String get addText => 'packages/flutter3_abc/assets/svg/add_text.svg';
 
   /// File path: assets/svg/more_tip.svg
   String get moreTip => 'packages/flutter3_abc/assets/svg/more_tip.svg';
@@ -47,7 +59,8 @@ class $AssetsSvgGen {
   String get path => 'assets/svg';
 
   /// List of all assets
-  List<String> get values => [addImage, addShape, moreTip];
+  List<String> get values =>
+      [addApps, addImage, addMaterial, addPen, addShape, addText, moreTip];
 }
 
 class $AssetsWebGen {
