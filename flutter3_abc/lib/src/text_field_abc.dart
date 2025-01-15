@@ -147,6 +147,59 @@ class _TextFieldAbcState extends State<TextFieldAbc> with BaseAbcStateMixin {
           ),
         ),
       ),
+      const Text(
+        'Autocomplete↓',
+        textAlign: TextAlign.center,
+      ),
+      Autocomplete<String>(
+        optionsBuilder: (TextEditingValue textEditingValue) {
+          l.d("optionsBuilder->$textEditingValue");
+          if (isNil(textEditingValue.text)) {
+            return [];
+          }
+          return [
+            "->${textEditingValue.text}",
+            textEditingValue.text,
+            "->${textEditingValue.text}<-",
+          ];
+        },
+        onSelected: (option) {
+          l.d("onSelected[${option.runtimeType}]->$option");
+        },
+      ),
+      Autocomplete<String>(
+        optionsBuilder: (TextEditingValue textEditingValue) {
+          l.d("textEditingValue->$textEditingValue");
+          if (isNil(textEditingValue.text)) {
+            return [];
+          }
+          return [
+            "->${textEditingValue.text}",
+            textEditingValue.text,
+            "->${textEditingValue.text}<-",
+          ];
+        },
+        fieldViewBuilder: (
+          BuildContext context,
+          TextEditingController textEditingController,
+          FocusNode focusNode,
+          VoidCallback onFieldSubmitted,
+        ) {
+          return SingleInputWidget(
+            config: TextFieldConfig(
+              controller: textEditingController,
+              focusNode: focusNode,
+              onSubmitted: (value) {
+                onFieldSubmitted();
+              },
+            ),
+          );
+        },
+      ),
+      //AutocompleteHighlightedOption(highlightIndexNotifier: highlightIndexNotifier, child: child),
+      AutofillGroup(child: "AutofillGroup".text()),
+      //AutofillClient(),
+      Empty.height(100),
     ];
   }
 }
