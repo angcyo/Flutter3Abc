@@ -12,6 +12,19 @@ class TextFieldAbc extends StatefulWidget {
 }
 
 class _TextFieldAbcState extends State<TextFieldAbc> with BaseAbcStateMixin {
+  final Map<int, FocusNode> _focusNodeMap = {};
+
+  FocusNode generateFocusNode(int index) {
+    return _focusNodeMap.putIfAbsent(index, () => FocusNode());
+  }
+
+  final Map<int, ValueNotifier<bool>> _valueNotifierMap = {};
+
+  ValueNotifier<bool> generateValueNotifier(int index) {
+    return _valueNotifierMap.putIfAbsent(
+        index, () => ValueNotifier<bool>(false));
+  }
+
   @override
   List<Widget> buildBodyList(BuildContext context) {
     return [
@@ -158,7 +171,7 @@ class _TextFieldAbcState extends State<TextFieldAbc> with BaseAbcStateMixin {
             return [];
           }
           return [
-            "->${textEditingValue.text}",
+            "默认样式->${textEditingValue.text}",
             textEditingValue.text,
             "->${textEditingValue.text}<-",
           ];
@@ -179,12 +192,10 @@ class _TextFieldAbcState extends State<TextFieldAbc> with BaseAbcStateMixin {
             "->${textEditingValue.text}<-",
           ];
         },
-        fieldViewBuilder: (
-          BuildContext context,
-          TextEditingController textEditingController,
-          FocusNode focusNode,
-          VoidCallback onFieldSubmitted,
-        ) {
+        fieldViewBuilder: (BuildContext context,
+            TextEditingController textEditingController,
+            FocusNode focusNode,
+            VoidCallback onFieldSubmitted,) {
           return SingleInputWidget(
             config: TextFieldConfig(
               controller: textEditingController,
@@ -193,13 +204,132 @@ class _TextFieldAbcState extends State<TextFieldAbc> with BaseAbcStateMixin {
                 onFieldSubmitted();
               },
             ),
+            hintText: "SingleInputWidget",
           );
         },
       ),
+      Autocomplete<String>(
+        optionsBuilder: (TextEditingValue textEditingValue) {
+          l.d("optionsBuilder->$textEditingValue");
+          if (isNil(textEditingValue.text)) {
+            return [];
+          }
+          return [
+            "重写optionsViewBuilder->${textEditingValue.text}",
+            textEditingValue.text,
+            "->${textEditingValue.text}<-",
+          ];
+        },
+        onSelected: (option) {
+          l.d("onSelected[${option.runtimeType}]->$option");
+        },
+        optionsViewBuilder: (BuildContext context,
+            AutocompleteOnSelected<String> onSelected,
+            Iterable<String> options,) {
+          return AutocompleteOptionsWidget(
+            options: options,
+            onSelected: onSelected,
+          );
+        },
+      ).size(width: 300).align(Alignment.center),
+      SingleInputWidget(
+        config: TextFieldConfig(
+          autoOptionsBuilder: (config, textEditingValue) {
+            l.d("autoOptionsBuilder[${config.hasFocus}]->$textEditingValue");
+            if (isNil(textEditingValue.text)) {
+              return [];
+            }
+            return [
+              "autoOptionsBuilder->${textEditingValue.text}",
+              textEditingValue.text,
+              "->${textEditingValue.text}<-",
+            ];
+          },
+        ),
+        hintText: "Autocomplete-SingleInputWidget",
+      ).size(width: 400).align(Alignment.center),
       //AutocompleteHighlightedOption(highlightIndexNotifier: highlightIndexNotifier, child: child),
       AutofillGroup(child: "AutofillGroup".text()),
+      const Text(
+        'AnchorOverlayLayout↓',
+        textAlign: TextAlign.center,
+      ),
+      _buildFocusNodeAnchor(1, Alignment.topLeft, Alignment.bottomRight),
+      _buildFocusNodeAnchor(2, Alignment.topCenter, Alignment.bottomCenter),
+      _buildFocusNodeAnchor(3, Alignment.topRight, Alignment.bottomLeft),
+      _buildFocusNodeAnchor(4, Alignment.centerRight, Alignment.centerLeft),
+      _buildFocusNodeAnchor(5, Alignment.bottomRight, Alignment.topLeft),
+      _buildFocusNodeAnchor(6, Alignment.bottomCenter, Alignment.topCenter),
+      _buildFocusNodeAnchor(7, Alignment.bottomLeft, Alignment.topRight),
+      _buildFocusNodeAnchor(8, Alignment.centerLeft, Alignment.centerRight),
+      _buildValueNotifierAnchor(1, Alignment.topLeft, Alignment.bottomRight),
+      _buildValueNotifierAnchor(5, Alignment.bottomRight, Alignment.topLeft),
       //AutofillClient(),
-      Empty.height(100),
+      Empty.height(500),
     ];
+  }
+
+  Widget _buildFocusNodeAnchor(int focusIndex,
+      Alignment targetAnchor,
+      Alignment followerAnchor, {
+        Offset offset = Offset.zero,
+      }) {
+    return AnchorOverlayLayout(
+      triggerFocusNode: generateFocusNode(focusIndex),
+      targetAnchor: targetAnchor,
+      followerAnchor: followerAnchor,
+      followerOffset: offset,
+      rootOverlay: false,
+      anchor: SingleInputWidget(
+        config: TextFieldConfig(
+          focusNode: generateFocusNode(focusIndex),
+        ),
+        hintText:
+        "${targetAnchor.toString().substringEnd(".")}+${followerAnchor
+            .toString().substringEnd(".")}",
+      ),
+      overlayWidgetBuilder: (ctx, bounds) {
+        return GradientButton(
+          child: "button:$bounds".text(),
+          onTap: () {
+            toastInfo("click:$bounds");
+          },
+        ).constrained(width: bounds.w);
+        /*.size(width: 100, height: 50).center()*/;
+      },
+    ).size(width: 300).align(Alignment.center);
+  }
+
+  Widget _buildValueNotifierAnchor(int focusIndex,
+      Alignment targetAnchor,
+      Alignment followerAnchor, {
+        Offset offset = Offset.zero,
+      }) {
+    return AnchorOverlayLayout(
+      groupId: focusIndex,
+      triggerValueNotifier: generateValueNotifier(focusIndex),
+      targetAnchor: targetAnchor,
+      followerAnchor: followerAnchor,
+      followerOffset: offset,
+      rootOverlay: false,
+      anchor: GradientButton(
+        child:
+        "${targetAnchor.toString().substringEnd(".")}+${followerAnchor
+            .toString().substringEnd(".")}"
+            .text(),
+        onTap: () {
+          generateValueNotifier(focusIndex).value = true;
+        },
+      ),
+      overlayWidgetBuilder: (ctx, bounds) {
+        return GradientButton(
+          child: "button:$bounds".text(),
+          onTap: () {
+            toastInfo("click:$bounds");
+          },
+        ).constrained(width: bounds.w);
+        /*.size(width: 100, height: 50).center()*/;
+      },
+    ).size(width: 300).align(Alignment.center);
   }
 }
