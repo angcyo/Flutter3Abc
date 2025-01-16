@@ -29,8 +29,9 @@ import 'package:xpath_selector_html_parser/xpath_selector_html_parser.dart';
 import 'assets_generated/assets.gen.dart';
 import 'src/bean/http_test_bean.dart';
 
-export 'assets_generated/assets.gen.dart';
 export 'package:flutter3_pub_core/flutter3_pub_core.dart';
+
+export 'assets_generated/assets.gen.dart';
 
 part 'src/animated_abc.dart';
 part 'src/app_bar_abc.dart';
@@ -258,6 +259,17 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ("/mouseRegion", 'MouseRegionAbc', (context) => const MouseRegionAbc()),
   ("/hoveAnchor", 'HoveAnchorAbc', (context) => const HoveAnchorAbc()),
 ];
+
+//--
+
+/// 最后一次跳转的路由路径
+String? get lastJumpPath => "_lastJumpPath".hiveGet<String>(null);
+
+set lastJumpPath(String? value) {
+  "_lastJumpPath".hivePut(value);
+}
+
+//--
 
 /// [loadAssetSvgWidget]
 Widget lpAbcSvgWidget(
