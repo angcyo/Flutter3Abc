@@ -87,7 +87,7 @@ class _UdpServiceAbcState extends State<UdpServiceAbc>
         GradientButton.normal(() {
           defaultUdpService
               .sendBroadcastMessage(shelf.UdpMessageBean.text(nowTimeString()));
-        }, child: "发送消息".text()),
+        }, child: "发送消息广播".text()),
         GradientButton.normal(() {
           final clientInfo =
               defaultUdpService.getServerClientInfo(_selectedDeviceId);
@@ -200,7 +200,7 @@ class _UdpServiceAbcState extends State<UdpServiceAbc>
                   message.data?.utf8Str,
                   style: globalTheme.textBodyStyle,
                 );
-              }),
+              }, selectable: true),
           ];
         }(),
     ];

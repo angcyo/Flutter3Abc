@@ -18,7 +18,7 @@ class PathProviderAbc extends StatefulWidget {
 class _PathProviderAbcState extends State<PathProviderAbc>
     with BaseAbcStateMixin {
   final PathViewModel pathViewModel = PathViewModel();
-  Text? files;
+  Widget? files;
 
   @override
   void initState() {
