@@ -31,6 +31,9 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
   /// [RScrollView.frameSplitDuration]
   Duration frameSplitDuration = const Duration(milliseconds: 16);
 
+  /// 滚动控制器
+  late final RScrollController scrollController = RScrollController.single();
+
   //---Scaffold
 
   /// 底部有插入时, 是否调整大小
@@ -110,6 +113,7 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
     if (useScroll) {
       //使用滚动小部件
       body = RScrollView(
+        controller: scrollController,
         enableFrameLoad: enableFrameLoad,
         frameSplitDuration: frameSplitDuration,
         children: [...bodyList, if (bodyList.isEmpty) body],

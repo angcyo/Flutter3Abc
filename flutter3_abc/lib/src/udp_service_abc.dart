@@ -12,7 +12,8 @@ class UdpServiceAbc extends StatefulWidget {
   State<UdpServiceAbc> createState() => _UdpServiceAbcState();
 }
 
-class _UdpServiceAbcState extends State<UdpServiceAbc> with BaseAbcStateMixin {
+class _UdpServiceAbcState extends State<UdpServiceAbc>
+    with BaseAbcStateMixin, HookMixin, HookStateMixin {
   final shelf.DefaultUdpService defaultUdpService =
       shelf.DefaultUdpService.instance;
   final shelf.UdpService udpService = shelf.$defaultUdp;
@@ -20,12 +21,24 @@ class _UdpServiceAbcState extends State<UdpServiceAbc> with BaseAbcStateMixin {
   /// 网口信息
   final networkInterfaceSignal = $signal<String>();
 
+  /// 消息列表更新信号
+  final listSignal = $signal();
+
   /// 选中的设备id
   String? _selectedDeviceId;
 
   @override
   void initState() {
     _loadNetworkInterface();
+    hookAny(defaultUdpService.newClientMessageStreamOnce.listen((data) {
+      if (_selectedDeviceId != null && data?.deviceId == _selectedDeviceId) {
+        listSignal.updateValue();
+        postFrame(() {
+          //滚动到底部
+          scrollController.scrollToBottom();
+        });
+      }
+    }));
     super.initState();
   }
 
@@ -71,6 +84,10 @@ class _UdpServiceAbcState extends State<UdpServiceAbc> with BaseAbcStateMixin {
         GradientButton.normal(() {
           udpService.sendBroadcast(nowTimeString().bytes);
         }, child: "发送广播".text()),
+        GradientButton.normal(() {
+          defaultUdpService
+              .sendBroadcastMessage(shelf.UdpMessageBean.text(nowTimeString()));
+        }, child: "发送消息".text()),
         IconButton(
           icon: Icon(Icons.info_outline),
           onPressed: () {
@@ -81,7 +98,7 @@ class _UdpServiceAbcState extends State<UdpServiceAbc> with BaseAbcStateMixin {
             .paddingOnly(all: kX)
             .constrained(maxWidth: screenWidth / 2)),
       ]
-          .flowLayout(childGap: kX, padding: const EdgeInsets.all(kX))!
+          .flowLayout(childGap: kH, padding: const EdgeInsets.all(kX))!
           .matchParentWidth(),
       [defaultUdpService.serverInfoSignal, defaultUdpService.clientInfoSignal]
           .buildFn(() {
@@ -97,6 +114,7 @@ class _UdpServiceAbcState extends State<UdpServiceAbc> with BaseAbcStateMixin {
             builder.addText(serverInfo.toString());
           }
           if (clientInfo != null) {
+            builder.newLineIfNotEmpty();
             builder.addText("客户端已启动: ");
             builder.addText(clientInfo.toString());
           }
@@ -110,10 +128,18 @@ class _UdpServiceAbcState extends State<UdpServiceAbc> with BaseAbcStateMixin {
         return [
           for (final clientInfo in clientList)
             textSpanBuilder((builder) {
-              builder.addText("客户端(${clientInfo.time?.toTimeString()}):\n",
-                  style: globalTheme.textDesStyle);
-              builder.addText(clientInfo.clientShowName,
-                  style: globalTheme.textBodyStyle);
+              builder.addText(
+                "${clientInfo.deviceId == defaultUdpService.serverInfoSignal.value?.deviceId ? "自己" : "客户端"}(${clientInfo.time?.toTimeString()}):\n",
+                style: globalTheme.textDesStyle,
+              );
+              builder.addText(
+                clientInfo.clientShowName,
+                style: globalTheme.textBodyStyle,
+              );
+              builder.addText(
+                "\n${clientInfo.clientIpAddress}",
+                style: globalTheme.textDesStyle,
+              );
             })
                 .align(Alignment.centerLeft)
                 .paddingAll(kH)
@@ -129,12 +155,13 @@ class _UdpServiceAbcState extends State<UdpServiceAbc> with BaseAbcStateMixin {
             ).matchParentHeight(),
         ].scroll()?.size(height: 100, width: double.infinity);
       }),
-      super.buildAbc(context).expanded(),
+      listSignal.buildFn(() => super.buildAbc(context).expanded()),
     ].column()!;
   }
 
   @override
   WidgetList buildBodyList(BuildContext context) {
+    final globalTheme = GlobalTheme.of(context);
     return [
       if (_selectedDeviceId == null) "!请先选择客户端!".text().center().sliverExpand(),
       if (_selectedDeviceId != null)
@@ -145,7 +172,17 @@ class _UdpServiceAbcState extends State<UdpServiceAbc> with BaseAbcStateMixin {
             return ["等待客户端消息...".text().center().sliverExpand()];
           }
           return [
-            for (final message in messageList) "$message".text(),
+            for (final message in messageList)
+              textSpanBuilder((builder) {
+                builder.addText(
+                  "${message.time?.toTimeString()}(${message.type}/${message.dataSizeStr}) ${message.receiveDurationStr ?? ""}↓\n",
+                  style: globalTheme.textDesStyle,
+                );
+                builder.addText(
+                  message.data?.utf8Str,
+                  style: globalTheme.textBodyStyle,
+                );
+              }),
           ];
         }(),
     ];
