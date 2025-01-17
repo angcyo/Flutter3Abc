@@ -15,17 +15,38 @@ class UdpServiceAbc extends StatefulWidget {
 class _UdpServiceAbcState extends State<UdpServiceAbc> with BaseAbcStateMixin {
   final shelf.DefaultUdpService defaultUdpService =
       shelf.DefaultUdpService.instance;
-  final shelf.UdpService udpService = shelf.DefaultUdpService.instance;
+  final shelf.UdpService udpService = shelf.$defaultUdp;
+
+  /// 网口信息
+  final networkInterfaceSignal = $signal<String>();
 
   /// 选中的设备id
   String? _selectedDeviceId;
 
   @override
+  void initState() {
+    _loadNetworkInterface();
+    super.initState();
+  }
+
+  @override
   void dispose() {
-    if (udpService != shelf.DefaultUdpService.instance) {
+    if (udpService != shelf.$defaultUdp) {
       udpService.dispose();
     }
     super.dispose();
+  }
+
+  void _loadNetworkInterface() async {
+    final list = await NetworkInterface.list(
+      includeLinkLocal: true,
+      type: InternetAddressType.any,
+      includeLoopback: true,
+    );
+    final ipv4 = InternetAddress.anyIPv4.address; //0.0.0.0
+    final ipv6 = InternetAddress.anyIPv6.address; //::
+    networkInterfaceSignal.updateValue(
+        "网络接口信息(网关)↓\n${list.join("↓\n")}\n\n默认ipv4->$ipv4, 默认ipv6->$ipv6");
   }
 
   @override
@@ -50,6 +71,15 @@ class _UdpServiceAbcState extends State<UdpServiceAbc> with BaseAbcStateMixin {
         GradientButton.normal(() {
           udpService.sendBroadcast(nowTimeString().bytes);
         }, child: "发送广播".text()),
+        IconButton(
+          icon: Icon(Icons.info_outline),
+          onPressed: () {
+            toastInfo(networkInterfaceSignal.value);
+          },
+        ).hoverTooltip(networkInterfaceSignal.value
+            ?.text()
+            .paddingOnly(all: kX)
+            .constrained(maxWidth: screenWidth / 2)),
       ]
           .flowLayout(childGap: kX, padding: const EdgeInsets.all(kX))!
           .matchParentWidth(),
@@ -57,6 +87,7 @@ class _UdpServiceAbcState extends State<UdpServiceAbc> with BaseAbcStateMixin {
           .buildFn(() {
         final serverInfo = defaultUdpService.serverInfoSignal.value;
         final clientInfo = defaultUdpService.clientInfoSignal.value;
+        //debugger();
         if (serverInfo == null && clientInfo == null) {
           return empty;
         }
