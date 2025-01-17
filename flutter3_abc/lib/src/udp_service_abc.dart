@@ -88,6 +88,24 @@ class _UdpServiceAbcState extends State<UdpServiceAbc>
           defaultUdpService
               .sendBroadcastMessage(shelf.UdpMessageBean.text(nowTimeString()));
         }, child: "发送消息".text()),
+        GradientButton.normal(() {
+          final clientInfo =
+              defaultUdpService.getServerClientInfo(_selectedDeviceId);
+          defaultUdpService.testTcpSendToClient(
+            clientInfo?.clientAddress,
+            clientInfo?.clientPort,
+            nowTimeString().bytes,
+          );
+        }, child: "test-tcp-to-client".text()),
+        GradientButton.normal(() {
+          final clientInfo =
+              defaultUdpService.getServerClientInfo(_selectedDeviceId);
+          defaultUdpService.testUdpSendToClient(
+            clientInfo?.clientAddress,
+            clientInfo?.clientPort,
+            nowTimeString().bytes,
+          );
+        }, child: "test-udp-to-client".text()),
         IconButton(
           icon: Icon(Icons.info_outline),
           onPressed: () {
