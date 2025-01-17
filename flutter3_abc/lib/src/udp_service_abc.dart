@@ -145,32 +145,50 @@ class _UdpServiceAbcState extends State<UdpServiceAbc>
         }
         return [
           for (final clientInfo in clientList)
-            textSpanBuilder((builder) {
-              builder.addText(
-                "${clientInfo.deviceId == defaultUdpService.serverInfoSignal.value?.deviceId ? "自己" : "客户端"}(${clientInfo.time?.toTimeString()}):\n",
-                style: globalTheme.textDesStyle,
-              );
-              builder.addText(
-                clientInfo.clientShowName,
-                style: globalTheme.textBodyStyle,
-              );
-              builder.addText(
-                "\n${clientInfo.clientIpAddress}",
-                style: globalTheme.textDesStyle,
-              );
-            })
+            [
+              defaultUdpService.onlineClientStreamOnce,
+              defaultUdpService.offlineClientStreamOnce,
+            ]
+                .buildFn(() {
+                  final deviceId = clientInfo.deviceId;
+                  final info =
+                      defaultUdpService.getServerClientInfo(deviceId) ??
+                          clientInfo;
+                  return textSpanBuilder((builder) {
+                    builder.addText(
+                      deviceId ==
+                              defaultUdpService.serverInfoSignal.value?.deviceId
+                          ? "自己"
+                          : "客户端",
+                      style: globalTheme.textDesStyle,
+                    );
+                    builder.addText(
+                      "(${info.time?.toTimeString()})${info.isOffline ? "|离线" : ""}:\n",
+                      style: globalTheme.textDesStyle,
+                    );
+                    builder.addText(
+                      info.clientShowName,
+                      style: globalTheme.textBodyStyle,
+                    );
+                    builder.addText(
+                      "\n${info.clientIpAddress}",
+                      style: globalTheme.textDesStyle,
+                    );
+                  });
+                })
                 .align(Alignment.centerLeft)
                 .paddingAll(kH)
                 .backgroundColor(_selectedDeviceId == clientInfo.deviceId
                     ? globalTheme.pressColor
                     : null)
                 .ink(
-              () {
-                _selectedDeviceId = clientInfo.deviceId;
-                updateState();
-              },
-              enable: _selectedDeviceId != clientInfo.deviceId,
-            ).matchParentHeight(),
+                  () {
+                    _selectedDeviceId = clientInfo.deviceId;
+                    updateState();
+                  },
+                  enable: _selectedDeviceId != clientInfo.deviceId,
+                )
+                .matchParentHeight(),
         ].scroll()?.size(height: 100, width: double.infinity);
       }),
       listSignal.buildFn(() => super.buildAbc(context).expanded()),
