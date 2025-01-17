@@ -195,7 +195,7 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ("/notification", 'NotificationAbc ', (context) => const NotificationAbc()),
   ("/Gesture", 'GestureAbc ', (context) => const GestureAbc()),
   ("/Image", 'ImageAbc ', (context) => const ImageAbc()),
-  ("/canvas", 'CanvasAbc $kGo', (context) => const CanvasAbc()),
+  ("/canvas", 'CanvasAbc', (context) => const CanvasAbc()),
   ("/canvas2", 'CanvasAbc2 ', (context) => const CanvasAbc2()),
   ("/LpCreationPage", 'LpCreationPage', (context) => const LpCreationPage()),
   ("/LpCreationPage2", 'LpCreationPage2', (context) => const LpCreationPage2()),
@@ -247,7 +247,7 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ),
   ("/shelf", 'ShelfAbc', (context) => const ShelfAbc()),
   ("/webSocket", 'WebSocketAbc', (context) => const WebSocketAbc()),
-  ("/udpService", 'UdpServiceAbc', (context) => const UdpServiceAbc()),
+  ("/udpService", 'UdpServiceAbc $kGo', (context) => const UdpServiceAbc()),
   (
     "/CoverCameraUpgrade",
     'CoverCameraUpgradeAbc',
