@@ -59,13 +59,12 @@ class _PathProviderAbcState extends State<PathProviderAbc>
       //遍历map
       final WidgetList list = [];
       final platform =
-          "$defaultTargetPlatform ${Platform.operatingSystemVersion} ${Platform
-          .localHostname} / ${Platform.version}";
+          "$defaultTargetPlatform ${Platform.operatingSystemVersion} ${Platform.localHostname} / ${Platform.version}";
       l.i(platform);
       list.add("$platform PathViewModel↓"
           .text(
-          style: const TextStyle(color: Colors.purpleAccent),
-          selectable: true)
+              style: const TextStyle(color: Colors.purpleAccent),
+              selectable: true)
           .click(() {
         platform.copy();
       }));
@@ -137,8 +136,7 @@ class _PathProviderAbcState extends State<PathProviderAbc>
             final path = (await fileFolder()).path;
             path.ofList<String>().zip(output).ignore();
             final log =
-                "压缩完成:$output :${(await output.file().fileSize())
-                .toSizeStr()}";
+                "压缩完成:$output :${(await output.file().fileSize()).toSizeStr()}";
             l.d(log);
             toastInfo("压缩完成:$output");
             output.shareFile().ignore();
@@ -154,8 +152,7 @@ class _PathProviderAbcState extends State<PathProviderAbc>
             final path = (await fileFolder()).path;
             path.ofList<String>().zip(output).ignore();
             final log =
-                "压缩完成:$output :${(await output.file().fileSize())
-                .toSizeStr()}";
+                "压缩完成:$output :${(await output.file().fileSize()).toSizeStr()}";
             l.d(log);
             toastInfo("压缩完成:$output");
             openFilePath(output);
@@ -188,6 +185,19 @@ class _PathProviderAbcState extends State<PathProviderAbc>
           child: const Text("打开文件"),
         ),
       ].wrap()!);
+
+      list.add(Empty.height(10));
+
+      //--
+
+      //平台信息
+      list.add($platformName.toString().text());
+      list.add("包信息↓".text());
+      list.add($platformPackageInfoCache?.toString().text() ?? empty);
+      list.add("设备信息↓".text());
+      list.add($platformDeviceInfoCache?.data.toString().text() ?? empty);
+
+      //--
 
       if (files != null) {
         list.add(files!);
