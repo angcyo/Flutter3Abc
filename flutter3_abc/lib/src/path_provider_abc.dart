@@ -23,6 +23,8 @@ class _PathProviderAbcState extends State<PathProviderAbc>
   @override
   void initState() {
     super.initState();
+    $platformPackageInfoCache;
+    $platformDeviceInfoCache;
     //pathViewModel.loadPath().whenComplete(() => updateState());
   }
 
