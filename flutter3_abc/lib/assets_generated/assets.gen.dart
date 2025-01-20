@@ -52,6 +52,56 @@ class $AssetsSvgGen {
   /// File path: assets/svg/add_text.svg
   String get addText => 'packages/flutter3_abc/assets/svg/add_text.svg';
 
+  /// File path: assets/svg/align_bottom.svg
+  String get alignBottom => 'packages/flutter3_abc/assets/svg/align_bottom.svg';
+
+  /// File path: assets/svg/align_center.svg
+  String get alignCenter => 'packages/flutter3_abc/assets/svg/align_center.svg';
+
+  /// File path: assets/svg/align_horizontal.svg
+  String get alignHorizontal =>
+      'packages/flutter3_abc/assets/svg/align_horizontal.svg';
+
+  /// File path: assets/svg/align_left.svg
+  String get alignLeft => 'packages/flutter3_abc/assets/svg/align_left.svg';
+
+  /// File path: assets/svg/align_right.svg
+  String get alignRight => 'packages/flutter3_abc/assets/svg/align_right.svg';
+
+  /// File path: assets/svg/align_top.svg
+  String get alignTop => 'packages/flutter3_abc/assets/svg/align_top.svg';
+
+  /// File path: assets/svg/align_vertical.svg
+  String get alignVertical =>
+      'packages/flutter3_abc/assets/svg/align_vertical.svg';
+
+  /// File path: assets/svg/average_height.svg
+  String get averageHeight =>
+      'packages/flutter3_abc/assets/svg/average_height.svg';
+
+  /// File path: assets/svg/average_horizontal.svg
+  String get averageHorizontal =>
+      'packages/flutter3_abc/assets/svg/average_horizontal.svg';
+
+  /// File path: assets/svg/average_size.svg
+  String get averageSize => 'packages/flutter3_abc/assets/svg/average_size.svg';
+
+  /// File path: assets/svg/average_vertical.svg
+  String get averageVertical =>
+      'packages/flutter3_abc/assets/svg/average_vertical.svg';
+
+  /// File path: assets/svg/average_width.svg
+  String get averageWidth =>
+      'packages/flutter3_abc/assets/svg/average_width.svg';
+
+  /// File path: assets/svg/flip_horizontal.svg
+  String get flipHorizontal =>
+      'packages/flutter3_abc/assets/svg/flip_horizontal.svg';
+
+  /// File path: assets/svg/flip_vertical.svg
+  String get flipVertical =>
+      'packages/flutter3_abc/assets/svg/flip_vertical.svg';
+
   /// File path: assets/svg/icon_layer.svg
   String get iconLayer => 'packages/flutter3_abc/assets/svg/icon_layer.svg';
 
@@ -80,6 +130,23 @@ class $AssetsSvgGen {
   /// File path: assets/svg/nav_undo.svg
   String get navUndo => 'packages/flutter3_abc/assets/svg/nav_undo.svg';
 
+  /// File path: assets/svg/path_difference.svg
+  String get pathDifference =>
+      'packages/flutter3_abc/assets/svg/path_difference.svg';
+
+  /// File path: assets/svg/path_intersect.svg
+  String get pathIntersect =>
+      'packages/flutter3_abc/assets/svg/path_intersect.svg';
+
+  /// File path: assets/svg/path_merge.svg
+  String get pathMerge => 'packages/flutter3_abc/assets/svg/path_merge.svg';
+
+  /// File path: assets/svg/path_union.svg
+  String get pathUnion => 'packages/flutter3_abc/assets/svg/path_union.svg';
+
+  /// File path: assets/svg/path_xor.svg
+  String get pathXor => 'packages/flutter3_abc/assets/svg/path_xor.svg';
+
   /// Directory path: assets/svg
   String get path => 'assets/svg';
 
@@ -91,6 +158,20 @@ class $AssetsSvgGen {
         addPen,
         addShape,
         addText,
+        alignBottom,
+        alignCenter,
+        alignHorizontal,
+        alignLeft,
+        alignRight,
+        alignTop,
+        alignVertical,
+        averageHeight,
+        averageHorizontal,
+        averageSize,
+        averageVertical,
+        averageWidth,
+        flipHorizontal,
+        flipVertical,
         iconLayer,
         moreTip,
         navArrowTip,
@@ -99,7 +180,12 @@ class $AssetsSvgGen {
         navMove,
         navRedo,
         navSelecter,
-        navUndo
+        navUndo,
+        pathDifference,
+        pathIntersect,
+        pathMerge,
+        pathUnion,
+        pathXor
       ];
 }
 
