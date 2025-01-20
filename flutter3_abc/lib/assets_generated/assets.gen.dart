@@ -52,6 +52,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/add_text.svg
   String get addText => 'packages/flutter3_abc/assets/svg/add_text.svg';
 
+  /// File path: assets/svg/icon_layer.svg
+  String get iconLayer => 'packages/flutter3_abc/assets/svg/icon_layer.svg';
+
   /// File path: assets/svg/more_tip.svg
   String get moreTip => 'packages/flutter3_abc/assets/svg/more_tip.svg';
 
@@ -88,6 +91,7 @@ class $AssetsSvgGen {
         addPen,
         addShape,
         addText,
+        iconLayer,
         moreTip,
         navArrowTip,
         navCanvas,
