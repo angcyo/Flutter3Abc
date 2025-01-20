@@ -272,7 +272,7 @@ set lastJumpPath(String? value) {
 //--
 
 /// [loadAssetSvgWidget]
-Widget lpAbcSvgWidget(
+Widget loadAbcSvgWidget(
   String key, {
   Color? tintColor,
   UiColorFilter? colorFilter,
@@ -293,7 +293,7 @@ Widget lpAbcSvgWidget(
     );
 
 /// [loadAssetImageWidget]
-Widget? lpAbcImageWidget(
+Widget? loadAbcImageWidget(
   String? key, {
   BoxFit? fit,
   double? size,

@@ -55,12 +55,48 @@ class $AssetsSvgGen {
   /// File path: assets/svg/more_tip.svg
   String get moreTip => 'packages/flutter3_abc/assets/svg/more_tip.svg';
 
+  /// File path: assets/svg/nav_arrow_tip.svg
+  String get navArrowTip =>
+      'packages/flutter3_abc/assets/svg/nav_arrow_tip.svg';
+
+  /// File path: assets/svg/nav_canvas.svg
+  String get navCanvas => 'packages/flutter3_abc/assets/svg/nav_canvas.svg';
+
+  /// File path: assets/svg/nav_menu.svg
+  String get navMenu => 'packages/flutter3_abc/assets/svg/nav_menu.svg';
+
+  /// File path: assets/svg/nav_move.svg
+  String get navMove => 'packages/flutter3_abc/assets/svg/nav_move.svg';
+
+  /// File path: assets/svg/nav_redo.svg
+  String get navRedo => 'packages/flutter3_abc/assets/svg/nav_redo.svg';
+
+  /// File path: assets/svg/nav_selecter.svg
+  String get navSelecter => 'packages/flutter3_abc/assets/svg/nav_selecter.svg';
+
+  /// File path: assets/svg/nav_undo.svg
+  String get navUndo => 'packages/flutter3_abc/assets/svg/nav_undo.svg';
+
   /// Directory path: assets/svg
   String get path => 'assets/svg';
 
   /// List of all assets
-  List<String> get values =>
-      [addApps, addImage, addMaterial, addPen, addShape, addText, moreTip];
+  List<String> get values => [
+        addApps,
+        addImage,
+        addMaterial,
+        addPen,
+        addShape,
+        addText,
+        moreTip,
+        navArrowTip,
+        navCanvas,
+        navMenu,
+        navMove,
+        navRedo,
+        navSelecter,
+        navUndo
+      ];
 }
 
 class $AssetsWebGen {
