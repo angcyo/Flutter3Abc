@@ -19,10 +19,10 @@ class _EventAbcState extends State<EventAbc>
   KeyEvent? keyEvent;
 
   @override
-  bool onKeyEventHandleMixin(KeyEvent event) {
+  bool onHandleKeyEventMixin(KeyEvent event) {
     keyEvent = event;
     updateState();
-    return super.onKeyEventHandleMixin(event);
+    return super.onHandleKeyEventMixin(event);
   }
 
   @override
