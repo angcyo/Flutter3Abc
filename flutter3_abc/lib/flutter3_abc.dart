@@ -120,6 +120,7 @@ part 'src/web_socket_abc.dart';
 part 'src/webview_abc.dart';
 part 'src/wheel_abc.dart';
 part 'src/widget_abc.dart';
+part 'src/temp_test_abc.dart';
 
 ///
 /// Email:angcyo@126.com
@@ -149,6 +150,7 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ),
   ("/widget", 'WidgetAbc', (context) => const WidgetAbc()),
   ("/layout", 'LayoutAbc', (context) => const LayoutAbc()),
+  ("/tempTest", 'TempTestAbc', (context) => const TempTestAbc()),
   ("/painter", 'PainterAbc', (context) => const PainterAbc()),
   ("/painter2", 'PainterAbc2', (context) => const PainterAbc2()),
   ("/loadingWidget", 'LoadingWidgetAbc', (context) => const LoadingWidgetAbc()),
