@@ -18,9 +18,9 @@ class _LayoutAbcState extends State<LayoutAbc> with BaseAbcStateMixin {
     return [
       $any(
           child: Text("angcyo"),
-          onPaint: (render, canvas, size) {
+          onPaint: (render, canvas, size, offset) {
             canvas.drawCircle(
-              size.center(Offset.zero),
+              size.center(offset),
               20,
               Paint()..color = Colors.red,
             );

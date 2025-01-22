@@ -52,7 +52,7 @@ class _MatrixAbc2State extends State<MatrixAbc2> with AbsScrollPage, TileMixin {
   WidgetList? buildScrollBody(BuildContext context) {
     testMatrix();
     return [
-      $any(onPaint: (render, canvas, size) {
+      $any(onPaint: (render, canvas, size, offset) {
         final matrix = perspectiveMatrix(from, to);
         canvas.withMatrix(
             matrix * createTranslateMatrix(tx: from[0].dx, ty: from[0].dy), () {
@@ -75,7 +75,7 @@ class _MatrixAbc2State extends State<MatrixAbc2> with AbsScrollPage, TileMixin {
           to.reset(from);
         });
       }).bounds(),
-      $any(onPaint: (render, canvas, size) {
+      $any(onPaint: (render, canvas, size, offset) {
         Matrix4 matrix = perspectiveMatrix(from, to);
         final transformString = matrix.toTransformString();
         l.d("transformString: $transformString");
