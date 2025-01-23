@@ -5,7 +5,13 @@ part of '../flutter3_abc.dart';
 /// @date 2024/11/27
 ///
 class SimulationAbc extends StatefulWidget {
-  const SimulationAbc({super.key});
+  /// 指定需要仿真的gcode, 不指定则支持输入
+  final String? gcode;
+
+  const SimulationAbc({
+    super.key,
+    this.gcode,
+  });
 
   @override
   State<SimulationAbc> createState() => _SimulationAbcState();
@@ -62,6 +68,9 @@ class _SimulationAbcState extends State<SimulationAbc>
     //gcodeTextConfig.updateText(gcode);
     super.initState();
     canvasDelegate.canvasElementManager.addElement(pathSimulationPainter);
+    if (widget.gcode != null) {
+      _parseGCodeSimulation(widget.gcode);
+    }
   }
 
   @override
@@ -71,43 +80,35 @@ class _SimulationAbcState extends State<SimulationAbc>
     );
   }
 
+  /// 是否激活输入编辑
+  bool get enableEdit => widget.gcode == null;
+
   @override
   WidgetList? buildScrollBody(BuildContext context) {
     final globalTheme = GlobalTheme.of(context);
     return [
-      SingleInputWidget(
-        config: gcodeTextConfig,
-        labelText: "gcode内容",
-        maxLines: 5,
-      ).paddingItem(),
-      [
-        FillGradientButton(
-          text: "解析GCode",
-          onTap: () async {
-            final path = gcodeTextConfig.text.toUiPathFromGCode();
-            _resultUpdateSignal.updateValue(path);
-          },
-        ),
-        FillGradientButton(
-          text: "解析GCode仿真",
-          onTap: () async {
-            final simulationBuilder =
-                gcodeTextConfig.text.toSimulationFromGCode();
-            final pathSimulationInfo = simulationBuilder.build();
-            //长度:1074.3467254638672
-            //长度:2148.6934509277344
-            l.i("长度:${pathSimulationInfo.length}");
-            pathSimulationPainter.simulationInfo = pathSimulationInfo;
-            if (isDebug) {
-              //pathSimulationPainter.distance = 1800;
-            }
-            postFrameCallback((_) {
-              canvasDelegate.followRect();
-            });
-            _resultSimulationUpdateSignal.updateValue(pathSimulationInfo);
-          },
-        ),
-      ].flowLayout(padding: edgeOnly(all: kX), childGap: kX)!,
+      if (enableEdit)
+        SingleInputWidget(
+          config: gcodeTextConfig,
+          labelText: "gcode内容",
+          maxLines: 5,
+        ).paddingItem(),
+      if (enableEdit)
+        [
+          FillGradientButton(
+            text: "解析GCode",
+            onTap: () async {
+              final path = gcodeTextConfig.text.toUiPathFromGCode();
+              _resultUpdateSignal.updateValue(path);
+            },
+          ),
+          FillGradientButton(
+            text: "解析GCode仿真",
+            onTap: () {
+              _parseGCodeSimulation(gcodeTextConfig.text);
+            },
+          ),
+        ].flowLayout(padding: edgeOnly(all: kX), childGap: kX)!,
       _resultUpdateSignal.buildFn(() {
         final value = _resultUpdateSignal.value;
         if (value is Path) {
@@ -186,6 +187,26 @@ class _SimulationAbcState extends State<SimulationAbc>
         return empty;
       }),
     ];
+  }
+
+  /// 解析GCode仿真
+  void _parseGCodeSimulation(String? gcode) {
+    final simulationBuilder = gcode?.toSimulationFromGCode();
+    if (simulationBuilder == null) {
+      return;
+    }
+    final pathSimulationInfo = simulationBuilder.build();
+    //长度:1074.3467254638672
+    //长度:2148.6934509277344
+    l.i("路径长度:${pathSimulationInfo.length}");
+    pathSimulationPainter.simulationInfo = pathSimulationInfo;
+    if (isDebug) {
+      //pathSimulationPainter.distance = 1800;
+    }
+    postFrameCallback((_) {
+      canvasDelegate.followRect();
+    });
+    _resultSimulationUpdateSignal.updateValue(pathSimulationInfo);
   }
 }
 
