@@ -5,8 +5,12 @@ homepage: https://github.com/angcyo/Flutter3Abc
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 environment:
-  sdk: ^3.6.0
+  sdk: '>=3.6.0 <4.0.0'
   flutter: ">=1.17.0"
+
+# https://dart.dev/tools/pub/workspaces/
+# Support for pub workspaces was introduced in Dart 3.6.0.
+resolution: workspace
 
 dependencies:
   flutter:
@@ -57,10 +61,10 @@ dependencies:
   web_socket_channel: any #in flutter3_shelf
 
 
-dependency_overrides:
-  # Because flutter_html 3.0.0-beta.2 depends on csslib ^0.17.2 and no versions of flutter_html match >3.0.0-beta.2 <4.0.0, flutter_html ^3.0.0-beta.2 requires csslib ^0.17.2.
-  #And because html >=0.15.5 depends on csslib ^1.0.0, html >=0.15.5 is incompatible with flutter_html ^3.0.0-beta.2.
-  csslib: ^1.0.2
+#dependency_overrides:
+#  # Because flutter_html 3.0.0-beta.2 depends on csslib ^0.17.2 and no versions of flutter_html match >3.0.0-beta.2 <4.0.0, flutter_html ^3.0.0-beta.2 requires csslib ^0.17.2.
+#  #And because html >=0.15.5 depends on csslib ^1.0.0, html >=0.15.5 is incompatible with flutter_html ^3.0.0-beta.2.
+#  csslib: ^1.0.2
 
 dev_dependencies:
   flutter_test:
