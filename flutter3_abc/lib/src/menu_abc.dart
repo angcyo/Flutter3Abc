@@ -15,59 +15,81 @@ class _MenuAbcState extends State<MenuAbc> with BaseAbcStateMixin {
   String? initialValue = "1";
 
   MenuController menuController = MenuController();
+  MenuController menuController2 = MenuController();
 
   @override
   List<Widget> buildBodyList(BuildContext context) {
     return [
-      "MenuAnchor↓".text(textAlign: TextAlign.center),
-      MenuAnchor(
-        controller: menuController,
-        menuChildren: buildMenuWidget(),
-        style: const MenuStyle(
-          backgroundColor: MaterialStatePropertyAll(Colors.white),
-        ),
-        onOpen: () {
-          l.d('open');
-        },
-        onClose: () {
-          l.d('close');
-        },
-        child: IconTextTile(
-          text: 'MenuAnchor',
-          onTap: () {
-            //menuController.open(/*position: Offset(10, 10)*/);
-            if (menuController.isOpen) {
-              menuController.close();
-            } else {
-              // close to open
-              menuController.open();
-            }
-          },
-        ),
-      ),
-      "MenuBar↓".text(textAlign: TextAlign.center),
-      MenuBar(
-        children: [
-          SubmenuButton(
-              menuChildren: buildMenuWidget(), child: "Submenu1".text()),
-          SubmenuButton(
-              menuChildren: buildMenuWidget(), child: "Submenu2".text()),
-          SubmenuButton(
-              menuChildren: buildMenuWidget(), child: "Submenu3".text()),
-          MenuItemButton(child: "Menu1".text()),
-          MenuItemButton(
-            child: "Menu2".text(),
-            onPressed: () {},
+      "MenuAnchor(OverlayPortal)↓".text(textAlign: TextAlign.center),
+      [
+        MenuAnchor(
+          controller: menuController,
+          menuChildren: buildMenuWidget(),
+          style: const MenuStyle(
+            backgroundColor: MaterialStatePropertyAll(Colors.white),
           ),
-          MenuItemButton(child: "Menu3".text()),
-        ],
-      ),
-      "SubmenuButton↓".text(textAlign: TextAlign.center),
-      SubmenuButton(
-          menuChildren: buildMenuWidget(), child: "SubmenuButton".text()),
-      "MenuItemButton↓".text(textAlign: TextAlign.center),
-      MenuItemButton(child: "Menu1".text()),
-      "DropdownMenu↓".text(textAlign: TextAlign.center),
+          onOpen: () {
+            l.d('open');
+          },
+          onClose: () {
+            l.d('close');
+          },
+          child: IconTextTile(
+            text: 'MenuAnchor1',
+            onTap: () {
+              //menuController.open(/*position: Offset(10, 10)*/);
+              if (menuController.isOpen) {
+                menuController.close();
+              } else {
+                // close to open
+                menuController.open();
+              }
+            },
+          ),
+        ).iw(),
+        MenuAnchor(
+          controller: menuController2,
+          menuChildren: buildSubmenuButton(context),
+          style: const MenuStyle(
+            backgroundColor: MaterialStatePropertyAll(Colors.white),
+          ),
+          onOpen: () {
+            l.d('open');
+          },
+          onClose: () {
+            l.d('close');
+          },
+          child: IconTextTile(
+            text: 'MenuAnchor2',
+            onTap: () {
+              //menuController.open(/*position: Offset(10, 10)*/);
+              if (menuController2.isOpen) {
+                menuController2.close();
+              } else {
+                // close to open
+                menuController2.open();
+              }
+            },
+          ),
+        ).iw(),
+      ].wrap()!,
+      "MenuBar(_MenuBarAnchor->MenuAnchor)↓".text(textAlign: TextAlign.center),
+      MenuBar(children: buildSubmenuButton(context)),
+      "SubmenuButton(MenuAnchor)↓".text(textAlign: TextAlign.center),
+      [
+        ...buildSubmenuButton(context).map((e) => e.iw()),
+      ].wrap()!,
+      "MenuItemButton(TextButton)↓".text(textAlign: TextAlign.center),
+      [
+        MenuItemButton(child: "MenuItemButton1".text()).iw(),
+        MenuItemButton(
+          child: "MenuItemButton2".text(),
+          onPressed: () {
+            toastInfo("MenuItemButton2");
+          },
+        ).iw(),
+      ].wrap()!,
+      "DropdownMenu(MenuAnchor)↓".text(textAlign: TextAlign.center),
       DropdownMenu(dropdownMenuEntries: buildDropdownMenuEntries()),
       DropdownMenu(
         dropdownMenuEntries: buildDropdownMenuEntries(),
@@ -117,31 +139,33 @@ class _MenuAbcState extends State<MenuAbc> with BaseAbcStateMixin {
         },
         /*menuHeight: 100,*/ //弹出来的菜单的高度
       ).size(height: 48),
-      "DropdownButton↓".text(textAlign: TextAlign.center),
-      DropdownButton(
-        items: buildDropdownMenuItems(),
-        value: initialValue,
-        /*icon: nil,*/
-        iconSize: 0,
-        onChanged: (value) {
-          initialValue = value;
-          updateState();
-        },
-      ),
-      DropdownButton(
-        items: buildDropdownMenuItems(),
-        value: initialValue,
-        underline: nil,
-        icon: const Icon(Icons.add_a_photo_outlined),
-        /*isDense: true,*/
-        itemHeight: kMinInteractiveDimension,
-        //高度必须≥kMinInteractiveDimension
-        onChanged: (value) {
-          initialValue = value;
-          updateState();
-        },
-      ),
-      "DropdownButtonFormField↓".text(textAlign: TextAlign.center),
+      "DropdownButton(_DropdownRoute)↓".text(textAlign: TextAlign.center),
+      [
+        DropdownButton(
+          items: buildDropdownMenuItems(),
+          value: initialValue,
+          /*icon: nil,*/
+          iconSize: 0,
+          onChanged: (value) {
+            initialValue = value;
+            updateState();
+          },
+        ),
+        DropdownButton(
+          items: buildDropdownMenuItems(),
+          value: initialValue,
+          underline: nil,
+          icon: const Icon(Icons.add_a_photo_outlined),
+          /*isDense: true,*/
+          itemHeight: kMinInteractiveDimension,
+          //高度必须≥kMinInteractiveDimension
+          onChanged: (value) {
+            initialValue = value;
+            updateState();
+          },
+        ),
+      ].wrap()!,
+      "DropdownButtonFormField(DropdownButton)↓".text(textAlign: TextAlign.center),
       //内部就是用[DropdownButton]实现的
       DropdownButtonFormField(
         items: buildDropdownMenuItems(),
@@ -164,16 +188,12 @@ class _MenuAbcState extends State<MenuAbc> with BaseAbcStateMixin {
       "showMenu↓".text(textAlign: TextAlign.center),
       [
         GradientButton.normal(() {}, onContextTap: (ctx) {
-          ctx
-              .showMenus(null, items: buildPopupMenu(ctx))
-              .get((value, error) {
+          ctx.showMenus(null, items: buildPopupMenu(ctx)).get((value, error) {
             l.d("value:$value,error:$error");
           });
         }, child: "showMenu-items".text()),
         GradientButton.normal(() {}, onContextTap: (ctx) {
-          ctx
-              .showMenus(null, items: buildPopupMenu2(ctx))
-              .get((value, error) {
+          ctx.showMenus(null, items: buildPopupMenu2(ctx)).get((value, error) {
             l.d("value:$value,error:$error");
           });
         }, child: "showMenu2-items".text()),
@@ -182,6 +202,38 @@ class _MenuAbcState extends State<MenuAbc> with BaseAbcStateMixin {
         }, child: "showMenu-widget".text()),
       ].flowLayout(padding: kXInsets, childGap: kX)!,
       "...↑".text(textAlign: TextAlign.center),
+    ];
+  }
+
+  /// [SubmenuButton]
+  List<Widget> buildSubmenuButton(
+    BuildContext context, {
+    int recursionCount = 0,
+  }) {
+    return [
+      SubmenuButton(
+          menuChildren: buildMenuWidget(), child: "SubmenuButton1".text()),
+      SubmenuButton(
+          menuChildren: recursionCount < 3
+              ? buildSubmenuButton(context, recursionCount: recursionCount + 1)
+              : buildMenuWidget(),
+          child: "SubmenuButton2[$recursionCount]".text()),
+      SubmenuButton(
+          menuChildren: buildMenuItemButton(context),
+          child: "SubmenuButton3".text().backgroundColor(Colors.purpleAccent)),
+      ...buildMenuItemButton(context),
+    ];
+  }
+
+  /// [MenuItemButton]
+  List<Widget> buildMenuItemButton(BuildContext context) {
+    return [
+      MenuItemButton(child: "MenuItemButton1".text()),
+      MenuItemButton(
+        child: "MenuItemButton2".text(),
+        onPressed: () {},
+      ),
+      MenuItemButton(child: "MenuItemButton3".text()),
     ];
   }
 
@@ -232,15 +284,15 @@ class _MenuAbcState extends State<MenuAbc> with BaseAbcStateMixin {
     return [
       IconTextTile(
         text: 'Item 1',
-        onTap: () => menuController.close(),
+        onTap: () => menuController.open(),
       ),
       IconTextTile(
         text: 'Item 2',
-        onTap: () => menuController.close(),
+        onTap: () => menuController2.open(),
       ),
       IconTextTile(
         text: 'Item 3',
-        onTap: () => menuController.close(),
+        onTap: null,
       ),
     ];
   }
