@@ -12,8 +12,13 @@ class PathAbc extends StatefulWidget {
 }
 
 class _PathAbcState extends State<PathAbc> with AbsScrollPage {
+  String? svgPath;
+
   @override
   WidgetList? buildScrollBody(BuildContext context) {
+    final path = Path();
+    path.moveTo(10, 10);
+    path.lineTo(100, 20);
     return [
       PathWidget(
         path:
@@ -21,6 +26,95 @@ class _PathAbcState extends State<PathAbc> with AbsScrollPage {
                 .toUiPath(),
       ).bounds(),
       HttpDeviceXyzControlWidget().bounds(),
+      //--
+      Divider(),
+      PathWidget(path: path).bounds(),
+      if (!isNil(svgPath)) svgPath!.text(),
+      [
+        GradientButton.min(
+          child: "each path".text(),
+          onTap: () {
+            svgPath = stringBuilder((b) {
+              path.eachPathMetrics(
+                  (posIndex, ratio, contourIndex, position, angle, isClose) {
+                b.append(
+                    "[$contourIndex/$posIndex] position:${position.log}, angle:$angle, isClose:$isClose $ratio\n");
+              }, 1 /*kPathAcceptableError*/);
+            });
+            updateState();
+          },
+        ),
+        GradientButton.min(
+          child: "each path(async)".text(),
+          onTap: () async {
+            StringBuffer buffer = StringBuffer();
+            await path.eachPathMetricsAsync(
+                (posIndex, ratio, contourIndex, position, angle, isClose) {
+              buffer.write(
+                  "[$contourIndex/$posIndex] position:${position.log}, angle:$angle, isClose:$isClose $ratio\n");
+            }, 1 /*kPathAcceptableError*/);
+            svgPath = buffer.toString();
+            updateState();
+          },
+        ),
+        GradientButton.min(
+          child: "path to svg(async)".text(),
+          onTap: () async {
+            svgPath = await path.toSvgPathStringAsync(
+              pathStep: kPathAcceptableError,
+              tolerance: $lpDeviceKeys.vectorTolerance,
+              contourInterval: 1,
+              stepInterval: null,
+              digits: 3,
+            );
+            updateState();
+          },
+        ),
+        GradientButton.min(
+          child: "path to svg(async)2".text(),
+          onTap: () async {
+            svgPath = await path.toSvgPathStringAsync(
+              contourInterval: 1,
+              stepInterval: null,
+              digits: 3,
+            );
+            updateState();
+          },
+        ),
+        GradientButton.min(
+          child: "path to svg(async)3".text(),
+          onTap: () async {
+            svgPath = await path.toSvgPathStringAsync(
+              contourInterval: null,
+              stepInterval: null,
+              digits: 3,
+            );
+            updateState();
+          },
+        ),
+        GradientButton.min(
+          child: "path to svg".text(),
+          onTap: () {
+            svgPath = path.toSvgPathString(
+              pathStep: kPathAcceptableError,
+              tolerance: $lpDeviceKeys.vectorTolerance,
+              digits: 3,
+            );
+            updateState();
+          },
+        ),
+        GradientButton.min(
+          child: "async loop test".text(),
+          onTap: () async {
+            StringBuffer buffer = StringBuffer();
+            await for (final distance in 100.loop(step: 10, interval: 1)) {
+              buffer.write("$distance ");
+            }
+            svgPath = buffer.toString();
+            updateState();
+          },
+        ),
+      ].flowLayout(padding: edgeOnly(all: kH), childGap: kH)!,
     ];
   }
 }
