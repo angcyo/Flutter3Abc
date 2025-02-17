@@ -70,7 +70,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
-  intl_utils: ^2.8.7
+  # in flutter3_res
+  intl_utils: any
   build_runner: any
   json_serializable: any
   flutter_gen: any
