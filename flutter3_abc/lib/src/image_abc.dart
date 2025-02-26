@@ -32,6 +32,9 @@ class _ImageAbcState extends State<ImageAbc> with BaseAbcStateMixin {
   /// 返回文本更新的信号
   final resultTextSignal = createUpdateSignal<dynamic>();
 
+  /// 操作处理后的绘制路径
+  final resultPathSignal = createUpdateSignal<dynamic>();
+
   /// 耗时
   String? costTime;
 
@@ -250,10 +253,42 @@ class _ImageAbcState extends State<ImageAbc> with BaseAbcStateMixin {
           costTime = lTime.time();
           resultTextSignal.updateValue(costTime);
         }, child: "黑白处理".text()),*/
+        GradientButton.normal(() {
+          selectedImageSignal.value?.let((imageMeta) async {
+            lTime.tick();
+            //resultTextSignal.value = imageMeta.bytes?.image?.toSvgXml();
+            //debugger();
+            resultPathSignal.updateValue(imageMeta.bytes?.image?.toSvgXml()?.copy());
+            costTime = lTime.time();
+            resultTextSignal.updateValue(costTime);
+          });
+        }, child: "potrace-转svg".text()),
+        GradientButton.normal(() {
+          selectedImageSignal.value?.let((imageMeta) async {
+            lTime.tick();
+            //resultTextSignal.value = imageMeta.bytes?.image?.toSvgXml();
+            //debugger();
+            resultPathSignal.updateValue(imageMeta.bytes?.image?.toUiPath());
+            costTime = lTime.time();
+            resultTextSignal.updateValue(costTime);
+          });
+        }, child: "potrace-转svg(path)".text()),
       ].wrap()!,
       rebuild(resultTextSignal, (context, data) => buildInfo()),
       rebuild(resultImageSignal,
           (context, data) => (data as ImageMeta?)?.toImageWidget() ?? empty),
+      rebuild(
+          resultPathSignal,
+          (context, data) => data is Path
+              ? PathWidget(path: data)
+              : data is String
+                  ? widgetOf(
+                      context,
+                      data,
+                      tryTextWidget: true,
+                      textSelectable: true,
+                    )
+                  : empty),
     ];
   }
 
@@ -280,6 +315,13 @@ class _ImageAbcState extends State<ImageAbc> with BaseAbcStateMixin {
       });
       //--
       costTime?.let((it) => builder.addText("\n耗时: $it"));
+      //--
+      /*final textValue = resultTextSignal.value;
+      if (textValue is String) {
+        builder.addText("\n$textValue");
+      } else if (textValue != null) {
+        builder.addText("\n${textValue.runtimeType}");
+      }*/
     });
   }
 
