@@ -76,7 +76,7 @@ class _AppUpdateAbcState extends State<AppUpdateAbc> with BaseAbcStateMixin {
             onTap: () {
               AppUpdateDialog.checkUpdateAndShow(
                 context,
-                AppVersionBean()
+                LibAppVersionBean()
                   ..versionName = "1.0.1"
                   ..versionTile = "新版本升级"
                   ..forceUpdate = _force
@@ -95,7 +95,7 @@ class _AppUpdateAbcState extends State<AppUpdateAbc> with BaseAbcStateMixin {
             onTap: () {
               AppUpdateDialog.checkUpdateAndShow(
                 context,
-                AppVersionBean()
+                LibAppVersionBean()
                   ..forbiddenReason = "forbiddenReason"
                   ..forceForbidden = _force,
                 forceShow: false,
