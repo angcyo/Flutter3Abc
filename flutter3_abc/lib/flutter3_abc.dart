@@ -10,6 +10,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter3_abc/src/slider_captcha_abc.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 import 'package:flutter3_canvas/flutter3_canvas.dart';
 import 'package:flutter3_code/flutter3_code.dart';
@@ -347,7 +348,11 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ("/event", 'EventAbc', (context) => const EventAbc()),
   ("/mouseRegion", 'MouseRegionAbc', (context) => const MouseRegionAbc()),
   ("/hoveAnchor", 'HoveAnchorAbc', (context) => const HoveAnchorAbc()),
-  ("/sliderCaptcha", 'SliderCaptchaAbc $kGo', (context) => const HoveAnchorAbc()),
+  (
+    "/sliderCaptcha",
+    'SliderCaptchaAbc $kGo',
+    (context) => const SliderCaptchaAbc()
+  ),
 ];
 
 //--
