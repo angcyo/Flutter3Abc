@@ -53,7 +53,7 @@ class _HoveAnchorAbcState extends State<HoveAnchorAbc> with BaseAbcStateMixin {
   bool _enableAnimate = true;
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildAbc(BuildContext context) {
     return $anyContainer(children: [
       for (final item in arrowPositionList)
         HoverAnchorLayout(
@@ -116,5 +116,14 @@ class _HoveAnchorAbcState extends State<HoveAnchorAbc> with BaseAbcStateMixin {
         alignment: Alignment.center,
       ),
     ]);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (isMobile) {
+      return super.build(context);
+    } else {
+      return buildAbc(context);
+    }
   }
 }
