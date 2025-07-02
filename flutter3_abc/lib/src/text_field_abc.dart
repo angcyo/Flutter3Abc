@@ -74,6 +74,13 @@ class _TextFieldAbcState extends State<TextFieldAbc> with BaseAbcStateMixin {
           border: OutlineInputBorder(),
         ),
       ),
+      const TextField(
+        decoration: InputDecoration(
+          labelText: "default-border-color",
+          border: OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
+          enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
+        ),
+      ),
       const Text(
         'TextField-lines↓',
         textAlign: TextAlign.center,
@@ -192,10 +199,12 @@ class _TextFieldAbcState extends State<TextFieldAbc> with BaseAbcStateMixin {
             "->${textEditingValue.text}<-",
           ];
         },
-        fieldViewBuilder: (BuildContext context,
-            TextEditingController textEditingController,
-            FocusNode focusNode,
-            VoidCallback onFieldSubmitted,) {
+        fieldViewBuilder: (
+          BuildContext context,
+          TextEditingController textEditingController,
+          FocusNode focusNode,
+          VoidCallback onFieldSubmitted,
+        ) {
           return SingleInputWidget(
             config: TextFieldConfig(
               controller: textEditingController,
@@ -223,9 +232,11 @@ class _TextFieldAbcState extends State<TextFieldAbc> with BaseAbcStateMixin {
         onSelected: (option) {
           l.d("onSelected[${option.runtimeType}]->$option");
         },
-        optionsViewBuilder: (BuildContext context,
-            AutocompleteOnSelected<String> onSelected,
-            Iterable<String> options,) {
+        optionsViewBuilder: (
+          BuildContext context,
+          AutocompleteOnSelected<String> onSelected,
+          Iterable<String> options,
+        ) {
           return AutocompleteOptionsWidget(
             options: options,
             onSelected: onSelected,
@@ -247,6 +258,8 @@ class _TextFieldAbcState extends State<TextFieldAbc> with BaseAbcStateMixin {
           },
         ),
         hintText: "Autocomplete-SingleInputWidget",
+        borderColor: Colors.red,
+        focusBorderColor: Colors.purpleAccent,
       ).size(width: 400).align(Alignment.center),
       //AutocompleteHighlightedOption(highlightIndexNotifier: highlightIndexNotifier, child: child),
       AutofillGroup(child: "AutofillGroup".text()),
@@ -269,11 +282,12 @@ class _TextFieldAbcState extends State<TextFieldAbc> with BaseAbcStateMixin {
     ];
   }
 
-  Widget _buildFocusNodeAnchor(int focusIndex,
-      Alignment targetAnchor,
-      Alignment followerAnchor, {
-        Offset offset = Offset.zero,
-      }) {
+  Widget _buildFocusNodeAnchor(
+    int focusIndex,
+    Alignment targetAnchor,
+    Alignment followerAnchor, {
+    Offset offset = Offset.zero,
+  }) {
     return AnchorOverlayLayout(
       triggerFocusNode: generateFocusNode(focusIndex),
       targetAnchor: targetAnchor,
@@ -285,8 +299,7 @@ class _TextFieldAbcState extends State<TextFieldAbc> with BaseAbcStateMixin {
           focusNode: generateFocusNode(focusIndex),
         ),
         hintText:
-        "${targetAnchor.toString().substringEnd(".")}+${followerAnchor
-            .toString().substringEnd(".")}",
+            "${targetAnchor.toString().substringEnd(".")}+${followerAnchor.toString().substringEnd(".")}",
       ),
       overlayWidgetBuilder: (ctx, bounds) {
         return GradientButton(
@@ -300,11 +313,12 @@ class _TextFieldAbcState extends State<TextFieldAbc> with BaseAbcStateMixin {
     ).size(width: 300).align(Alignment.center);
   }
 
-  Widget _buildValueNotifierAnchor(int focusIndex,
-      Alignment targetAnchor,
-      Alignment followerAnchor, {
-        Offset offset = Offset.zero,
-      }) {
+  Widget _buildValueNotifierAnchor(
+    int focusIndex,
+    Alignment targetAnchor,
+    Alignment followerAnchor, {
+    Offset offset = Offset.zero,
+  }) {
     return AnchorOverlayLayout(
       groupId: focusIndex,
       triggerValueNotifier: generateValueNotifier(focusIndex),
@@ -314,9 +328,8 @@ class _TextFieldAbcState extends State<TextFieldAbc> with BaseAbcStateMixin {
       rootOverlay: false,
       anchor: GradientButton(
         child:
-        "${targetAnchor.toString().substringEnd(".")}+${followerAnchor
-            .toString().substringEnd(".")}"
-            .text(),
+            "${targetAnchor.toString().substringEnd(".")}+${followerAnchor.toString().substringEnd(".")}"
+                .text(),
         onTap: () {
           generateValueNotifier(focusIndex).value = true;
         },
