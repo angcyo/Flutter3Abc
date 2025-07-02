@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter3_abc/src/slider_captcha_abc.dart';
+import 'package:flutter3_abc/src/udp_service2_abc.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 import 'package:flutter3_canvas/flutter3_canvas.dart';
 import 'package:flutter3_code/flutter3_code.dart';
@@ -338,7 +339,8 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ),
   ("/shelf", 'ShelfAbc', (context) => const ShelfAbc()),
   ("/webSocket", 'WebSocketAbc', (context) => const WebSocketAbc()),
-  ("/udpService", 'UdpServiceAbc $kGo', (context) => const UdpServiceAbc()),
+  ("/udpService", 'UdpServiceAbc', (context) => const UdpServiceAbc()),
+  ("/udpService2", 'UdpServiceAbc2 $kGo', (context) => const UdpService2Abc()),
   (
     "/CoverCameraUpgrade",
     'CoverCameraUpgradeAbc',
