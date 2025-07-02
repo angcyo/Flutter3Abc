@@ -32,6 +32,8 @@ dependencies:
     path: ../../Flutter3Core/flutter3_web
   flutter3_scanner:
     path: ../../Flutter3Core/flutter3_scanner
+  flutter3_shelf:
+    path: ../../Flutter3Core/flutter3_shelf
 
   flutter3_pub_core:
     path: ../../Flutter3Core/flutter3_pub_core

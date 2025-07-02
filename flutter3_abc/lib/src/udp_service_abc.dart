@@ -62,6 +62,8 @@ class _UdpServiceAbcState extends State<UdpServiceAbc>
         "网络接口信息(网关)↓\n${list.join("↓\n")}\n\n默认ipv4->$ipv4, 默认ipv6->$ipv6");
   }
 
+  final testPort = 9999;
+
   @override
   Widget buildAbc(BuildContext context) {
     final globalTheme = GlobalTheme.of(context);
@@ -106,6 +108,16 @@ class _UdpServiceAbcState extends State<UdpServiceAbc>
             nowTimeString().bytes,
           );
         }, child: "test-udp-to-client".text()),
+        GradientButton.normal(() async {
+          final bytes = await receiveUdpData(testPort, timeout: 10.seconds);
+          final str = bytes?.utf8Str;
+          toastInfo(str);
+          //debugger();
+        }, child: "test-udp-receive".text()),
+        GradientButton.normal(() async {
+          sendUdpBroadcast(testPort,
+              text: "[${nowTimeString()}]send broadcast.");
+        }, child: "test-udp-send-broadcast".text()),
         IconButton(
           icon: Icon(Icons.info_outline),
           onPressed: () {
