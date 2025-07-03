@@ -7,5 +7,5 @@ set +x
 git remote -v
 
 git add .
-git commit -a -m "* fix desktop"
+git commit -a -m "+ socket abc"
 git push origin
