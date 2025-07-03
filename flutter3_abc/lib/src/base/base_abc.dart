@@ -138,7 +138,8 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
       appBar: buildAppBar(context),
       resizeToAvoidBottomInset: useSafeArea || resizeToAvoidBottomInset,
       body: Builder(builder: (context) => buildAbc(context)),
-      backgroundColor: backgroundColor,
+      backgroundColor:
+          backgroundColor ?? (isDesktopOrWeb ? Colors.transparent : null),
     ).safeArea(useSafeArea: useSafeArea).offstage(isOffstage);
   }
 }
