@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -72,6 +73,13 @@ class _SocketAbcState extends State<SocketAbc> with BaseAbcStateMixin {
                   _stopSocketServer();
                 }, child: "停止socket服务".text()),
         ),
+        clientListStream.buildDataFn(
+          (data) => isNil(data)
+              ? null
+              : GradientButton.normal(() {
+                  _sendMessageToAllClient(_messageFieldConfig.text);
+                }, child: "发送消息给所有客户端".text()),
+        ),
         IconButton(
           icon: Icon(Icons.info_outline),
           onPressed: () {
@@ -108,8 +116,11 @@ class _SocketAbcState extends State<SocketAbc> with BaseAbcStateMixin {
                 ? null
                 : GradientButton.normal(() {
                     _sendSocketMessage();
-                  }, child: "发送".text()),
+                  }, child: "发送给服务端".text()),
           ),
+          GradientButton.normal(() {
+            messageListStream.updateValue([]);
+          }, child: "清空消息".text())
         ].flowLayout(
             childGap: kX, padding: const EdgeInsets.symmetric(vertical: kX))!,
       ].column(crossAxisAlignment: CrossAxisAlignment.start)!.paddingAll(kX),
@@ -144,6 +155,9 @@ class _SocketAbcState extends State<SocketAbc> with BaseAbcStateMixin {
   /// 消息
   final messageListStream = $live<List<String>>([]);
 
+  /// 服务端连上的所有客户端列表
+  final clientListStream = $live<List<Socket>>([]);
+
   /// 启动一个socket服务端
   void _startSocketServer(int serverPort) async {
     final server = await ServerSocket.bind(InternetAddress.anyIPv4, serverPort);
@@ -152,6 +166,7 @@ class _SocketAbcState extends State<SocketAbc> with BaseAbcStateMixin {
 
     server.listen(
       (client) {
+        clientListStream.addSub(client);
         final address = "${client.remoteAddress.address}:${client.remotePort}";
         messageListStream.addSub("客户端连接->$address");
         client.listen(
@@ -161,18 +176,22 @@ class _SocketAbcState extends State<SocketAbc> with BaseAbcStateMixin {
                 .addSub("收到[$address][${value.length} KB]->${value.utf8Str}");
           },
           onDone: () {
+            clientListStream.removeSub(client);
             messageListStream.addSub("[$address]客户端Done.");
           },
           onError: (e) {
+            clientListStream.removeSub(client);
             messageListStream.addSub("[$address]客户端错误->$e");
           },
           cancelOnError: true,
         );
       },
       onDone: () {
+        clientListStream.updateValue([]);
         messageListStream.addSub("服务已结束!");
       },
       onError: (e) {
+        clientListStream.updateValue([]);
         messageListStream.addSub("服务异常->$e");
       },
       cancelOnError: true,
@@ -184,8 +203,38 @@ class _SocketAbcState extends State<SocketAbc> with BaseAbcStateMixin {
     final server = _serverSocketStream.value;
     if (server != null) {
       messageListStream.addSub("关闭服务!");
+      _disconnectAllClient();
       await server.close();
       _serverSocketStream.updateValue(null);
+    }
+  }
+
+  /// 向所有客户端发送消息
+  void _sendMessageToAllClient(String message) async {
+    final server = _serverSocketStream.value;
+    if (server != null) {
+      messageListStream.addSub("向所有客户端发送消息: $message");
+      for (final socket in clientListStream.value!) {
+        try {
+          socket.write(message);
+        } catch (e) {
+          //print(e);
+        }
+      }
+    }
+  }
+
+  /// 断开所有客户端
+  void _disconnectAllClient() async {
+    final server = _serverSocketStream.value;
+    if (server != null) {
+      for (final socket in clientListStream.value!) {
+        try {
+          socket.destroy();
+        } catch (e) {
+          //print(e);
+        }
+      }
     }
   }
 
