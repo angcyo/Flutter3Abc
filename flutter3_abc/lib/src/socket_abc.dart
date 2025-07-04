@@ -187,7 +187,7 @@ class _SocketAbcState extends State<SocketAbc> with BaseAbcStateMixin {
           (value) {
             //
             messageListStream.addSub(
-                "收到[$address][${value.length} KB]↓\n->${value.toHex()}\n->${value.utf8Str}");
+                "收到[$address][${value.length} B]↓\n->${value.toHex()}\n->${value.utf8Str}");
           },
           onDone: () {
             clientListStream.removeSub(client);
@@ -269,7 +269,7 @@ class _SocketAbcState extends State<SocketAbc> with BaseAbcStateMixin {
     socket.listen(
       (value) {
         //
-        messageListStream.addSub("客户端收到[${value.length} KB]->${value.utf8Str}");
+        messageListStream.addSub("客户端收到[${value.length} B]->${value.utf8Str}");
       },
       onDone: () {
         messageListStream.addSub("客户端Done.");
