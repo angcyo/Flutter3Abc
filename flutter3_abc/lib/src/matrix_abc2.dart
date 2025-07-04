@@ -198,7 +198,7 @@ class _MatrixAbc2State extends State<MatrixAbc2> with AbsScrollPage, TileMixin {
   }
 }
 
-/// 透视矩阵变换
+/// 透视矩阵变换, 4个原始点, 4个目标点, 计算透视矩阵
 ///
 /// https://franklinta.com/2014/09/08/computing-css-matrix3d-transforms/
 Matrix4 perspectiveMatrix(List<Offset> from, List<Offset> to) {
