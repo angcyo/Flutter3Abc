@@ -339,8 +339,8 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
     (context) => const FirmwareUpgradePage()
   ),
   ("/shelf", 'ShelfAbc', (context) => const ShelfAbc()),
-  ("/webSocket", 'WebSocketAbc', (context) => const WebSocketAbc()),
   ("/socket", 'SocketAbc', (context) => const SocketAbc()),
+  ("/webSocket", 'WebSocketAbc', (context) => const WebSocketAbc()),
   ("/udpService", 'UdpServiceAbc', (context) => const UdpServiceAbc()),
   ("/udpService2", 'UdpServiceAbc2 $kGo', (context) => const UdpService2Abc()),
   (
