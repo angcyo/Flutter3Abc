@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:ui';
 
 import 'package:flutter3_app/flutter3_app.dart';
@@ -47,4 +46,5 @@ void testAbc() {
   //[ arr[2], arr[5], arr[8] ]
   final values = matrix3.storage;
   //debugger();
+  l.i(values);
 }
