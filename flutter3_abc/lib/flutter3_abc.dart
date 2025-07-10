@@ -222,7 +222,7 @@ part 'src/temp_test_abc.dart';
 /// 标识需要执行的abc
 const kGo = '√';
 
-typedef AbcRouteConfig = (String, String?, WidgetBuilder);
+typedef AbcRouteConfig = (String key, String? title, WidgetBuilder build);
 
 /// abc页面路由
 final flutter3AbcRoutes = <AbcRouteConfig>[
@@ -353,20 +353,16 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ("/event", 'EventAbc', (context) => const EventAbc()),
   ("/mouseRegion", 'MouseRegionAbc', (context) => const MouseRegionAbc()),
   ("/hoveAnchor", 'HoveAnchorAbc', (context) => const HoveAnchorAbc()),
-  (
-    "/sliderCaptcha",
-    'SliderCaptchaAbc $kGo',
-    (context) => const SliderCaptchaAbc()
-  ),
+  ("/sliderCaptcha", 'SliderCaptchaAbc', (context) => const SliderCaptchaAbc()),
 ];
 
 //--
 
 /// 最后一次跳转的路由路径
-String? get lastJumpPath => "_lastJumpPath".hiveGet<String>(null);
+String? get lastJumpRoutePath => "_lastJumpRoutePath".hiveGet<String>(null);
 
-set lastJumpPath(String? value) {
-  "_lastJumpPath".hivePut(value);
+set lastJumpRoutePath(String? value) {
+  "_lastJumpRoutePath".hivePut(value);
 }
 
 //--
