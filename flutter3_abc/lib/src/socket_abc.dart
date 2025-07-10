@@ -215,6 +215,8 @@ class _SocketAbcState extends State<SocketAbc> with BaseAbcStateMixin {
             messageListStream.addSub("[$address]客户端Done.");
           },
           onError: (e) {
+            //手机App, 切换到后台后会被系统优化(耗电行为控制), 然后触发异常.
+            //[SocketException]SocketException: Connection reset by peer (OS Error: Connection reset by peer, errno = 104), address = 0.0.0.0, port = 9090
             clientListStream.removeSub(client);
             messageListStream.addSub("[$address]客户端错误->$e");
           },
@@ -305,6 +307,8 @@ class _SocketAbcState extends State<SocketAbc> with BaseAbcStateMixin {
           messageListStream.addSub("客户端Done.");
         },
         onError: (e) {
+          //手机App, 切换到后台后会被系统优化(耗电行为控制), 然后触发异常.
+          //[SocketException]SocketException: Connection reset by peer (OS Error: Connection reset by peer, errno = 104), address = 0.0.0.0, port = 9090
           messageListStream.addSub("客户端错误->$e");
         },
         cancelOnError: true,
@@ -322,7 +326,11 @@ class _SocketAbcState extends State<SocketAbc> with BaseAbcStateMixin {
 
   /// 客户端发送消息到服务端
   void _sendSocketMessage([String? message]) {
-    _socketStream.value?.write(message ?? _messageFieldConfig.text);
+    try {
+      _socketStream.value?.write(message ?? _messageFieldConfig.text);
+    } catch (e) {
+      messageListStream.addSub("发送消息给服务端失败->$e");
+    }
   }
 
 //endregion 客户端
