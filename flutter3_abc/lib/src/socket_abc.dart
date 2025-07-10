@@ -41,6 +41,9 @@ class _SocketAbcState extends State<SocketAbc> with BaseAbcStateMixin {
     },
   );
 
+  /// 心跳数据内容.
+  final heart = "[heart]";
+
   @override
   void initState() {
     super.initState();
@@ -93,6 +96,13 @@ class _SocketAbcState extends State<SocketAbc> with BaseAbcStateMixin {
               : GradientButton.normal(() {
                   _sendMessageToAllClient(_messageFieldConfig.text);
                 }, child: "发送消息给所有客户端".text()),
+        ),
+        clientListStream.buildDataFn(
+          (data) => isNil(data)
+              ? null
+              : GradientButton.normal(() {
+                  _sendMessageToAllClient(heart);
+                }, child: "心跳".text()),
         ),
         IconButton(
           icon: Icon(Icons.info_outline),
@@ -243,6 +253,8 @@ class _SocketAbcState extends State<SocketAbc> with BaseAbcStateMixin {
           socket.write(message);
         } catch (e) {
           //print(e);
+          messageListStream.addSub(
+              "向客户端[${socket.remoteAddress.address}:${socket.remotePort}}]发送消息失败: $e");
         }
       }
     }
@@ -266,10 +278,12 @@ class _SocketAbcState extends State<SocketAbc> with BaseAbcStateMixin {
 
   //region 客户端
 
+  /// 客户端socket
   final _socketStream = $live<Socket>();
 
   Future _connectSocket() async {
     try {
+      //连接服务端
       final socket = await Socket.connect(
         _socketIpFieldConfig.text,
         _socketPortFieldConfig.text.toInt(),
@@ -282,6 +296,9 @@ class _SocketAbcState extends State<SocketAbc> with BaseAbcStateMixin {
           //
           messageListStream
               .addSub("客户端收到[${value.length} B]->${value.utf8Str}");
+          if (value.utf8Str == heart) {
+            _sendSocketMessage(heart);
+          }
         },
         onDone: () {
           messageListStream.addSub("客户端Done.");
@@ -302,8 +319,9 @@ class _SocketAbcState extends State<SocketAbc> with BaseAbcStateMixin {
     _socketStream.updateValue(null);
   }
 
-  void _sendSocketMessage() {
-    _socketStream.value?.write(_messageFieldConfig.text);
+  /// 客户端发送消息到服务端
+  void _sendSocketMessage([String? message]) {
+    _socketStream.value?.write(message ?? _messageFieldConfig.text);
   }
 
 //endregion 客户端
