@@ -310,6 +310,7 @@ class _SocketAbcState extends State<SocketAbc> with BaseAbcStateMixin {
           //手机App, 切换到后台后会被系统优化(耗电行为控制), 然后触发异常.
           //[SocketException]SocketException: Connection reset by peer (OS Error: Connection reset by peer, errno = 104), address = 0.0.0.0, port = 9090
           messageListStream.addSub("客户端错误->$e");
+          _disconnectSocket();
         },
         cancelOnError: true,
       );
