@@ -153,6 +153,7 @@ class _SocketAbcState extends State<SocketAbc> with BaseAbcStateMixin {
         msg
             .text(style: globalTheme.textGeneralStyle)
             .paddingOnly(left: kX, right: kX, top: kM),
+      empty.safeBottomArea(),
     ];
   }
 
