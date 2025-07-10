@@ -295,7 +295,7 @@ class _SocketAbcState extends State<SocketAbc> with BaseAbcStateMixin {
         (value) {
           //
           messageListStream.addSub(
-              "客户端[${socket.remoteAddress.address}:${socket.remotePort}}]收到[${value.length} B]->${value.utf8Str}");
+              "客户端[${socket.remoteAddress.address}:${socket.remotePort}]收到[${value.length} B]->${value.utf8Str}");
           if (value.utf8Str == heart) {
             _sendSocketMessage(heart);
           }
