@@ -53,6 +53,13 @@ class _SocketAbcState extends State<SocketAbc> with BaseAbcStateMixin {
   }
 
   @override
+  void dispose() {
+    _stopSocketServer();
+    _disconnectSocket();
+    super.dispose();
+  }
+
+  @override
   WidgetList buildBodyList(BuildContext context) {
     final globalTheme = GlobalTheme.of(context);
     return [
@@ -61,7 +68,10 @@ class _SocketAbcState extends State<SocketAbc> with BaseAbcStateMixin {
         return address == null
             ? "无网络".text(style: globalTheme.textGeneralStyle)
             : "当前网络地址:${address.address}"
-                .text(style: globalTheme.textGeneralStyle);
+                .text(style: globalTheme.textGeneralStyle)
+                .click(() {
+                address.address.copy();
+              });
       }).insets(horizontal: kX, top: kX),
       [
         SingleInputWidget(
@@ -259,26 +269,31 @@ class _SocketAbcState extends State<SocketAbc> with BaseAbcStateMixin {
   final _socketStream = $live<Socket>();
 
   Future _connectSocket() async {
-    final socket = await Socket.connect(
-      _socketIpFieldConfig.text,
-      _socketPortFieldConfig.text.toInt(),
-      timeout: 5.seconds,
-    );
-    _socketStream.updateValue(socket);
+    try {
+      final socket = await Socket.connect(
+        _socketIpFieldConfig.text,
+        _socketPortFieldConfig.text.toInt(),
+        timeout: 5.seconds,
+      );
+      _socketStream.updateValue(socket);
 
-    socket.listen(
-      (value) {
-        //
-        messageListStream.addSub("客户端收到[${value.length} B]->${value.utf8Str}");
-      },
-      onDone: () {
-        messageListStream.addSub("客户端Done.");
-      },
-      onError: (e) {
-        messageListStream.addSub("客户端错误->$e");
-      },
-      cancelOnError: true,
-    );
+      socket.listen(
+        (value) {
+          //
+          messageListStream
+              .addSub("客户端收到[${value.length} B]->${value.utf8Str}");
+        },
+        onDone: () {
+          messageListStream.addSub("客户端Done.");
+        },
+        onError: (e) {
+          messageListStream.addSub("客户端错误->$e");
+        },
+        cancelOnError: true,
+      );
+    } catch (e) {
+      messageListStream.addSub("连接错误->$e");
+    }
   }
 
   void _disconnectSocket() {
