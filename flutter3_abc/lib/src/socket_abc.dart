@@ -59,8 +59,12 @@ class _SocketAbcState extends State<SocketAbc> with BaseAbcStateMixin {
   void dispose() {
     _stopSocketServer();
     _disconnectSocket();
+    _stopSseServer();
     super.dispose();
   }
+
+  /// 本机ip
+  String? localAddress;
 
   @override
   WidgetList buildBodyList(BuildContext context) {
@@ -68,6 +72,7 @@ class _SocketAbcState extends State<SocketAbc> with BaseAbcStateMixin {
     return [
       //--
       $getLocalInternetAddress().toWidget((ctx, address) {
+        localAddress = address?.address;
         return address == null
             ? "无网络".text(style: globalTheme.textGeneralStyle)
             : "当前网络地址:${address.address}"
@@ -84,11 +89,31 @@ class _SocketAbcState extends State<SocketAbc> with BaseAbcStateMixin {
         _serverSocketStream.buildDataFn(
           (data) => data == null
               ? GradientButton.normal(() async {
-                  _startSocketServer(_socketPortFieldConfig.text.toInt());
+                  try {
+                    await _startSocketServer(
+                        _socketPortFieldConfig.text.toInt());
+                  } catch (e) {
+                    print(e);
+                    messageListStream.addSub("启动服务异常->$e");
+                  }
                 }, child: "启动socket服务".text())
               : GradientButton.normal(() {
                   _stopSocketServer();
                 }, child: "停止socket服务".text()),
+        ),
+        _httpServerStream.buildDataFn(
+          (data) => data == null
+              ? GradientButton.normal(() async {
+                  try {
+                    await _startSseServer(_socketPortFieldConfig.text.toInt());
+                  } catch (e) {
+                    print(e);
+                    messageListStream.addSub("启动服务异常->$e");
+                  }
+                }, child: "启动SSE服务".text())
+              : GradientButton.normal(() {
+                  _stopSseServer();
+                }, child: "停止SSE服务".text()),
         ),
         clientListStream.buildDataFn(
           (data) => isNil(data)
@@ -194,10 +219,10 @@ class _SocketAbcState extends State<SocketAbc> with BaseAbcStateMixin {
   final clientListStream = $live<List<Socket>>([]);
 
   /// 启动一个socket服务端
-  void _startSocketServer(int serverPort) async {
+  Future _startSocketServer(int serverPort) async {
     final server = await ServerSocket.bind(InternetAddress.anyIPv4, serverPort);
     _serverSocketStream.updateValue(server);
-    messageListStream.addSub("服务已启动[$serverPort]");
+    messageListStream.addSub("Socket服务已启动[$serverPort]");
 
     server.listen(
       (client) {
@@ -239,7 +264,7 @@ class _SocketAbcState extends State<SocketAbc> with BaseAbcStateMixin {
   void _stopSocketServer() async {
     final server = _serverSocketStream.value;
     if (server != null) {
-      messageListStream.addSub("关闭服务!");
+      messageListStream.addSub("关闭[Socket]服务!");
       _disconnectAllClient();
       await server.close();
       _serverSocketStream.updateValue(null);
@@ -334,5 +359,69 @@ class _SocketAbcState extends State<SocketAbc> with BaseAbcStateMixin {
     }
   }
 
-//endregion 客户端
+  //endregion 客户端
+
+  //region sse
+
+  late final _httpServerStream = $live<HttpServer>();
+
+  /// 启动一个 SSE（Server-Sent Events）服务端.
+  /// [HttpServer] 服务
+  /// [HttpRequest] 请求
+  Future _startSseServer(int serverPort) async {
+    final server = await HttpServer.bind(InternetAddress.anyIPv4, serverPort);
+    _httpServerStream.updateValue(server);
+    messageListStream.addSub("SSE服务启动->http://$localAddress:$serverPort/sse");
+
+    await for (final req in server) {
+      final response = req.response;
+      final headers = response.headers;
+
+      // 打印请求信息
+      final clientId =
+          "${req.connectionInfo?.remoteAddress?.address}:${req.connectionInfo?.remotePort}";
+      messageListStream.addSub("[$clientId]的请求->${req.uri}");
+
+      if (req.uri.path == '/sse') {
+        // 设置SSE响应头
+        headers.contentType =
+            ContentType('text', 'event-stream', charset: 'utf-8');
+        headers.add('Cache-Control', 'no-cache');
+        headers.add('Connection', 'keep-alive');
+        headers.add('Access-Control-Allow-Origin', '*');
+
+        // 定时发送事件
+        final timer = Stream.periodic(Duration(seconds: 1), (count) => count);
+
+        await for (final event in timer) {
+          final message = 'data: hello $event';
+          response.write('$message\n\n');
+          l.d(message);
+          messageListStream.addSub("发送给[$clientId]->$message");
+          await response.flush();
+          if (_httpServerStream.value == null) {
+            break;
+          }
+        }
+        messageListStream.addSub("[$clientId]->close");
+        await response.close();
+      } else {
+        req.response
+          ..statusCode = HttpStatus.notFound
+          ..write('[${req.uri}]Not Found!\n\n$headers')
+          ..close();
+      }
+    }
+  }
+
+  void _stopSseServer() async {
+    final server = _httpServerStream.value;
+    if (server != null) {
+      messageListStream.addSub("关闭[HttpServer]服务!");
+      await server.close();
+      _httpServerStream.updateValue(null);
+    }
+  }
+
+//endregion sse
 }
