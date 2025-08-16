@@ -71,7 +71,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
+  # in flutter3_basics
+  flutter_lints: any
   # in flutter3_res
   intl_utils: any
   build_runner: any

@@ -367,7 +367,7 @@ class _ButtonAbcState extends State<ButtonAbc> with BaseAbcStateMixin {
           onTap: () {
             debounce(() {
               l.d('抖动2...');
-            }, 1000);
+            }, millisecond: 1000);
           },
           child: "抖动2".text(),
         ),
@@ -381,7 +381,7 @@ class _ButtonAbcState extends State<ButtonAbc> with BaseAbcStateMixin {
           onTap: () {
             throttle(() {
               l.d('限流2...');
-            }, 1000);
+            }, millisecond: 1000);
           }.throttle(1000),
           child: "限流2".text(),
         ),
