@@ -76,7 +76,7 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
         canvas.translate(0, 30);
         canvas.drawPoints(PointMode.polygon, points, paint);
       }).constrainedBox(
-          BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
+          BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth)),
       paintWidget((canvas, size) {
         //中点
         final center = Offset(size.width / 2, size.height / 2);
@@ -117,7 +117,7 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
           });
         }
       }).constrainedBox(
-          BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
+          BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth)),
       paintWidget((canvas, size) {
         //中点
         final center = Offset(size.width / 2, size.height / 2);
@@ -166,7 +166,7 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
           });
         }
       }).constrainedBox(
-          BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
+          BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth)),
       paintWidget((canvas, size) {
         final circlePath = Path()
           ..addOval(
@@ -176,14 +176,14 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
               const Rect.fromLTWH(0, 0, 200, 250), 0.toRadians, 360.toRadians);
         drawPathTest(arcPath, canvas, size);
       }).constrainedBox(
-          BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
+          BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth)),
       paintWidget((canvas, size) {
         final arcPath = Path()
           ..addArc(
               const Rect.fromLTWH(0, 0, 200, 250), 0.toRadians, -360.toRadians);
         drawPathTest(arcPath, canvas, size);
       }).constrainedBox(
-          BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
+          BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth)),
       paintWidget((canvas, size) {
         //--
         canvas.withTranslate(100, 100, () {
@@ -244,7 +244,7 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
               .paint(canvas, Offset.zero);
         });
       }).constrainedBox(
-          BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
+          BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth)),
       paintWidget((canvas, size) {
         const rect = Rect.fromLTWH(0, 0, 50, 50);
         drawCrossLine(canvas, rect.rb, Colors.blueAccent);
@@ -302,7 +302,7 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
 
         //debugger();
       }).constrainedBox(
-          BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
+          BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth)),
       paintWidget((canvas, size) {
         canvas.withTranslate(100, 100, () {
           const rect = Rect.fromLTWH(0, 0, 50, 50);
@@ -324,7 +324,7 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
                 ..style = PaintingStyle.stroke);
         });
       }).constrainedBox(
-          BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
+          BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth)),
       paintWidget((canvas, size) {
         //canvas.drawColor(Colors.black12, BlendMode.srcOver);
         canvas.drawRect(
@@ -415,7 +415,7 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
           drawCrossLine(canvas, textPainter.curveCenter, Colors.red);
         });
       }).constrainedBox(
-          BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
+          BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth)),
       paintWidget((canvas, size) {
         const rect = Rect.fromLTWH(0, 0, 50, 50);
         const offset = Offset(100, 100);
@@ -449,7 +449,7 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
               ..style = PaintingStyle.stroke
               ..color = Colors.purpleAccent);
       }).constrainedBox(
-          BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
+          BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth)),
       paintWidget((canvas, size) {
         final circlePath = Path()
           ..addOval(const Rect.fromLTWH(100, 100, 100, 100));
@@ -471,7 +471,7 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
               ..style = PaintingStyle.stroke
               ..color = Colors.purpleAccent);*/
       }).constrainedBox(
-          BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
+          BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth)),
     ];
   }
 
