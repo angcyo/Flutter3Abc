@@ -10,6 +10,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter3_abc/src/skeleton_abc.dart';
 import 'package:flutter3_abc/src/slider_captcha_abc.dart';
 import 'package:flutter3_abc/src/socket_abc.dart';
 import 'package:flutter3_abc/src/udp_service2_abc.dart';
@@ -224,7 +225,7 @@ const kGo = '√';
 
 typedef AbcRouteConfig = (String key, String? title, WidgetBuilder build);
 
-/// abc页面路由
+/// 桌面/移动 公共的abc页面路由
 final flutter3AbcRoutes = <AbcRouteConfig>[
   ("/basics", 'BasicsAbc', (context) => const BasicsAbc()),
   ("/silverList", 'SilverListAbc', (context) => const SilverListAbc()),
@@ -354,6 +355,7 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ("/mouseRegion", 'MouseRegionAbc', (context) => const MouseRegionAbc()),
   ("/hoveAnchor", 'HoveAnchorAbc', (context) => const HoveAnchorAbc()),
   ("/sliderCaptcha", 'SliderCaptchaAbc', (context) => const SliderCaptchaAbc()),
+  ("/skeletonAbc", 'SkeletonAbc', (context) => const SkeletonAbc()),
 ];
 
 //--
