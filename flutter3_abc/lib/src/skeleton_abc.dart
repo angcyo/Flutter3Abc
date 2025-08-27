@@ -18,8 +18,12 @@ class _SkeletonAbcState extends State<SkeletonAbc> with BaseAbcStateMixin {
   @override
   Widget buildAbc(BuildContext context) {
     return SkeletonWidget(
-      data:
-          SkeletonData(type: SkeletonDataType.circle, width: 0.3, height: 0.3),
+      data: SkeletonData(
+        type: SkeletonDataType.circle,
+        width: 0.3,
+        height: 0.3,
+        color: Colors.green,
+      ),
     ).bounds();
   }
 }
