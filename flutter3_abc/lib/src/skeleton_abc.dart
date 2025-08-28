@@ -16,14 +16,59 @@ class SkeletonAbc extends StatefulWidget {
 
 class _SkeletonAbcState extends State<SkeletonAbc> with BaseAbcStateMixin {
   @override
-  Widget buildAbc(BuildContext context) {
-    return SkeletonWidget(
-      data: SkeletonData(
-        type: SkeletonDataType.circle,
-        width: 0.3,
-        height: 0.3,
-        color: Colors.green,
-      ),
-    ).bounds();
+  WidgetList buildBodyList(BuildContext context) {
+    final data = SkeletonData(
+      left: "20",
+      top: "20",
+      children: [
+        SkeletonData(
+          fillHeight: "1h",
+          bottom: "20",
+          right: "20",
+          children: [
+            part1(),
+            /*part1(color: Colors.red),*/
+          ],
+        ),
+      ],
+    );
+    return [
+      ShimmerSkeletonWidget(data: data).size(height: 200),
+      ShimmerSkeletonWidget(
+        data: data,
+        colors: [
+          Colors.transparent,
+          Colors.red,
+          Colors.transparent,
+        ],
+      ).size(height: 200),
+    ];
   }
+
+  SkeletonData part1({
+    Color color = Colors.green,
+  }) =>
+      SkeletonData(
+        fillWidth: "600",
+        fillHeight: "100",
+        right: "20",
+        bottom: "20",
+        children: [
+          SkeletonData(
+            type: SkeletonDataType.circle,
+            width: "0.1",
+            height: "0.1",
+            color: color,
+          ),
+          SkeletonData(
+            type: SkeletonDataType.rect,
+            left: "0.1+20",
+            width: "0.8-20",
+            height: "0.1",
+            rx: "10",
+            ry: "10",
+            color: color,
+          ),
+        ],
+      );
 }

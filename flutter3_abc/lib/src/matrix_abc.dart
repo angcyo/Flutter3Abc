@@ -115,10 +115,10 @@ class _MatrixAbcState extends State<MatrixAbc> with BaseAbcStateMixin {
 
   /// 重置
   void _reset() {
-    translateStep = translateStep.inverted();
-    scaleStep = scaleStep.inverted();
-    skewStep = skewStep.inverted();
-    rotateStep = rotateStep.inverted();
+    translateStep = translateStep.inverted;
+    scaleStep = scaleStep.inverted;
+    skewStep = skewStep.inverted;
+    rotateStep = rotateStep.inverted;
 
     matrix4 = Matrix4.identity();
     setState(() {
@@ -128,7 +128,7 @@ class _MatrixAbcState extends State<MatrixAbc> with BaseAbcStateMixin {
 
   /// 重置平移
   void _resetTranslate() {
-    translateStep = translateStep.inverted();
+    translateStep = translateStep.inverted;
 
     matrix4 = matrix4.clone()..setTranslation(Vector3.zero());
     setState(() {
