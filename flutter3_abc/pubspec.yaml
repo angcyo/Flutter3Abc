@@ -38,6 +38,9 @@ dependencies:
   flutter3_pub_core:
     path: ../../Flutter3Core/flutter3_pub_core
 
+  flutter3_three_js:
+    path: ../../Flutter3Core/flutter3_three_js
+
   lp_device:
     path: ../../Flutter3Extend/lp_device
   lp_canvas:

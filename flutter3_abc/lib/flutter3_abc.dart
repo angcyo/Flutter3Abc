@@ -10,6 +10,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter3_abc/src/3d_abc.dart';
 import 'package:flutter3_abc/src/skeleton_abc.dart';
 import 'package:flutter3_abc/src/slider_captcha_abc.dart';
 import 'package:flutter3_abc/src/socket_abc.dart';
@@ -35,6 +36,7 @@ import 'assets_generated/assets.gen.dart';
 import 'src/bean/http_test_bean.dart';
 
 export 'package:flutter3_pub_core/flutter3_pub_core.dart';
+export 'package:flutter3_three_js/flutter3_three_js.dart';
 
 export 'assets_generated/assets.gen.dart';
 
@@ -356,6 +358,7 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ("/hoveAnchor", 'HoveAnchorAbc', (context) => const HoveAnchorAbc()),
   ("/sliderCaptcha", 'SliderCaptchaAbc', (context) => const SliderCaptchaAbc()),
   ("/skeletonAbc", 'SkeletonAbc', (context) => const SkeletonAbc()),
+  ("/three3DAbc", 'Three3DAbc', (context) => const Three3DAbc()),
 ];
 
 //--
