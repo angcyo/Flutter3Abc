@@ -37,6 +37,8 @@ class _Three3DAbcState extends State<Three3DAbc> with BaseAbcStateMixin {
         "https://raw.githubusercontent.com/FlutterStudioIst/3d_res/refs/heads/main/sky_sphere.glb",
     "Toothy_Baby_Croc.stl":
         "https://raw.githubusercontent.com/FlutterStudioIst/3d_res/refs/heads/main/Toothy_Baby_Croc.stl",
+    "pentagram.gcode":
+        "https://raw.githubusercontent.com/FlutterStudioIst/3d_res/refs/heads/main/pentagram.gcode",
   };
 
   /// 3D模型地址
