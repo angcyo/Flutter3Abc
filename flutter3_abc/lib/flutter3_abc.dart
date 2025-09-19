@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter3_abc/src/3d_abc.dart';
+import 'package:flutter3_abc/src/navigator_abc.dart';
 import 'package:flutter3_abc/src/skeleton_abc.dart';
 import 'package:flutter3_abc/src/slider_captcha_abc.dart';
 import 'package:flutter3_abc/src/socket_abc.dart';
@@ -359,6 +360,7 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ("/sliderCaptcha", 'SliderCaptchaAbc', (context) => const SliderCaptchaAbc()),
   ("/skeletonAbc", 'SkeletonAbc', (context) => const SkeletonAbc()),
   ("/three3DAbc", 'Three3DAbc', (context) => const Three3DAbc()),
+  ("/navigatorAbc", 'NavigatorAbc', (context) => const NavigatorAbc()),
 ];
 
 //--
