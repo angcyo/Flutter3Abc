@@ -23,7 +23,7 @@ class CanvasAbc2 extends StatefulWidget {
 }
 
 class _CanvasAbc2State extends State<CanvasAbc2>
-    with CreationMixin, CreationMixin2, AppLifecycleMixin {
+    with CreationMixin, CreationMixin2, AppLifecycleStateMixin {
   @override
   void onAppChangeMetrics() {
     updateState();
