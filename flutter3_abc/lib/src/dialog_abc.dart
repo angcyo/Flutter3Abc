@@ -510,9 +510,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
                 message: "恢复之前的工程?" * 3,
                 cancel: "取消",
                 confirm: "确定",
-                onConfirmTap: (_) async {
-                  return false;
-                },
+                onConfirmTap: () {},
               ),
             );
           },
@@ -530,9 +528,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
                 /*cancel: null,
                 neutral: null,
                 confirm: null,*/
-                onConfirmTap: (_) async {
-                  return false;
-                },
+                onConfirmTap: () {},
               ),
             );
           },
@@ -548,9 +544,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
                 /*cancel: null,
                 neutral: null,
                 confirm: null,*/
-                onConfirmTap: (_) async {
-                  return false;
-                },
+                onConfirmTap: () {},
               ),
             );
           },

@@ -62,13 +62,12 @@ class _BluetoothAbcState extends State<BluetoothAbc>
                 MessageDialog(
                     title: "注意",
                     message: "即将请求蓝牙相关权限!",
-                    onConfirmTap: ((_) async {
+                    onConfirmTap: () {
                       Permissions.requestBluetoothPermissions()
                           .get((value, error) {
                         updateState();
                       });
-                      return false;
-                    })),
+                    }),
               );
             });
           }

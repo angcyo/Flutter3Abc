@@ -28,12 +28,14 @@ dependencies:
     path: ../../Flutter3Core/flutter3_excel
   flutter3_code:
     path: ../../Flutter3Core/flutter3_code
-  flutter3_web:
-    path: ../../Flutter3Core/flutter3_web
+  flutter3_webview:
+    path: ../../Flutter3Core/flutter3_webview
   flutter3_scanner:
     path: ../../Flutter3Core/flutter3_scanner
   flutter3_shelf:
     path: ../../Flutter3Core/flutter3_shelf
+  flutter3_notification:
+    path: ../../Flutter3Core/flutter3_notification
 
   flutter3_pub_core:
     path: ../../Flutter3Core/flutter3_pub_core
