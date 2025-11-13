@@ -94,8 +94,8 @@ class _UdpServiceAbcState extends State<UdpServiceAbc>
           final clientInfo =
               defaultUdpService.getServerClientInfo(_selectedDeviceId);
           defaultUdpService.testTcpSendToClient(
-            clientInfo?.clientAddress,
-            clientInfo?.clientPort,
+            clientInfo?.remoteAddress,
+            clientInfo?.remotePort,
             nowTimeString().bytes,
           );
         }, child: "test-tcp-to-client".text()),
@@ -103,8 +103,8 @@ class _UdpServiceAbcState extends State<UdpServiceAbc>
           final clientInfo =
               defaultUdpService.getServerClientInfo(_selectedDeviceId);
           defaultUdpService.testUdpSendToClient(
-            clientInfo?.clientAddress,
-            clientInfo?.clientPort,
+            clientInfo?.remoteAddress,
+            clientInfo?.remotePort,
             nowTimeString().bytes,
           );
         }, child: "test-udp-to-client".text()),
@@ -183,7 +183,7 @@ class _UdpServiceAbcState extends State<UdpServiceAbc>
                       style: globalTheme.textBodyStyle,
                     );
                     builder.addText(
-                      "\n${info.clientIpAddress}",
+                      "\n${info.remoteIpAddress}",
                       style: globalTheme.textDesStyle,
                     );
                   });

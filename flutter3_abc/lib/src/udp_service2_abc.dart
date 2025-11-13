@@ -31,7 +31,7 @@ class _UdpService2AbcState extends State<UdpService2Abc>
   @override
   void initState() {
     _loadNetworkInterface();
-    hookAny(udpServer.clientNewMessageStreamOnce.listen((data) {
+    hookAny(udpServer.remoteNewMessageStreamOnce.listen((data) {
       if (_selectedDeviceId != null && data?.deviceId == _selectedDeviceId) {
         listSignal.updateValue();
         postFrame(() {
@@ -76,7 +76,7 @@ class _UdpService2AbcState extends State<UdpService2Abc>
                 }, child: "停止客户端".text());
         }),
         GradientButton.normal(() {
-          udpClient.sendClientMessage(UdpMessageBean.text(nowTimeString()));
+          udpClient.sendRemoteMessage(UdpMessageBean.text(nowTimeString()));
         }, child: "上报消息".text()),
         /*GradientButton.normal(() {
           udpService.sendBroadcast(nowTimeString().bytes);
@@ -86,8 +86,8 @@ class _UdpService2AbcState extends State<UdpService2Abc>
           final clientInfo =
           defaultUdpService.getServerClientInfo(_selectedDeviceId);
           defaultUdpService.testTcpSendToClient(
-            clientInfo?.clientAddress,
-            clientInfo?.clientPort,
+            clientInfo?.remoteAddress,
+            clientInfo?.remotePort,
             nowTimeString().bytes,
           );
         }, child: "test-tcp-to-client".text()),
@@ -95,8 +95,8 @@ class _UdpService2AbcState extends State<UdpService2Abc>
           final clientInfo =
           defaultUdpService.getServerClientInfo(_selectedDeviceId);
           defaultUdpService.testUdpSendToClient(
-            clientInfo?.clientAddress,
-            clientInfo?.clientPort,
+            clientInfo?.remoteAddress,
+            clientInfo?.remotePort,
             nowTimeString().bytes,
           );
         }, child: "test-udp-to-client".text()),*/
@@ -141,20 +141,20 @@ class _UdpService2AbcState extends State<UdpService2Abc>
           }
         });
       }),
-      udpServer.clientListStream.buildFn(() {
-        final clientList = udpServer.clientList;
+      udpServer.remoteListStream.buildFn(() {
+        final clientList = udpServer.remoteList;
         if (isNil(clientList)) {
           return empty;
         }
         return [
           for (final clientInfo in clientList)
             [
-              udpServer.clientOnlineStreamOnce,
-              udpServer.clientOfflineStreamOnce,
+              udpServer.remoteOnlineStreamOnce,
+              udpServer.remoteOfflineStreamOnce,
             ]
                 .buildFn(() {
                   final deviceId = clientInfo.deviceId;
-                  final info = udpServer.getClientInfo(deviceId) ?? clientInfo;
+                  final info = udpServer.getRemoteInfo(deviceId) ?? clientInfo;
                   return textSpanBuilder((builder) {
                     builder.addText(
                       deviceId == udpServer.localInfoStream.value?.deviceId
@@ -171,7 +171,7 @@ class _UdpService2AbcState extends State<UdpService2Abc>
                       style: globalTheme.textBodyStyle,
                     );
                     builder.addText(
-                      "\n${info.clientIpAddress}",
+                      "\n${info.remoteIpAddress}",
                       style: globalTheme.textDesStyle,
                     );
                   });
@@ -202,7 +202,7 @@ class _UdpService2AbcState extends State<UdpService2Abc>
       if (_selectedDeviceId == null) "!请先选择客户端!".text().center().sliverExpand(),
       if (_selectedDeviceId != null)
         ...() {
-          final messageList = udpServer.getClientMessageList(_selectedDeviceId);
+          final messageList = udpServer.getRemoteMessageList(_selectedDeviceId);
           if (isNil(messageList)) {
             return ["等待客户端消息...".text().center().sliverExpand()];
           }
