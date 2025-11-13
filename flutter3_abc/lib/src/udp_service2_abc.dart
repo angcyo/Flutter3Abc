@@ -127,6 +127,11 @@ class _UdpService2AbcState extends State<UdpService2Abc>
           }, child: "清空消息".text()),
           GradientButton.normal(() {
             udpServer.sendRemoteMessage(
+                UdpMessageBean.api(UdpApis.requestAppShareLog()),
+                remotePort: udpServer.serverBroadcastPort);
+          }, child: "分享日志文件".text()),
+          GradientButton.normal(() {
+            udpServer.sendRemoteMessage(
                 UdpMessageBean.api(UdpApis.requestAppLog()),
                 remotePort: udpServer.serverBroadcastPort);
           }, child: "获取日志文件".text()),
@@ -228,7 +233,7 @@ class _UdpService2AbcState extends State<UdpService2Abc>
                   style: globalTheme.textDesStyle,
                 );
                 builder.addText(
-                  message.data?.utf8Str,
+                  message.text,
                   style: globalTheme.textBodyStyle,
                 );
               }, selectable: true),
