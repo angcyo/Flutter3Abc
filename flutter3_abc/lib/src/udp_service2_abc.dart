@@ -127,7 +127,7 @@ class _UdpService2AbcState extends State<UdpService2Abc>
           }, child: "清空消息".text()),
           GradientButton.normal(() {
             udpServer.sendRemoteMessage(
-                UdpMessageBean.api(UdpApiBean()..method = "test"),
+                UdpMessageBean.api(UdpApis.requestAppLog()),
                 remotePort: udpServer.serverBroadcastPort);
           }, child: "获取日志文件".text()),
         ]
