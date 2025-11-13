@@ -109,10 +109,12 @@ class _UdpServiceAbcState extends State<UdpServiceAbc>
           );
         }, child: "test-udp-to-client".text()),
         GradientButton.normal(() async {
-          final bytes = await receiveUdpData(testPort, timeout: 10.seconds);
-          final str = bytes?.utf8Str;
-          toastInfo(str);
-          //debugger();
+          final udp = await receiveUdpData(testPort, timeout: 10.seconds,
+              onDatagramAction: (datagram, error) {
+            final str = datagram?.data.utf8Str;
+            toastInfo(str);
+            //debugger();
+          });
         }, child: "test-udp-receive".text()),
         GradientButton.normal(() async {
           sendUdpBroadcast(testPort,
