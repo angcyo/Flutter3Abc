@@ -26,13 +26,14 @@ class _UdpService2AbcState extends State<UdpService2Abc>
   final listSignal = $signal();
 
   /// 选中的设备id
-  String? _selectedDeviceId;
+  String? _selectedRemoteDeviceId;
 
   @override
   void initState() {
     _loadNetworkInterface();
     hookAny(udpServer.remoteNewMessageStreamOnce.listen((data) {
-      if (_selectedDeviceId != null && data?.deviceId == _selectedDeviceId) {
+      if (_selectedRemoteDeviceId != null &&
+          data?.deviceId == _selectedRemoteDeviceId) {
         listSignal.updateValue();
         postFrame(() {
           //滚动到底部
@@ -119,6 +120,11 @@ class _UdpService2AbcState extends State<UdpService2Abc>
             ?.text()
             .paddingOnly(all: kX)
             .constrained(maxWidth: screenWidth / 2)),
+        if (_selectedRemoteDeviceId != null)
+          GradientButton.normal(() {
+            udpServer.clearRemoteMessageList(_selectedRemoteDeviceId);
+            updateState();
+          }, child: "清空消息".text()),
       ]
           .flowLayout(childGap: kH, padding: const EdgeInsets.all(kX))!
           .matchParentWidth(),
@@ -178,15 +184,15 @@ class _UdpService2AbcState extends State<UdpService2Abc>
                 })
                 .align(Alignment.centerLeft)
                 .paddingAll(kH)
-                .backgroundColor(_selectedDeviceId == clientInfo.deviceId
+                .backgroundColor(_selectedRemoteDeviceId == clientInfo.deviceId
                     ? globalTheme.pressColor
                     : null)
                 .ink(
                   () {
-                    _selectedDeviceId = clientInfo.deviceId;
+                    _selectedRemoteDeviceId = clientInfo.deviceId;
                     updateState();
                   },
-                  enable: _selectedDeviceId != clientInfo.deviceId,
+                  enable: _selectedRemoteDeviceId != clientInfo.deviceId,
                 )
                 .matchParentHeight(),
         ].scroll()?.size(height: 100, width: double.infinity);
@@ -199,10 +205,12 @@ class _UdpService2AbcState extends State<UdpService2Abc>
   WidgetList buildBodyList(BuildContext context) {
     final globalTheme = GlobalTheme.of(context);
     return [
-      if (_selectedDeviceId == null) "!请先选择客户端!".text().center().sliverExpand(),
-      if (_selectedDeviceId != null)
+      if (_selectedRemoteDeviceId == null)
+        "!请先选择客户端!".text().center().sliverExpand(),
+      if (_selectedRemoteDeviceId != null)
         ...() {
-          final messageList = udpServer.getRemoteMessageList(_selectedDeviceId);
+          final messageList =
+              udpServer.getRemoteMessageList(_selectedRemoteDeviceId);
           if (isNil(messageList)) {
             return ["等待客户端消息...".text().center().sliverExpand()];
           }
