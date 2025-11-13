@@ -120,11 +120,17 @@ class _UdpService2AbcState extends State<UdpService2Abc>
             ?.text()
             .paddingOnly(all: kX)
             .constrained(maxWidth: screenWidth / 2)),
-        if (_selectedRemoteDeviceId != null)
+        if (_selectedRemoteDeviceId != null) ...[
           GradientButton.normal(() {
             udpServer.clearRemoteMessageList(_selectedRemoteDeviceId);
             updateState();
           }, child: "清空消息".text()),
+          GradientButton.normal(() {
+            udpServer.sendRemoteMessage(
+                UdpMessageBean.api(UdpApiBean()..method = "test"),
+                remotePort: udpServer.serverBroadcastPort);
+          }, child: "获取日志文件".text()),
+        ]
       ]
           .flowLayout(childGap: kH, padding: const EdgeInsets.all(kX))!
           .matchParentWidth(),
