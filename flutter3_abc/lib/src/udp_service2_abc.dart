@@ -127,14 +127,19 @@ class _UdpService2AbcState extends State<UdpService2Abc>
           }, child: "清空消息".text()),
           GradientButton.normal(() {
             udpServer.sendRemoteMessage(
-                UdpMessageBean.api(UdpApis.requestAppShareLog()),
+                UdpMessageBean.api(UdpApis.requestLocalServer()),
                 remotePort: udpServer.serverBroadcastPort);
-          }, child: "分享日志文件".text()),
+          }, child: "获取本地服务".text()),
           GradientButton.normal(() {
             udpServer.sendRemoteMessage(
                 UdpMessageBean.api(UdpApis.requestAppLog()),
                 remotePort: udpServer.serverBroadcastPort);
           }, child: "获取日志文件".text()),
+          GradientButton.normal(() {
+            udpServer.sendRemoteMessage(
+                UdpMessageBean.api(UdpApis.requestAppShareLog()),
+                remotePort: udpServer.serverBroadcastPort);
+          }, child: "分享日志文件".text()),
         ]
       ]
           .flowLayout(childGap: kH, padding: const EdgeInsets.all(kX))!

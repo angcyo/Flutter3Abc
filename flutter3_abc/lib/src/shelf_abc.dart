@@ -121,15 +121,17 @@ class _ShelfAbcState extends State<ShelfAbc> with BaseAbcStateMixin {
               .toQrCodeImage()
               .toWidget((context, image) => image!.toImageWidget()),
         ].column(crossAxisAlignment: CrossAxisAlignment.start)!.paddingSym(),
-      if (!isNil(shelf.DebugLogWebSocketServer.debugLogServerAddress))
+      if (!isNil(
+          shelf.DebugLogWebSocketServer.debugLogServerAddressStream.value))
         [
           "默认Debug服务地址:".text(),
-          shelf.DebugLogWebSocketServer.debugLogServerAddress!
+          shelf.DebugLogWebSocketServer.debugLogServerAddressStream.value!
               .text(textColor: Colors.blue)
               .ink(() {
-            shelf.DebugLogWebSocketServer.debugLogServerAddress!.openUrl();
+            shelf.DebugLogWebSocketServer.debugLogServerAddressStream.value!
+                .openUrl();
           }).paddingSymmetric(vertical: kX),
-          shelf.DebugLogWebSocketServer.debugLogServerAddress!
+          shelf.DebugLogWebSocketServer.debugLogServerAddressStream.value!
               .toQrCodeImage()
               .toWidget((context, image) => image!.toImageWidget()),
         ].column(crossAxisAlignment: CrossAxisAlignment.start)!.paddingSym(),
