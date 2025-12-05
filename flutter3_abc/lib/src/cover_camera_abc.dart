@@ -264,7 +264,7 @@ class _CoverCameraAbcState extends State<CoverCameraAbc>
         cameraConfig.text
             .connectUrl("cover_update")
             .upload(filePath: downloadCachePath)
-            .get()
+            .get(null)
             .http((data, error) {
           result.value = data?.data ?? error;
           hideLoading();
@@ -294,7 +294,7 @@ class _CoverCameraAbcState extends State<CoverCameraAbc>
         cameraConfig.text
             .connectUrl("camera_update")
             .upload(filePath: downloadCachePath)
-            .get()
+            .get(null)
             .http((data, error) {
           result.value = data?.data ?? error;
           if (error == null) {

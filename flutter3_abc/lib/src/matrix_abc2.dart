@@ -41,7 +41,7 @@ class _MatrixAbc2State extends State<MatrixAbc2> with AbsScrollPage, TileMixin {
 
   @override
   void initState() {
-    loadAssetImage(Assets.png.face.keyName).getValue().then((value) {
+    loadAssetImage(Assets.png.face.keyName).getValue(null).then((value) {
       _face = value;
       updateState();
     });

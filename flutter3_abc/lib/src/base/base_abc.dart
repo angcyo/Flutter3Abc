@@ -51,7 +51,7 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
   }
 
   onClosing<T>([T? result]) {
-    context.maybePop(result);
+    context.maybePop(result: result);
   }
 
   onSelectedIndex(int index) {
