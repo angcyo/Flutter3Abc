@@ -46,15 +46,15 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
 
   int currentIndex = 1;
 
-  onPressed() {
+  void onPressed() {
     toastInfo("onPressed:${nowTimeString()}");
   }
 
-  onClosing<T>([T? result]) {
+  void onClosing<T>([T? result]) {
     context.maybePop(result: result);
   }
 
-  onSelectedIndex(int index) {
+  void onSelectedIndex(int index) {
     setState(() {
       currentIndex = index;
     });
@@ -62,7 +62,7 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
 
   dynamic currentValue;
 
-  onValueChanged(dynamic value) {
+  void onValueChanged(dynamic value) {
     setState(() {
       currentValue = value;
     });

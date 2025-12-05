@@ -16,7 +16,8 @@ class NavigatorAbc extends StatefulWidget {
   State<NavigatorAbc> createState() => _NavigatorAbcState();
 }
 
-class _NavigatorAbcState extends State<NavigatorAbc> with BaseAbcStateMixin {
+class _NavigatorAbcState extends BaseLifecycleState<NavigatorAbc>
+    with BaseAbcStateMixin {
   final navigatorKeyList = [
     GlobalKey<NavigatorState>(),
     GlobalKey<NavigatorState>(),
@@ -44,7 +45,7 @@ class _NavigatorAbcState extends State<NavigatorAbc> with BaseAbcStateMixin {
   WidgetList buildBodyList(BuildContext context) {
     return [
       [
-        GradientButton(
+        GradientButton.min(
           child: "Push".text(),
           onTap: () {
             selectedNavigatorKey.currentState?.pushWidget(NavigatorContentPage(
@@ -52,10 +53,27 @@ class _NavigatorAbcState extends State<NavigatorAbc> with BaseAbcStateMixin {
             ));
           },
         ),
-        GradientButton(
+        GradientButton.min(
           child: "Pop".text(),
           onTap: () {
             selectedNavigatorKey.currentState?.pop();
+          },
+        ),
+        //MARK: - root
+        GradientButton.min(
+          child: "Push(Root)".text(),
+          onTap: () {
+            context.pushWidget(
+                NavigatorContentPage(
+                  content: "Root Content[${nextInt()}]",
+                ),
+                rootNavigator: true);
+          },
+        ),
+        GradientButton.min(
+          child: "Pop(Root)".text(),
+          onTap: () {
+            context.pop(rootNavigator: true);
           },
         ),
       ].flowLayout(
@@ -92,6 +110,7 @@ class _NavigatorAbcState extends State<NavigatorAbc> with BaseAbcStateMixin {
 }
 
 /// 内部导航页面
+/// - 内部有一个[Navigator]
 class InsideNavigatorPage extends StatefulWidget {
   final Key? navigatorKey;
   final Widget home;
@@ -108,6 +127,7 @@ class _InsideNavigatorPageState extends State<InsideNavigatorPage> {
     return Navigator(
       key: widget.navigatorKey,
       initialRoute: Navigator.defaultRouteName,
+      observers: [lifecycleNavigatorObserverGet],
       onGenerateRoute: (settings) {
         l.w("NavigatorAbc! onGenerateRoute->$settings");
         return MaterialPageRoute(
@@ -140,8 +160,8 @@ class NavigatorContentPage extends StatefulWidget {
   State<NavigatorContentPage> createState() => _NavigatorContentPageState();
 }
 
-class _NavigatorContentPageState extends State<NavigatorContentPage>
-    with BaseAbcStateMixin {
+class _NavigatorContentPageState
+    extends BaseLifecycleState<NavigatorContentPage> with BaseAbcStateMixin {
   @override
   WidgetList buildBodyList(BuildContext context) {
     final globalTheme = GlobalTheme.of(context);
@@ -158,7 +178,7 @@ class _NavigatorContentPageState extends State<NavigatorContentPage>
       "${modelRoute?.overlayEntries}".text(),
       //--
       [
-        GradientButton(
+        GradientButton.min(
           child: "Push".text(),
           onTap: () {
             context.pushWidget(NavigatorContentPage(
@@ -166,10 +186,27 @@ class _NavigatorContentPageState extends State<NavigatorContentPage>
             ));
           },
         ),
-        GradientButton(
+        GradientButton.min(
           child: "Pop".text(),
           onTap: () {
             context.pop();
+          },
+        ),
+        //MARK: - root
+        GradientButton.min(
+          child: "Push(Root)".text(),
+          onTap: () {
+            context.pushWidget(
+                NavigatorContentPage(
+                  content: "Root Content[${nextInt()}]",
+                ),
+                rootNavigator: true);
+          },
+        ),
+        GradientButton.min(
+          child: "Pop(Root)".text(),
+          onTap: () {
+            context.pop(rootNavigator: true);
           },
         ),
       ].flowLayout(
