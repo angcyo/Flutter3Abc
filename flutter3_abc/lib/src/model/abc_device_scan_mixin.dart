@@ -12,25 +12,31 @@ mixin AbcDeviceScanMixin<T extends StatefulWidget>
   @override
   void initState() {
     // if your terminal doesn't support color you'll see annoying logs like `\x1B[1;35m`
-    device.initDevice();
-    hookStreamSubscription(device.scanStateStream.listen((value) {
-      //debugger();
-      updateState();
-    }, allowBackward: false));
-    hookStreamSubscription(device.scanDeviceListStream.listen((value) {
-      //debugger();
-      updateState();
-    }, allowBackward: false));
-    hookStreamSubscription(device.connectDeviceStateStreamOnce.listen((value) {
-      if (value != null) {
+    device.initDevice(deviceNameStartList: [], debugLabel: classHash());
+    hookStreamSubscription(
+      device.scanStateStream.listen((value) {
         //debugger();
-        assert(() {
-          l.d('设备状态改变:$value');
-          return true;
-        }());
         updateState();
-      }
-    }));
+      }, allowBackward: false),
+    );
+    hookStreamSubscription(
+      device.scanDeviceListStream.listen((value) {
+        //debugger();
+        updateState();
+      }, allowBackward: false),
+    );
+    hookStreamSubscription(
+      device.connectDeviceStateStreamOnce.listen((value) {
+        if (value != null) {
+          //debugger();
+          assert(() {
+            l.d('设备状态改变:$value');
+            return true;
+          }());
+          updateState();
+        }
+      }),
+    );
     super.initState();
   }
 
@@ -50,7 +56,7 @@ mixin AbcDeviceScanMixin<T extends StatefulWidget>
           radarColor: globalTheme.accentColor.withOpacity(0.5),
           radarScanColor: globalTheme.accentColor.withOpacity(0.5),
         ),
-      super.buildAbc(context)
+      super.buildAbc(context),
     ].stack()!;
   }
 }
