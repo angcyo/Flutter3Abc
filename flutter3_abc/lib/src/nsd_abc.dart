@@ -24,6 +24,10 @@ class _NsdAbcState extends State<NsdAbc>
   @output
   Object? _error;
 
+  /// 不带ip注册
+  @output
+  bool noIp = true;
+
   @override
   void reassemble() {
     logNetworkInterfaceList();
@@ -74,6 +78,15 @@ class _NsdAbcState extends State<NsdAbc>
           textPadding: .zero,
           onChanged: (value) {
             nsdDevice.useMdnsScan = value ?? nsdDevice.useMdnsScan;
+          },
+        ),
+        CheckboxTile(
+          text: "不带ip注册",
+          value: noIp,
+          mainAxisSize: .min,
+          textPadding: .zero,
+          onChanged: (value) {
+            noIp = value ?? noIp;
           },
         ),
         Empty.width(kX),
@@ -192,7 +205,7 @@ class _NsdAbcState extends State<NsdAbc>
           port: 9200,
           //MARK: -
           host: $uuid,
-          addresses: [?await $getLocalInternetAddress()],
+          addresses: noIp ? null : [?await $getLocalInternetAddress()],
         ),
       );
       _registration = registration;
