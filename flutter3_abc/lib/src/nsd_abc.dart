@@ -20,6 +20,10 @@ class _NsdAbcState extends State<NsdAbc>
   @override
   DeviceMixin get device => nsdDevice;
 
+  /// 错误
+  @output
+  Object? _error;
+
   @override
   void reassemble() {
     logNetworkInterfaceList();
@@ -81,8 +85,22 @@ class _NsdAbcState extends State<NsdAbc>
             } else {
               nsdDevice.serviceType = nsdServiceTypeField.text;
               //debugger();
-              device.clearScanResult();
-              device.startScanDevices();
+              try {
+                _error = null;
+                updateState();
+                device.clearScanResult();
+                device.startScanDevices(
+                  onError: (e) {
+                    printError(e);
+                    _error = e;
+                    updateState();
+                  },
+                );
+              } catch (e) {
+                printError(e);
+                _error = e;
+                updateState();
+              }
             }
           },
           child: (device.scanStateStream.value == .scanning ? "停止扫描" : "扫描")
@@ -108,10 +126,12 @@ class _NsdAbcState extends State<NsdAbc>
         config: nsdRegisterNameField,
       ).insets(horizontal: kX, vertical: kL),
       //MARK: - list
-      for (final item
-          in device.scanDeviceListStream.value
-            ..sort((a, b) => b.rssi.compareTo(a.rssi)))
-        FindDeviceInfoTile(device, item),
+      if (_error != null) "$_error".text().insets(all: kX).center(),
+      if (_error == null)
+        for (final item
+            in device.scanDeviceListStream.value
+              ..sort((a, b) => b.rssi.compareTo(a.rssi)))
+          FindDeviceInfoTile(device, item),
     ];
   }
 
