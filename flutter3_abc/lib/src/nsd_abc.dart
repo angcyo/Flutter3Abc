@@ -206,6 +206,11 @@ class _NsdAbcState extends State<NsdAbc>
           //MARK: -
           host: $uuid,
           addresses: noIp ? null : [?await $getLocalInternetAddress()],
+          txt: {
+            "uuid": $uuid.bytes,
+            "platformName": $platformName.bytes,
+            "deviceName": $platformDeviceInfoCache?.platformDeviceName?.bytes,
+          },
         ),
       );
       _registration = registration;
