@@ -152,12 +152,12 @@ class _NsdAbcState extends State<NsdAbc>
 
   /// 需要注册的nsd服务名称
   late TextFieldConfig nsdRegisterNameField = TextFieldConfig(
-    text: "nsdRegisterNameField".hiveGet("angcyo_nsd_service"),
+    text: "nsdRegisterNameField".hiveGet("angcyo_nsd_${$platformName}"),
     hintText: "需要注册的服务名称",
     notifyDefaultTextChange: true,
     onChanged: (value) {
       //debugger();
-      "nsdRegisterNameField".hivePut(value);
+      "nsdRegisterNameField".hivePut(value.isEmpty ? null : value);
       //blueDevice.scanFilterKeywords = value.splitAndTrim(" ");
     },
   );
@@ -169,7 +169,7 @@ class _NsdAbcState extends State<NsdAbc>
     notifyDefaultTextChange: true,
     onChanged: (value) {
       //debugger();
-      "nsdServiceTypeField".hivePut(value);
+      "nsdServiceTypeField".hivePut(value.isEmpty ? null : value);
       //blueDevice.scanFilterKeywords = value.splitAndTrim(" ");
     },
   );
