@@ -210,6 +210,7 @@ class _NsdAbcState extends State<NsdAbc>
             "uuid": $uuid.bytes,
             "platformName": $platformName.bytes,
             "deviceName": $platformDeviceInfoCache?.platformDeviceName?.bytes,
+            "time": nowTimeString().bytes,
           },
         ),
       );
