@@ -116,8 +116,14 @@ class _NsdAbcState extends State<NsdAbc>
               }
             }
           },
-          child: (device.scanStateStream.value == .scanning ? "停止扫描" : "扫描")
-              .text(),
+          child:
+              ((device.scanStateStream.value == .scanning ? "停止扫描" : "扫描")
+                      .connect(
+                        device.scanDeviceListStream.value.isEmpty
+                            ? null
+                            : "${device.scanDeviceListStream.value.length}".wph,
+                      ))
+                  .text(),
         ),
         GradientButton.normal(() {
           if (_registration == null) {
