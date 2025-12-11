@@ -42,6 +42,8 @@ export 'package:flutter3_three_js/flutter3_three_js.dart';
 
 export 'assets_generated/assets.gen.dart';
 
+// @formatter:off
+
 part 'src/animated_abc.dart';
 part 'src/app_bar_abc.dart';
 part 'src/app_update_abc.dart';
@@ -60,6 +62,7 @@ part 'src/cover_camera_abc.dart';
 part 'src/custom_scroll_abc.dart';
 part 'src/dialog_abc.dart';
 part 'src/dismissible_abc.dart';
+part 'src/doh_abc.dart';
 part 'src/draggable_abc.dart';
 part 'src/event_abc.dart';
 part 'src/excel_abc.dart';
@@ -121,6 +124,7 @@ part 'src/stick_header_abc.dart';
 part 'src/svg_abc.dart';
 part 'src/tab_bar_abc.dart';
 part 'src/tab_layout_abc.dart';
+part 'src/temp_test_abc.dart';
 part 'src/text_field_abc.dart';
 part 'src/udp_service_abc.dart';
 part 'src/url_launcher_abc.dart';
@@ -129,7 +133,8 @@ part 'src/web_socket_abc.dart';
 part 'src/webview_abc.dart';
 part 'src/wheel_abc.dart';
 part 'src/widget_abc.dart';
-part 'src/temp_test_abc.dart';
+
+// @formatter:on
 
 ///
 /// Email:angcyo@126.com
@@ -153,9 +158,9 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ("/RItemTile", 'RItemTileAbc', (context) => const RItemTileAbc()),
   ("/RLoadMore", 'RLoadMoreAbc', (context) => const RLoadMoreAbc()),
   (
-    "/notificationListener",
-    'NotificationListenerAbc',
-    (context) => const NotificationListenerAbc()
+  "/notificationListener",
+  'NotificationListenerAbc',
+      (context) => const NotificationListenerAbc()
   ),
   ("/widget", 'WidgetAbc', (context) => const WidgetAbc()),
   ("/layout", 'LayoutAbc', (context) => const LayoutAbc()),
@@ -168,9 +173,9 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ("/menu", 'MenuAbc', (context) => const MenuAbc()),
   ("/button", 'ButtonAbc', (context) => const ButtonAbc()),
   (
-    "/materialWidget",
-    'MaterialWidgetAbc',
-    (context) => const MaterialWidgetAbc()
+  "/materialWidget",
+  'MaterialWidgetAbc',
+      (context) => const MaterialWidgetAbc()
   ),
   ("/pageLifecycle", 'PageLifecycleAbc', (context) => const PageLifecycleAbc()),
   ("/boxShadow", 'BoxShadowAbc ', (context) => const BoxShadowAbc()),
@@ -180,9 +185,9 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ("/overlay", 'OverlayAbc ', (context) => const OverlayAbc()),
   ("/appBar", 'AppBarAbc ', (context) => const AppBarAbc()),
   (
-    "/navigationBar",
-    'NavigationBarAbc ',
-    (context) => const NavigationBarAbc()
+  "/navigationBar",
+  'NavigationBarAbc ',
+      (context) => const NavigationBarAbc()
   ),
   ("/tabBar", 'TabBarAbc ', (context) => const TabBarAbc()),
   ("/dialog", 'DialogAbc', (context) => const DialogAbc()),
@@ -214,36 +219,37 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ("/matrix2", 'MatrixAbc2', (context) => const MatrixAbc2()),
   ("/MatrixGesture", 'MatrixGestureAbc', (context) => const MatrixGestureAbc()),
   (
-    "/scrollBehavior",
-    'ScrollBehaviorAbc',
-    (context) => const ScrollBehaviorAbc()
+  "/scrollBehavior",
+  'ScrollBehaviorAbc',
+      (context) => const ScrollBehaviorAbc()
   ),
   (
-    "/nestedScrollView",
-    'NestedScrollViewAbc',
-    (context) => const NestedScrollViewAbc()
+  "/nestedScrollView",
+  'NestedScrollViewAbc',
+      (context) => const NestedScrollViewAbc()
   ),
   (
-    "/sliverScrollCoordinate",
-    'SliverScrollCoordinateAbc',
-    (context) => const SliverScrollCoordinateAbc()
+  "/sliverScrollCoordinate",
+  'SliverScrollCoordinateAbc',
+      (context) => const SliverScrollCoordinateAbc()
   ),
   (
-    "/scrollListener",
-    'ScrollListenerAbc',
-    (context) => const ScrollListenerAbc()
+  "/scrollListener",
+  'ScrollListenerAbc',
+      (context) => const ScrollListenerAbc()
   ),
   ("/bluetooth", 'BluetoothAbc', (context) => const BluetoothAbc()),
   ("/nsd", 'NsdAbc', (context) => const NsdAbc()),
   ("/mDns", 'mDnsAbc', (context) => const MdnsAbc()),
+  ("/doh", 'DoHAbc', (context) => const DoHAbc()),
   ("/flowLayout", 'FlowLayoutAbc', (context) => const FlowLayoutAbc()),
   ("/plugin", 'PluginAbc', (context) => const PluginAbc()),
   ("/TabLayout", 'TabLayoutAbc', (context) => const TabLayoutAbc()),
   ("/pageView", 'PageViewAbc', (context) => const PageViewAbc()),
   (
-    "/ReorderableList",
-    'ReorderableListAbc',
-    (context) => const ReorderableListAbc()
+  "/ReorderableList",
+  'ReorderableListAbc',
+      (context) => const ReorderableListAbc()
   ),
   ("/draggable", 'DraggableAbc', (context) => const DraggableAbc()),
   ("/Code", 'CodeAbc', (context) => const CodeAbc()),
@@ -252,9 +258,9 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ("/Excel", 'ExcelAbc', (context) => const ExcelAbc()),
   ("/UrlLauncher", 'UrlLauncherAbc', (context) => const UrlLauncherAbc()),
   (
-    "/FirmwareUpgradePage",
-    'FirmwareUpgradePage',
-    (context) => const FirmwareUpgradePage()
+  "/FirmwareUpgradePage",
+  'FirmwareUpgradePage',
+      (context) => const FirmwareUpgradePage()
   ),
   ("/shelf", 'ShelfAbc', (context) => const ShelfAbc()),
   ("/socket", 'SocketAbc', (context) => const SocketAbc()),
@@ -262,9 +268,9 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ("/udpService", 'UdpServiceAbc', (context) => const UdpServiceAbc()),
   ("/udpService2", 'UdpServiceAbc2 $kGo', (context) => const UdpService2Abc()),
   (
-    "/CoverCameraUpgrade",
-    'CoverCameraUpgradeAbc',
-    (context) => const CoverCameraAbc()
+  "/CoverCameraUpgrade",
+  'CoverCameraUpgradeAbc',
+      (context) => const CoverCameraAbc()
   ),
   ("/simulation", 'SimulationAbc', (context) => const SimulationAbc()),
   ("/path", 'PathAbc', (context) => const PathAbc()),
@@ -289,8 +295,7 @@ set lastJumpRoutePath(String? value) {
 //--
 
 /// [loadAssetSvgWidget]
-Widget loadAbcSvgWidget(
-  String key, {
+Widget loadAbcSvgWidget(String key, {
   Color? tintColor,
   UiColorFilter? colorFilter,
   BoxFit fit = BoxFit.contain,
@@ -310,8 +315,7 @@ Widget loadAbcSvgWidget(
     );
 
 /// [loadAssetImageWidget]
-Widget? loadAbcImageWidget(
-  String? key, {
+Widget? loadAbcImageWidget(String? key, {
   BoxFit? fit,
   double? size,
   double? width,
