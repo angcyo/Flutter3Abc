@@ -103,6 +103,7 @@ part 'src/path_abc.dart';
 part 'src/path_provider_abc.dart';
 part 'src/plugin_abc.dart';
 part 'src/popup_abc.dart';
+part 'src/port_abc.dart';
 part 'src/r_item_tile_abc.dart';
 part 'src/r_load_more_abc.dart';
 part 'src/r_scroll_view_abc.dart';
@@ -241,6 +242,7 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ("/bluetooth", 'BluetoothAbc', (context) => const BluetoothAbc()),
   ("/nsd", 'NsdAbc', (context) => const NsdAbc()),
   ("/mDns", 'mDnsAbc', (context) => const MdnsAbc()),
+  ("/port", 'PortAbc', (context) => const PortAbc()),
   ("/doh", 'DoHAbc', (context) => const DoHAbc()),
   ("/flowLayout", 'FlowLayoutAbc', (context) => const FlowLayoutAbc()),
   ("/plugin", 'PluginAbc', (context) => const PluginAbc()),
