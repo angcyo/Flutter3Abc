@@ -97,7 +97,7 @@ class _PortAbcState extends State<PortAbc> with BaseAbcStateMixin {
       return;
     }
     PortScanner.discover(
-      _localIp!.subnet,
+      subnet,
       scanPortField.text.toIntOrNull() ?? 80,
       onFindAddress: (address) {
         _addressList.add(address);
