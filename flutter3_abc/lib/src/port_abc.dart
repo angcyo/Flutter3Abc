@@ -23,6 +23,7 @@ class _PortAbcState extends State<PortAbc> with BaseAbcStateMixin {
   void initState() {
     $discoverDeviceIp().get((data, error) {
       _localIp = data;
+      l.v("LocalIp->$data");
       updateState();
     });
     super.initState();
@@ -87,8 +88,14 @@ class _PortAbcState extends State<PortAbc> with BaseAbcStateMixin {
   /// 开始扫描端口
   @api
   void startScanPort() {
+    //debugger();
+    final subnet = _localIp?.subnet ?? "";
     _addressList.clear();
     updateState();
+    if (subnet.isEmpty) {
+      _isScanning = false;
+      return;
+    }
     PortScanner.discover(
       _localIp!.subnet,
       scanPortField.text.toIntOrNull() ?? 80,
