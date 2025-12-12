@@ -76,9 +76,7 @@ class _MenuAbcState extends State<MenuAbc> with BaseAbcStateMixin {
       "MenuBar(_MenuBarAnchor->MenuAnchor)↓".text(textAlign: TextAlign.center),
       MenuBar(children: buildSubmenuButton(context)),
       "SubmenuButton(MenuAnchor)↓".text(textAlign: TextAlign.center),
-      [
-        ...buildSubmenuButton(context).map((e) => e.iw()),
-      ].wrap()!,
+      [...buildSubmenuButton(context).map((e) => e.iw())].wrap()!,
       "MenuItemButton(TextButton)↓".text(textAlign: TextAlign.center),
       [
         MenuItemButton(child: "MenuItemButton1".text()).iw(),
@@ -124,20 +122,22 @@ class _MenuAbcState extends State<MenuAbc> with BaseAbcStateMixin {
         selectedTrailingIcon: const Icon(Icons.ac_unit),
         menuStyle: const MenuStyle(
           visualDensity: VisualDensity
-              .compact, /*maximumSize: MaterialStatePropertyAll(Size(300, 300))*/
+              .compact /*maximumSize: MaterialStatePropertyAll(Size(300, 300))*/,
         ),
         //弹出来的菜单的大小
         /*width: 300,*/
         searchCallback:
             (List<DropdownMenuEntry<String>> entries, String query) {
-          if (query.isEmpty) {
-            return null;
-          }
-          final int index = entries.indexWhere(
-              (DropdownMenuEntry<String> entry) => entry.label == query);
-          return index != -1 ? index : null;
-        },
-        /*menuHeight: 100,*/ //弹出来的菜单的高度
+              if (query.isEmpty) {
+                return null;
+              }
+              final int index = entries.indexWhere(
+                (DropdownMenuEntry<String> entry) => entry.label == query,
+              );
+              return index != -1 ? index : null;
+            },
+        /*menuHeight: 100,*/
+        //弹出来的菜单的高度
       ).size(height: 48),
       "DropdownButton(_DropdownRoute)↓".text(textAlign: TextAlign.center),
       [
@@ -165,7 +165,9 @@ class _MenuAbcState extends State<MenuAbc> with BaseAbcStateMixin {
           },
         ),
       ].wrap()!,
-      "DropdownButtonFormField(DropdownButton)↓".text(textAlign: TextAlign.center),
+      "DropdownButtonFormField(DropdownButton)↓".text(
+        textAlign: TextAlign.center,
+      ),
       //内部就是用[DropdownButton]实现的
       DropdownButtonFormField(
         items: buildDropdownMenuItems(),
@@ -187,21 +189,60 @@ class _MenuAbcState extends State<MenuAbc> with BaseAbcStateMixin {
       DropdownMenuItem(child: 'text'.text()),
       "showMenu↓".text(textAlign: TextAlign.center),
       [
-        GradientButton.normal(() {}, onContextTap: (ctx) {
-          ctx.showMenus(null, items: buildPopupMenu(ctx)).get((value, error) {
-            l.d("value:$value,error:$error");
-          });
-        }, child: "showMenu-items".text()),
-        GradientButton.normal(() {}, onContextTap: (ctx) {
-          ctx.showMenus(null, items: buildPopupMenu2(ctx)).get((value, error) {
-            l.d("value:$value,error:$error");
-          });
-        }, child: "showMenu2-items".text()),
-        GradientButton.normal(() {}, onContextTap: (ctx) {
-          ctx.showMenus(buildMenuWidget());
-        }, child: "showMenu-widget".text()),
+        GradientButton.normal(
+          () {},
+          onContextTap: (ctx) {
+            ctx.showMenus(null, items: buildPopupMenu(ctx)).get((value, error) {
+              l.d("value:$value,error:$error");
+            });
+          },
+          child: "showMenu-items".text(),
+        ),
+        GradientButton.normal(
+          () {},
+          onContextTap: (ctx) {
+            ctx.showMenus(null, items: buildPopupMenu2(ctx)).get((
+              value,
+              error,
+            ) {
+              l.d("value:$value,error:$error");
+            });
+          },
+          child: "showMenu2-items".text(),
+        ),
+        GradientButton.normal(
+          () {},
+          onContextTap: (ctx) {
+            ctx.showMenus(buildMenuWidget());
+          },
+          child: "showMenu-widget".text(),
+        ),
       ].flowLayout(padding: kXInsets, childGap: kX)!,
       "...↑".text(textAlign: TextAlign.center),
+      "Popup↓".text(textAlign: TextAlign.center),
+      [
+        SplitButton(
+          mainWidget: "走边框".text().insets(h: kX),
+          strokeColor: Colors.grey,
+          /*() {},
+          onContextTap: (ctx) {
+            ctx.showMenus(null, items: buildPopupMenu(ctx)).get((value, error) {
+              l.d("value:$value,error:$error");
+            });
+          },
+          child: "SplitButton-items".text(),*/
+        ),
+        SplitButton(
+          mainWidget: "加工".text().insets(h: kX),
+          /*() {},
+          onContextTap: (ctx) {
+            ctx.showMenus(null, items: buildPopupMenu(ctx)).get((value, error) {
+              l.d("value:$value,error:$error");
+            });
+          },
+          child: "SplitButton-items".text(),*/
+        ),
+      ].flowLayout(padding: kXInsets, childGap: kX)!,
     ];
   }
 
@@ -212,15 +253,19 @@ class _MenuAbcState extends State<MenuAbc> with BaseAbcStateMixin {
   }) {
     return [
       SubmenuButton(
-          menuChildren: buildMenuWidget(), child: "SubmenuButton1".text()),
+        menuChildren: buildMenuWidget(),
+        child: "SubmenuButton1".text(),
+      ),
       SubmenuButton(
-          menuChildren: recursionCount < 3
-              ? buildSubmenuButton(context, recursionCount: recursionCount + 1)
-              : buildMenuWidget(),
-          child: "SubmenuButton2[$recursionCount]".text()),
+        menuChildren: recursionCount < 3
+            ? buildSubmenuButton(context, recursionCount: recursionCount + 1)
+            : buildMenuWidget(),
+        child: "SubmenuButton2[$recursionCount]".text(),
+      ),
       SubmenuButton(
-          menuChildren: buildMenuItemButton(context),
-          child: "SubmenuButton3".text().backgroundColor(Colors.purpleAccent)),
+        menuChildren: buildMenuItemButton(context),
+        child: "SubmenuButton3".text().backgroundColor(Colors.purpleAccent),
+      ),
       ...buildMenuItemButton(context),
     ];
   }
@@ -229,28 +274,16 @@ class _MenuAbcState extends State<MenuAbc> with BaseAbcStateMixin {
   List<Widget> buildMenuItemButton(BuildContext context) {
     return [
       MenuItemButton(child: "MenuItemButton1".text()),
-      MenuItemButton(
-        child: "MenuItemButton2".text(),
-        onPressed: () {},
-      ),
+      MenuItemButton(child: "MenuItemButton2".text(), onPressed: () {}),
       MenuItemButton(child: "MenuItemButton3".text()),
     ];
   }
 
   List<PopupMenuEntry<String>> buildPopupMenu(BuildContext context) {
     return <PopupMenuEntry<String>>[
-      PopupMenuItem(
-        value: randomText(),
-        child: randomTextWidget(length: 5),
-      ),
-      PopupMenuItem(
-        value: randomText(),
-        child: randomTextWidget(length: 5),
-      ),
-      PopupMenuItem(
-        value: randomText(),
-        child: randomTextWidget(length: 5),
-      ),
+      PopupMenuItem(value: randomText(), child: randomTextWidget(length: 5)),
+      PopupMenuItem(value: randomText(), child: randomTextWidget(length: 5)),
+      PopupMenuItem(value: randomText(), child: randomTextWidget(length: 5)),
     ];
   }
 
@@ -282,18 +315,9 @@ class _MenuAbcState extends State<MenuAbc> with BaseAbcStateMixin {
 
   List<Widget> buildMenuWidget() {
     return [
-      IconTextTile(
-        text: 'Item 1',
-        onTap: () => menuController.open(),
-      ),
-      IconTextTile(
-        text: 'Item 2',
-        onTap: () => menuController2.open(),
-      ),
-      IconTextTile(
-        text: 'Item 3',
-        onTap: null,
-      ),
+      IconTextTile(text: 'Item 1', onTap: () => menuController.open()),
+      IconTextTile(text: 'Item 2', onTap: () => menuController2.open()),
+      IconTextTile(text: 'Item 3', onTap: null),
     ];
   }
 
@@ -321,18 +345,9 @@ class _MenuAbcState extends State<MenuAbc> with BaseAbcStateMixin {
 
   List<DropdownMenuItem<String>> buildDropdownMenuItems() {
     return [
-      DropdownMenuItem(
-        value: "1",
-        child: "Item 1".text(),
-      ),
-      DropdownMenuItem(
-        value: "2",
-        child: "Item 2".text(),
-      ),
-      DropdownMenuItem(
-        value: "3",
-        child: "Item 3".text(),
-      ),
+      DropdownMenuItem(value: "1", child: "Item 1".text()),
+      DropdownMenuItem(value: "2", child: "Item 2".text()),
+      DropdownMenuItem(value: "3", child: "Item 3".text()),
     ];
   }
 }
