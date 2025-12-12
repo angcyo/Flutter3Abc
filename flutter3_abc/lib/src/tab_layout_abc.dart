@@ -14,7 +14,7 @@ class TabLayoutAbc extends StatefulWidget {
 
 class _TabLayoutAbcState extends State<TabLayoutAbc>
     with BaseAbcStateMixin, TickerProviderStateMixin {
-  int pageCount = 6;
+  int pageCount = 10;
 
   late List<TabLayoutController> tabLayoutControllerList = [
     for (var i = 0; i < pageCount; i++)
@@ -87,8 +87,14 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
   }
 
   @override
+  Widget buildAbc(BuildContext context) {
+    return super.buildAbc(context).safeBottomArea();
+  }
+
+  @override
   List<Widget> buildBodyList(BuildContext context) {
     return [
+      //MARK: - Config
       DropdownButtonTile(
         label: "指示器对齐方式",
         icon: const Icon(Icons.water_drop),
@@ -157,24 +163,26 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
           updateState();
         },
       ),
-      //---
+      //MARK: - TabLayout
       TabLayout(
         tabLayoutController: tabLayoutControllerList[0],
         gap: kX,
         padding: const EdgeInsets.all(kX),
         children: [
           ...buildItemList(context, tabLayoutControllerList[0]),
-          DecoratedBox(decoration: fillDecoration(color: Colors.black12))
-              .tabItemData(
+          DecoratedBox(
+            decoration: fillDecoration(color: Colors.black12),
+          ).tabItemData(
             itemType: TabItemType.scrollDecoration,
             itemPaintType: TabItemPaintType.background,
             /*padding: const EdgeInsets.all(kH),*/
           ),
           DecoratedBox(
-              decoration: fillDecoration(
-            color: colorAccent,
-            gradient: linearGradient([Colors.purple, colorAccent]),
-          )).tabItemData(
+            decoration: fillDecoration(
+              color: colorAccent,
+              gradient: linearGradient([Colors.purple, colorAccent]),
+            ),
+          ).tabItemData(
             itemType: TabItemType.indicator,
             alignment: _alignment,
             itemPaintType: _itemPaintType,
@@ -187,79 +195,80 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
             ),
             enableIndicatorFlow: enableIndicatorFlow,
             /*padding: const EdgeInsets.all(kH),*/
-          )
+          ),
         ],
-      ).container(
-        padding: const EdgeInsets.all(16),
-        color: Colors.black26,
-      ),
+      ).container(padding: const EdgeInsets.all(16), color: Colors.black26),
       buildPageView(context),
       //segment
       TabLayout(
-        tabLayoutController: segmentLayoutController,
-        gap: kX,
-        autoEqualWidth: true,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          ...buildSegmentItem(context, segmentLayoutController),
-          DecoratedBox(
-              decoration: fillDecoration(
-            color: Colors.black12,
-            radius: kMaxBorderRadius,
-            border: Border.all(color: colorAccent, width: 1),
-          )).tabItemData(
-            itemType: TabItemType.bgDecoration,
-            itemPaintType: TabItemPaintType.background,
-          ),
-          DecoratedBox(
-              decoration: fillDecoration(
-            color: colorAccent,
-            radius: kMaxBorderRadius,
-          )).tabItemData(
-            itemType: TabItemType.indicator,
-            margin: enableMargin ? const EdgeInsets.all(4) : null,
-            itemPaintType: _itemPaintType,
-            widthConstraintsType: widthType,
-            heightConstraintsType: heightType,
-          ),
-          "new"
-              .text(textColor: Colors.white, fontSize: 8)
-              .container(
-                  color: Colors.red,
+            tabLayoutController: segmentLayoutController,
+            gap: kX,
+            autoEqualWidth: true,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ...buildSegmentItem(context, segmentLayoutController),
+              DecoratedBox(
+                decoration: fillDecoration(
+                  color: Colors.black12,
                   radius: kMaxBorderRadius,
-                  padding: const EdgeInsets.symmetric(horizontal: kS))
-              .tabStackItemData(anchorIndex: 0),
-        ],
-      )
+                  border: Border.all(color: colorAccent, width: 1),
+                ),
+              ).tabItemData(
+                itemType: TabItemType.bgDecoration,
+                itemPaintType: TabItemPaintType.background,
+              ),
+              DecoratedBox(
+                decoration: fillDecoration(
+                  color: colorAccent,
+                  radius: kMaxBorderRadius,
+                ),
+              ).tabItemData(
+                itemType: TabItemType.indicator,
+                margin: enableMargin ? const EdgeInsets.all(4) : null,
+                itemPaintType: _itemPaintType,
+                widthConstraintsType: widthType,
+                heightConstraintsType: heightType,
+              ),
+              "new"
+                  .text(textColor: Colors.white, fontSize: 8)
+                  .container(
+                    color: Colors.red,
+                    radius: kMaxBorderRadius,
+                    padding: const EdgeInsets.symmetric(horizontal: kS),
+                  )
+                  .tabStackItemData(anchorIndex: 0),
+            ],
+          )
           .paddingSymmetric(horizontal: kXx, vertical: kL)
           .constrained(minHeight: 50),
       TabLayout(
-        tabLayoutController: segmentLayoutController2,
-        autoEqualWidth: true,
-        crossAxisAlignment: null,
-        children: [
-          ...buildSegmentItem2(context, segmentLayoutController2),
-          DecoratedBox(
-              decoration: fillDecoration(
-            color: Colors.black12,
-            radius: kMaxBorderRadius,
-            border: Border.all(color: colorAccent, width: 1),
-          )).tabItemData(
-            itemType: TabItemType.bgDecoration,
-            itemPaintType: TabItemPaintType.background,
-          ),
-        ],
-      )
+            tabLayoutController: segmentLayoutController2,
+            autoEqualWidth: true,
+            crossAxisAlignment: null,
+            children: [
+              ...buildSegmentItem2(context, segmentLayoutController2),
+              DecoratedBox(
+                decoration: fillDecoration(
+                  color: Colors.black12,
+                  radius: kMaxBorderRadius,
+                  border: Border.all(color: colorAccent, width: 1),
+                ),
+              ).tabItemData(
+                itemType: TabItemType.bgDecoration,
+                itemPaintType: TabItemPaintType.background,
+              ),
+            ],
+          )
           .paddingSymmetric(horizontal: kXx, vertical: kL)
           .constrained(minHeight: 50),
       //bottom
       TabLayout(
-        tabLayoutController: bottomLayoutController,
-        gap: kX,
-        autoEqualWidth: true,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: buildBarItem(context, bottomLayoutController),
-      )
+            tabLayoutController: bottomLayoutController,
+            gap: kX,
+            autoEqualWidth: true,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: buildBarItem(context, bottomLayoutController),
+          )
           .container(color: Colors.black12)
           .size(width: double.infinity, height: 50)
           .align(Alignment.bottomCenter)
@@ -283,12 +292,18 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
               tabLayoutController.index = page.round();
             }
             tabLayoutController.offset = clampDouble(
-                _pageController.page! - tabLayoutController.index, -1.0, 1.0);
+              _pageController.page! - tabLayoutController.index,
+              -1.0,
+              1.0,
+            );
           } else if (notification is ScrollEndNotification) {
             tabLayoutController.index = page.round();
             if (!tabLayoutController.indexIsChanging) {
               tabLayoutController.offset = clampDouble(
-                  _pageController.page! - tabLayoutController.index, -1.0, 1.0);
+                _pageController.page! - tabLayoutController.index,
+                -1.0,
+                1.0,
+              );
             }
           }
         }
@@ -298,8 +313,9 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
         dragStartBehavior: DragStartBehavior.start,
         clipBehavior: Clip.hardEdge,
         controller: _pageController,
-        physics:
-            const PageScrollPhysics().applyTo(const ClampingScrollPhysics()),
+        physics: const PageScrollPhysics().applyTo(
+          const ClampingScrollPhysics(),
+        ),
         children: [
           for (var i = 0; i < pageCount; i++)
             "Page $i".text().center().container(color: randomColor()),
@@ -312,38 +328,56 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
     );
   }
 
+  //MARK: - Tab Item
+
   WidgetList buildItemList(
     BuildContext content,
     TabLayoutController controller,
   ) {
-    return [
-      "R".text().ink(() {
-        //debugger();
-        controller.selectedItem(0);
-      }),
-      "angcyo".text().ink(() {
-        controller.selectedItem(1);
-      }),
-      const Icon(Icons.dark_mode).ink(() {
-        controller.selectedItem(2);
-      }),
-      "中文示例".text().ink(() {
-        controller.selectedItem(3);
-      }),
-      [
-        "中文示例".text(),
-        const Icon(Icons.abc_outlined),
-      ].column()!.ink(() {
-        controller.selectedItem(4);
-      }),
-      [
-        const Icon(Icons.abc_outlined),
-        "中文示例中文示例".text(),
-      ].row()!.ink(() {
-        //debugger();
-        controller.selectedItem(5);
-      }),
-    ];
+    Widget buildItem(int index) {
+      if (index == 0) {
+        return "R".text().ink(() {
+          //debugger();
+          controller.selectedItem(index, pageController: _pageController);
+        });
+      }
+      if (index == 1) {
+        return "angcyo".text().ink(() {
+          controller.selectedItem(index, pageController: _pageController);
+        });
+      }
+      if (index == 2) {
+        return const Icon(Icons.dark_mode).ink(() {
+          controller.selectedItem(index, pageController: _pageController);
+        });
+      }
+      if (index == 3) {
+        return "中文示例".text().ink(() {
+          controller.selectedItem(index, pageController: _pageController);
+        });
+      }
+      if (index == 4) {
+        return ["中文示例".text(), const Icon(Icons.abc_outlined)].column()!.ink(
+          () {
+            controller.selectedItem(index, pageController: _pageController);
+          },
+        );
+      }
+      if (index == 5) {
+        return [const Icon(Icons.abc_outlined), "中文示例中文示例".text()].row()!.ink(
+          () {
+            //debugger();
+            controller.selectedItem(index, pageController: _pageController);
+          },
+        );
+      }
+
+      return "Item ${index + 1}".text().ink(() {
+        controller.selectedItem(index, pageController: _pageController);
+      });
+    }
+
+    return [for (var i = 0; i < pageCount; i++) buildItem(i)];
   }
 
   WidgetList buildBarItem(
@@ -351,36 +385,27 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
     TabLayoutController controller,
   ) {
     return [
-      [
-        const Icon(Icons.home),
-        "首页".text(),
-      ]
+      [const Icon(Icons.home), "首页".text()]
           .column()!
           .colorFiltered(color: controller.index == 0 ? colorAccent : null)
           .ink(() {
-        controller.selectedItem(0);
-        updateState();
-      }),
-      [
-        const Icon(Icons.center_focus_strong),
-        "社区中心".text(),
-      ]
+            controller.selectedItem(0);
+            updateState();
+          }),
+      [const Icon(Icons.center_focus_strong), "社区中心".text()]
           .column()!
           .colorFiltered(color: controller.index == 1 ? colorAccent : null)
           .ink(() {
-        controller.selectedItem(1);
-        updateState();
-      }),
-      [
-        const Icon(Icons.manage_accounts),
-        "我".text(),
-      ]
+            controller.selectedItem(1);
+            updateState();
+          }),
+      [const Icon(Icons.manage_accounts), "我".text()]
           .column()!
           .colorFiltered(color: controller.index == 2 ? colorAccent : null)
           .ink(() {
-        controller.selectedItem(2);
-        updateState();
-      }),
+            controller.selectedItem(2);
+            updateState();
+          }),
     ];
   }
 
@@ -389,36 +414,33 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
     TabLayoutController controller,
   ) {
     return [
-      [
-        "首页".text(),
-      ]
+      ["首页".text()]
           .column()!
           .colorFiltered(
-              color: controller.index == 0 ? Colors.white : colorAccent)
+            color: controller.index == 0 ? Colors.white : colorAccent,
+          )
           .click(() {
-        controller.selectedItem(0);
-        updateState();
-      }),
-      [
-        "社区中心".text(),
-      ]
+            controller.selectedItem(0);
+            updateState();
+          }),
+      ["社区中心".text()]
           .column()!
           .colorFiltered(
-              color: controller.index == 1 ? Colors.white : colorAccent)
+            color: controller.index == 1 ? Colors.white : colorAccent,
+          )
           .click(() {
-        controller.selectedItem(1);
-        updateState();
-      }),
-      [
-        "我".text(),
-      ]
+            controller.selectedItem(1);
+            updateState();
+          }),
+      ["我".text()]
           .column()!
           .colorFiltered(
-              color: controller.index == 2 ? Colors.white : colorAccent)
+            color: controller.index == 2 ? Colors.white : colorAccent,
+          )
           .click(() {
-        controller.selectedItem(2);
-        updateState();
-      }),
+            controller.selectedItem(2);
+            updateState();
+          }),
     ];
   }
 
@@ -427,74 +449,74 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
     TabLayoutController controller,
   ) {
     return [
-      [
-        "首页".text(),
-      ]
+      ["首页".text()]
           .column()!
           .center()
           .colorFiltered(
-              color: controller.index == 0 ? Colors.white : colorAccent)
-          .backgroundDecoration(controller.index == 0
-              ? fillDecoration(
-                  color: colorAccent,
-                  onlyLeftRadius: kMaxBorderRadius,
-                )
-              : null)
+            color: controller.index == 0 ? Colors.white : colorAccent,
+          )
+          .backgroundDecoration(
+            controller.index == 0
+                ? fillDecoration(
+                    color: colorAccent,
+                    onlyLeftRadius: kMaxBorderRadius,
+                  )
+                : null,
+          )
           .click(() {
-        controller.selectedItem(0);
-        updateState();
-      }),
-      DecoratedBox(
-              decoration: fillDecoration(
-        color: Colors.green,
-        radius: 0,
-      )).size(width: 2, height: 20).tabItemData(
+            controller.selectedItem(0);
+            updateState();
+          }),
+      DecoratedBox(decoration: fillDecoration(color: Colors.green, radius: 0))
+          .size(width: 2, height: 20)
+          .tabItemData(
             itemType: TabItemType.gap,
             margin: const EdgeInsets.symmetric(vertical: 4),
             itemPaintType: TabItemPaintType.background,
             alignment: Alignment.bottomCenter,
           ),
-      [
-        "社区中心".text(),
-      ]
+      ["社区中心".text()]
           .column()!
           .center()
           .colorFiltered(
-              color: controller.index == 1 ? Colors.white : colorAccent)
-          .backgroundDecoration(controller.index == 1
-              ? fillDecoration(color: colorAccent, radius: 0)
-              : null)
+            color: controller.index == 1 ? Colors.white : colorAccent,
+          )
+          .backgroundDecoration(
+            controller.index == 1
+                ? fillDecoration(color: colorAccent, radius: 0)
+                : null,
+          )
           .click(() {
-        controller.selectedItem(1);
-        updateState();
-      }).tabItemData(margin: const EdgeInsets.symmetric(horizontal: 4)),
-      DecoratedBox(
-              decoration: fillDecoration(
-        color: Colors.green,
-        radius: 0,
-      )).size(width: 2, height: 20).tabItemData(
+            controller.selectedItem(1);
+            updateState();
+          })
+          .tabItemData(margin: const EdgeInsets.symmetric(horizontal: 4)),
+      DecoratedBox(decoration: fillDecoration(color: Colors.green, radius: 0))
+          .size(width: 2, height: 20)
+          .tabItemData(
             itemType: TabItemType.gap,
             margin: const EdgeInsets.symmetric(vertical: 4),
             itemPaintType: TabItemPaintType.background,
             alignment: Alignment.topCenter,
           ),
-      [
-        "我".text(),
-      ]
+      ["我".text()]
           .column()!
           .center()
           .colorFiltered(
-              color: controller.index == 2 ? Colors.white : colorAccent)
-          .backgroundDecoration(controller.index == 2
-              ? fillDecoration(
-                  color: colorAccent,
-                  onlyRightRadius: kMaxBorderRadius,
-                )
-              : null)
+            color: controller.index == 2 ? Colors.white : colorAccent,
+          )
+          .backgroundDecoration(
+            controller.index == 2
+                ? fillDecoration(
+                    color: colorAccent,
+                    onlyRightRadius: kMaxBorderRadius,
+                  )
+                : null,
+          )
           .click(() {
-        controller.selectedItem(2);
-        updateState();
-      }),
+            controller.selectedItem(2);
+            updateState();
+          }),
     ];
   }
 }
