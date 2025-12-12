@@ -222,8 +222,9 @@ class _MenuAbcState extends State<MenuAbc> with BaseAbcStateMixin {
       "Popup↓".text(textAlign: TextAlign.center),
       [
         SplitButton(
-          mainWidget: "走边框".text().insets(h: kX),
           strokeColor: Colors.grey,
+          popupBodyWidget: buildMenuWidget().column()?.size(width: 300),
+          child: "走边框".text().insets(h: kX),
           /*() {},
           onContextTap: (ctx) {
             ctx.showMenus(null, items: buildPopupMenu(ctx)).get((value, error) {
@@ -233,7 +234,8 @@ class _MenuAbcState extends State<MenuAbc> with BaseAbcStateMixin {
           child: "SplitButton-items".text(),*/
         ),
         SplitButton(
-          mainWidget: "加工".text().insets(h: kX),
+          popupBodyWidget: buildMenuWidget().column()?.size(width: 100),
+          child: "加工".text().insets(h: kX),
           /*() {},
           onContextTap: (ctx) {
             ctx.showMenus(null, items: buildPopupMenu(ctx)).get((value, error) {
