@@ -302,14 +302,14 @@ class _MenuAbcState extends State<MenuAbc> with BaseAbcStateMixin {
         value: "2",
         child: randomTextWidget(length: 5).click(() {
           toastInfo("2");
-          buildContext?.popMenu("pop 2");
+          buildContext?.popMenu(result: "pop 2");
         }),
       ),
       PopupMenuItem(
         value: "3",
         child: randomTextWidget(length: 5).click(() {
           toastInfo("3");
-          buildContext?.popMenu("pop 3");
+          buildContext?.popMenu(result: "pop 3");
         }),
       ),
     ];

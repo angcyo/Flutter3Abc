@@ -21,7 +21,7 @@ class _PortAbcState extends State<PortAbc> with BaseAbcStateMixin {
 
   @override
   void initState() {
-    $discoverDeviceIp().get((data, error) {
+    $getLocalIp().get((data, error) {
       _localIp = data;
       l.v("LocalIp->$data");
       updateState();
