@@ -14,9 +14,15 @@ class FocusNodeAbc extends StatefulWidget {
 }
 
 class _FocusNodeAbcState extends State<FocusNodeAbc> {
+  final config1 = TextFieldConfig(hintText: "请输入1...");
+
+  final config2 = TextFieldConfig(hintText: "请输入2...");
+
   @override
   Widget build(BuildContext context) {
     return [
+      SingleInputWidget(config: config1),
+      SingleInputWidget(config: config2).insets(v: kX),
       "Focus + FocusNode ↓".text().insets(all: kH),
       buildFocusNodeButton(),
       "FocusScope + Focus + FocusNode ↓".text().insets(all: kH),
@@ -34,6 +40,7 @@ class _FocusNodeAbcState extends State<FocusNodeAbc> {
       FocusNodeButton(useScope: useScope),
       FocusNodeButton(useScope: useScope),
       FocusNodeButton(useScope: useScope),
+      FocusNodeButton(useScope: useScope, hideOnFocus: true),
     ].wrap()!;
   }
 
@@ -43,6 +50,7 @@ class _FocusNodeAbcState extends State<FocusNodeAbc> {
       CustomFocusButton(useScope: useScope),
       CustomFocusButton(useScope: useScope),
       CustomFocusButton(useScope: useScope),
+      CustomFocusButton(useScope: useScope, hideOnFocus: true),
     ].wrap()!;
   }
 }
@@ -51,7 +59,13 @@ class _FocusNodeAbcState extends State<FocusNodeAbc> {
 class FocusNodeButton extends StatefulWidget {
   final bool useScope;
 
-  const FocusNodeButton({super.key, this.useScope = false});
+  final bool hideOnFocus;
+
+  const FocusNodeButton({
+    super.key,
+    this.useScope = false,
+    this.hideOnFocus = false,
+  });
 
   @override
   State<FocusNodeButton> createState() => _FocusNodeButtonState();
@@ -63,14 +77,20 @@ class _FocusNodeButtonState extends State<FocusNodeButton> with FocusNodeMixin {
     return GradientButton(
       onTap: onTap,
       child: "焦点($hasFocus)".text(),
-    ).focus(focusNode: focusNode, autofocus: false);
+    ).focus(focusNode: focusNode, autofocus: false).visible(visible: !hide);
   }
 }
 
 class CustomFocusButton extends StatefulWidget {
   final bool useScope;
 
-  const CustomFocusButton({super.key, this.useScope = false});
+  final bool hideOnFocus;
+
+  const CustomFocusButton({
+    super.key,
+    this.useScope = false,
+    this.hideOnFocus = false,
+  });
 
   @override
   State<CustomFocusButton> createState() => _CustomFocusButtonState();
@@ -83,7 +103,7 @@ class _CustomFocusButtonState extends State<CustomFocusButton>
     return CustomFocus(
       focusNode: focusNode,
       child: GradientButton(onTap: onTap, child: "焦点($hasFocus)".text()),
-    );
+    ).visible(visible: !hide);
   }
 }
 
@@ -131,10 +151,13 @@ class CustomFocusRender extends RenderProxyBox {
   void detach() {
     //focusNode?.detach();
     l.i("[${classHash()}]detach");
-    focusNode
-      ?..removeListener(_handleFocusChanged)
-      ..dispose();
+    /*focusNode?.dispose();*/
+    /*focusNode
+      ?..unfocus()
+      ..removeListener(_handleFocusChanged)
+      ..dispose();*/
     _focusAttachment?.detach();
+    /*_focusAttachment?.reparent(parent: null);*/
     super.detach();
   }
 
@@ -163,6 +186,10 @@ mixin FocusNodeMixin<T extends StatefulWidget> on State<T> {
 
   bool get useScope => (widget as dynamic).useScope;
 
+  bool get hideOnFocus => (widget as dynamic).hideOnFocus;
+
+  bool hide = false;
+
   @override
   void initState() {
     focusNode.addListener(() {
@@ -174,10 +201,15 @@ mixin FocusNodeMixin<T extends StatefulWidget> on State<T> {
 
   void onTap() {
     if (hasFocus) {
-      if (useScope) {
-        FocusScope.of(context).unfocus();
+      if (hideOnFocus) {
+        hide = true;
+        updateState();
       } else {
-        focusNode.unfocus();
+        if (useScope) {
+          FocusScope.of(context).unfocus();
+        } else {
+          focusNode.unfocus();
+        }
       }
     } else {
       if (useScope) {
