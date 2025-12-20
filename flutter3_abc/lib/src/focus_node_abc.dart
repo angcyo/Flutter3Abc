@@ -131,21 +131,26 @@ class CustomFocusRender extends RenderProxyBox {
   void detach() {
     //focusNode?.detach();
     l.i("[${classHash()}]detach");
+    focusNode
+      ?..removeListener(_handleFocusChanged)
+      ..dispose();
+    _focusAttachment?.detach();
     super.detach();
   }
 
   @override
   void dispose() {
     l.w("[${classHash()}]dispose");
-    focusNode
+    /*focusNode
       ?..removeListener(_handleFocusChanged)
       ..dispose();
-    _focusAttachment?.detach();
+    _focusAttachment?.detach();*/
     super.dispose();
   }
 
   void _handleFocusChanged() {
     //debugger();
+    l.i("[${classHash()}]_handleFocusChanged->${focusNode?.hasFocus}");
   }
 }
 
