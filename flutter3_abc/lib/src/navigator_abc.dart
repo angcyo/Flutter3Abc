@@ -16,8 +16,7 @@ class NavigatorAbc extends StatefulWidget {
   State<NavigatorAbc> createState() => _NavigatorAbcState();
 }
 
-class _NavigatorAbcState extends BaseLifecycleState<NavigatorAbc>
-    with BaseAbcStateMixin {
+class _NavigatorAbcState extends State<NavigatorAbc> with BaseAbcStateMixin {
   final navigatorKeyList = [
     GlobalKey<NavigatorState>(),
     GlobalKey<NavigatorState>(),
@@ -48,9 +47,9 @@ class _NavigatorAbcState extends BaseLifecycleState<NavigatorAbc>
         GradientButton.min(
           child: "Push".text(),
           onTap: () {
-            selectedNavigatorKey.currentState?.pushWidget(NavigatorContentPage(
-              content: "Content[${nextInt()}]",
-            ));
+            selectedNavigatorKey.currentState?.pushWidget(
+              NavigatorContentPage(content: "Content[${nextInt()}]"),
+            );
           },
         ),
         GradientButton.min(
@@ -64,10 +63,9 @@ class _NavigatorAbcState extends BaseLifecycleState<NavigatorAbc>
           child: "Push(Root)".text(),
           onTap: () {
             context.pushWidget(
-                NavigatorContentPage(
-                  content: "Root Content[${nextInt()}]",
-                ),
-                rootNavigator: true);
+              NavigatorContentPage(content: "Root Content[${nextInt()}]"),
+              rootNavigator: true,
+            );
           },
         ),
         GradientButton.min(
@@ -76,35 +74,38 @@ class _NavigatorAbcState extends BaseLifecycleState<NavigatorAbc>
             context.pop(rootNavigator: true);
           },
         ),
-      ].flowLayout(
-        padding: const EdgeInsets.all(kH),
-        childGap: kH,
-      )!,
+      ].flowLayout(padding: const EdgeInsets.all(kH), childGap: kH)!,
       //--
       [
         for (final (index, key) in navigatorKeyList.indexed)
           InsideNavigatorPage(
-            navigatorKey: key,
-            home: NavigatorContentPage(
-              content: "Navigator${index + 1} Content[${nextInt()}]",
-            ),
-          )
+                navigatorKey: key,
+                home: NavigatorContentPage(
+                  content: "Navigator${index + 1} Content[${nextInt()}]",
+                ),
+              )
               .bounds(
-                  strokeWidth: selectedNavigatorKey == key ? _strokeWidth : 0)
-              .listenerPointer(onPointerDown: (detail) {
-            selectedNavigatorKey = key;
-            updateState();
-          }).flowLayoutData(onGetChildConstraints: (parent, child) {
-            final constraints = parent.constraints;
-            //debugger();
-            return BoxConstraints(
-              minWidth: 0,
-              maxWidth: constraints.maxWidth / 2,
-              minHeight: 0,
-              maxHeight: constraints.maxHeight / 2,
-            );
-          })
-      ].flowLayout(/*equalWidthRange: "", lineChildCount: 2*/)!.expanded(),
+                strokeWidth: selectedNavigatorKey == key ? _strokeWidth : 0,
+              )
+              .listenerPointer(
+                onPointerDown: (detail) {
+                  selectedNavigatorKey = key;
+                  updateState();
+                },
+              )
+              .flowLayoutData(
+                onGetChildConstraints: (parent, child) {
+                  final constraints = parent.constraints;
+                  //debugger();
+                  return BoxConstraints(
+                    minWidth: 0,
+                    maxWidth: constraints.maxWidth / 2,
+                    minHeight: 0,
+                    maxHeight: constraints.maxHeight / 2,
+                  );
+                },
+              ),
+      ].flowLayout(equalWidthRange: "", lineChildCount: 2)!.expanded(),
     ];
   }
 }
@@ -161,7 +162,8 @@ class NavigatorContentPage extends StatefulWidget {
 }
 
 class _NavigatorContentPageState
-    extends BaseLifecycleState<NavigatorContentPage> with BaseAbcStateMixin {
+    extends BaseLifecycleState<NavigatorContentPage>
+    with BaseAbcStateMixin {
   @override
   WidgetList buildBodyList(BuildContext context) {
     final globalTheme = GlobalTheme.of(context);
@@ -171,9 +173,9 @@ class _NavigatorContentPageState
     return [
       widget.content.text(style: globalTheme.textDesStyle),
       "root:$rootNavigator\nparent:$navigator".text(),
-      context.routeSettings
-              ?.toString()
-              .text(style: globalTheme.textPlaceStyle) ??
+      context.routeSettings?.toString().text(
+            style: globalTheme.textPlaceStyle,
+          ) ??
           empty,
       "${modelRoute?.overlayEntries}".text(),
       //--
@@ -181,9 +183,9 @@ class _NavigatorContentPageState
         GradientButton.min(
           child: "Push".text(),
           onTap: () {
-            context.pushWidget(NavigatorContentPage(
-              content: "Inside Content[${nextInt()}]",
-            ));
+            context.pushWidget(
+              NavigatorContentPage(content: "Inside Content[${nextInt()}]"),
+            );
           },
         ),
         GradientButton.min(
@@ -197,10 +199,9 @@ class _NavigatorContentPageState
           child: "Push(Root)".text(),
           onTap: () {
             context.pushWidget(
-                NavigatorContentPage(
-                  content: "Root Content[${nextInt()}]",
-                ),
-                rootNavigator: true);
+              NavigatorContentPage(content: "Root Content[${nextInt()}]"),
+              rootNavigator: true,
+            );
           },
         ),
         GradientButton.min(
@@ -209,10 +210,7 @@ class _NavigatorContentPageState
             context.pop(rootNavigator: true);
           },
         ),
-      ].flowLayout(
-        padding: const EdgeInsets.all(kH),
-        childGap: kH,
-      )!,
+      ].flowLayout(padding: const EdgeInsets.all(kH), childGap: kH)!,
     ];
   }
 }
