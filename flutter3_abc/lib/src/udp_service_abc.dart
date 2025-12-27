@@ -109,7 +109,7 @@ class _UdpServiceAbcState extends State<UdpServiceAbc>
           );
         }, child: "test-udp-to-client".text()),
         GradientButton.normal(() async {
-          final udp = await receiveUdpData(testPort, timeout: 10.seconds,
+          final udp = await shelf.receiveUdpData(testPort, timeout: 10.seconds,
               onDatagramAction: (datagram, error) {
             final str = datagram?.data.utf8Str;
             toastInfo(str);
@@ -117,7 +117,7 @@ class _UdpServiceAbcState extends State<UdpServiceAbc>
           });
         }, child: "test-udp-receive".text()),
         GradientButton.normal(() async {
-          sendUdpBroadcast(testPort,
+          shelf.sendUdpBroadcast(testPort,
               text: "[${nowTimeString()}]send broadcast.");
         }, child: "test-udp-send-broadcast".text()),
         IconButton(

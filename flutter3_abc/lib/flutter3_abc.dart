@@ -12,6 +12,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter3_abc/src/3d_abc.dart';
 import 'package:flutter3_abc/src/focus_node_abc.dart';
+import 'package:flutter3_abc/src/mcp_server_abc.dart';
 import 'package:flutter3_abc/src/navigator_abc.dart';
 import 'package:flutter3_abc/src/skeleton_abc.dart';
 import 'package:flutter3_abc/src/slider_captcha_abc.dart';
@@ -26,7 +27,6 @@ import 'package:flutter3_notification/flutter3_notification.dart';
 import 'package:flutter3_pub_core/flutter3_pub_core.dart';
 import 'package:flutter3_scanner/flutter3_scanner.dart';
 import 'package:flutter3_shelf/flutter3_shelf.dart' as shelf;
-import 'package:flutter3_shelf/flutter3_shelf.dart';
 import 'package:flutter3_webview/flutter3_webview.dart';
 import 'package:lp_canvas/lp_canvas.dart';
 import 'package:lp_plugin/lp_plugin.dart';
@@ -270,6 +270,7 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ("/webSocket", 'WebSocketAbc', (context) => const WebSocketAbc()),
   ("/udpService", 'UdpServiceAbc', (context) => const UdpServiceAbc()),
   ("/udpService2", 'UdpServiceAbc2 $kGo', (context) => const UdpService2Abc()),
+  ("/MCPServer", 'MCPServerAbc', (context) => const MCPServerAbc()),
   (
   "/CoverCameraUpgrade",
   'CoverCameraUpgradeAbc',
