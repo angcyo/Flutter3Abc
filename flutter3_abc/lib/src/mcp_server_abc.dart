@@ -15,9 +15,15 @@ class MCPServerAbc extends StatefulWidget {
 }
 
 class _MCPServerAbcState extends State<MCPServerAbc>
-    with BaseAbcStateMixin, HookMixin, HookStateMixin {
+    with
+        BaseAbcStateMixin,
+        HookMixin,
+        HookStateMixin,
+        LogMessageStateMixin,
+        WidgetsBindingObserver,
+        MediaQueryDataChangeMixin {
   /// mcp server
-  StreamableMcpServer? debugMcpServer;
+  HttpStreamableMcpServer? debugMcpServer;
 
   @override
   void initState() {
@@ -27,7 +33,11 @@ class _MCPServerAbcState extends State<MCPServerAbc>
 
   @override
   Widget buildAbc(BuildContext context) {
-    return super.buildAbc(context);
+    final globalTheme = GlobalTheme.of(context);
+    return [
+      buildLogMessageListWidget(context, globalTheme).expanded(),
+      super.buildAbc(context).card().animatedContainer(width: $ecwBp()),
+    ].row()!;
   }
 
   @override
@@ -41,6 +51,7 @@ class _MCPServerAbcState extends State<MCPServerAbc>
   WidgetList buildBodyList(BuildContext context) {
     return [
       [
+        GradientButton.min(onTap: clearLogData, child: "清屏".text()),
         GradientButton.normal(() {
           if (debugMcpServer != null) {
             debugMcpServer?.stop().get((data, error) {
@@ -50,7 +61,22 @@ class _MCPServerAbcState extends State<MCPServerAbc>
           } else {
             DebugMcpServer.start().get((data, error) {
               debugMcpServer = data;
-              updateState();
+              debugMcpServer?.interceptorManager.interceptors.add(
+                HttpLogInterceptor(
+                  printRequestLogAction: (log) {
+                    addLastMessage(log, isReceived: true);
+                  },
+                  printResponseLogAction: (log) {
+                    addLastMessage(log, isReceived: false);
+                  },
+                ),
+              );
+              if (data != null) {
+                addLastMessage(
+                  "[${debugMcpServer?.classHash()}]Mcp服务启动->http://${data.host}:${data.port}${data.path}",
+                  isReceived: true,
+                );
+              }
             });
           }
         }, child: (debugMcpServer != null ? "停止mcp服务" : "启动mcp服务").text()),
