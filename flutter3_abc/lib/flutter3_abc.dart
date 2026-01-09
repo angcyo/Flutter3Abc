@@ -46,6 +46,7 @@ export 'assets_generated/assets.gen.dart';
 // @formatter:off
 
 part 'src/animated_abc.dart';
+part 'src/api_abc.dart';
 part 'src/app_bar_abc.dart';
 part 'src/app_update_abc.dart';
 part 'src/base/abc_config.dart';
@@ -198,6 +199,7 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ("/pathProvider", 'PathProviderAbc', (context) => const PathProviderAbc()),
   ("/http", 'HttpAbc', (context) => const HttpAbc()),
   ("/httpParser", 'HttpParserAbc', (context) => const HttpParserAbc()),
+  ("/apiAbc", 'ApiAbc', (context) => const ApiAbc()),
   ("/server", 'ServerAbc', (context) => const ServerAbc()),
   ("/svg", 'SvgAbc', (context) => const SvgAbc()),
   ("/AppUpdate", 'AppUpdateAbc', (context) => const AppUpdateAbc()),
