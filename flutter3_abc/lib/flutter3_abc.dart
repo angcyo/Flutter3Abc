@@ -14,6 +14,7 @@ import 'package:flutter3_abc/src/3d_abc.dart';
 import 'package:flutter3_abc/src/focus_node_abc.dart';
 import 'package:flutter3_abc/src/mcp_server_abc.dart';
 import 'package:flutter3_abc/src/navigator_abc.dart';
+import 'package:flutter3_abc/src/process_abc.dart';
 import 'package:flutter3_abc/src/skeleton_abc.dart';
 import 'package:flutter3_abc/src/slider_captcha_abc.dart';
 import 'package:flutter3_abc/src/socket_abc.dart';
@@ -288,6 +289,7 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ("/three3DAbc", 'Three3DAbc', (context) => const Three3DAbc()),
   ("/navigatorAbc", 'NavigatorAbc', (context) => const NavigatorAbc()),
   ("/focusNodeAbc", 'FocusNodeAbc', (context) => const FocusNodeAbc()),
+  ("/processAbc", 'ProcessAbc', (context) => const ProcessAbc()),
 ];
 
 //--
