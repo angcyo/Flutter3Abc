@@ -91,7 +91,32 @@ class _ProcessAbcState extends State<ProcessAbc>
             addLastMessage("$e", isReceived: true);
           }
         }, child: "Run".text()),
+        GradientButton.normal(() {
+          /*final plugin = ProcessPlugin();
+          buildContext?.showWidgetDialog(PluginInstallDialog(plugin));*/
+          TestPlugin().start(context);
+        }, child: "运行插件".text()),
       ].flowLayout(childGap: kL)!.insets(all: kL),
     ];
+  }
+}
+
+class TestPlugin extends ExecutablePlugin {
+  @override
+  String? get downloadUrl =>
+      "https://laser-engraving-test.oss-cn-heyuan.aliyuncs.com/public/plugins/test.zip";
+
+  @override
+  Future<String?> get executablePath async {
+    final folder = await cacheFolder(kPluginsPathName);
+    //return folder.path.join("xxx.exe");
+    return "pwd";
+  }
+
+  @override
+  Future<bool> install(String filePath) async {
+    final folder = await cacheFolder(kPluginsPathName);
+    final path = await filePath.unzip(folder.path);
+    return path != null;
   }
 }
