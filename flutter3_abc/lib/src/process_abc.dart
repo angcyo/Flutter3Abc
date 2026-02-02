@@ -114,7 +114,7 @@ class TestPlugin extends ExecutablePlugin {
   }
 
   @override
-  Future<bool> install(String filePath) async {
+  Future<bool> install(String filePath, {String? reason}) async {
     final folder = await cacheFolder(kPluginsPathName);
     final path = await filePath.unzip(folder.path);
     return path != null;

@@ -13,23 +13,26 @@ class RLoadMoreAbc extends StatefulWidget {
 }
 
 class _RLoadMoreAbcState extends State<RLoadMoreAbc> {
+  late final UpdateValueNotifier _scrollViewUpdateSignal = createUpdateSignal();
   late final RScrollController scrollController = RScrollController()
+    ..scrollViewUpdateSignal = _scrollViewUpdateSignal
     ..onLoadDataCallback = onLoadData;
 
-  var dataList = [];
+  final dataList = [];
 
   void onLoadData() async {
     //debugger();
     l.i('加载数据:${scrollController.requestPage}');
     /*scrollController.updateWidgetState(this, WidgetBuildState.loading);*/
     await Future.delayed(const Duration(seconds: 2));
-    var page = scrollController.requestPage;
+    final page = scrollController.requestPage;
     if (page.isFirstPage) {
       dataList.clear();
     }
-    var newDataList = List.generate(
-        page.requestPageIndex > 3 ? 10 : page.requestPageSize,
-        (index) => "Data:${page.currentStartIndex + index}");
+    final newDataList = List.generate(
+      page.requestPageIndex > 3 ? 10 : page.requestPageSize,
+      (index) => "Data:${page.currentStartIndex + index}",
+    );
     dataList.addAll(newDataList);
     scrollController.finishRefresh(newDataList);
   }
@@ -60,7 +63,10 @@ class _RLoadMoreAbcState extends State<RLoadMoreAbc> {
       ),
       persistentFooterButtons: [
         [
-          dataList.length.toString().text(),
+          rebuild(
+            _scrollViewUpdateSignal,
+            (context, value) => dataList.length.toString().text(),
+          ),
           GradientButton(
             minWidth: buttonMinWidth,
             minHeight: buttonMinHeight,
@@ -97,7 +103,9 @@ class _RLoadMoreAbcState extends State<RLoadMoreAbc> {
             padding: padding,
             onTap: () {
               scrollController.updateAdapterState(
-                  WidgetBuildState.error, '错误测试');
+                WidgetBuildState.error,
+                '错误测试',
+              );
             },
             child: '错误'.text(),
           ),
@@ -125,23 +133,26 @@ class _RLoadMoreAbcState extends State<RLoadMoreAbc> {
             padding: padding,
             onTap: () {
               scrollController.updateLoadMoreState(
-                  WidgetBuildState.error, "错误测试");
+                WidgetBuildState.error,
+                "!错误测试!",
+              );
             },
             child: 'loadError'.text(),
           ),
         ].wrap()!,
       ],
-      body: RScrollView(
-        controller: scrollController,
-        enableRefresh: true,
-        enableLoadMore: true,
-        children: [
-          for (var i = 0; i < dataList.length; i++)
-            RItemTile(
-              child: randomLogWidget("[${dataList[i]}]item $i"),
-            ),
-        ],
-      ),
+      body: rebuild(_scrollViewUpdateSignal, (context, value) {
+        //debugger();
+        return RScrollView(
+          controller: scrollController,
+          enableRefresh: true,
+          enableLoadMore: true,
+          children: [
+            for (var i = 0; i < dataList.length; i++)
+              RItemTile(child: randomLogWidget("[${dataList[i]}]item $i")),
+          ],
+        );
+      }),
     );
   }
 }
