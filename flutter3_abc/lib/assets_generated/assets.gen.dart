@@ -1,3 +1,5 @@
+// dart format width=80
+
 /// GENERATED CODE - DO NOT MODIFY BY HAND
 /// *****************************************************
 ///  FlutterGen
@@ -5,7 +7,7 @@
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
+// ignore_for_file: deprecated_member_use,directives_ordering,implicit_dynamic_list_literal,unnecessary_import
 
 import 'package:flutter/widgets.dart';
 
@@ -13,22 +15,34 @@ class $AssetsPngGen {
   const $AssetsPngGen();
 
   /// File path: assets/png/all_in2.webp
-  AssetGenImage get allIn2 =>
-      const AssetGenImage('assets/png/all_in2.webp', size: Size(600.0, 426.0));
+  AssetGenImage get allIn2 => const AssetGenImage(
+    'assets/png/all_in2.webp',
+    size: const Size(600.0, 426.0),
+  );
 
   /// File path: assets/png/face.png
-  AssetGenImage get face =>
-      const AssetGenImage('assets/png/face.png', size: Size(905.0, 905.0));
+  AssetGenImage get face => const AssetGenImage(
+    'assets/png/face.png',
+    size: const Size(905.0, 905.0),
+  );
 
   /// File path: assets/png/flutter.png
-  AssetGenImage get flutter =>
-      const AssetGenImage('assets/png/flutter.png', size: Size(144.0, 144.0));
+  AssetGenImage get flutter => const AssetGenImage(
+    'assets/png/flutter.png',
+    size: const Size(144.0, 144.0),
+  );
 
-  /// Directory path: assets/png
-  String get path => 'assets/png';
+  /// File path: assets/png/flutter_solid.png
+  AssetGenImage get flutterSolid => const AssetGenImage(
+    'assets/png/flutter_solid.png',
+    size: const Size(256.0, 256.0),
+  );
+
+  /// Directory path: packages/flutter3_abc/assets/png
+  String get path => 'packages/flutter3_abc/assets/png';
 
   /// List of all assets
-  List<AssetGenImage> get values => [allIn2, face, flutter];
+  List<AssetGenImage> get values => [allIn2, face, flutter, flutterSolid];
 }
 
 class $AssetsSvgGen {
@@ -147,46 +161,46 @@ class $AssetsSvgGen {
   /// File path: assets/svg/path_xor.svg
   String get pathXor => 'packages/flutter3_abc/assets/svg/path_xor.svg';
 
-  /// Directory path: assets/svg
-  String get path => 'assets/svg';
+  /// Directory path: packages/flutter3_abc/assets/svg
+  String get path => 'packages/flutter3_abc/assets/svg';
 
   /// List of all assets
   List<String> get values => [
-        addApps,
-        addImage,
-        addMaterial,
-        addPen,
-        addShape,
-        addText,
-        alignBottom,
-        alignCenter,
-        alignHorizontal,
-        alignLeft,
-        alignRight,
-        alignTop,
-        alignVertical,
-        averageHeight,
-        averageHorizontal,
-        averageSize,
-        averageVertical,
-        averageWidth,
-        flipHorizontal,
-        flipVertical,
-        iconLayer,
-        moreTip,
-        navArrowTip,
-        navCanvas,
-        navMenu,
-        navMove,
-        navRedo,
-        navSelecter,
-        navUndo,
-        pathDifference,
-        pathIntersect,
-        pathMerge,
-        pathUnion,
-        pathXor
-      ];
+    addApps,
+    addImage,
+    addMaterial,
+    addPen,
+    addShape,
+    addText,
+    alignBottom,
+    alignCenter,
+    alignHorizontal,
+    alignLeft,
+    alignRight,
+    alignTop,
+    alignVertical,
+    averageHeight,
+    averageHorizontal,
+    averageSize,
+    averageVertical,
+    averageWidth,
+    flipHorizontal,
+    flipVertical,
+    iconLayer,
+    moreTip,
+    navArrowTip,
+    navCanvas,
+    navMenu,
+    navMove,
+    navRedo,
+    navSelecter,
+    navUndo,
+    pathDifference,
+    pathIntersect,
+    pathMerge,
+    pathUnion,
+    pathXor,
+  ];
 }
 
 class $AssetsWebGen {
@@ -217,23 +231,23 @@ class $AssetsWebGen {
   /// File path: assets/web/web_socket.html
   String get webSocket => 'packages/flutter3_abc/assets/web/web_socket.html';
 
-  /// Directory path: assets/web
-  String get path => 'assets/web';
+  /// Directory path: packages/flutter3_abc/assets/web
+  String get path => 'packages/flutter3_abc/assets/web';
 
   /// List of all assets
   List<String> get values => [
-        filesBrowse,
-        index,
-        receiveFile,
-        receiveSucceed,
-        testWeb,
-        udpClientList,
-        webSocket
-      ];
+    filesBrowse,
+    index,
+    receiveFile,
+    receiveSucceed,
+    testWeb,
+    udpClientList,
+    webSocket,
+  ];
 }
 
 class Assets {
-  Assets._();
+  const Assets._();
 
   static const String package = 'flutter3_abc';
 
@@ -247,6 +261,7 @@ class AssetGenImage {
     this._assetName, {
     this.size,
     this.flavors = const {},
+    this.animation,
   });
 
   final String _assetName;
@@ -255,6 +270,7 @@ class AssetGenImage {
 
   final Size? size;
   final Set<String> flavors;
+  final AssetGenImageAnimation? animation;
 
   Image image({
     Key? key,
@@ -278,7 +294,7 @@ class AssetGenImage {
     bool isAntiAlias = false,
     @Deprecated('Do not specify package for a generated library asset')
     String? package = package,
-    FilterQuality filterQuality = FilterQuality.low,
+    FilterQuality filterQuality = FilterQuality.medium,
     int? cacheWidth,
     int? cacheHeight,
   }) {
@@ -315,14 +331,22 @@ class AssetGenImage {
     @Deprecated('Do not specify package for a generated library asset')
     String? package = package,
   }) {
-    return AssetImage(
-      _assetName,
-      bundle: bundle,
-      package: package,
-    );
+    return AssetImage(_assetName, bundle: bundle, package: package);
   }
 
   String get path => _assetName;
 
   String get keyName => 'packages/flutter3_abc/$_assetName';
+}
+
+class AssetGenImageAnimation {
+  const AssetGenImageAnimation({
+    required this.isAnimation,
+    required this.duration,
+    required this.frames,
+  });
+
+  final bool isAnimation;
+  final Duration duration;
+  final int frames;
 }
