@@ -69,6 +69,14 @@ dependencies:
   # https://pub.dev/packages/web_socket_channel
   web_socket_channel: any #in flutter3_shelf
 
+  # https://pub.dev/packages/flutter_math_fork
+  # https://pub.dev/packages/collection
+  # https://pub.dev/packages/flutter_svg
+  # https://pub.dev/packages/meta
+  # https://pub.dev/packages/provider
+  # https://pub.dev/packages/tuple
+  flutter_math_fork: ^0.7.4
+
 #dependency_overrides:
 #  # Because flutter_html 3.0.0-beta.2 depends on csslib ^0.17.2 and no versions of flutter_html match >3.0.0-beta.2 <4.0.0, flutter_html ^3.0.0-beta.2 requires csslib ^0.17.2.
 #  #And because html >=0.15.5 depends on csslib ^1.0.0, html >=0.15.5 is incompatible with flutter_html ^3.0.0-beta.2.

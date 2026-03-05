@@ -39,6 +39,7 @@ import 'package:xpath_selector_html_parser/xpath_selector_html_parser.dart';
 import 'assets_generated/assets.gen.dart';
 import 'src/bean/http_test_bean.dart';
 import 'src/isolate_abc.dart';
+import 'src/math_fun_abc.dart';
 
 export 'package:flutter3_pub_core/flutter3_pub_core.dart';
 export 'package:flutter3_three_js/flutter3_three_js.dart';
@@ -292,6 +293,7 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ("/focusNodeAbc", 'FocusNodeAbc', (context) => const FocusNodeAbc()),
   ("/processAbc", 'ProcessAbc', (context) => const ProcessAbc()),
   ("/isolateAbc", 'IsolateAbc', (context) => const IsolateAbc()),
+  ("/mathFunAbc", 'MathFunAbc', (context) => const MathFunAbc()),
 ];
 
 //--
