@@ -59,9 +59,11 @@ class _MathFunAbcState extends State<MathFunAbc> with BaseAbcStateMixin {
       ),
       [
         //MARK: 三角函数
-        "↓三角函数↓".text(textAlign: .center).flowLayoutData(weight: 1),
+        "↓三角函数↓"
+            .text(textAlign: .center, textColor: Colors.purpleAccent)
+            .flowLayoutData(weight: 1),
         MathFunPaintWidget(
-          tex: r'正弦函数: f(x) = \sin(x)',
+          tex: r'正弦 (Sine)函数: f(x) = \sin(x)',
           fun: (radians) => math.sin(radians),
           xSample: 0.1,
           xScale: 5,
@@ -70,7 +72,7 @@ class _MathFunAbcState extends State<MathFunAbc> with BaseAbcStateMixin {
           yTicksStep: 1,
         ),
         MathFunPaintWidget(
-          tex: r'余弦函数: f(x) = \cos(x)',
+          tex: r'余弦 (Cosine)函数: f(x) = \cos(x)',
           fun: (radians) => math.cos(radians),
           xSample: 0.1,
           xScale: 5,
@@ -96,25 +98,53 @@ class _MathFunAbcState extends State<MathFunAbc> with BaseAbcStateMixin {
           xTicksStep: 1,
           yTicksStep: math.pi / 4,
         ),
+        MathFunPaintWidget(
+          tex: r'正切 (Tangent)函数: f(x) = \tan(x)',
+          fun: (radians) => math.tan(radians),
+          xSample: 0.1,
+          xScale: 5,
+          xMinValue: -math.pi / 2,
+          xMaxValue: math.pi / 2,
+          yScale: yScale1,
+          xTicksStep: math.pi / 2,
+          yTicksStep: 1,
+        ),
+        MathFunPaintWidget(
+          tex: r'反正切函数: f(x) = \arctan(x)',
+          fun: (x) => math.atan(x),
+          xSample: 0.1,
+          xScale: 10,
+          yScale: yScale1 * 2 / 5,
+          xTicksStep: 1,
+          yTicksStep: math.pi / 4,
+        ),
         //MARK: 多项式
-        "↓多项式↓".text(textAlign: .center).flowLayoutData(weight: 1),
+        "↓多项式↓"
+            .text(textAlign: .center, textColor: Colors.purpleAccent)
+            .flowLayoutData(weight: 1),
         MathFunPaintWidget(
           tex: r'2次多项式: f(x) = x^2 + x',
           fun: (x) => math.pow(x, 2) + x,
           xSample: 0.1,
           xScale: 0.8,
+          xTicksStep: 10,
+          yTicksStep: 50,
         ),
         MathFunPaintWidget(
           tex: r'3次多项式: f(x) = x^3 + x^2 + x',
           fun: (x) => math.pow(x, 3) + math.pow(x, 2) + x,
           xSample: 0.1,
           xScale: 0.8,
+          xTicksStep: 10,
+          yTicksStep: 50,
         ),
         MathFunPaintWidget(
           tex: r'4次多项式: f(x) = x^4 + x^3 + x^2 + x',
           fun: (x) => math.pow(x, 4) + math.pow(x, 3) + math.pow(x, 2) + x,
           xSample: 0.1,
           xScale: 0.8,
+          xTicksStep: 10,
+          yTicksStep: 50,
         ),
         MathFunPaintWidget(
           tex: r'5次多项式: f(x) = x^5 + x^4 + x^3 + x^2 + x',
@@ -126,58 +156,118 @@ class _MathFunAbcState extends State<MathFunAbc> with BaseAbcStateMixin {
               x,
           xSample: 0.1,
           xScale: 0.8,
+          xTicksStep: 10,
+          yTicksStep: 50,
         ),
         //MARK: 幂函数
-        "↓幂函数↓".text(textAlign: .center).flowLayoutData(weight: 1),
+        "↓幂函数↓"
+            .text(textAlign: .center, textColor: Colors.purpleAccent)
+            .flowLayoutData(weight: 1),
         MathFunPaintWidget(
           tex: r'2次幂函数: f(x) = x^n',
           fun: (x) => math.pow(x, 2).toDouble(),
           xSample: 0.1,
           xScale: 0.8,
+          xTicksStep: 10,
+          yTicksStep: 50,
         ),
         MathFunPaintWidget(
           tex: r'3次幂函数: f(x) = x^n',
           fun: (x) => math.pow(x, 3).toDouble(),
           xSample: 0.1,
           xScale: 0.8,
+          xTicksStep: 10,
+          yTicksStep: 50,
         ),
         MathFunPaintWidget(
           tex: r'4次幂函数: f(x) = x^n',
           fun: (x) => math.pow(x, 4).toDouble(),
           xSample: 0.1,
           xScale: 0.8,
+          xTicksStep: 10,
+          yTicksStep: 50,
         ),
         MathFunPaintWidget(
           tex: r'5次幂函数: f(x) = x^n',
           fun: (x) => math.pow(x, 5).toDouble(),
           xSample: 0.1,
           xScale: 0.8,
+          xTicksStep: 10,
+          yTicksStep: 50,
         ),
         //MARK: 指数函数
-        "↓指数函数↓".text(textAlign: .center).flowLayoutData(weight: 1),
+        "↓指数函数↓"
+            .text(textAlign: .center, textColor: Colors.purpleAccent)
+            .flowLayoutData(weight: 1),
         MathFunPaintWidget(
-          tex: r'2为低指数函数: f(x) = a^x',
+          tex: r'2为底指数函数: f(x) = a^x',
           fun: (x) => math.pow(2, x).toDouble(),
           xSample: 0.1,
           xScale: 0.8,
+          xTicksStep: 10,
+          yTicksStep: 50,
         ),
         MathFunPaintWidget(
-          tex: r'3为低指数函数: f(x) = a^x',
+          tex: r'3为底指数函数: f(x) = a^x',
           fun: (x) => math.pow(3, x).toDouble(),
           xSample: 0.1,
           xScale: 0.8,
+          xTicksStep: 10,
+          yTicksStep: 50,
         ),
         MathFunPaintWidget(
-          tex: r'4为低指数函数: f(x) = a^x',
+          tex: r'4为底指数函数: f(x) = a^x',
           fun: (x) => math.pow(4, x).toDouble(),
           xSample: 0.1,
           xScale: 0.8,
+          xTicksStep: 10,
+          yTicksStep: 50,
         ),
         MathFunPaintWidget(
-          tex: r'5为低指数函数: f(x) = a^x',
+          tex: r'5为底指数函数: f(x) = a^x',
           fun: (x) => math.pow(5, x).toDouble(),
           xSample: 0.1,
           xScale: 0.8,
+          xTicksStep: 10,
+          yTicksStep: 50,
+        ),
+        //MARK: 其它函数
+        "↓其它函数↓"
+            .text(textAlign: .center, textColor: Colors.purpleAccent)
+            .flowLayoutData(weight: 1),
+        MathFunPaintWidget(
+          tex: r'平方根函数: f(x) = \sqrt{x}',
+          fun: (x) => math.sqrt(x).toDouble(),
+          xTicksStep: 50,
+          yScale: 5,
+          yTicksStep: 4,
+        ),
+        MathFunPaintWidget(
+          tex: r'倒数函数: f(x) = 1/x',
+          fun: (x) => 1 / x,
+          xSample: 0.01,
+          xScale: 10,
+          xTicksStep: 1,
+          yScale: 0.4,
+          yTicksStep: 100,
+        ),
+        MathFunPaintWidget(
+          tex: r'自然指数函数: f(x) = e^x',
+          fun: (x) => math.exp(x),
+          xSample: 0.1,
+          xScale: 10,
+          xTicksStep: 1,
+          yScale: 40,
+          yTicksStep: 1,
+        ),
+        MathFunPaintWidget(
+          tex: r'自然对数函数(幂函数的逆): f(x) = \ln(x)',
+          fun: (x) => math.log(x),
+          xSample: 0.1,
+          xScale: 10,
+          xTicksStep: 1,
+          yScale: 40,
+          yTicksStep: 1,
         ),
       ].flowLayout(lineMaxChildCount: 2, equalWidthRange: "", gap: kM)!,
     ];
@@ -209,8 +299,16 @@ class MathFunPaintWidget extends StatelessWidget {
   /// x轴需要绘制刻度的值间隔, 这个值是函数参数的输入值
   final double? xTicksStep;
 
+  /// 限制x轴绘制的值范围
+  final double? xMinValue;
+  final double? xMaxValue;
+
   /// y轴需要绘制刻度的值间隔, 这个值是函数参数的输出值
   final double? yTicksStep;
+
+  /// 限制y轴绘制的值范围
+  final double? yMinValue;
+  final double? yMaxValue;
 
   final String? debugLabel;
 
@@ -222,9 +320,39 @@ class MathFunPaintWidget extends StatelessWidget {
     this.xScale = 1,
     this.yScale = 1,
     this.xTicksStep,
+    this.xMinValue,
+    this.xMaxValue,
     this.yTicksStep,
+    this.yMinValue,
+    this.yMaxValue,
     this.debugLabel,
   });
+
+  bool isXValueInRage(double xValue) {
+    if (xMinValue != null && xMaxValue != null) {
+      return xValue >= xMinValue! && xValue <= xMaxValue!;
+    }
+    if (xMinValue != null) {
+      return xValue >= xMinValue!;
+    }
+    if (xMaxValue != null) {
+      return xValue <= xMaxValue!;
+    }
+    return true;
+  }
+
+  bool isYValueInRage(double yValue) {
+    if (yMinValue != null && yMaxValue != null) {
+      return yValue >= yMinValue! && yValue <= yMaxValue!;
+    }
+    if (yMinValue != null) {
+      return yValue >= yMinValue!;
+    }
+    if (yMaxValue != null) {
+      return yValue <= yMaxValue!;
+    }
+    return true;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -246,6 +374,7 @@ class MathFunPaintWidget extends StatelessWidget {
         final xMax = size.width / xScale;
 
         final path = Path();
+        bool isFirst = true;
         debugger(when: debugLabel != null);
         for (var x = 0; x < xMax; x++) {
           //公式计算
@@ -255,16 +384,20 @@ class MathFunPaintWidget extends StatelessWidget {
           //绘制点
           final px = cx + xStep * xScale;
           final py = cy - yValue * yScale;
-          if (x == 0) {
-            path.moveTo(px, py);
-          } else {
-            path.lineTo(px, py);
+          if (isXValueInRage(xValue) && isYValueInRage(yValue)) {
+            if (isFirst) {
+              path.moveTo(px, py);
+              isFirst = false;
+            } else {
+              path.lineTo(px, py);
+            }
           }
         }
         canvas.drawPath(
           path,
           Paint()
             ..style = .stroke
+            ..strokeWidth = 2
             ..color = Colors.redAccent,
         );
 
