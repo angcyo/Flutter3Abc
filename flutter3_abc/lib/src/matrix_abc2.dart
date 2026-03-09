@@ -48,82 +48,136 @@ class _MatrixAbc2State extends State<MatrixAbc2> with AbsScrollPage, TileMixin {
     super.initState();
   }
 
+  Rect _testRect = .zero;
+  Matrix4? _testMatrix;
+
   @override
   WidgetList? buildScrollBody(BuildContext context) {
     testMatrix();
     return [
-      $any(onPaint: (render, canvas, size, offset) {
-        final matrix = createPerspectiveMatrix(from, to);
-        canvas.withMatrix(
-            matrix * createTranslateMatrix(tx: from[0].dx, ty: from[0].dy), () {
-          canvas.drawImageInRect(_face,
-              fit: BoxFit.fill,
-              dst: Rect.fromLTWH(0, 0, right - left, bottom - top));
-          canvas.drawText(
-            matrix.toMatrixString(lineNumber: false, padWidth: 20),
-            fontSize: 12,
-            offset: from[0],
-            textColor: Colors.white,
-            bold: true,
-            shadow: true,
+      $any(
+        onPaint: (render, canvas, size, offset) {
+          final matrix = createPerspectiveMatrix(from, to);
+          canvas.withMatrix(
+            createTranslateMatrix(tx: offset.dx, ty: offset.dy) *
+                matrix *
+                createTranslateMatrix(tx: from[0].dx, ty: from[0].dy),
+            () {
+              canvas.drawImageInRect(
+                _face,
+                fit: BoxFit.fill,
+                dst: Rect.fromLTWH(0, 0, right - left, bottom - top),
+              );
+              canvas.drawText(
+                matrix.toMatrixString(lineNumber: false, padWidth: 20),
+                fontSize: 12,
+                offset: from[0],
+                textColor: Colors.white,
+                bold: true,
+                shadow: true,
+              );
+              //--
+              if (_testMatrix != null) {
+                canvas.withMatrix(_testMatrix, () {
+                  canvas.drawImageInRect(
+                    _face,
+                    fit: BoxFit.fill,
+                    dst: _testRect,
+                  );
+                });
+                canvas.drawText(
+                  _testMatrix!.toMatrixString(lineNumber: false, padWidth: 20),
+                  /*"$_testMatrix",*/
+                  fontSize: 12,
+                  offset: Offset(from[1].dx * 2, from[1].dy),
+                  textColor: Colors.white,
+                  bold: true,
+                  shadow: true,
+                );
+              }
+            },
           );
-        });
-        _drawPoint(canvas, from, Colors.black);
-        _drawPoint(canvas, to, Colors.red);
-      }).size(height: 120).click(() {
+          _drawPoint(canvas, from, Colors.black);
+          _drawPoint(canvas, to, Colors.red);
+        },
+      ).size(height: 120).click(() {
         setState(() {
           to.reset(from);
         });
       }).bounds(),
-      $any(onPaint: (render, canvas, size, offset) {
-        Matrix4 matrix = createPerspectiveMatrix(from, to);
-        final transformString = matrix.toTransformString();
-        l.d("transformString: $transformString");
-        matrix = transformString.transformMatrix!;
-        canvas.withMatrix(
-            matrix * createTranslateMatrix(tx: from[0].dx, ty: from[0].dy), () {
-          canvas.drawImageInRect(_face,
-              fit: BoxFit.fill,
-              dst: Rect.fromLTWH(0, 0, right - left, bottom - top));
-          canvas.drawText(
-            matrix.toMatrixString(lineNumber: false, padWidth: 20),
-            fontSize: 12,
-            offset: from[0],
-            textColor: Colors.white,
-            bold: true,
-            shadow: true,
+      $any(
+        onPaint: (render, canvas, size, offset) {
+          Matrix4 matrix = createPerspectiveMatrix(from, to);
+          final transformString = matrix.toTransformString();
+          l.d("transformString: $transformString");
+          matrix = transformString.transformMatrix!;
+          canvas.withMatrix(
+            createTranslateMatrix(tx: offset.dx, ty: offset.dy) *
+                matrix *
+                createTranslateMatrix(tx: from[0].dx, ty: from[0].dy),
+            () {
+              canvas.drawImageInRect(
+                _face,
+                fit: BoxFit.fill,
+                dst: Rect.fromLTWH(0, 0, right - left, bottom - top),
+              );
+              canvas.drawText(
+                matrix.toMatrixString(lineNumber: false, padWidth: 20),
+                fontSize: 12,
+                offset: from[0],
+                textColor: Colors.white,
+                bold: true,
+                shadow: true,
+              );
+            },
           );
-        });
-        _drawPoint(canvas, from, Colors.black);
-        _drawPoint(canvas, to, Colors.red);
-      }).size(height: 120).click(() {
+          _drawPoint(canvas, from, Colors.black);
+          _drawPoint(canvas, to, Colors.red);
+        },
+      ).size(height: 120).click(() {
         setState(() {
           to.reset(from);
         });
       }).bounds(),
-      ..._buildToSlider(context, 0),
-      ..._buildToSlider(context, 1),
-      ..._buildToSlider(context, 2),
-      ..._buildToSlider(context, 3),
+      _MatrixTestRenderWidget(
+        onPaintMatrixAction: (matrix, rect) {
+          _testRect = rect;
+          _testMatrix = matrix;
+          updateState();
+        },
+      ).size(height: 200).bounds(),
+      ..._buildToSlider(context, 0, "左上坐标↓"),
+      ..._buildToSlider(context, 1, "右上坐标↓"),
+      ..._buildToSlider(context, 2, "右下坐标↓"),
+      ..._buildToSlider(context, 3, "左下坐标↓"),
     ];
   }
 
-  WidgetList _buildToSlider(BuildContext context, int index) {
+  WidgetList _buildToSlider(BuildContext context, int index, String label) {
     final globalTheme = GlobalTheme.of(context);
     final offset = to[index];
     return [
-      buildSliderWidget(context, progressIn(offset.x, minX, maxX),
-          activeTrackColor: globalTheme.primaryColor, onChanged: (value) {
-        setState(() {
-          to[index] = Offset(value * (maxX - minX) + minX, offset.y);
-        });
-      }),
-      buildSliderWidget(context, progressIn(offset.y, minY, maxY),
-          activeTrackColor: globalTheme.primaryColorDark, onChanged: (value) {
-        setState(() {
-          to[index] = Offset(offset.x, value * (maxY - minY) + minY);
-        });
-      }),
+      label.text().insets(left: kH),
+      buildSliderWidget(
+        context,
+        progressIn(offset.x, minX, maxX),
+        activeTrackColor: globalTheme.primaryColor,
+        onChanged: (value) {
+          setState(() {
+            to[index] = Offset(value * (maxX - minX) + minX, offset.y);
+          });
+        },
+      ),
+      buildSliderWidget(
+        context,
+        progressIn(offset.y, minY, maxY),
+        activeTrackColor: globalTheme.primaryColorDark,
+        onChanged: (value) {
+          setState(() {
+            to[index] = Offset(offset.x, value * (maxY - minY) + minY);
+          });
+        },
+      ),
     ];
   }
 
@@ -195,5 +249,100 @@ class _MatrixAbc2State extends State<MatrixAbc2> with AbsScrollPage, TileMixin {
     final string = matrix4.toTransformString();
     final matrix4_ = string.transformMatrix;
     //debugger();
+  }
+}
+
+class _MatrixTestRenderWidget extends LeafRenderObjectWidget {
+  final void Function(Matrix4 matrix, Rect rect)? onPaintMatrixAction;
+
+  const _MatrixTestRenderWidget({super.key, this.onPaintMatrixAction});
+
+  @override
+  RenderObject createRenderObject(BuildContext context) {
+    return _MatrixTestRenderBox()..onPaintMatrixAction = onPaintMatrixAction;
+  }
+
+  @override
+  void updateRenderObject(
+    BuildContext context,
+    _MatrixTestRenderBox renderObject,
+  ) {
+    renderObject..onPaintMatrixAction = onPaintMatrixAction;
+  }
+}
+
+class _MatrixTestRenderBox extends RenderBox {
+  void Function(Matrix4 matrix, Rect rect)? onPaintMatrixAction;
+
+  final Rect rect = Rect.fromLTWH(500, 50, 100, 100);
+  Matrix4 matrix = Matrix4.identity();
+
+  @override
+  bool hitTestSelf(Offset position) {
+    return true;
+  }
+
+  @override
+  void performLayout() {
+    size = constraints.biggest;
+  }
+
+  @override
+  void paint(PaintingContext context, Offset offset) {
+    //super.paint(context, offset);
+    final Matrix4 drawMatrix = matrix * opMatrix;
+    onPaintMatrixAction?.call(drawMatrix, rect);
+
+    final canvas = context.canvas;
+    canvas.save();
+    canvas.translate(offset.dx, offset.dy);
+    canvas.save();
+    canvas.transform(drawMatrix.storage);
+    canvas.drawRect(
+      rect,
+      Paint()
+        ..color = Colors.blue
+        ..strokeWidth = 2
+        ..style = .stroke,
+    );
+    canvas.restore();
+    canvas.drawRect(
+      drawMatrix.mapRect(rect),
+      Paint()
+        ..color = Colors.red
+        ..strokeWidth = 2
+        ..style = .stroke,
+    );
+    canvas.restore();
+  }
+
+  Offset _downPoint = Offset.zero;
+
+  Matrix4 opMatrix = Matrix4.identity();
+
+  @override
+  void handleEvent(PointerEvent event, covariant BoxHitTestEntry entry) {
+    //l.d("handleEvent: $event");
+    if (event.isPointerDown) {
+      _downPoint = event.localPosition;
+    } else if (event.isPointerMove) {
+      final movePoint = event.localPosition;
+      final oldWidth = _downPoint.dx - rect.lt.dx;
+      final newWidth = movePoint.dx - rect.lt.dx;
+      final oldHeight = _downPoint.dy - rect.lt.dy;
+      final newHeight = movePoint.dy - rect.lt.dy;
+
+      final sx = newWidth / oldWidth;
+      final sy = newHeight / oldHeight;
+
+      opMatrix = Matrix4.identity()
+        ..translate(rect.lt.dx, rect.lt.dy)
+        ..scale(sx, sy)
+        ..translate(-rect.lt.dx, -rect.lt.dy);
+      markNeedsPaint();
+    } else if (event.isPointerFinish) {
+      matrix = matrix * opMatrix;
+      opMatrix = Matrix4.identity();
+    }
   }
 }
