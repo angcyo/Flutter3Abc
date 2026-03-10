@@ -44,6 +44,8 @@ dependencies:
     path: ../../Flutter3Core/flutter3_three_js
   flutter3_mcp:
     path: ../../Flutter3Core/flutter3_mcp
+  flutter3_ai:
+    path: ../../Flutter3Core/flutter3_ai
 
   lp_device:
     path: ../../Flutter3Extend/lp_device
