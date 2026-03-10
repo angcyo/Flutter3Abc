@@ -29,7 +29,8 @@ class AiAbc extends StatefulWidget {
   State<AiAbc> createState() => _AiAbcState();
 }
 
-class _AiAbcState extends State<AiAbc> with BaseAbcStateMixin {
+class _AiAbcState extends State<AiAbc>
+    with BaseAbcStateMixin, LogMessageStateMixin {
   @override
   void initState() {
     super.initState();
@@ -43,42 +44,62 @@ class _AiAbcState extends State<AiAbc> with BaseAbcStateMixin {
     _liteRTModel?.close();
   }
 
+  @override
+  Widget buildAbc(BuildContext context) {
+    final globalTheme = GlobalTheme.of(context);
+    return [
+      buildLogMessageListWidget(context, globalTheme).expanded(),
+      super.buildAbc(context).card().animatedContainer(width: $ecwBp()),
+    ].row()!;
+  }
+
   ModelType _liteRTModelType = ModelType.general;
+
+  late final _messageConfig = TextFieldConfig(
+    labelText: "发送给模型的数据",
+    hintText: "请输入...",
+    text: "_last_ai_chat_message".hiveGet() ?? "输出当前模型的详细参数!",
+    onChanged: (value) {
+      "_last_ai_chat_message".hivePut(value);
+    },
+    onSubmitted: (value) {
+      _handleMessage(value);
+    },
+  );
 
   @override
   WidgetList buildBodyList(BuildContext context) {
     return [
       [
         _modelFilePath?.text().flowLayoutData(weight: 1),
+        GradientButton.min(onTap: clearLogData, child: "清屏".text()),
         GradientButton.normal(_handlePickFile, child: "选择模型文件".text()),
         GradientButton.normal(() {
           "https://www.kaggle.com/models?framework=tfLite".openUrl();
         }, child: "下载LiteRT模型文件...".text()),
         DropdownButtonTile(
-          label: "选择模型类型",
+          label: "选择LiteRT模型类型",
           dropdownValue: _liteRTModelType,
           dropdownValueList: ModelType.values,
           onChanged: (value) {
             _liteRTModelType = value;
           },
-        ).flowLayoutData(weight: 0.2),
+        ).flowLayoutData(weight: 1),
         if (_modelFilePath != null)
-          GradientButton.normal(_initializeLiteRTModel, child: "初始化模型".text()),
+          GradientButton.normal(
+            _initializeLiteRTModel,
+            child: "初始化LiteRT模型".text(),
+          ),
         if (_isLiteRTModelInitialized) ...[
           "Model installed ✅ : "
                   "hasActiveModel:${FlutterGemma.hasActiveModel()} "
                   "hasActiveEmbedder:${FlutterGemma.hasActiveEmbedder()} "
-                  "installedModels:$_installedLiteRTModels"
               .text()
               .flowLayoutData(weight: 1),
-          GradientButton.normal(() async {
-            _liteRTChat?.addQuery(Message.text(text: "Hello!"));
-            _liteRTResponse = await _liteRTChat?.generateChatResponse();
-            updateState();
-          }, child: "测试模型".text()),
         ],
-        if (_liteRTResponse != null)
-          "$_liteRTResponse".text().flowLayoutData(weight: 1),
+        SingleInputWidget(
+          config: _messageConfig,
+        ).paddingItem().flowLayoutData(weight: 1),
       ].flowLayout(gap: kM)!.insets(all: kL),
     ];
   }
@@ -97,7 +118,6 @@ class _AiAbcState extends State<AiAbc> with BaseAbcStateMixin {
   List<String> _installedLiteRTModels = [];
   InferenceModel? _liteRTModel;
   InferenceChat? _liteRTChat;
-  ModelResponse? _liteRTResponse;
 
   /// 初始化模型
   ///
@@ -117,6 +137,7 @@ class _AiAbcState extends State<AiAbc> with BaseAbcStateMixin {
   /// - [ModelFileType.binary] : .bin and .tflite files - require manual chat template formatting
   void _initializeLiteRTModel() async {
     try {
+      lTime.tick();
       l.d('Step 1: Installing model...');
       final installer = FlutterGemma.installModel(
         modelType: _liteRTModelType,
@@ -138,12 +159,62 @@ class _AiAbcState extends State<AiAbc> with BaseAbcStateMixin {
       _isLiteRTModelInitialized = true;
       _installedLiteRTModels = await FlutterGemma.listInstalledModels();
       updateState();
+      addLastMessage(
+        "模型初始化成功, maxTokens:${_liteRTModel?.maxTokens}, 已安装模型: $_installedLiteRTModels. 耗时:${lTime.time()}",
+        isReceived: true,
+      );
     } catch (e) {
       assert(() {
         l.w(e);
         return true;
       }());
       toastMessage("$e".text());
+    }
+  }
+
+  /// 处理会话
+  void _handleMessage(String input) async {
+    addLastMessage(input);
+    if (_liteRTChat != null) {
+      final message = Message.text(text: input);
+      /*_liteRTChat?.addQuery(message);
+      final response = await _liteRTChat?.generateChatResponse();
+      if (response is TextResponse) {
+        addLastMessage(response.token, isReceived: true);
+      } else {
+        addLastMessage("${response.runtimeType}:$response", isReceived: true);
+      }*/
+      final service = GemmaLocalService(_liteRTChat!);
+      addLastMessage("...", isReceived: true);
+      String text = "";
+      service
+          .processMessageAsync(message)
+          .listen(
+            (response) {
+              if (mounted) {
+                if (response is TextResponse) {
+                  text += response.token;
+                  addLastMessage(text, isReceived: true, replaceLast: true);
+                } else {
+                  //l.w("$response");
+                  addLastMessage(
+                    "${response.runtimeType}:$response",
+                    isReceived: true,
+                    replaceLast: true,
+                  );
+                }
+              }
+            },
+            onDone: () {
+              addLastMessage(
+                '🏁 GemmaInputField: Stream completed',
+                isReceived: true,
+              );
+            },
+            onError: (e) {
+              addLastMessage("$e", isReceived: true);
+            },
+          );
     }
   }
 }
