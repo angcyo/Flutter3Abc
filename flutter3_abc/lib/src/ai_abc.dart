@@ -75,8 +75,11 @@ class _AiAbcState extends State<AiAbc>
         GradientButton.min(onTap: clearLogData, child: "清屏".text()),
         GradientButton.normal(_handlePickFile, child: "选择模型文件".text()),
         GradientButton.normal(() {
+          "https://huggingface.co/litert-community".openUrl();
+        }, child: "下载LiteRT模型文件(Hugging Face)...".text()),
+        GradientButton.normal(() {
           "https://www.kaggle.com/models?framework=tfLite".openUrl();
-        }, child: "下载LiteRT模型文件...".text()),
+        }, child: "下载LiteRT模型文件(Kaggle)...".text()),
         DropdownButtonTile(
           label: "选择LiteRT模型类型",
           dropdownValue: _liteRTModelType,
@@ -97,6 +100,9 @@ class _AiAbcState extends State<AiAbc>
               .text()
               .flowLayoutData(weight: 1),
         ],
+        Divider(
+          color: GlobalTheme.of(context).lineColor,
+        ).flowLayoutData(weight: 1),
         SingleInputWidget(
           config: _messageConfig,
         ).paddingItem().flowLayoutData(weight: 1),
