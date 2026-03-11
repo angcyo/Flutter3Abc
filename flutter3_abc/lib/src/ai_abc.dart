@@ -22,6 +22,19 @@ import '../flutter3_abc.dart';
 /// - LiteRT-LM 为开发者提供了一个流水线框架，将多个带有预处理和后处理组件（如分词器、视觉编码器、文本解码器）的 LiteRT 模型拼接在一起。
 /// - MediaPipe 生成式 AI 任务 是开箱即用的原生 API（Kotlin、Swift、JS）用于运行语言模型： 只需设置一些参数，比如温度和 topK。
 ///
+/// # ONNX
+/// ONNX 是一种开放格式，旨在表示机器学习模型。ONNX 定义了一组通用的作符——机器学习和深度学习模型的构建模块——以及一种通用文件格式，使 AI 开发者能够使用带有多种框架、工具、运行时和编译器的模型。
+/// https://onnx.ai/
+/// https://onnxruntime.ai/
+///
+/// # Netron
+/// 神经网络、深度学习和机器学习模型的可视化工具
+/// https://netron.app/
+///
+/// # Transformer Explainer
+/// Transformer Explainer 是一款交互式可视化工具，旨在帮助用户理解变形器模型（如 GPT）的工作原理。
+/// https://explainer.tubex.chat/
+///
 class AiAbc extends StatefulWidget {
   const AiAbc({super.key});
 
@@ -75,7 +88,8 @@ class _AiAbcState extends State<AiAbc>
         GradientButton.min(onTap: clearLogData, child: "清屏".text()),
         GradientButton.normal(_handlePickFile, child: "选择模型文件".text()),
         GradientButton.normal(() {
-          "https://huggingface.co/litert-community".openUrl();
+          //"https://huggingface.co/litert-community".openUrl();
+          "https://huggingface.co/models?library=tflite&sort=trending".openUrl();
         }, child: "下载LiteRT模型文件(Hugging Face)...".text()),
         GradientButton.normal(() {
           "https://www.kaggle.com/models?framework=tfLite".openUrl();
