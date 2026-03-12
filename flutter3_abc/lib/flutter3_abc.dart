@@ -15,6 +15,7 @@ import 'package:flutter3_abc/src/focus_node_abc.dart';
 import 'package:flutter3_abc/src/mcp_server_abc.dart';
 import 'package:flutter3_abc/src/navigator_abc.dart';
 import 'package:flutter3_abc/src/process_abc.dart';
+import 'package:flutter3_abc/src/protobuf_abc.dart';
 import 'package:flutter3_abc/src/skeleton_abc.dart';
 import 'package:flutter3_abc/src/slider_captcha_abc.dart';
 import 'package:flutter3_abc/src/socket_abc.dart';
@@ -296,6 +297,7 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ("/isolateAbc", 'IsolateAbc', (context) => const IsolateAbc()),
   ("/mathFunAbc", 'MathFunAbc', (context) => const MathFunAbc()),
   ("/aiAbc", 'AiAbc', (context) => const AiAbc()),
+  ("/protobufAbc", 'ProtobufAbc', (context) => const ProtobufAbc()),
 ];
 
 //--
