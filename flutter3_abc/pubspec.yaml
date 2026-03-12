@@ -48,6 +48,8 @@ dependencies:
     path: ../../Flutter3Core/flutter3_ai
   flutter3_protobuf:
     path: ../../Flutter3Core/flutter3_protobuf
+  flutter3_audio:
+    path: ../../Flutter3Core/flutter3_audio
 
   lp_device:
     path: ../../Flutter3Extend/lp_device
@@ -149,6 +151,7 @@ flutter:
   # https://flutter.dev/to/font-from-package
 
   assets:
+    - assets/audio/
     - assets/png/
-    - assets/web/
     - assets/svg/
+    - assets/web/
