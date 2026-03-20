@@ -44,7 +44,7 @@ class AiAbc extends StatefulWidget {
 
 class _AiAbcState extends State<AiAbc>
     with BaseAbcStateMixin, LogMessageStateMixin {
-  @override
+  /*@override
   void initState() {
     super.initState();
     FlutterGemma.initialize();
@@ -197,13 +197,13 @@ class _AiAbcState extends State<AiAbc>
     addLastMessage(input);
     if (_liteRTChat != null) {
       final message = Message.text(text: input);
-      /*_liteRTChat?.addQuery(message);
+      *//*_liteRTChat?.addQuery(message);
       final response = await _liteRTChat?.generateChatResponse();
       if (response is TextResponse) {
         addLastMessage(response.token, isReceived: true);
       } else {
         addLastMessage("${response.runtimeType}:$response", isReceived: true);
-      }*/
+      }*//*
       final service = GemmaLocalService(_liteRTChat!);
       addLastMessage("...", isReceived: true);
       String text = "";
@@ -236,5 +236,5 @@ class _AiAbcState extends State<AiAbc>
             },
           );
     }
-  }
+  }*/
 }
