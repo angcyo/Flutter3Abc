@@ -50,6 +50,8 @@ dependencies:
     path: ../../Flutter3Core/flutter3_protobuf
   flutter3_audio:
     path: ../../Flutter3Core/flutter3_audio
+  flutter3_flame:
+    path: ../../Flutter3Core/flutter3_flame
 
   lp_device:
     path: ../../Flutter3Extend/lp_device
