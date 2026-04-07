@@ -4,7 +4,7 @@ import 'package:flutter3_app/flutter3_app.dart';
 import '../flutter3_abc.dart';
 
 ///
-/// @author <a href="mailto:angcyo@126.com">angcyo</a> \
+/// @author <a href="mailto:angcyo@126.com">angcyo</a>
 /// @date 2025/06/14
 ///
 class SliderCaptchaAbc extends StatefulWidget {

@@ -8,7 +8,7 @@ import 'package:flutter3_flame/flutter3_flame.dart';
 import '../flutter3_abc.dart';
 
 ///
-/// @author <a href="mailto:angcyo@126.com">angcyo</a> \
+/// @author <a href="mailto:angcyo@126.com">angcyo</a>
 /// @date 2026/04/03
 ///
 class FlameAbc extends StatefulWidget {
