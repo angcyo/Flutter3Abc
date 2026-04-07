@@ -20,6 +20,12 @@ class FlameAbc extends StatefulWidget {
 
 class _FlameAbcState extends State<FlameAbc> with BaseAbcStateMixin {
   @override
+  void initState() {
+    Flame.images.prefix = "assets/flame/";
+    super.initState();
+  }
+
+  @override
   WidgetList buildBodyList(BuildContext context) {
     //return [GameWidget(game: FlameGame()).size(height: $screenHeight / 2)];
     return [
@@ -32,11 +38,11 @@ class _FlameAbcState extends State<FlameAbc> with BaseAbcStateMixin {
 class FlameAbcWorld extends World with TapCallbacks {
   @override
   Future<void> onLoad() async {
-    add(Square(Vector2.zero()));
-    add(Square(Vector2(100, 100)));
-    add(Square(Vector2(-100, -100)));
+    add(Player(position: Vector2(0, 0)));
 
-    //add(Player(position: Vector2(0, 0)));
+    /*add(Square(Vector2.zero()));
+    add(Square(Vector2(100, 100)));
+    add(Square(Vector2(-100, -100)));*/
   }
 
   @override
@@ -47,6 +53,28 @@ class FlameAbcWorld extends World with TapCallbacks {
       final touchPoint = event.localPosition;
       add(Square(touchPoint));
     }
+  }
+}
+
+class Player extends SpriteComponent with TapCallbacks {
+  Player({super.position, super.anchor = Anchor.center})
+    : super(size: Vector2.all(20));
+
+  @override
+  Future<void> onLoad() async {
+    //packages/flutter3_abc/assets/images/player.png
+    sprite = await Sprite.load('player.png', package: Assets.package);
+  }
+
+  @override
+  void onTapUp(TapUpEvent event) {
+    size += Vector2.all(50);
+  }
+
+  /// 绘制
+  @override
+  void render(Canvas canvas) {
+    super.render(canvas);
   }
 }
 
