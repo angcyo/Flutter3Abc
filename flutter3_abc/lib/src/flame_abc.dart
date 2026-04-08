@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:math' as math;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3_basics/flutter3_basics.dart' hide Vector2;
 import 'package:flutter3_flame/flutter3_flame.dart';
@@ -30,7 +31,10 @@ class _FlameAbcState extends State<FlameAbc> with BaseAbcStateMixin {
     //return [GameWidget(game: FlameGame()).size(height: $screenHeight / 2)];
     return [
       createGameWorld(FlameAbcWorld()).size(height: 100).bounds(),
-      createGameWorld(FlameAbcWorld()).size(height: $screenHeight / 2).bounds(),
+      createGameWorld(
+        FlameAbcWorld(),
+        debugMode: kDebugMode,
+      ).size(height: $screenHeight / 2).bounds(),
     ];
   }
 }
@@ -39,10 +43,20 @@ class FlameAbcWorld extends World with TapCallbacks {
   @override
   Future<void> onLoad() async {
     add(Player(position: Vector2(0, 0)));
+    //add(FpsComponent());
+    add(FpsTextComponent(position: Vector2(0, -150)));
+    //add(ChildCounterComponent<SpriteAnimationComponent>(target: this));
 
     /*add(Square(Vector2.zero()));
     add(Square(Vector2(100, 100)));
     add(Square(Vector2(-100, -100)));*/
+  }
+
+  /// [FlameGame.dispose]
+  @override
+  void onHotReload() {
+    //findGame()?.dispose();
+    super.onHotReload();
   }
 
   @override
