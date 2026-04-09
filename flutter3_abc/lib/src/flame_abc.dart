@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 import 'dart:math' as math;
 
@@ -35,21 +36,162 @@ class _FlameAbcState extends State<FlameAbc> with BaseAbcStateMixin {
         FlameAbcWorld(),
         debugMode: kDebugMode,
       ).size(height: $screenHeight / 2).bounds(),
+      createGameWorld(
+        null,
+        game: FlameAbcGame(),
+      ).size(height: $screenHeight / 2).bounds(),
     ];
   }
 }
 
+/// - [FlameGame]
+/// - [SingleGameInstance]
+/// - [HasTimeScale]
+/// - [HasPerformanceTracker]
+class FlameAbcGame extends FlameGame with HasCollisionDetection {
+  FlameAbcGame() {
+    world = FlameAbcWorld();
+    pauseWhenBackgrounded;
+  }
+
+  @override
+  FutureOr<void> onLoad() {
+    add(ScreenHitbox());
+    final paint = BasicPalette.gray.paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2.0;
+    add(
+      CircleComponent(
+        position: canvasSize / 2,
+        radius: 30,
+        paint: paint,
+        children: [CircleHitbox()],
+      ),
+    );
+    //--
+    add(
+      /*ParticleSystemComponent(
+        particle: CircleParticle(paint: Paint()..color = Colors.white),
+      ),*/
+      ParticleSystemComponent(
+        position: canvasSize / 2,
+        particle: Particle.generate(
+          count: 1000,
+          lifespan: 10,
+          generator: (i) => AcceleratedParticle(
+            acceleration: randomVector2(),
+            child: CircleParticle(
+              paint: Paint()..color = Colors.red.withAlpha(100),
+            ),
+          ),
+        ),
+      ),
+    );
+    return super.onLoad();
+  }
+
+  //MARK: - *
+
+  ///
+  @override
+  bool get debugMode => super.debugMode;
+
+  ///
+  @override
+  Color backgroundColor() {
+    return super.backgroundColor();
+  }
+
+  //MARK: - *
+
+  final TextPaint textPaint = TextPaint(
+    style: const TextStyle(color: Colors.white, fontSize: 20),
+  );
+
+  final countdown = Timer(2);
+
+  //MARK: - *
+
+  final origin = Vector2(20, 20);
+  RaycastResult<ShapeHitbox>? result;
+  Paint paint = Paint()..color = Colors.red.withValues(alpha: 0.6);
+  final velocity = 60;
+
+  double get resetPosition => -canvasSize.y;
+
+  //MARK: - *
+
+  Vector2 randomVector2() => (Vector2.random(rnd) - Vector2.random(rnd)) * 200;
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+    //--
+    countdown.update(dt);
+    if (countdown.finished) {
+      // Prefer the timer callback, but this is better in some cases
+    }
+    //--https://docs.flame-engine.org/latest/flame/collision_detection.html
+    final ray = Ray2(origin: origin, direction: Vector2(1, 0));
+    result = collisionDetection.raycast(ray);
+    origin.y += velocity * dt;
+
+    if (origin.y > canvasSize.y) {
+      origin.y += resetPosition;
+    }
+  }
+
+  @override
+  void render(Canvas canvas) {
+    super.render(canvas);
+    textPaint.render(
+      canvas,
+      "Countdown: ${countdown.current.toString()}",
+      Vector2(10, 100),
+    );
+    //--
+    if (result != null && result!.isActive) {
+      final originOffset = origin.toOffset();
+      final intersectionPoint = result!.intersectionPoint!.toOffset();
+      if ((intersectionPoint.y - originOffset.y).abs() < 10) {
+        canvas.drawLine(originOffset, intersectionPoint, paint);
+      }
+
+      canvas.drawCircle(originOffset, 10, paint);
+    }
+  }
+}
+
+/// - [ComponentPool]
 class FlameAbcWorld extends World with TapCallbacks {
   @override
   Future<void> onLoad() async {
     add(Player(position: Vector2(0, 0)));
     //add(FpsComponent());
     add(FpsTextComponent(position: Vector2(0, -150)));
-    //add(ChildCounterComponent<SpriteAnimationComponent>(target: this));
+    add(
+      ChildCounterComponent<PositionComponent>(
+        target: this,
+        position: Vector2(200, -180),
+      ),
+    );
+    add(
+      ChildCounterComponent<Effect>(target: this, position: Vector2(200, -160)),
+    );
+    add(TimeTrackComponent());
 
     /*add(Square(Vector2.zero()));
     add(Square(Vector2(100, 100)));
     add(Square(Vector2(-100, -100)));*/
+
+    add(
+      ParticleSystemComponent(
+        particle: CircleParticle(
+          radius: 10,
+          paint: Paint()..color = Colors.red.withValues(alpha: .5),
+        ),
+      ),
+    );
   }
 
   /// [FlameGame.dispose]
@@ -72,17 +214,35 @@ class FlameAbcWorld extends World with TapCallbacks {
 
 class Player extends SpriteComponent with TapCallbacks {
   Player({super.position, super.anchor = Anchor.center})
-    : super(size: Vector2.all(20));
+    : super(size: Vector2.all(40));
 
   @override
   Future<void> onLoad() async {
     //packages/flutter3_abc/assets/images/player.png
     sprite = await Sprite.load('player.png', package: Assets.package);
+
+    add(ChildCounterComponent<Effect>(target: this));
+    final effect = GlowEffect(10.0, EffectController(duration: 3));
+    //add(effect);
   }
 
   @override
   void onTapUp(TapUpEvent event) {
-    size += Vector2.all(50);
+    if (isCtrlPressed) {
+      //size -= Vector2.all(50);
+      final effect = ScaleEffect.by(
+        Vector2.all(0.5),
+        EffectController(duration: 0.5),
+      );
+      add(effect);
+    } else {
+      //size += Vector2.all(50);
+      final effect = ScaleEffect.by(
+        Vector2.all(1.5),
+        EffectController(duration: 0.5),
+      );
+      add(effect);
+    }
   }
 
   /// 绘制
@@ -133,7 +293,7 @@ class Square extends RectangleComponent with TapCallbacks {
 
   @override
   void onTapDown(TapDownEvent event) {
-    debugger();
+    //debugger();
     removeFromParent();
     event.handled = true;
   }
