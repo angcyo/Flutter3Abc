@@ -21,6 +21,24 @@ class _WebviewAbcState extends State<WebviewAbc>
       //debugger();
       "lastUrlField".hivePut(value);
     },
+    onSubmitted: (value) {
+      loadWebviewUrl(value);
+    },
+  );
+
+  late TextFieldConfig uaFieldConfig = TextFieldConfig(
+    text: "lastUserAgent".hiveGet(
+      inAppWebViewSettings.applicationNameForUserAgent,
+    ),
+    hintText: "User Agent",
+    notifyDefaultTextChange: true,
+    onChanged: (value) {
+      //debugger();
+      "lastUserAgent".hivePut(value);
+    },
+    onSubmitted: (value) {
+      updateCustomUserAgent(value);
+    },
   );
 
   @override
@@ -53,50 +71,78 @@ class _WebviewAbcState extends State<WebviewAbc>
   @override
   WidgetList buildBodyList(BuildContext context) {
     //debugger();
+    final globalTheme = GlobalTheme.of(context);
     webConfigMixin.url = urlFieldConfig.text;
     return [
-      SingleInputWidget(config: urlFieldConfig).paddingAll(kH),
+      SingleInputWidget(
+        prefix: "Url: ".text(textColor: globalTheme.icoNormalColor),
+        config: urlFieldConfig,
+      ).paddingAll(kH),
+      SingleInputWidget(
+        prefix: "User Agent: ".text(textColor: globalTheme.icoNormalColor),
+        config: uaFieldConfig,
+      ).paddingAll(kH),
       [
         GradientButton.normal(() {
           loadWebviewUrl(urlFieldConfig.text);
         }, child: "Go".text()),
+        GradientButton.normal(() {
+          reloadWebview();
+        }, child: "Refresh".text()),
         GradientButton.normal(() async {
-          final html = await loadAssetString("web/test_web.html");
+          final html = await loadAssetString(
+            "web/test_web.html",
+            package: Assets.package,
+          );
           loadWebviewHtml(html);
         }, child: "test.html".text()),
         GradientButton.normal(() async {
           result = await evaluateJavascript(
-              "callJs(${nowTimestamp()}, {a:'a'}, [1,2,3])");
+            "callJs(${nowTimestamp()}, {a:'a'}, [1,2,3])",
+          );
           updateState();
         }, child: "callJs".text()),
         GradientButton.normal(() {
           isOffstage = true;
           buildContext?.maybePop();
         }, child: "close".text()),
-        GradientButton.normal(() {}, onContextTap: (context) {
-          const ProgressStateNotification(progress: -1).dispatch(context);
-        }, child: "-1".text()),
-        GradientButton.normal(() {}, onContextTap: (context) {
-          const ProgressStateNotification(progress: 0.5).dispatch(context);
-        }, child: "50".text()),
-        GradientButton.normal(() {}, onContextTap: (context) {
-          const ProgressStateNotification(progress: -1, error: "error")
-              .dispatch(context);
-        }, child: "e".text()),
+        GradientButton.normal(
+          () {},
+          onContextTap: (context) {
+            const ProgressStateNotification(progress: -1).dispatch(context);
+          },
+          child: "-1".text(),
+        ),
+        GradientButton.normal(
+          () {},
+          onContextTap: (context) {
+            const ProgressStateNotification(progress: 0.5).dispatch(context);
+          },
+          child: "50".text(),
+        ),
+        GradientButton.normal(
+          () {},
+          onContextTap: (context) {
+            const ProgressStateNotification(
+              progress: -1,
+              error: "error",
+            ).dispatch(context);
+          },
+          child: "e".text(),
+        ),
       ].flowLayout(
-        selfConstraints:
-            const LayoutBoxConstraints(widthType: ConstraintsType.matchParent),
+        selfConstraints: const LayoutBoxConstraints(
+          widthType: ConstraintsType.matchParent,
+        ),
         padding: const EdgeInsets.all(kH),
         childGap: kX,
       )!,
       if (result != null)
-        "${result.runtimeType}\n$result".text(
-          textAlign: TextAlign.left,
-        ),
+        "${result.runtimeType}\n$result".text(textAlign: TextAlign.left),
       buildInAppWebView(context, webConfigMixin)
-          /*.repaintBoundary()
+      /*.repaintBoundary()
           .animatedOpacity(opacity: 0.1)*/
-          .interceptPopResult(() async {
+      .interceptPopResult(() async {
         if (await onWebviewBackPress() == true) {
           isOffstage = true;
           updateState();
