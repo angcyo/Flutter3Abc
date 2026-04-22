@@ -55,11 +55,18 @@ class _WebviewAbcState extends State<WebviewAbc>
 
   @override
   void initState() {
+    updateCustomUserAgent(uaFieldConfig.text);
     addJavaScriptHandler("callFlutter", (args) {
       result = args;
       updateState();
       return "from flutter:${nowTimestamp()}";
     });
+    if (isWindows) {
+      InAppWebViewStateMixin.registerCustomSchemeEnvironment([
+        "angcyo",
+        "Laserabc",
+      ]);
+    }
     super.initState();
   }
 
@@ -76,10 +83,12 @@ class _WebviewAbcState extends State<WebviewAbc>
     return [
       SingleInputWidget(
         prefix: "Url: ".text(textColor: globalTheme.icoNormalColor),
+        keyboardType: .emailAddress,
         config: urlFieldConfig,
       ).paddingAll(kH),
       SingleInputWidget(
         prefix: "User Agent: ".text(textColor: globalTheme.icoNormalColor),
+        keyboardType: .emailAddress,
         config: uaFieldConfig,
       ).paddingAll(kH),
       [
@@ -130,6 +139,15 @@ class _WebviewAbcState extends State<WebviewAbc>
           },
           child: "e".text(),
         ),
+        GradientButton.normal(() {
+          urlFieldConfig.text = "https://www.baidu.com";
+          loadWebviewUrl(urlFieldConfig.text);
+        }, child: "->Baidu".text()),
+        GradientButton.normal(() {
+          urlFieldConfig.text =
+              "https://www.laserabc.com/train-web/?theme=dark&app=light";
+          loadWebviewUrl(urlFieldConfig.text);
+        }, child: "->test1".text()),
       ].flowLayout(
         selfConstraints: const LayoutBoxConstraints(
           widthType: ConstraintsType.matchParent,
@@ -139,6 +157,9 @@ class _WebviewAbcState extends State<WebviewAbc>
       )!,
       if (result != null)
         "${result.runtimeType}\n$result".text(textAlign: TextAlign.left),
+      _overrideUrlLive.buildFn(
+        () => _overrideUrlLive.value?.text(style: globalTheme.textDesStyle),
+      ),
       buildInAppWebView(context, webConfigMixin)
       /*.repaintBoundary()
           .animatedOpacity(opacity: 0.1)*/
@@ -150,5 +171,23 @@ class _WebviewAbcState extends State<WebviewAbc>
         }
       }).expanded(),
     ];
+  }
+
+  final _overrideUrlLive = $live<String?>();
+
+  @override
+  Future<NavigationActionPolicy?> onSelfShouldOverrideUrlLoading(
+    InAppWebViewController controller,
+    NavigationAction navigationAction,
+  ) async {
+    final url = navigationAction.request.url?.toString();
+    _overrideUrlLive << url;
+    if (url != null) {
+      final uri = url.toUri();
+      final host = uri?.host;
+      final path = uri?.path;
+      final query = uri?.query;
+    }
+    return super.onSelfShouldOverrideUrlLoading(controller, navigationAction);
   }
 }
