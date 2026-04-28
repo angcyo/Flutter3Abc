@@ -157,10 +157,6 @@ class _WebviewAbcState extends State<WebviewAbc>
           loadWebviewUrl(urlFieldConfig.text);
         }, child: "->examine-web".text()),
         GradientButton.normal(() {
-          urlFieldConfig.text = "http://192.168.1.175:5500/";
-          loadWebviewUrl(urlFieldConfig.text);
-        }, child: "->5500".text()),
-        GradientButton.normal(() {
           urlFieldConfig.text =
               "http://192.168.1.175:5500/?"
               "lang=zh-CN"
@@ -170,9 +166,18 @@ class _WebviewAbcState extends State<WebviewAbc>
           loadWebviewUrl(urlFieldConfig.text);
         }, child: "->t3".text()),
         GradientButton.normal(() {
-          urlFieldConfig.text = "http://192.168.31.77:5173/";
+          urlFieldConfig.text = "http://192.168.1.175:5500/";
+          loadWebviewUrl(urlFieldConfig.text);
+        }, child: "->5500".text()),
+        GradientButton.normal(() {
+          urlFieldConfig.text = "http://192.168.1.175:5173/";
           loadWebviewUrl(urlFieldConfig.text);
         }, child: "->5173".text()),
+        GradientButton.normal(() {
+          urlFieldConfig.text =
+              "http://192.168.1.175:5174/?host=https://dev.laserabc.com/api-light&token=eyJraWQiOiI5MDQ1YjgwYi05YmU0LTRiNTgtOTU2Zi1hZjAzYzk4ZDNkMzIiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJ1c2VybmFtZSIsImF1ZCI6Im9hdXRoLWNsaWVudC1pZCIsIm5iZiI6MTc3NzE5MTMzMCwic2hvcnRUb2tlbiI6IldaY3hFWjZmZHdPbVNkeUxWSHIrT25uZDU4ZEpkYVZSZUU3YjBGTXFhTmE2anhCNUdBQlRBR3RpN3JlTDAvMGhNR1IzOWlpQVVZd21uOEpGcHNvdit3PT0iLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjI5MDAxIiwiZXhwIjoxNzc5NzgzMzMwLCJpYXQiOjE3NzcxOTEzMzAsInVzZXIiOnsidXNlcklkIjoiMTcyMDk0N2ZmYjM5NDBmZjk1NjFkMGRjMzU2NzJhOGEiLCJhY2NvdW50SWQiOiI1NjlkZGU4YTZhNGE5MzQxNzY0OWVjNWY5YjdhNWFmMiIsInVzZXJuYW1lIjoidXNlcm5hbWUiLCJuYW1lIjoidXNlcm5hbWUiLCJjb2RlIjpudWxsLCJzZXgiOm51bGwsIm1vYmlsZSI6bnVsbCwiZW1haWwiOm51bGwsImNhdGVnb3J5IjoxLCJoZWFkSW1nVXJsIjpudWxsLCJzb3VyY2VPZlJlcXVlc3QiOiJBUFAiLCJsb2dpblRpbWUiOiIyMDI2LTA0LTI2IDE2OjE1OjMwIn0sImp0aSI6IjFmZWEyZGNkLTNmYjctNDY3ZS04ZGY0LWZiY2NlMzVkZmI3MiJ9.JbtcfNsGKxtXcBkW4fFaU1AyJRTIyW3emlTVVF-nSVSGMvG3a1nXEJ1-E4fzv4muJUneVW4SX5Vx85dBtx1RfUY3J7wsxKA1NpGXiIaB1_ynilutCZnCHQhsQRPPeidIEJtjvy9yyg3hz9HWn5HqcaYPvjVymEG64Io5u0FDQlyRezVvGngWwWIGnLtCKPpq_N42gwgZGaQecDp2h6352sfjCFZGvL8wCk_JsS5_4i9Scw5_JqBSw9h_PF4jqR1SENMJJAZknbah4iycCXulDVP-EMJ181pg-upid_jtJFsW0mzqpbIW0i5SzhIG9ClafWJQYTrngxyH6FbhjOpKZQ";
+          loadWebviewUrl(urlFieldConfig.text);
+        }, child: "->5174".text()),
       ].flowLayout(
         selfConstraints: const LayoutBoxConstraints(
           widthType: ConstraintsType.matchParent,
