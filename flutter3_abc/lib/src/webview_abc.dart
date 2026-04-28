@@ -216,10 +216,14 @@ class _WebviewAbcState extends State<WebviewAbc>
     final url = navigationAction.request.url?.toString();
     _overrideUrlLive << url;
     if (url != null) {
-      final uri = url.toUri();
-      final host = uri?.host;
-      final path = uri?.path;
-      final query = uri?.query;
+      assert(() {
+        final uri = url.toUri();
+        final host = uri?.host;
+        final path = uri?.path;
+        final query = uri?.query;
+        l.d("onSelfShouldOverrideUrlLoading->$url");
+        return true;
+      }());
     }
     return super.onSelfShouldOverrideUrlLoading(controller, navigationAction);
   }
