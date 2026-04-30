@@ -46,62 +46,74 @@ class _BluetoothAbcState extends State<BluetoothAbc>
     const size = kH;
     return [
       [
-        Bluetooth.isSupported().toWidget((context, value) {
-          if (value == true) {
-            return "支持蓝牙[${true.toDC()}]".text();
-          } else {
-            return "[$value]不支持蓝牙".text();
-          }
-        }).ink(() {}),
-        Permissions.hasBluetoothPermissions().toWidget((context, value) {
-          if (value == true) {
-            return "蓝牙权限[${true.toDC()}]".text();
-          } else {
-            return "蓝牙权限[$value]".text().ink(() {
-              context.showWidgetDialog(
-                MessageDialog(
-                    title: "注意",
-                    message: "即将请求蓝牙相关权限!",
-                    onConfirmTap: () {
-                      Permissions.requestBluetoothPermissions()
-                          .get((value, error) {
-                        updateState();
-                      });
-                    }),
-              );
-            });
-          }
-        }),
-        Permissions.hasBluetoothPermissions().toWidget((context, value) {
-          if (value == true) {
-            return [
-              GradientButton.normal(() {
-                if (blueDevice.scanStateStream.value == ScanState.scanning) {
-                  blueDevice.stopScanDevices("手动停止扫描");
-                } else {
-                  blueDevice.startScanDevices();
-                }
-              },
-                  child: (blueDevice.scanStateStream.value == ScanState.scanning
-                          ? "停止扫描"
-                          : "扫描")
-                      .text()),
-            ].wrap()!;
-          } else {
-            return empty;
-          }
-        }),
-      ]
+            Bluetooth.isSupported()
+                .toWidget((context, value) {
+                  if (value == true) {
+                    return "支持蓝牙[${true.toDC()}]".text();
+                  } else {
+                    return "[$value]不支持蓝牙".text();
+                  }
+                })
+                .ink(() {}),
+            Permissions.hasBluetoothPermissions().toWidget((context, value) {
+              if (value == true) {
+                return "蓝牙权限[${true.toDC()}]".text();
+              } else {
+                return "蓝牙权限[$value]".text().ink(() {
+                  context.showWidgetDialog(
+                    MessageDialog(
+                      title: "注意",
+                      message: "即将请求蓝牙相关权限!",
+                      onConfirmTap: () {
+                        Permissions.requestBluetoothPermissions().get((
+                          value,
+                          error,
+                        ) {
+                          updateState();
+                        });
+                        //blueDevice.startScanDevices();
+                      },
+                    ),
+                  );
+                });
+              }
+            }),
+            Permissions.hasBluetoothPermissions().toWidget((context, value) {
+              if (value == true) {
+                return [
+                  GradientButton.normal(
+                    () {
+                      if (blueDevice.scanStateStream.value ==
+                          ScanState.scanning) {
+                        blueDevice.stopScanDevices("手动停止扫描");
+                      } else {
+                        blueDevice.startScanDevices();
+                      }
+                    },
+                    child:
+                        (blueDevice.scanStateStream.value == ScanState.scanning
+                                ? "停止扫描"
+                                : "扫描")
+                            .text(),
+                  ),
+                ].wrap()!;
+              } else {
+                return empty;
+              }
+            }),
+          ]
           .wrap(
             spacing: size,
             runSpacing: size,
             crossAxisAlignment: WrapCrossAlignment.center,
           )!
           .paddingAll(kX),
-      SingleInputWidget(config: scanFilterServicesField)
-          .paddingSymmetric(horizontal: kX, vertical: kL),
-      SingleInputWidget(config: scanFilterKeywordsField)
-          .paddingSymmetric(horizontal: kX, vertical: kL),
+      SingleInputWidget(
+        config: scanFilterServicesField,
+      ).paddingSymmetric(horizontal: kX, vertical: kL),
+      SingleInputWidget(
+        config: scanFilterKeywordsField,
+      ).paddingSymmetric(horizontal: kX, vertical: kL),
       //已经连接上的设备和扫出来的设备
       for (final item
           in device.scanDeviceListStream.value
