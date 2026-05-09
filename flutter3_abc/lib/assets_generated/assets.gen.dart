@@ -11,6 +11,41 @@
 
 import 'package:flutter/widgets.dart';
 
+class $AssetsAudioGen {
+  const $AssetsAudioGen();
+
+  /// File path: assets/audio/test_tone.m4a
+  String get testToneM4a => 'packages/flutter3_abc/assets/audio/test_tone.m4a';
+
+  /// File path: assets/audio/test_tone.mp3
+  String get testToneMp3 => 'packages/flutter3_abc/assets/audio/test_tone.mp3';
+
+  /// File path: assets/audio/test_tone.wav
+  String get testToneWav => 'packages/flutter3_abc/assets/audio/test_tone.wav';
+
+  /// Directory path: packages/flutter3_abc/assets/audio
+  String get path => 'packages/flutter3_abc/assets/audio';
+
+  /// List of all assets
+  List<String> get values => [testToneM4a, testToneMp3, testToneWav];
+}
+
+class $AssetsFlameGen {
+  const $AssetsFlameGen();
+
+  /// File path: assets/flame/player.png
+  AssetGenImage get player => const AssetGenImage(
+    'assets/flame/player.png',
+    size: const Size(48.0, 48.0),
+  );
+
+  /// Directory path: packages/flutter3_abc/assets/flame
+  String get path => 'packages/flutter3_abc/assets/flame';
+
+  /// List of all assets
+  List<AssetGenImage> get values => [player];
+}
+
 class $AssetsPngGen {
   const $AssetsPngGen();
 
@@ -116,6 +151,9 @@ class $AssetsSvgGen {
   String get flipVertical =>
       'packages/flutter3_abc/assets/svg/flip_vertical.svg';
 
+  /// File path: assets/svg/fold.svg
+  String get fold => 'packages/flutter3_abc/assets/svg/fold.svg';
+
   /// File path: assets/svg/icon_layer.svg
   String get iconLayer => 'packages/flutter3_abc/assets/svg/icon_layer.svg';
 
@@ -161,6 +199,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/path_xor.svg
   String get pathXor => 'packages/flutter3_abc/assets/svg/path_xor.svg';
 
+  /// File path: assets/svg/unfold.svg
+  String get unfold => 'packages/flutter3_abc/assets/svg/unfold.svg';
+
   /// Directory path: packages/flutter3_abc/assets/svg
   String get path => 'packages/flutter3_abc/assets/svg';
 
@@ -186,6 +227,7 @@ class $AssetsSvgGen {
     averageWidth,
     flipHorizontal,
     flipVertical,
+    fold,
     iconLayer,
     moreTip,
     navArrowTip,
@@ -200,6 +242,7 @@ class $AssetsSvgGen {
     pathMerge,
     pathUnion,
     pathXor,
+    unfold,
   ];
 }
 
@@ -251,6 +294,8 @@ class Assets {
 
   static const String package = 'flutter3_abc';
 
+  static const $AssetsAudioGen audio = $AssetsAudioGen();
+  static const $AssetsFlameGen flame = $AssetsFlameGen();
   static const $AssetsPngGen png = $AssetsPngGen();
   static const $AssetsSvgGen svg = $AssetsSvgGen();
   static const $AssetsWebGen web = $AssetsWebGen();

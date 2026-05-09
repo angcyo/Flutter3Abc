@@ -82,8 +82,13 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
       flexibleSpace: linearGradientWidget(
         listOf(themeData.primaryColor, themeData.primaryColorDark),
       ),
+      actions: buildAppBarActions(context),
     );
   }
+
+  /// 构建标题栏上的动作按钮
+  @property
+  List<Widget>? buildAppBarActions(BuildContext context) => null;
 
   /// 构建内容, 如果[buildBodyList]返回空, 则使用此返回值;
   /// ```
@@ -146,8 +151,8 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
 
 mixin AbcWidgetMixin {
   ScrollPhysics scrollPhysics = const AlwaysScrollableScrollPhysics(
-      /*parent: BouncingScrollPhysics(),*/
-      );
+    /*parent: BouncingScrollPhysics(),*/
+  );
 
   ScrollController listViewController = ScrollController();
   ScrollController customScrollController = ScrollController();
@@ -179,14 +184,19 @@ mixin AbcWidgetMixin {
     final result = <Widget>[];
     for (var i = 0; i < 20; i++) {
       const height = 30;
-      result.add(SizedBox(
-        height: height * (i / 2 + 1.0),
-        child: Center(
-          child: Text('Item $i'),
-        ).container(
+      result.add(
+        SizedBox(
+          height: height * (i / 2 + 1.0),
+          child: Center(child: Text('Item $i')).container(
             color: Color.fromARGB(
-                255, height * i, height * i * 2, height * i * 3)),
-      ));
+              255,
+              height * i,
+              height * i * 2,
+              height * i * 3,
+            ),
+          ),
+        ),
+      );
     }
     return result;
   }
