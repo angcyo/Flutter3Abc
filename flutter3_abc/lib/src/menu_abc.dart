@@ -245,6 +245,32 @@ class _MenuAbcState extends State<MenuAbc> with BaseAbcStateMixin {
           child: "SplitButton-items".text(),*/
         ),
       ].flowLayout(padding: kXInsets, childGap: kX)!,
+      "Overlay↓".text(textAlign: TextAlign.center),
+      [
+        OverlayTriggerWidget(
+          hoverTrigger: false,
+          targetAnchor: .topCenter,
+          followerAnchor: .bottomCenter,
+          content: buildMenuWidget()
+              .column()
+              ?.size(width: 300, height: 100)
+              .bounds()
+              .align(.bottomCenter),
+          child: "OverlayTriggerWidget".text().insets(h: kX),
+        ),
+        OverlayTriggerWidget(
+          hoverTrigger: true,
+          targetAnchor: .topCenter,
+          followerAnchor: .bottomCenter,
+          content: buildMenuWidget()
+              .column()
+              ?.size(width: 300/*, height: 100*/)
+              .bounds()
+              .align(.bottomCenter),
+          child: "OverlayTriggerWidget(hover)".text().insets(h: kX),
+        ),
+      ].flowLayout(padding: kXInsets, childGap: kX)!,
+      Empty.height(200),
     ];
   }
 
