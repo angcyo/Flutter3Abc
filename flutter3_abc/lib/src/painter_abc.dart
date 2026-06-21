@@ -24,10 +24,10 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
         Paint paint = Paint()
           ..color = Colors.red
           ..strokeWidth = 10
-          ..shader = sweepGradientShader(
-            [Colors.blueAccent, Colors.redAccent],
-            center: center,
-          )
+          ..shader = sweepGradientShader([
+            Colors.blueAccent,
+            Colors.redAccent,
+          ], center: center)
           ..style = PaintingStyle.fill;
         canvas.drawCircle(center, 30, paint);
 
@@ -36,11 +36,10 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
         paint = Paint()
           ..color = Colors.red
           ..strokeWidth = 10
-          ..shader = radialGradientShader(
-            30,
-            [Colors.blueAccent, Colors.redAccent],
-            center: center,
-          )
+          ..shader = radialGradientShader(30, [
+            Colors.blueAccent,
+            Colors.redAccent,
+          ], center: center)
           ..style = PaintingStyle.fill;
         canvas.drawCircle(center, 30, paint);
 
@@ -66,7 +65,8 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
           Offset(pointWidth * 12, size.height - pointWidth),
         ];
         paint
-          ..style = PaintingStyle.fill //style属性无效
+          ..style = PaintingStyle
+              .fill //style属性无效
           ..strokeCap = StrokeCap.round
           ..strokeWidth = pointWidth;
         canvas.translate(0, -100);
@@ -76,7 +76,8 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
         canvas.translate(0, 30);
         canvas.drawPoints(PointMode.polygon, points, paint);
       }).constrainedBox(
-          BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth)),
+        BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth),
+      ),
       paintWidget((canvas, size) {
         //中点
         final center = Offset(size.width / 2, size.height / 2);
@@ -109,15 +110,19 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
           canvas.drawCircle(offset, 2, paint);
           canvas.withTranslate(center.dx, center.dy, () {
             canvas.withRotate(i, () {
-              canvas.drawText('$i° ${angle.toDigits()}',
-                  offset: const Offset(radius, 0), getOffset: (painter) {
-                return Offset(10, painter.height / -2);
-              });
+              canvas.drawText(
+                '$i° ${angle.toDigits()}',
+                offset: const Offset(radius, 0),
+                getOffset: (painter) {
+                  return Offset(10, painter.height / -2);
+                },
+              );
             });
           });
         }
       }).constrainedBox(
-          BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth)),
+        BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth),
+      ),
       paintWidget((canvas, size) {
         //中点
         final center = Offset(size.width / 2, size.height / 2);
@@ -158,55 +163,71 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
           canvas.drawCircle(offset, 2, paint);
           canvas.withTranslate(center.dx, center.dy, () {
             canvas.withRotateRadians(angle, () {
-              canvas.drawText('${angle.toDegrees}° ${angle.toDigits()}',
-                  offset: const Offset(radius, 0), getOffset: (painter) {
-                return Offset(10, painter.height / -2);
-              });
+              canvas.drawText(
+                '${angle.toDegrees}° ${angle.toDigits()}',
+                offset: const Offset(radius, 0),
+                getOffset: (painter) {
+                  return Offset(10, painter.height / -2);
+                },
+              );
             });
           });
         }
       }).constrainedBox(
-          BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth)),
+        BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth),
+      ),
       paintWidget((canvas, size) {
         final circlePath = Path()
           ..addOval(
-              Rect.fromCircle(center: const Offset(100, 100), radius: 100));
+            Rect.fromCircle(center: const Offset(100, 100), radius: 100),
+          );
         final arcPath = Path()
           ..addArc(
-              const Rect.fromLTWH(0, 0, 200, 250), 0.toRadians, 360.toRadians);
+            const Rect.fromLTWH(0, 0, 200, 250),
+            0.toRadians,
+            360.toRadians,
+          );
         drawPathTest(arcPath, canvas, size);
       }).constrainedBox(
-          BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth)),
+        BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth),
+      ),
       paintWidget((canvas, size) {
         final arcPath = Path()
           ..addArc(
-              const Rect.fromLTWH(0, 0, 200, 250), 0.toRadians, -360.toRadians);
+            const Rect.fromLTWH(0, 0, 200, 250),
+            0.toRadians,
+            -360.toRadians,
+          );
         drawPathTest(arcPath, canvas, size);
       }).constrainedBox(
-          BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth)),
+        BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth),
+      ),
       paintWidget((canvas, size) {
         //--
         canvas.withTranslate(100, 100, () {
           final path = Path()..addRect(const Rect.fromLTWH(0, 0, 10, 10));
           canvas.drawPath(
-              path,
-              Paint()
-                ..color = Colors.red
-                ..style = PaintingStyle.stroke);
+            path,
+            Paint()
+              ..color = Colors.red
+              ..style = PaintingStyle.stroke,
+          );
 
           final matrix1 = Matrix4.identity()..skewBy(kx: 45.toRadians);
           canvas.drawPath(
-              path.transformPath(matrix1),
-              Paint()
-                ..color = Colors.amber
-                ..style = PaintingStyle.stroke);
+            path.transformPath(matrix1),
+            Paint()
+              ..color = Colors.amber
+              ..style = PaintingStyle.stroke,
+          );
 
           final matrix2 = Matrix4.identity()..skewBy(ky: -45.toRadians);
           canvas.drawPath(
-              path.transformPath(matrix2),
-              Paint()
-                ..color = Colors.blue
-                ..style = PaintingStyle.stroke);
+            path.transformPath(matrix2),
+            Paint()
+              ..color = Colors.blue
+              ..style = PaintingStyle.stroke,
+          );
         });
         //--
         /*const initialRect = Rect.fromLTWH(0, 0, 80, 50);
@@ -221,30 +242,31 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
           ..width = 80
           ..height = 50;
         canvas.drawRect(
-            initialProperty.paintBounds,
-            Paint()
-              ..style = PaintingStyle.stroke
-              ..color = Colors.purpleAccent);
+          initialProperty.paintBounds,
+          Paint()
+            ..style = PaintingStyle.stroke
+            ..color = Colors.purpleAccent,
+        );
         //-
         initialProperty.translateTo(
           const Offset(100, 100),
           anchorAlignment: Alignment.center,
         );
-        initialProperty.rotateTo(
-          angle: 90,
-          anchorAlignment: Alignment.center,
-        );
+        initialProperty.rotateTo(angle: 90, anchorAlignment: Alignment.center);
         canvas.drawRect(
-            initialProperty.paintBounds,
-            Paint()
-              ..style = PaintingStyle.stroke
-              ..color = Colors.purpleAccent);
+          initialProperty.paintBounds,
+          Paint()
+            ..style = PaintingStyle.stroke
+            ..color = Colors.purpleAccent,
+        );
         canvas.withMatrix(initialProperty.operateMatrix, () {
-          BaseTextPainter.createTextPainter(text: "angcyo")
-              .paint(canvas, Offset.zero);
+          BaseTextPainter.createTextPainter(
+            text: "angcyo",
+          ).paint(canvas, Offset.zero);
         });
       }).constrainedBox(
-          BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth)),
+        BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth),
+      ),
       paintWidget((canvas, size) {
         const rect = Rect.fromLTWH(0, 0, 50, 50);
         drawCrossLine(canvas, rect.rb, Colors.blueAccent);
@@ -253,34 +275,39 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
           ..translate(50.0, 50)
           ..rotateBy(45.hd, anchor: const Offset(25, 25));
         canvas.drawPath(
-            element.transformPath(elementMatrix),
-            Paint()
-              ..color = Colors.purpleAccent
-              ..style = PaintingStyle.stroke);
+          element.transformPath(elementMatrix),
+          Paint()
+            ..color = Colors.purpleAccent
+            ..style = PaintingStyle.stroke,
+        );
         final mapRect = elementMatrix.mapRect(rect);
         canvas.drawRect(
-            mapRect,
-            Paint()
-              ..color = Colors.redAccent
-              ..style = PaintingStyle.stroke);
+          mapRect,
+          Paint()
+            ..color = Colors.redAccent
+            ..style = PaintingStyle.stroke,
+        );
         //--
         final boundsRect = Rect.fromLTRB(0, 0, mapRect.right, mapRect.bottom);
         final operateMatrix = Matrix4.identity()..scaleBy(sx: 1, sy: 3);
         canvas.drawRect(
-            operateMatrix.mapRect(boundsRect),
-            Paint()
-              ..color = Colors.blueAccent
-              ..style = PaintingStyle.stroke);
+          operateMatrix.mapRect(boundsRect),
+          Paint()
+            ..color = Colors.blueAccent
+            ..style = PaintingStyle.stroke,
+        );
         canvas.drawPath(
-            element.transformPath(elementMatrix.postConcatIt(operateMatrix)),
-            Paint()
-              ..color = Colors.purpleAccent
-              ..style = PaintingStyle.stroke);
+          element.transformPath(elementMatrix.postConcatIt(operateMatrix)),
+          Paint()
+            ..color = Colors.purpleAccent
+            ..style = PaintingStyle.stroke,
+        );
         canvas.drawRect(
-            (elementMatrix.postConcatIt(operateMatrix)).mapRect(rect),
-            Paint()
-              ..color = Colors.redAccent
-              ..style = PaintingStyle.stroke);
+          (elementMatrix.postConcatIt(operateMatrix)).mapRect(rect),
+          Paint()
+            ..color = Colors.redAccent
+            ..style = PaintingStyle.stroke,
+        );
         /*drawCrossLine(
             canvas,
             elementMatrix.postConcatIt(operateMatrix).mapPoint(rect.center),
@@ -302,7 +329,8 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
 
         //debugger();
       }).constrainedBox(
-          BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth)),
+        BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth),
+      ),
       paintWidget((canvas, size) {
         canvas.withTranslate(100, 100, () {
           const rect = Rect.fromLTWH(0, 0, 50, 50);
@@ -313,18 +341,21 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
             ..postScale(sx: 1.5)
             ..postRotate(45.hd);
           canvas.drawPath(
-              path.transformPath(matrix),
-              Paint()
-                ..color = Colors.red
-                ..style = PaintingStyle.stroke);
+            path.transformPath(matrix),
+            Paint()
+              ..color = Colors.red
+              ..style = PaintingStyle.stroke,
+          );
           canvas.drawRect(
-              matrix.mapRect(rect),
-              Paint()
-                ..color = Colors.blue
-                ..style = PaintingStyle.stroke);
+            matrix.mapRect(rect),
+            Paint()
+              ..color = Colors.blue
+              ..style = PaintingStyle.stroke,
+          );
         });
       }).constrainedBox(
-          BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth)),
+        BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth),
+      ),
       paintWidget((canvas, size) {
         //canvas.drawColor(Colors.black12, BlendMode.srcOver);
         canvas.drawRect(
@@ -378,7 +409,7 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
             ..text = text.wrapBidi()
             ..isItalic = false
             ..fontSize = 20
-            ..curvature = curvature
+            ..curveRadius = curvature * 1000
             ..textAlign = TextAlign.left
             ..crossTextAlign = TextAlign.center
             ..orientation = kHorizontal
@@ -386,12 +417,13 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
             ..initPainter()
             ..painterText(canvas, Offset.zero);
           canvas.drawCircle(
-              textPainter.curveCenter,
-              textPainter.curveRadius,
-              Paint()
-                ..style = PaintingStyle.stroke
-                ..color = Colors.red);
-          drawCrossLine(canvas, textPainter.curveCenter, Colors.red);
+            textPainter.refCurveCenter,
+            textPainter.curveRadius,
+            Paint()
+              ..style = PaintingStyle.stroke
+              ..color = Colors.red,
+          );
+          drawCrossLine(canvas, textPainter.refCurveCenter, Colors.red);
         });
         canvas.withTranslate(200, 260, () {
           final textPainter = SingleCurveCharTextPainter()
@@ -399,7 +431,7 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
             ..text = text
             ..isItalic = false
             ..fontSize = 20
-            ..curvature = curvature.inverted
+            ..curveRadius = curvature.inverted * 1000
             ..textAlign = TextAlign.left
             ..crossTextAlign = TextAlign.center
             ..orientation = kHorizontal
@@ -407,15 +439,17 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
             ..initPainter()
             ..painterText(canvas, Offset.zero);
           canvas.drawCircle(
-              textPainter.curveCenter,
-              textPainter.curveRadius,
-              Paint()
-                ..style = PaintingStyle.stroke
-                ..color = Colors.red);
-          drawCrossLine(canvas, textPainter.curveCenter, Colors.red);
+            textPainter.refCurveCenter,
+            textPainter.curveRadius,
+            Paint()
+              ..style = PaintingStyle.stroke
+              ..color = Colors.red,
+          );
+          drawCrossLine(canvas, textPainter.refCurveCenter, Colors.red);
         });
       }).constrainedBox(
-          BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth)),
+        BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth),
+      ),
       paintWidget((canvas, size) {
         const rect = Rect.fromLTWH(0, 0, 50, 50);
         const offset = Offset(100, 100);
@@ -425,31 +459,38 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
         final rotate = Matrix4.identity()..rotateZ(30.hd);
         final Matrix4 operateMatrix = translate * rotate * scale;
         canvas.drawRect(
-            rect + offset,
-            Paint()
-              ..style = PaintingStyle.stroke
-              ..color = Colors.purpleAccent);
+          rect + offset,
+          Paint()
+            ..style = PaintingStyle.stroke
+            ..color = Colors.purpleAccent,
+        );
         canvas.withMatrix(
-            offset.translateMatrix * operateMatrix.keepAnchor(rect.centerRight),
-            () {
-          canvas.drawRect(
+          offset.translateMatrix * operateMatrix.keepAnchor(rect.centerRight),
+          () {
+            canvas.drawRect(
               rect,
               Paint()
                 ..style = PaintingStyle.stroke
-                ..color = Colors.redAccent);
-        });
+                ..color = Colors.redAccent,
+            );
+          },
+        );
 
         //---
         final rect2 = rect + offset;
-        final afterRect2 = rect2.applyMatrix(scale,
-            anchor: Offset(rect2.width / 2, rect2.height));
+        final afterRect2 = rect2.applyMatrix(
+          scale,
+          anchor: Offset(rect2.width / 2, rect2.height),
+        );
         canvas.drawRect(
-            afterRect2,
-            Paint()
-              ..style = PaintingStyle.stroke
-              ..color = Colors.purpleAccent);
+          afterRect2,
+          Paint()
+            ..style = PaintingStyle.stroke
+            ..color = Colors.purpleAccent,
+        );
       }).constrainedBox(
-          BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth)),
+        BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth),
+      ),
       paintWidget((canvas, size) {
         final circlePath = Path()
           ..addOval(const Rect.fromLTWH(100, 100, 100, 100));
@@ -460,10 +501,11 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
 
         for (final path in cutPathList) {
           canvas.drawPath(
-              path,
-              Paint()
-                ..style = PaintingStyle.stroke
-                ..color = Colors.purpleAccent);
+            path,
+            Paint()
+              ..style = PaintingStyle.stroke
+              ..color = Colors.purpleAccent,
+          );
         }
         /*canvas.drawPath(
             circlePath,
@@ -471,7 +513,8 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
               ..style = PaintingStyle.stroke
               ..color = Colors.purpleAccent);*/
       }).constrainedBox(
-          BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth)),
+        BoxConstraints(minWidth: double.maxFinite, maxHeight: screenWidth),
+      ),
     ];
   }
 
@@ -486,23 +529,34 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
     canvas.withTranslate(100, 100, () {
       canvas.drawPath(drawPath, paint);
 
-      drawPath.eachPathMetrics(
-          (posIndex, ratio, contourIndex, position, angle, isClosed) {
+      drawPath.eachPathMetrics((
+        posIndex,
+        ratio,
+        contourIndex,
+        position,
+        angle,
+        isClosed,
+      ) {
         canvas.withRotateRadians(angle, () {
           final p = position + const Offset(20, 0);
           canvas.drawLine(position, p, paint);
           //绘制一个向右的三角形
           canvas.drawPath(
-              Path()
-                ..moveTo(p.dx, p.dy - 5)
-                ..lineTo(p.dx + 10, p.dy)
-                ..lineTo(p.dx, p.dy + 5)
-                ..close(),
-              paint);
-          canvas.drawText("${angle.toDegrees.toDigits()}°" /*angle.toDigits()*/,
-              offset: p, getOffset: (painter) {
-            return Offset(10, painter.height / -2);
-          }, fontSize: 8);
+            Path()
+              ..moveTo(p.dx, p.dy - 5)
+              ..lineTo(p.dx + 10, p.dy)
+              ..lineTo(p.dx, p.dy + 5)
+              ..close(),
+            paint,
+          );
+          canvas.drawText(
+            "${angle.toDegrees.toDigits()}°" /*angle.toDigits()*/,
+            offset: p,
+            getOffset: (painter) {
+              return Offset(10, painter.height / -2);
+            },
+            fontSize: 8,
+          );
         }, anchor: position);
       }, 30.0);
     });
