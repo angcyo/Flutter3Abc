@@ -249,14 +249,13 @@ class _MenuAbcState extends State<MenuAbc> with BaseAbcStateMixin {
       [
         OverlayTriggerWidget(
           hoverTrigger: false,
-          targetAnchor: .topCenter,
-          followerAnchor: .bottomCenter,
+          targetAnchor: .bottomCenter,
+          followerAnchor: .topCenter,
           content: buildMenuWidget()
               .column()
-              ?.size(width: 300, height: 100)
-              .bounds()
-              .align(.bottomCenter),
-          child: "OverlayTriggerWidget".text().insets(h: kX),
+              ?.size(width: 200 /*, height: 100*/)
+              .bounds(),
+          child: "OverlayTriggerWidget".text().insets(all: kX),
         ),
         OverlayTriggerWidget(
           hoverTrigger: true,
@@ -264,10 +263,19 @@ class _MenuAbcState extends State<MenuAbc> with BaseAbcStateMixin {
           followerAnchor: .bottomCenter,
           content: buildMenuWidget()
               .column()
-              ?.size(width: 300/*, height: 100*/)
-              .bounds()
-              .align(.bottomCenter),
-          child: "OverlayTriggerWidget(hover)".text().insets(h: kX),
+              ?.size(width: 200 /*, height: 100*/)
+              .bounds(),
+          child: "OverlayTriggerWidget(hover)".text().insets(all: kX),
+        ),
+        OverlayTriggerWidget(
+          hoverTrigger: true,
+          targetAnchor: .centerRight,
+          followerAnchor: .centerLeft,
+          content: buildMenuWidget()
+              .column()
+              ?.size(width: 200 /*, height: 100*/)
+              .bounds(),
+          child: "OverlayTriggerWidget(hover)".text().insets(all: kX),
         ),
       ].flowLayout(padding: kXInsets, childGap: kX)!,
       Empty.height(200),
