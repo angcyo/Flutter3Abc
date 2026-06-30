@@ -16,17 +16,20 @@ class _ShelfAbcState extends State<ShelfAbc> with BaseAbcStateMixin {
     ..get("/", (shelf.Request request) async {
       //debugger();
       //return responseOk("Hello World!");
-      return shelf
-          .responseOkHtml(await loadAssetString(Assets.web.receiveFile));
+      return shelf.responseOkHtml(
+        await loadAssetString(Assets.web.receiveFile),
+      );
     })
     ..get("/favicon.ico", (shelf.Request request) async {
       final logo = await loadAssetBytes(Assets.png.flutter.keyName);
       return shelf.responseOkFile(fileStream: logo.stream);
     })
-    ..upload(onSaveFile: (filePath) {
-      _uploadFilePath = filePath;
-      updateState();
-    });
+    ..upload(
+      onSaveFileAction: (filePath) {
+        _uploadFilePath = filePath;
+        updateState();
+      },
+    );
 
   String? _uploadFilePath;
 
@@ -104,33 +107,41 @@ class _ShelfAbcState extends State<ShelfAbc> with BaseAbcStateMixin {
       if (!isNil(_shelf.address))
         [
           "服务地址:".text(),
-          _shelf.address?.text(textColor: Colors.blue).ink(() {
-            _shelf.address?.openUrl();
-          }).paddingSymmetric(vertical: kX),
           _shelf.address
-              ?.toQrCodeImage()
-              .toWidget((context, image) => image!.toImageWidget()),
+              ?.text(textColor: Colors.blue)
+              .ink(() {
+                _shelf.address?.openUrl();
+              })
+              .paddingSymmetric(vertical: kX),
+          _shelf.address?.toQrCodeImage().toWidget(
+            (context, image) => image!.toImageWidget(),
+          ),
         ].column(crossAxisAlignment: CrossAxisAlignment.start)!.paddingSym(),
       if (!isNil(_debugShelf.address))
         [
           "Debug服务地址:".text(),
-          _debugShelf.address!.text(textColor: Colors.blue).ink(() {
-            _debugShelf.address!.openUrl();
-          }).paddingSymmetric(vertical: kX),
           _debugShelf.address!
-              .toQrCodeImage()
-              .toWidget((context, image) => image!.toImageWidget()),
+              .text(textColor: Colors.blue)
+              .ink(() {
+                _debugShelf.address!.openUrl();
+              })
+              .paddingSymmetric(vertical: kX),
+          _debugShelf.address!.toQrCodeImage().toWidget(
+            (context, image) => image!.toImageWidget(),
+          ),
         ].column(crossAxisAlignment: CrossAxisAlignment.start)!.paddingSym(),
       if (!isNil(
-          shelf.DebugLogWebSocketServer.debugLogServerAddressStream.value))
+        shelf.DebugLogWebSocketServer.debugLogServerAddressStream.value,
+      ))
         [
           "默认Debug服务地址:".text(),
           shelf.DebugLogWebSocketServer.debugLogServerAddressStream.value!
               .text(textColor: Colors.blue)
               .ink(() {
-            shelf.DebugLogWebSocketServer.debugLogServerAddressStream.value!
-                .openUrl();
-          }).paddingSymmetric(vertical: kX),
+                shelf.DebugLogWebSocketServer.debugLogServerAddressStream.value!
+                    .openUrl();
+              })
+              .paddingSymmetric(vertical: kX),
           shelf.DebugLogWebSocketServer.debugLogServerAddressStream.value!
               .toQrCodeImage()
               .toWidget((context, image) => image!.toImageWidget()),
