@@ -47,7 +47,7 @@ class _FittedShapeAbcState extends State<FittedShapeAbc>
     super.initState();
     graffitiDelegate.addGraffitiListener(graffitiListener);
     graffitiDelegate.graffitiEventManager.updatePointEventHandler(
-      GraffitiFountainShapePenHandler(),
+      GraffitiFountainShapePenHandler()..checkLongPress = true,
     );
     graffitiDelegate.graffitiElementManager.addAfterElement(_testPainter);
     /*_testPainter.path = Path() */ /*..addCircle(Offset(100, 100), 100)*/ /*;*/
