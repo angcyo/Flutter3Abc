@@ -40,7 +40,7 @@ class _FittedShapeAbcState extends State<FittedShapeAbc>
   late final _testPainter = GraffitiFountainPenPainter()
     ..tag = "TestPainter"
     ..paint.color = Colors.redAccent
-    ..path = Path();
+    ..pointPath = Path();
 
   @override
   void initState() {
@@ -50,7 +50,7 @@ class _FittedShapeAbcState extends State<FittedShapeAbc>
       GraffitiFountainShapePenHandler()..checkLongPress = true,
     );
     graffitiDelegate.graffitiElementManager.addAfterElement(_testPainter);
-    /*_testPainter.path = Path() */ /*..addCircle(Offset(100, 100), 100)*/ /*;*/
+    /*_testPainter.pointPath = Path() */ /*..addCircle(Offset(100, 100), 100)*/ /*;*/
   }
 
   late final _lineFieldConfig = TextFieldConfig(
@@ -134,7 +134,7 @@ class _FittedShapeAbcState extends State<FittedShapeAbc>
             [
               GradientButton.min(
                 onTap: () {
-                  _testPainter.path = null;
+                  _testPainter.pointPath = null;
                   graffitiDelegate.clearElements();
                 },
                 child: "清屏".text(),
@@ -164,7 +164,7 @@ class _FittedShapeAbcState extends State<FittedShapeAbc>
 
   void _resetShapeFitted() {
     final path = Path();
-    _testPainter.path = path;
+    _testPainter.pointPath = path;
     final linePoint = _lineFieldConfig.text
         .split(",")
         .filterNullOrEmpty<String>();
