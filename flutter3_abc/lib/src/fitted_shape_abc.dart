@@ -58,67 +58,67 @@ class _FittedShapeAbcState extends State<FittedShapeAbc>
     onChanged: (text) {
       _resetShapeFitted();
     },
-  );
+  ).hive("_fitted_shape_line");
   late final _circleFieldConfig = TextFieldConfig(
     labelText: "圆: cx,cy,r",
     onChanged: (text) {
       _resetShapeFitted();
     },
-  );
+  ).hive("_fitted_shape_circle");
   late final _rectangleFieldConfig = TextFieldConfig(
     labelText: "矩形: min_x,min_y,max_x,max_y",
     onChanged: (text) {
       _resetShapeFitted();
     },
-  );
+  ).hive("_fitted_shape_rect");
   late final _rectangleRotatedFieldConfig = TextFieldConfig(
     labelText: "旋转矩形: obb(4个点,8个值)",
     onChanged: (text) {
       _resetShapeFitted();
     },
-  );
+  ).hive("_fitted_shape_obb");
   late final _ellipseFieldConfig = TextFieldConfig(
     labelText: "椭圆: cx,cy,a,b,angle",
     onChanged: (text) {
       _resetShapeFitted();
     },
-  );
+  ).hive("_fitted_shape_ellipse");
   late final _vArrowFieldConfig = TextFieldConfig(
     labelText: "v箭头: tx,ty,lx,ly,rx,ry",
     onChanged: (text) {
       _resetShapeFitted();
     },
-  );
+  ).hive("_fitted_shape_vArrow");
   late final _triangleFieldConfig = TextFieldConfig(
     labelText: "三角形: p1,p2,p3",
     onChanged: (text) {
       _resetShapeFitted();
     },
-  );
+  ).hive("_fitted_shape_triangle");
   late final _pentagonFieldConfig = TextFieldConfig(
     labelText: "五边形: cx,cy,r,angle,p...",
     onChanged: (text) {
       _resetShapeFitted();
     },
-  );
+  ).hive("_fitted_shape_pentagon");
   late final _starFieldConfig = TextFieldConfig(
     labelText: "五角星: cx,cy,or,ir,angle",
     onChanged: (text) {
       _resetShapeFitted();
     },
-  );
+  ).hive("_fitted_shape_star");
   late final _heartFieldConfig = TextFieldConfig(
     labelText: "心形: cx,cy,w,h",
     onChanged: (text) {
       _resetShapeFitted();
     },
-  );
+  ).hive("_fitted_shape_heart");
   late final _polygonFieldConfig = TextFieldConfig(
     labelText: "多边形: x,y,x,y,x,y",
     onChanged: (text) {
       _resetShapeFitted();
     },
-  );
+  ).hive("_fitted_shape_polygon");
 
   @override
   Widget buildAbc(BuildContext context) {
@@ -129,7 +129,7 @@ class _FittedShapeAbcState extends State<FittedShapeAbc>
                 .map((e) => "${e.dx},${e.dy}")
                 .join('\n')
                 .text(selectable: true)
-                .constrainedMax(maxHeight: 400)
+                .constrainedMax(maxHeight: 200)
                 .matchParentWidth(),
             [
               GradientButton.min(
