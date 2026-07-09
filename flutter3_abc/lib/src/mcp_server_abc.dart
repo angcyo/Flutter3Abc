@@ -36,7 +36,7 @@ class _MCPServerAbcState extends State<MCPServerAbc>
     final globalTheme = GlobalTheme.of(context);
     return [
       buildLogMessageListWidget(context, globalTheme).expanded(),
-      super.buildAbc(context).card().animatedContainer(width: $ecwBp()),
+      super.buildAbc(context).card().animatedContainer(width: $bpECW()),
     ].row()!;
   }
 

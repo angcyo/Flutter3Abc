@@ -158,7 +158,7 @@ class _FittedShapeAbcState extends State<FittedShapeAbc>
           .insets(all: 10)
           .card()
           .insets(all: 4)
-          .size(width: $wXlBp()),
+          .size(width: $bpWXl()),
     ].row()!;
   }
 

@@ -43,7 +43,7 @@ class _ProcessAbcState extends State<ProcessAbc>
     final globalTheme = GlobalTheme.of(context);
     return [
       buildLogMessageListWidget(context, globalTheme).expanded(),
-      buildAbc(context).card().animatedContainer(width: $ecwBp()),
+      buildAbc(context).card().animatedContainer(width: $bpECW()),
     ].row()!;
   }
 
