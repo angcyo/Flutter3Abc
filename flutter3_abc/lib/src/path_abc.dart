@@ -26,20 +26,20 @@ class _PathAbcState extends State<PathAbc> with AbsScrollPage {
     return [
       PathWidget(
         path: p1,
-        shader: sweepGradientShader(
-          [Colors.blueAccent, Colors.redAccent],
-          rect: p1.getBounds(),
-        ),
+        shader: sweepGradientShader([
+          Colors.blueAccent,
+          Colors.redAccent,
+        ], rect: p1!.getBounds()),
       ).bounds(),
       HttpDeviceXyzControlWidget().bounds(),
       //--
       Divider(),
       PathWidget(
         path: p2,
-        shader: linearGradientShader(
-          [Colors.blueAccent, Colors.redAccent],
-          rect: p2.getBounds(),
-        ),
+        shader: linearGradientShader([
+          Colors.blueAccent,
+          Colors.redAccent,
+        ], rect: p2.getBounds()),
       ).bounds(),
       if (!isNil(svgPath)) svgPath!.text(),
       [
@@ -47,10 +47,17 @@ class _PathAbcState extends State<PathAbc> with AbsScrollPage {
           child: "each path".text(),
           onTap: () {
             svgPath = stringBuilder((b) {
-              p2.eachPathMetrics(
-                  (posIndex, ratio, contourIndex, position, angle, isClose) {
+              p2.eachPathMetrics((
+                posIndex,
+                ratio,
+                contourIndex,
+                position,
+                angle,
+                isClose,
+              ) {
                 b.append(
-                    "[$contourIndex/$posIndex] position:${position.log}, angle:$angle, isClose:$isClose $ratio\n");
+                  "[$contourIndex/$posIndex] position:${position.log}, angle:$angle, isClose:$isClose $ratio\n",
+                );
               }, 1 /*kPathAcceptableError*/);
             });
             updateState();
@@ -60,10 +67,17 @@ class _PathAbcState extends State<PathAbc> with AbsScrollPage {
           child: "each path(async)".text(),
           onTap: () async {
             StringBuffer buffer = StringBuffer();
-            await p2.eachPathMetricsAsync(
-                (posIndex, ratio, contourIndex, position, angle, isClose) {
+            await p2.eachPathMetricsAsync((
+              posIndex,
+              ratio,
+              contourIndex,
+              position,
+              angle,
+              isClose,
+            ) {
               buffer.write(
-                  "[$contourIndex/$posIndex] position:${position.log}, angle:$angle, isClose:$isClose $ratio\n");
+                "[$contourIndex/$posIndex] position:${position.log}, angle:$angle, isClose:$isClose $ratio\n",
+              );
             }, 1 /*kPathAcceptableError*/);
             svgPath = buffer.toString();
             updateState();
@@ -126,7 +140,10 @@ class _PathAbcState extends State<PathAbc> with AbsScrollPage {
             updateState();
           },
         ),
-      ].flowLayout(padding: edgeOnly(all: kH), childGap: kH)!,
+      ].flowLayout(
+        padding: edgeOnly(all: kH),
+        childGap: kH,
+      )!,
     ];
   }
 }
