@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter3_abc/src/3d_abc.dart';
+import 'package:flutter3_abc/src/dial_layout_abc.dart';
 import 'package:flutter3_abc/src/fitted_shape_abc.dart';
 import 'package:flutter3_abc/src/flame_abc.dart';
 import 'package:flutter3_abc/src/focus_node_abc.dart';
@@ -304,6 +305,7 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ("/audioAbc", 'AudioAbc', (context) => const AudioAbc()),
   ("/flameAbc", 'FlameAbc', (context) => const FlameAbc()),
   ("/fittedShapeAbc", 'FittedShapeAbc', (context) => const FittedShapeAbc()),
+  ("/dialLayoutAbc", 'DialLayoutAbc', (context) => const DialLayoutAbc()),
 ];
 
 //--
