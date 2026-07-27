@@ -22,7 +22,7 @@ class _ShelfAbcState extends State<ShelfAbc> with BaseAbcStateMixin {
     })
     ..get("/favicon.ico", (shelf.Request request) async {
       final logo = await loadAssetBytes(Assets.png.flutter.keyName);
-      return shelf.responseOkFile(fileStream: logo.stream);
+      return shelf.responseFile(logo.stream);
     })
     ..upload(
       onSaveFileAction: (filePath) {

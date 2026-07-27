@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter3_abc/src/3d_abc.dart';
+import 'package:flutter3_abc/src/confetti_abc.dart';
 import 'package:flutter3_abc/src/dial_layout_abc.dart';
 import 'package:flutter3_abc/src/fitted_shape_abc.dart';
 import 'package:flutter3_abc/src/flame_abc.dart';
@@ -306,6 +307,7 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ("/flameAbc", 'FlameAbc', (context) => const FlameAbc()),
   ("/fittedShapeAbc", 'FittedShapeAbc', (context) => const FittedShapeAbc()),
   ("/dialLayoutAbc", 'DialLayoutAbc', (context) => const DialLayoutAbc()),
+  ("/confettiAbc", 'ConfettiAbc', (context) => const ConfettiAbc()),
 ];
 
 //--
