@@ -296,11 +296,23 @@ class _ConfettiAbcState extends State<ConfettiAbc> with BaseAbcStateMixin {
         GradientButton.normal(() {
           Confetti.launch(
             context,
-            options: ConfettiOptions(angle: 50, particleCount: 100, x: 0, y: 1),
+            options: ConfettiOptions(
+              angle: 50,
+              particleCount: 100,
+              x: 0,
+              y: 1,
+              startVelocity: 45,
+              decay: 0.9,
+            ),
           );
           Confetti.launch(
             context,
-            options: ConfettiOptions(angle: 150, particleCount: 100, x: 1, y: 1),
+            options: ConfettiOptions(
+              angle: 180 - 50,
+              particleCount: 100,
+              x: 1,
+              y: 1,
+            ),
           );
         }, child: Text("confetti")),
       ].flowLayout(gap: kX)!.insets(all: kX),
