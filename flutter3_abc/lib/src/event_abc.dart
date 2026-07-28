@@ -17,6 +17,7 @@ class _EventAbcState extends State<EventAbc>
   PointerEvent? mouseEvent;
   PointerEvent? pointerEvent;
   KeyEvent? keyEvent;
+  ShortcutConfigBean? _recorderConfigBean;
 
   @override
   bool onHandleKeyEventMixin(KeyEvent event) {
@@ -27,10 +28,27 @@ class _EventAbcState extends State<EventAbc>
 
   @override
   Widget build(BuildContext context) {
-    return "${_buildPointerEventText("鼠标事件", mouseEvent)}\n\n${_buildPointerEventText("指针事件", pointerEvent)}\n\n$keyEvent\n\n${_buildHardwareKeyboardText(context)}\n\n"
-            "isControlPressed->${HardwareKeyboard.instance.isControlPressed}\nisAltPressed->${HardwareKeyboard.instance.isAltPressed}\n"
-            "isMetaPressed->${HardwareKeyboard.instance.isMetaPressed}\nisShiftPressed->${HardwareKeyboard.instance.isShiftPressed}"
-        .text(textAlign: TextAlign.center)
+    final globalTheme = GlobalTheme.of(context);
+    return [
+          ShortcutRecorderWidget(
+            onShortcutAction: (configBean) {
+              _recorderConfigBean = configBean;
+              updateState();
+            },
+          ).insets(all: kX),
+          "${_buildPointerEventText("鼠标事件", mouseEvent)}\n\n${_buildPointerEventText("指针事件", pointerEvent)}\n\n$keyEvent\n\n${_buildHardwareKeyboardText(context)}\n\n"
+                  "isControlPressed->${HardwareKeyboard.instance.isControlPressed}\nisAltPressed->${HardwareKeyboard.instance.isAltPressed}\n"
+                  "isMetaPressed->${HardwareKeyboard.instance.isMetaPressed}\nisShiftPressed->${HardwareKeyboard.instance.isShiftPressed}\n"
+              .text(textAlign: TextAlign.center),
+          "$_recorderConfigBean"
+              .text(
+                textAlign: TextAlign.center,
+                style: globalTheme.textDesStyle,
+              )
+              .insets(h: kH, v: kL)
+              .decoration(fillDecoration(color: globalTheme.pressColor)),
+        ]
+        .column()!
         .center()
         .mouse(
           onEnter: (event) {
@@ -54,21 +72,24 @@ class _EventAbcState extends State<EventAbc>
               : SystemMouseCursors.progress,
         )
         .pointerListener((event) {
-      l.i("pointer->$event");
-      pointerEvent = event;
-      updateState();
-    });
+          l.i("pointer->$event");
+          pointerEvent = event;
+          updateState();
+        });
   }
 
   String _buildPointerEventText(String type, PointerEvent? event) {
     return stringBuilder((builder) {
       builder.appendLine(
-          "$type->${event.runtimeType} ${event?.kind} ${event?.buttons} ${event?.pressure} ${event?.size}");
+        "$type->${event.runtimeType} ${event?.kind} ${event?.buttons} ${event?.pressure} ${event?.size}",
+      );
       builder.appendLine(
-          "position:${event?.position} localPosition:${event?.localPosition}");
+        "position:${event?.position} localPosition:${event?.localPosition}",
+      );
       if (event is PointerPanZoomUpdateEvent) {
         builder.appendLine(
-            "pan:${event.pan} localPan:${event.localPan} panDelta:${event.panDelta} localPanDelta:${event.localPanDelta} scale:${event.scale} rotation:${event.rotation}");
+          "pan:${event.pan} localPan:${event.localPan} panDelta:${event.panDelta} localPanDelta:${event.localPanDelta} scale:${event.scale} rotation:${event.rotation}",
+        );
       }
     });
   }
