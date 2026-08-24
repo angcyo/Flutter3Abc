@@ -44,14 +44,14 @@ class _PathAbcState extends State<PathAbc> with AbsScrollPage {
             Text(
               "AI 正在思考中...",
               style: TextStyle(
-                color: Colors.white.withOpacity(0.8),
+                color: Colors.black.withOpacity(0.8),
                 fontSize: 16,
                 fontWeight: FontWeight.w300,
                 letterSpacing: 1.2,
               ),
             ),
           ],
-        ).backgroundColor(const Color(0xFF101015)),
+        ).backgroundColor(Colors.transparent /*const Color(0xFF101015)*/),
         //--
         AiThinkingLoadingFluid(size: 50 /*整体高度，宽度会调整为2倍*/),
         //--
