@@ -32,7 +32,7 @@ class _ProcessAbcState extends State<ProcessAbc>
   void initState() {
     hookAny(
       shell.stdout.stream.listen((value) {
-        addLastMessage(value.utf8Str, isReceived: true);
+        addLastMessage("->${value.utf8Str}", isReceived: true);
       }),
     );
     super.initState();
@@ -62,26 +62,31 @@ class _ProcessAbcState extends State<ProcessAbc>
         GradientButton.normal(clearLogData, child: "清屏".text()),
         GradientButton.normal(() async {
           try {
-            final cmd = cmdConfig.text;
-            addLastMessage("#$cmd", isReceived: false);
-            final resultList = await shell.run(cmd);
-            final count = resultList.length;
-            addLastMessage(
-              stringBuilder((builder) {
-                for (final (index, result) in resultList.indexed) {
-                  final out = result.stdout;
-                  builder.write("[${index + 1}/$count] ");
-                  builder.write("${result.pid}|${result.exitCode}|");
-                  builder.write("${out.runtimeType}->$out");
-                  final err = result.stderr;
-                  if (err.isNotEmpty) {
-                    builder.writeln();
-                    builder.write("Err->$err");
+            final text = cmdConfig.text;
+            for (final cmd in text.lines()) {
+              if (cmd.isEmpty || cmd.startsWith("#") || cmd.startsWith("//")) {
+                continue;
+              }
+              addLastMessage("\$ $cmd", isReceived: false);
+              final resultList = await shell.run(cmd);
+              final count = resultList.length;
+              addLastMessage(
+                stringBuilder((builder) {
+                  for (final (index, result) in resultList.indexed) {
+                    final out = result.stdout;
+                    builder.write("[${index + 1}/$count] ");
+                    builder.write("${result.pid}|${result.exitCode}|");
+                    builder.write("${out.runtimeType}->$out");
+                    final err = result.stderr;
+                    if (err.isNotEmpty) {
+                      builder.writeln();
+                      builder.write("Err->$err");
+                    }
                   }
-                }
-              }),
-              isReceived: true,
-            );
+                }),
+                isReceived: true,
+              );
+            }
           } catch (e, s) {
             assert(() {
               l.w(e);
@@ -90,12 +95,12 @@ class _ProcessAbcState extends State<ProcessAbc>
             debugger();
             addLastMessage("$e", isReceived: true);
           }
-        }, child: "Run".text()),
+        }, child: "Run".text().tooltip("测试运行命令行")),
         GradientButton.normal(() {
           /*final plugin = ProcessPlugin();
           buildContext?.showWidgetDialog(PluginInstallDialog(plugin));*/
           TestPlugin().start(context);
-        }, child: "运行插件".text()),
+        }, child: "运行插件".text().tooltip("测试运行插件的流程")),
       ].flowLayout(childGap: kL)!.insets(all: kL),
     ];
   }
