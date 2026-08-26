@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
@@ -26,7 +27,7 @@ class _ProcessAbcState extends State<ProcessAbc>
     },
   );
 
-  final ProcessShell shell = ProcessShell();
+  final ProcessShell shell = ProcessShell()..runInShell = null;
 
   @override
   void initState() {
@@ -57,6 +58,9 @@ class _ProcessAbcState extends State<ProcessAbc>
         hintText: "需要执行的命令",
         maxLines: 20,
       ).paddingItem(),
+      Directory.current.path.text().click(() {
+        openFilePath(Directory.current.path);
+      }).paddingItem(),
       //MARK: - button
       [
         GradientButton.normal(clearLogData, child: "清屏".text()),
@@ -67,6 +71,13 @@ class _ProcessAbcState extends State<ProcessAbc>
               if (cmd.isEmpty || cmd.startsWith("#") || cmd.startsWith("//")) {
                 continue;
               }
+              /*if (isMacOS) {
+                // 1. 赋予 POSIX +x 可执行权限
+                await Process.run('chmod', ['+x', cmd]);
+                // 2. 移除 macOS Quarantine 扩展隔离属性
+                await Process.run('xattr', ['-d', 'com.apple.quarantine', cmd]);
+              }*/
+
               addLastMessage("\$ $cmd", isReceived: false);
               final resultList = await shell.run(cmd);
               final count = resultList.length;
