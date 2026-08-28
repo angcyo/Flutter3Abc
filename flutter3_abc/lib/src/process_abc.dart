@@ -112,6 +112,17 @@ class _ProcessAbcState extends State<ProcessAbc>
           buildContext?.showWidgetDialog(PluginInstallDialog(plugin));*/
           TestPlugin().start(context);
         }, child: "运行插件".text().tooltip("测试运行插件的流程")),
+        GradientButton.normal(() {
+          "测试分享(Text)".share(title: "!title!", subject: "!subject!");
+        }, child: "测试分享(Text)".text()),
+        GradientButton.normal(() {
+          "https://apps.apple.com/cn/app/apple-developer/id640199958".uri
+              ?.share(title: "!title!", subject: "!subject!");
+        }, child: "测试分享(Uri)".text()),
+        GradientButton.normal(() async {
+          final filePath = await kLFileName.logFilePath();
+          filePath.shareFile(title: "!title!", subject: "!subject!");
+        }, child: "测试分享(File)".text()),
       ].flowLayout(childGap: kL)!.insets(all: kL),
     ];
   }
