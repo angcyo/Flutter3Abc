@@ -10,10 +10,7 @@ class CodeAbc extends StatefulWidget {
   /// 自动扫描
   final bool? autoScan;
 
-  const CodeAbc({
-    super.key,
-    this.autoScan,
-  });
+  const CodeAbc({super.key, this.autoScan});
 
   @override
   State<CodeAbc> createState() => _CodeAbcState();
@@ -50,15 +47,17 @@ class _CodeAbcState extends State<CodeAbc> with BaseAbcStateMixin {
     if (widget.autoScan == true) {
       postFrame(() {
         context
-            .pushWidget(const SingleCodeScannerPage(
-          showSwitchCameraButton: true,
-          showScanWindow: true,
-        ))
+            .pushWidget(
+              const SingleCodeScannerPage(
+                showSwitchCameraButton: true,
+                showScanWindow: true,
+              ),
+            )
             .getValue((value, error) {
-          scanResult = value as List<String>?;
-          scanResult?.join("\n").copy();
-          updateState();
-        });
+              scanResult = value as List<String>?;
+              scanResult?.join("\n").copy();
+              updateState();
+            });
       });
     }
   }
@@ -68,99 +67,92 @@ class _CodeAbcState extends State<CodeAbc> with BaseAbcStateMixin {
     return [
       codeDataConfig.toTextField(maxLines: 3).paddingCss(kX, kX, kX, 0),
       [
-        GradientButton.normal(
-          () {
-            lTime.tick();
-            codeDataConfig.text
-                .toCodeImage(
-              width2d,
-              height2d,
-              Barcode.qrCode(
-                errorCorrectLevel: BarcodeQRCorrectionLevel.high,
-              ),
-              bgColor: bgColor,
-              fgColor: fgColor,
-            )
-                .getValue((value, error) {
-              duration = lTime.time();
-              codeError = error;
-              qrcodeImage = value;
-              updateState();
-            });
-          },
-          child: "生成qrCode".text(),
-        ),
-        GradientButton.normal(
-          () async {
-            lTime.tick();
-            codeDataConfig.text
-                .toCodeImage(
-              width2d,
-              height1d,
-              Barcode.code128(),
-              bgColor: bgColor,
-              fgColor: fgColor,
-            )
-                .getValue((value, error) {
-              duration = lTime.time();
-              codeError = error;
-              qrcodeImage = value;
-              updateState();
-            });
-          },
-          child: "生成code128".text(),
-        ),
-        GradientButton.normal(
-          () {
-            lTime.tick();
-            codeDataConfig.text
-                .toCodeImage(
-              width2d,
-              height2d,
-              Barcode.dataMatrix(),
-              bgColor: bgColor,
-              fgColor: fgColor,
-            )
-                .getValue((value, error) {
-              duration = lTime.time();
-              codeError = error;
-              qrcodeImage = value;
-              updateState();
-            });
-          },
-          child: "生成dataMatrix".text(),
-        ),
-        GradientButton.normal(
-          () {
-            lTime.tick();
-            codeDataConfig.text
-                .toCodeImage(
-              width2d,
-              height2d,
-              Barcode.aztec(),
-              bgColor: bgColor,
-              fgColor: fgColor,
-            )
-                .getValue((value, error) {
-              duration = lTime.time();
-              codeError = error;
-              qrcodeImage = value;
-              updateState();
-            });
-          },
-          child: "生成aztec".text(),
-        ),
+        GradientButton.normal(() {
+          lTime.tick();
+          codeDataConfig.text
+              .toCodeImage(
+                width2d,
+                height2d,
+                Barcode.qrCode(
+                  errorCorrectLevel: BarcodeQRCorrectionLevel.high,
+                ),
+                bgColor: bgColor,
+                fgColor: fgColor,
+              )
+              .getValue((value, error) {
+                duration = lTime.time();
+                codeError = error;
+                qrcodeImage = value;
+                updateState();
+              });
+        }, child: "生成qrCode".text()),
+        GradientButton.normal(() async {
+          lTime.tick();
+          codeDataConfig.text
+              .toCodeImage(
+                width2d,
+                height1d,
+                Barcode.code128(),
+                bgColor: bgColor,
+                fgColor: fgColor,
+              )
+              .getValue((value, error) {
+                duration = lTime.time();
+                codeError = error;
+                qrcodeImage = value;
+                updateState();
+              });
+        }, child: "生成code128".text()),
+        GradientButton.normal(() {
+          lTime.tick();
+          codeDataConfig.text
+              .toCodeImage(
+                width2d,
+                height2d,
+                Barcode.dataMatrix(),
+                bgColor: bgColor,
+                fgColor: fgColor,
+              )
+              .getValue((value, error) {
+                duration = lTime.time();
+                codeError = error;
+                qrcodeImage = value;
+                updateState();
+              });
+        }, child: "生成dataMatrix".text()),
+        GradientButton.normal(() {
+          lTime.tick();
+          codeDataConfig.text
+              .toCodeImage(
+                width2d,
+                height2d,
+                Barcode.aztec(),
+                bgColor: bgColor,
+                fgColor: fgColor,
+              )
+              .getValue((value, error) {
+                duration = lTime.time();
+                codeError = error;
+                qrcodeImage = value;
+                updateState();
+              });
+        }, child: "生成aztec".text()),
+        " / ".text(),
         GradientButton.normal(
           () async {
             //debugger();
             context
-                .pushWidget(const SingleCodeScannerPage(
-                    showSwitchCameraButton: true, showScanWindow: true))
+                .pushWidget(
+                  const SingleCodeScannerPage(
+                    showSwitchCameraButton: true,
+                    showScanWindow: true,
+                  ),
+                )
                 .getValue((value, error) {
-              scanResult = value as List<String>?;
-              scanResult?.join("\n").copy();
-              updateState();
-            });
+                  scanResult = value as List<String>?;
+                  scanResult?.join("\n").copy();
+                  updateState();
+                });
           },
           child: "扫码(小窗口)".text(), //居中的取景框
         ),
@@ -168,55 +160,51 @@ class _CodeAbcState extends State<CodeAbc> with BaseAbcStateMixin {
           () async {
             //debugger();
             context
-                .pushWidget(const SingleCodeScannerPage(
-                    showSwitchCameraButton: true, showScanWindow: false))
+                .pushWidget(
+                  const SingleCodeScannerPage(
+                    showSwitchCameraButton: true,
+                    showScanWindow: false,
+                  ),
+                )
                 .getValue((value, error) {
-              scanResult = value as List<String>?;
-              scanResult?.join("\n").copy();
-              updateState();
-            });
+                  scanResult = value as List<String>?;
+                  scanResult?.join("\n").copy();
+                  updateState();
+                });
           },
           child: "扫码(全窗口)".text(), //全屏的取景框
         ),
-        GradientButton.normal(
-          () async {
-            final file = await pickerImage();
-            selectFile = file;
-            if (file != null) {
-              file.path.codeAnalyzeImageByPath().getValue((value, error) {
-                scanResult = value;
-                updateState();
-              });
-            }
-          },
-          child: "选图识别".text(),
-        ),
-        GradientButton.normal(
-          () async {
-            final file = await pickerImage(useCamera: true);
-            selectFile = file;
-            if (file != null) {
-              file.path.codeAnalyzeImageByPath().getValue((value, error) {
-                scanResult = value;
-                updateState();
-              });
-            }
-          },
-          child: "拍照识别".text(),
-        ),
+        GradientButton.normal(() async {
+          final file = await pickerImage();
+          selectFile = file;
+          if (file != null) {
+            file.path.codeAnalyzeImageByPath().getValue((value, error) {
+              scanResult = value;
+              updateState();
+            });
+          }
+        }, child: "选图识别".text()),
+        GradientButton.normal(() async {
+          final file = await pickerImage(useCamera: true);
+          selectFile = file;
+          if (file != null) {
+            file.path.codeAnalyzeImageByPath().getValue((value, error) {
+              scanResult = value;
+              updateState();
+            });
+          }
+        }, child: "拍照识别".text()),
       ].wrap()?.paddingCss(kX, kX, kX, 0),
       if (qrcodeImage != null)
         [
           "${qrcodeImage?.width}*${qrcodeImage?.height} $codeError\n耗时:$duration"
               .text(
-            fontSize: 8,
-            textColor: Colors.red,
-            fontWeight: FontWeight.bold,
-          ) /*.position(top: 0, left: 0)*/,
+                fontSize: 8,
+                textColor: Colors.red,
+                fontWeight: FontWeight.bold,
+              ) /*.position(top: 0, left: 0)*/,
           qrcodeImage?.toImageWidget().center().hero(qrcodeImage).click(() {
-            context.showWidgetDialog(SinglePhotoDialog(
-              content: qrcodeImage,
-            ));
+            context.showWidgetDialog(SinglePhotoDialog(content: qrcodeImage));
             /*context.pushWidget(SinglePhotoDialog(
             content: qrcodeImage,
           ).material(
@@ -226,12 +214,28 @@ class _CodeAbcState extends State<CodeAbc> with BaseAbcStateMixin {
           }),
         ].stack()?.paddingCss(kX, kX, kX, 0),
       selectFile?.path.toString().text().paddingCss(kX, kX, kX, 0),
-      scanResult
-          ?.mapIndex((e, index) => "$index->$e")
-          .toList()
-          .join("\n")
-          .text(selectable: true)
-          .paddingCss(kX, kX, kX, 0),
+      ..._buildScanResultWidget(),
     ].filterNull();
+  }
+
+  /// 构建扫描结果
+  WidgetNullList _buildScanResultWidget() {
+    final result = <Widget?>[];
+    int index = 0;
+    for (final text in scanResult ?? <String>[]) {
+      result.add(
+        [
+          "$index-> ".text(bold: true).click(() {
+            text.copy();
+            toastMessage("已复制:$text".text(useDefStyle: false));
+            if (text.isHttpUrl) {
+              text.launch();
+            }
+          }),
+          text.text(selectable: true),
+        ].row()?.insets(h: kX, top: kH),
+      );
+    }
+    return result;
   }
 }
