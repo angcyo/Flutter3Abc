@@ -42,6 +42,14 @@ class _LiquidGlassAbcState extends State<LiquidGlassAbc>
         /*background: Image.asset('assets/wallpaper.jpg', fit: BoxFit.cover),*/
         statusBarStyle: GlassStatusBarStyle.auto,
         appBar: GlassAppBar(
+          leading: context.isInRootNavigator
+              ? GlassIconButton(
+                  icon: Icon(Icons.arrow_back),
+                  onPressed: () {
+                    context.popRoute();
+                  },
+                )
+              : null,
           title: Text("${title ?? '${widget.runtimeType}'} $selectedIndex"),
         ),
         body: buildAbc(context),
