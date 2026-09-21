@@ -38,7 +38,7 @@ class _LiquidGlassAbcState extends State<LiquidGlassAbc>
     return LiquidGlassWidgets.wrap(
       /*child: super.build(context),*/
       child: GlassScaffold(
-        backgroundColor: backgroundColor ?? Colors.black12,
+        backgroundColor: backgroundColor,
         /*background: Image.asset('assets/wallpaper.jpg', fit: BoxFit.cover),*/
         statusBarStyle: GlassStatusBarStyle.auto,
         appBar: GlassAppBar(
@@ -90,7 +90,7 @@ class _LiquidGlassAbcState extends State<LiquidGlassAbc>
         saturation: saturation,
         quality: .standard,
       ),
-    );
+    ).material();
   }
 
   /// 模糊半径
