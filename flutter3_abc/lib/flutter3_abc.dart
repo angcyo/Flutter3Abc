@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-import 'dart:math';
 import 'dart:math' as math;
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
@@ -17,6 +17,7 @@ import 'package:flutter3_abc/src/dial_layout_abc.dart';
 import 'package:flutter3_abc/src/fitted_shape_abc.dart';
 import 'package:flutter3_abc/src/flame_abc.dart';
 import 'package:flutter3_abc/src/focus_node_abc.dart';
+import 'package:flutter3_abc/src/liquid_glass_abc.dart';
 import 'package:flutter3_abc/src/mcp_server_abc.dart';
 import 'package:flutter3_abc/src/navigator_abc.dart';
 import 'package:flutter3_abc/src/process_abc.dart';
@@ -309,6 +310,7 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ("/fittedShapeAbc", 'FittedShapeAbc', (context) => const FittedShapeAbc()),
   ("/dialLayoutAbc", 'DialLayoutAbc', (context) => const DialLayoutAbc()),
   ("/confettiAbc", 'ConfettiAbc', (context) => const ConfettiAbc()),
+  ("/liquidGlassAbc", 'LiquidGlassAbc', (context) => const LiquidGlassAbc()),
 ];
 
 //--
