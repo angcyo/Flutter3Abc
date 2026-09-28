@@ -17,6 +17,7 @@ import 'package:flutter3_abc/src/dial_layout_abc.dart';
 import 'package:flutter3_abc/src/fitted_shape_abc.dart';
 import 'package:flutter3_abc/src/flame_abc.dart';
 import 'package:flutter3_abc/src/focus_node_abc.dart';
+import 'package:flutter3_abc/src/hiblob_abc.dart';
 import 'package:flutter3_abc/src/liquid_glass_abc.dart';
 import 'package:flutter3_abc/src/mcp_server_abc.dart';
 import 'package:flutter3_abc/src/navigator_abc.dart';
@@ -311,6 +312,7 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ("/dialLayoutAbc", 'DialLayoutAbc', (context) => const DialLayoutAbc()),
   ("/confettiAbc", 'ConfettiAbc', (context) => const ConfettiAbc()),
   ("/liquidGlassAbc", 'LiquidGlassAbc', (context) => const LiquidGlassAbc()),
+  ("/hiblobAbc", 'HiblobAbc', (context) => const HiblobAbc()),
 ];
 
 //--
