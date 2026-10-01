@@ -73,6 +73,7 @@ class _RScrollViewAbcState extends State<RScrollViewAbc>
             tag: "MasonryGridView inner",
             sliverType: "MasonryGridView",
             crossAxisCount: crossAxisCount,
+            tileWrapShrinkWrap: false,
             childTiles: _buildGridTiles(crossAxisCount, "normal"),
           ),
         ],
@@ -81,6 +82,46 @@ class _RScrollViewAbcState extends State<RScrollViewAbc>
               "SliverMainAxisGroup 3 - MasonryGridView \n headerPinned ${true.toDC()} headerFloating ${false.toDC()}",
           height: groupH3Height,
         ),
+      ),
+    );
+
+    children.add(
+      RItemTile(
+        isSliverItem: true,
+        child: SliverToBoxAdapter(child: randomLogWidget('SliverToBoxAdapter')),
+      ),
+    );
+
+    final groupH4Height = randomHeight(max: 200);
+    crossAxisCount = nextInt(4, 1);
+    children.add(
+      RItemTile(
+        tag: "SliverMainAxisGroup 4",
+        headerPinned: true,
+        headerFloating: false,
+        headerFixedHeight: groupH4Height,
+        sliverType: SliverMainAxisGroup,
+        childTiles: [
+          RItemTile(
+            tag: "WaterfallFlow inner",
+            sliverType: "WaterfallFlow",
+            crossAxisCount: crossAxisCount,
+            tileWrapShrinkWrap: false,
+            childTiles: _buildGridTiles(crossAxisCount, "normal"),
+          ),
+        ],
+        child: randomWidget(
+          text:
+              "SliverMainAxisGroup 4 - WaterfallFlow \n headerPinned ${true.toDC()} headerFloating ${false.toDC()}",
+          height: groupH4Height,
+        ),
+      ),
+    );
+
+    children.add(
+      RItemTile(
+        isSliverItem: true,
+        child: SliverToBoxAdapter(child: randomLogWidget('SliverToBoxAdapter')),
       ),
     );
 
@@ -241,6 +282,7 @@ class _RScrollViewAbcState extends State<RScrollViewAbc>
     );
 
     return RScrollView(
+      debugLabel: "RScrollViewAbc",
       enableFrameLoad: true,
       frameSplitCount: 1,
       frameSplitDuration: const Duration(milliseconds: 16),
@@ -249,10 +291,10 @@ class _RScrollViewAbcState extends State<RScrollViewAbc>
   }
 
   /// 构建网格测试tile
-  WidgetList _buildGridTiles([int? crossAxisCount, Object? type]) {
+  WidgetList _buildGridTiles([int? crossAxisCount, Object? type, int? count]) {
     type ??= SliverGrid;
     crossAxisCount ??= nextInt(4, 1);
-    final count = nextInt(10, 5);
+    count ??= nextInt(10, 5);
     return [
       for (var i = 0; i < count; i++)
         RItemTile(
