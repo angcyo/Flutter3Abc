@@ -67,6 +67,18 @@ class _RLoadMoreAbcState extends State<RLoadMoreAbc> {
             _scrollViewUpdateSignal,
             (context, value) => dataList.length.toString().text(),
           ),
+          RScrollType.values
+              .dropdownMenu(
+                scrollController.scrollType ??= RScrollType.customScrollView,
+                onChanged: (value) {
+                  if (value is RScrollType) {
+                    scrollController.scrollType = value;
+                    scrollController.notifyRebuildScrollViewWidget();
+                  }
+                },
+                /*tilePadding: .zero,*/
+              )
+              .constrainedMax(maxWidth: 160),
           GradientButton(
             minWidth: buttonMinWidth,
             minHeight: buttonMinHeight,
@@ -147,6 +159,7 @@ class _RLoadMoreAbcState extends State<RLoadMoreAbc> {
           controller: scrollController,
           enableRefresh: true,
           enableLoadMore: true,
+          crossAxisCount: 2,
           children: [
             for (var i = 0; i < dataList.length; i++)
               RItemTile(child: randomLogWidget("[${dataList[i]}]item $i")),
