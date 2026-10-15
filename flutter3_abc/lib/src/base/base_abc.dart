@@ -20,7 +20,7 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
   bool useSafeArea = false;
 
   /// 桌面端, 是否使用AppBar
-  bool usbAppBarInDesktop = false;
+  bool? usbAppBarInDesktop;
 
   /// 离屏
   bool isOffstage = false;
@@ -73,7 +73,8 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
   /// 构建标题栏
   @protected
   PreferredSizeWidget? buildAppBar(BuildContext context) {
-    if (isDesktopOrWeb && !usbAppBarInDesktop) {
+    final useAppBar = usbAppBarInDesktop ?? context.isInRootNavigator;
+    if (isDesktopOrWeb && !useAppBar) {
       return null;
     }
     final themeData = Theme.of(context);
@@ -144,7 +145,10 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
       resizeToAvoidBottomInset: useSafeArea || resizeToAvoidBottomInset,
       body: Builder(builder: (context) => buildAbc(context)),
       backgroundColor:
-          backgroundColor ?? (isDesktopOrWeb ? Colors.transparent : null),
+          backgroundColor ??
+          (isDesktopOrWeb && !context.isInRootNavigator
+              ? Colors.transparent
+              : null),
     ).safeArea(useSafeArea: useSafeArea).offstage(isOffstage);
   }
 }
