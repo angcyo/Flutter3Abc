@@ -1,13 +1,15 @@
 import 'dart:async';
-import 'dart:developer';
 import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter3_app/flutter3_app.dart' as app;
 import 'package:flutter3_basics/flutter3_basics.dart' hide Vector2;
 import 'package:flutter3_flame/flutter3_flame.dart';
 
 import '../flutter3_abc.dart';
+import 'flame/flame_base_page.dart';
+import 'flame/flame_sprite_page.dart';
 
 ///
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
@@ -31,6 +33,20 @@ class _FlameAbcState extends State<FlameAbc> with BaseAbcStateMixin {
   WidgetList buildBodyList(BuildContext context) {
     //return [GameWidget(game: FlameGame()).size(height: $screenHeight / 2)];
     return [
+      [
+        app.GradientButton.min(
+          child: "Flame基础".text(),
+          onTap: () {
+            buildContext?.pushWidget(FlameBasePage());
+          },
+        ),
+        app.GradientButton.min(
+          child: "Flame精灵".text(),
+          onTap: () {
+            buildContext?.pushWidget(FlameSpritePage());
+          },
+        ),
+      ].flowLayout(childGap: kL)!.insets(all: kL),
       createGameWorld(FlameAbcWorld()).size(height: 100).bounds(),
       createGameWorld(
         FlameAbcWorld(),
