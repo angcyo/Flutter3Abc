@@ -41,6 +41,7 @@ class SpriteWorld extends World with HasGameReference {
     // Base
     add(OriginCrossComponent());
     add(BaseTextComponent());
+    add(GameSizeTipComponent());
 
     // FPS
     add(FpsTextComponent()..position = Vector2(10, 10));
@@ -158,16 +159,6 @@ class SpriteWorld extends World with HasGameReference {
   void render(Canvas canvas) {
     canvas.drawColor(Colors.grey, .src);
     super.render(canvas);
-    canvas.drawRect(
-      Rect.fromCenter(
-        center: .zero,
-        width: game.canvasSize.x,
-        height: game.canvasSize.y,
-      ).inflate(-10),
-      Paint()
-        ..color = Colors.purple
-        ..style = PaintingStyle.stroke,
-    );
   }
 }
 

@@ -166,4 +166,5 @@ flutter:
     - assets/svg/
     - assets/web/
     - assets/flame/
+    - assets/flame/parallax/
     - assets/flame/sprites/

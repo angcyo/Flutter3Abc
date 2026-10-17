@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart' as f3;
@@ -32,6 +33,11 @@ class _FlameBasePageState extends State<FlameBasePage> with BaseAbcStateMixin {
   }
 }
 
+/// 加载精灵
+Future<Sprite> loadAbcSprite(String path) {
+  return Sprite.load(path, package: Assets.package);
+}
+
 /// 加载abc的精灵动画
 Future<SpriteAnimation> loadAbcSpriteAnimation(
   String path,
@@ -40,8 +46,13 @@ Future<SpriteAnimation> loadAbcSpriteAnimation(
   return SpriteAnimation.load(path, data, package: Assets.package);
 }
 
+final rnd = Random();
+
+Vector2 randomVector2() => (Vector2.random(rnd) - Vector2.random(rnd)) * 100;
 //MARK: - Camera
 
+/// # 相机&世界
+/// https://docs.flame-engine.org/latest/flame/camera.html
 class BaseCameraComponent extends CameraComponent {
   BaseCameraComponent({super.viewport}) {
     //
@@ -247,6 +258,9 @@ class BaseWorld extends World {
 /// ## 视差组件
 /// https://docs.flame-engine.org/latest/flame/components/parallax_component.html
 ///
+/// ## 形状组件
+/// https://docs.flame-engine.org/latest/flame/components/shape_components.html
+///
 /// - [Component]
 ///   - [TimerComponent]
 ///   - [Effect]
@@ -299,22 +313,29 @@ class BaseTextComponent extends TextComponent with HasGameReference {
   }
 }
 
-/// 原点十字架组件
+/// 原点0,0十字架组件
 class OriginCrossComponent extends Component with HasGameReference {
   @override
   void render(Canvas canvas) {
     final game = this.game;
+    final isInGame = parent is Game;
     final offset = 20.0;
-    canvas.drawLine(
-      Offset(offset - game.canvasSize.x / 2, 0),
-      Offset(game.canvasSize.x / 2 - offset, 0),
-      Paint()..color = Colors.red,
-    );
-    canvas.drawLine(
-      Offset(0, offset - game.canvasSize.y / 2),
-      Offset(0, game.canvasSize.y / 2 - offset),
-      Paint()..color = Colors.red,
-    );
+
+    final p1s = isInGame
+        ? Offset(offset, offset)
+        : Offset(offset - game.canvasSize.x / 2, 0);
+    final p1e = isInGame
+        ? Offset(game.canvasSize.x - offset, offset)
+        : Offset(game.canvasSize.x / 2 - offset, 0);
+    canvas.drawLine(p1s, p1e, Paint()..color = Colors.red);
+
+    final p2s = isInGame
+        ? Offset(offset, offset)
+        : Offset(0, offset - game.canvasSize.y / 2);
+    final p2e = isInGame
+        ? Offset(offset, game.canvasSize.y - offset)
+        : Offset(0, game.canvasSize.y / 2 - offset);
+    canvas.drawLine(p2s, p2e, Paint()..color = Colors.red);
     super.render(canvas);
   }
 }
@@ -334,6 +355,30 @@ class CenterCrossComponent extends Component with HasGameReference {
       Offset(game.canvasSize.x / 2, offset),
       Offset(game.canvasSize.x / 2, game.canvasSize.y - offset),
       Paint()..color = Colors.red,
+    );
+    super.render(canvas);
+  }
+}
+
+/// 游戏画布大小提示组件
+class GameSizeTipComponent extends Component with HasGameReference {
+  @override
+  void render(Canvas canvas) {
+    final game = this.game;
+    final isInGame = parent is Game;
+    final offset = 10.0;
+
+    canvas.drawRect(
+      Rect.fromCenter(
+        center: isInGame
+            ? Offset(game.canvasSize.x / 2, game.canvasSize.y / 2)
+            : Offset.zero,
+        width: game.canvasSize.x,
+        height: game.canvasSize.y,
+      ).inflate(-offset),
+      Paint()
+        ..color = Colors.purple
+        ..style = PaintingStyle.stroke,
     );
     super.render(canvas);
   }

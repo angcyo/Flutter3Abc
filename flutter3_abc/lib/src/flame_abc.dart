@@ -9,6 +9,8 @@ import 'package:flutter3_flame/flutter3_flame.dart';
 
 import '../flutter3_abc.dart';
 import 'flame/flame_base_page.dart';
+import 'flame/flame_parallax_page.dart';
+import 'flame/flame_particle_page.dart';
 import 'flame/flame_sprite_page.dart';
 
 ///
@@ -44,6 +46,18 @@ class _FlameAbcState extends State<FlameAbc> with BaseAbcStateMixin {
           child: "Flame精灵".text(),
           onTap: () {
             buildContext?.pushWidget(FlameSpritePage());
+          },
+        ),
+        app.GradientButton.min(
+          child: "Flame视差".text(),
+          onTap: () {
+            buildContext?.pushWidget(FlameParallaxPage());
+          },
+        ),
+        app.GradientButton.min(
+          child: "Flame粒子".text(),
+          onTap: () {
+            buildContext?.pushWidget(FlameParticlePage());
           },
         ),
       ].flowLayout(childGap: kL)!.insets(all: kL),
@@ -136,8 +150,6 @@ class FlameAbcGame extends FlameGame with HasCollisionDetection {
   double get resetPosition => -canvasSize.y;
 
   //MARK: - *
-
-  Vector2 randomVector2() => (Vector2.random(rnd) - Vector2.random(rnd)) * 200;
 
   @override
   void update(double dt) {
