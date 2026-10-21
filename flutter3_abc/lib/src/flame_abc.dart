@@ -11,6 +11,7 @@ import '../flutter3_abc.dart';
 import 'flame/flame_base_page.dart';
 import 'flame/flame_parallax_page.dart';
 import 'flame/flame_particle_page.dart';
+import 'flame/flame_puzzle_page.dart';
 import 'flame/flame_sprite_page.dart';
 
 ///
@@ -58,6 +59,12 @@ class _FlameAbcState extends State<FlameAbc> with BaseAbcStateMixin {
           child: "Flame粒子".text(),
           onTap: () {
             buildContext?.pushWidget(FlameParticlePage());
+          },
+        ),
+        app.GradientButton.min(
+          child: "Flame拼图".text(),
+          onTap: () {
+            buildContext?.pushWidget(FlamePuzzlePage());
           },
         ),
       ].flowLayout(childGap: kL)!.insets(all: kL),

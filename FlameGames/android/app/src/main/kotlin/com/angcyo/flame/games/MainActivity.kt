@@ -1,0 +1,5 @@
+package com.angcyo.flame.games
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity : FlutterActivity()
