@@ -13,7 +13,7 @@ void main() async {
   await initHive();
   await initFlutter3Core();
   await $gameAssets.initGameImageAssets();
-  runApp(const FlameGamesApp());
+  runApp(GlobalApp(app: const FlameGamesApp()));
 }
 
 class FlameGamesApp extends StatelessWidget {
