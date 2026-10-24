@@ -1,3 +1,4 @@
+import 'package:flame_games/src/assets/game_assets.dart';
 import 'package:flame_games/src/flame_games_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3_core/flutter3_core.dart';
@@ -11,6 +12,7 @@ void main() async {
   ensureInitialized();
   await initHive();
   await initFlutter3Core();
+  await $gameAssets.initGameImageAssets();
   runApp(const FlameGamesApp());
 }
 

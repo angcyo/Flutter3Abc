@@ -1,0 +1,18 @@
+# [pgyer.dart] apk/ipa所在的文件夹路径, 相对于工程根目录
+pgyer:
+  path:
+    - ".output/.apk/"
+    - ".output/.ipa/"
+# [build_config.dart]
+build_config: script_build_config.json #debug pretest release
+# [collect_product.dart] 收集时的名称
+collect_product:
+  app_name: "FlameGames"
+  output_path: ".output"
+  android_apk_name: "#an-#vn_#fn_#bn.apk"
+  android_appbundle_name: "#an-#vn_#fn_#bn.aab"
+  ios_archive_name: "#an-#vn_#fn_#bn.xcarchive"
+  ios_ipa_name: "#an-#vn_#fn_#bn.ipa"
+  #macos_app_name: "#an-#vn_#fn_#bn.app"
+  macos_app_name: "#an-macos-arm64-v#vn-#bn.zip"
+  windows_exe_name: "#an-windows-x64-v#vn-#bn.zip"

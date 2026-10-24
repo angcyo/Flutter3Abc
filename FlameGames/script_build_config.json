@@ -1,0 +1,8 @@
+{
+  "json": {
+    "buildPackageName": "com.angcyo.flame.games",
+    "buildType": "pretest",
+    "buildFlavor": null,
+    "apiHost": "https://dev.angcyo.com"
+  }
+}

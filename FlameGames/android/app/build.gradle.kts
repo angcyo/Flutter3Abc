@@ -51,6 +51,11 @@ android {
         targetSdk = _T_SDK
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+
+        ndk {
+            abiFilters.clear()
+            abiFilters.add("arm64-v8a")
+        }
     }
 
     signingConfigs {
@@ -81,9 +86,9 @@ android {
 
             // https://docs.flutter.dev/release/breaking-changes/default-abi-filters-android
             // Clear the automatically set filters.
-            ndk.abiFilters.clear()
+            //ndk.abiFilters.clear()
             // Set your custom filters.
-            ndk.abiFilters.addAll(listOf("arm64-v8a", "armeabi-v7a"))
+            //ndk.abiFilters.addAll(listOf("arm64-v8a", "armeabi-v7a"))
             //ndk.abiFilters.addAll(listOf("arm64-v8a"))
         }
     }

@@ -21,8 +21,37 @@ class $AssetsPngGen {
   List<AssetGenImage> get values => [logo];
 }
 
+class $AssetsSpriteGen {
+  const $AssetsSpriteGen();
+
+  /// File path: assets/sprite/game_icons_sheet.png
+  AssetGenImage get gameIconsSheet =>
+      const AssetGenImage('assets/sprite/game_icons_sheet.png');
+
+  /// File path: assets/sprite/pixel_platformer.png
+  AssetGenImage get pixelPlatformer =>
+      const AssetGenImage('assets/sprite/pixel_platformer.png');
+
+  /// File path: assets/sprite/shape_characters.png
+  AssetGenImage get shapeCharacters =>
+      const AssetGenImage('assets/sprite/shape_characters.png');
+
+  /// File path: assets/sprite/shooting_gallery_hud.png
+  AssetGenImage get shootingGalleryHud =>
+      const AssetGenImage('assets/sprite/shooting_gallery_hud.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [
+    gameIconsSheet,
+    pixelPlatformer,
+    shapeCharacters,
+    shootingGalleryHud,
+  ];
+}
+
 abstract final class Assets {
   static const $AssetsPngGen png = $AssetsPngGen();
+  static const $AssetsSpriteGen sprite = $AssetsSpriteGen();
 }
 
 class AssetGenImage {
