@@ -85,7 +85,7 @@ class PuzzleGame extends FlameGame {
       );
       PuzzleGameController.loadImage(
         resize: fb.minOf(size.x, size.y),
-        seed: config.gridCount,
+        seed: "${config.seed}_${config.gridCount}",
       ).then((value) {
         gameImage = value;
         _loadGame();

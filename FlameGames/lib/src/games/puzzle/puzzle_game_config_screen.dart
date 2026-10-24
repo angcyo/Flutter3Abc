@@ -31,6 +31,12 @@ class _PuzzleGameConfigScreenState extends State<PuzzleGameConfigScreen>
   static final puzzleGameConfig = PuzzleGameConfig();
 
   @override
+  void initState() {
+    puzzleGameConfig.seed = "seed_${nowTimestamp()}";
+    super.initState();
+  }
+
+  @override
   WidgetList? buildScrollBody(BuildContext context) {
     return [
       //--

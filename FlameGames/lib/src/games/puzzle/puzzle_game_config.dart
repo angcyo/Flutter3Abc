@@ -14,6 +14,9 @@ class PuzzleGameConfig {
 
   /// 游戏类型
   PuzzleGameType gameType = .number;
+
+  /// 图片随机种子
+  String seed = "";
 }
 
 enum PuzzleGameType {
