@@ -188,7 +188,8 @@ class PuzzleBoardComponent extends PositionComponent
     final boardHeight = size.y;
 
     final minGap =
-        10.0 * (3 / config.gridCount) /*100.0 / 1 / config.gridCount*/;
+        (config.gameType == .number ? 10.0 : 1.0) *
+        (3 / config.gridCount) /*100.0 / 1 / config.gridCount*/;
     final minTileWidth = 30.0;
     final minTileHeight = 30.0;
 
@@ -447,6 +448,7 @@ class PuzzleTileComponent extends PositionComponent
     }
     if (controller.moveTile(tileData)) {
       puzzleBoard?.updateTilePosition(tileData);
+      $gameAssets.playClickEffect();
     }
   }
 }
@@ -514,6 +516,18 @@ class PuzzleHudComponent extends PositionComponent
                   game.pauseEngine();
                 },
               ),
+            //--
+            SpriteComponent(
+              sprite: $gameAssets.isGameMute
+                  ? $gameAssets.gameIcons.audioOffSprite
+                  : $gameAssets.gameIcons.audioOnSprite,
+            ).toggleSprite(() {
+              $gameAssets.isGameMute = !$gameAssets.isGameMute;
+              return $gameAssets.isGameMute
+                  ? $gameAssets.gameIcons.audioOffSprite
+                  : $gameAssets.gameIcons.audioOnSprite;
+            }),
+            //--
             SpriteComponent(sprite: $gameAssets.gameIcons.returnSprite).button(
               () {
                 game.resumeEngine();

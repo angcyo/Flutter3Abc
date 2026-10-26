@@ -84,4 +84,20 @@ class GameIcons {
   /// 齿轮按钮 ⚙️
   Sprite get gearSprite =>
       Sprite(image, srcPosition: Vector2(350, 50), srcSize: Vector2(50, 50));
+
+  /// 音乐关闭按钮
+  Sprite get musicOffSprite =>
+      Sprite(image, srcPosition: Vector2(250, 50), srcSize: Vector2(50, 50));
+
+  /// 音乐打开按钮
+  Sprite get musicOnSprite =>
+      Sprite(image, srcPosition: Vector2(250, 0), srcSize: Vector2(50, 50));
+
+  /// 音效关闭按钮
+  Sprite get audioOffSprite =>
+      Sprite(image, srcPosition: Vector2(0, 350), srcSize: Vector2(50, 50));
+
+  /// 音效打开按钮
+  Sprite get audioOnSprite =>
+      Sprite(image, srcPosition: Vector2(0, 300), srcSize: Vector2(50, 50));
 }

@@ -1,3 +1,4 @@
+import 'package:flame_games/gen/assets.gen.dart';
 import 'package:flame_games/src/assets/shape_characters.dart';
 import 'package:flutter3_basics/flutter3_basics.dart';
 import 'package:flutter3_flame/flutter3_flame.dart';
@@ -23,6 +24,24 @@ class GameAssets {
     await shootingGalleryHud.loadFromAssets(game, prefix: prefix);
     await shapeCharacters.loadFromAssets(game, prefix: prefix);
     await pixelPlatformer.loadFromAssets(game, prefix: prefix);
+
+    //--音效
+    await $audio.initAudioCache(fileNames: Assets.audio.interface.values);
+  }
+
+  /// 游戏禁音总开关
+  bool isGameMute = false;
+
+  /// 播放一个点击音效
+  void playClickEffect({bool? isMute}) {
+    if (isMute ?? isGameMute) {
+      return;
+    }
+    //$audio.playAudio(Assets.audio.interface.click001);
+    //$audio.playAudio(Assets.audio.interface.click002);
+    //$audio.playAudio(Assets.audio.interface.click003);
+    //$audio.playAudio(Assets.audio.interface.click004);
+    $audio.playAudio(Assets.audio.interface.click005);
   }
 }
 

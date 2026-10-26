@@ -55,6 +55,7 @@ class _PuzzleGameConfigScreenState extends State<PuzzleGameConfigScreen>
             onSelected: (selected) {
               puzzleGameConfig.playerCount = selected ? 1 : 2;
               updateState();
+              $gameAssets.playClickEffect();
             },
             child: GameOutlineText.item(text: "单人"),
           ),
@@ -63,6 +64,7 @@ class _PuzzleGameConfigScreenState extends State<PuzzleGameConfigScreen>
             onSelected: (selected) {
               puzzleGameConfig.playerCount = selected ? 2 : 1;
               updateState();
+              $gameAssets.playClickEffect();
             },
             child: GameOutlineText.item(text: "双人"),
           ),
@@ -76,6 +78,7 @@ class _PuzzleGameConfigScreenState extends State<PuzzleGameConfigScreen>
               onSelected: (selected) {
                 puzzleGameConfig.gridCount = count;
                 updateState();
+                $gameAssets.playClickEffect();
               },
               child: GameNumberWidget(
                 "$count",
@@ -91,6 +94,7 @@ class _PuzzleGameConfigScreenState extends State<PuzzleGameConfigScreen>
             onSelected: (selected) {
               puzzleGameConfig.gameType = .number;
               updateState();
+              $gameAssets.playClickEffect();
             },
             child: GameOutlineText.item(text: "数字"),
           ),
@@ -99,6 +103,7 @@ class _PuzzleGameConfigScreenState extends State<PuzzleGameConfigScreen>
             onSelected: (selected) {
               puzzleGameConfig.gameType = .image;
               updateState();
+              $gameAssets.playClickEffect();
             },
             child: GameOutlineText.item(text: "图片"),
           ),
