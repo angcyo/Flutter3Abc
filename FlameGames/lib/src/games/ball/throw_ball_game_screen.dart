@@ -102,6 +102,31 @@ class ThrowBallWorld extends Forge2DWorld
 
     //绘制投掷区域
     canvas.drawRect(launchAreaRect!, Paint()..color = Colors.white12);
+
+    //绘制预测轨迹
+    final controller = findGameController<ThrowBallGameController>();
+    if (controller != null &&
+        controller.innerScore < 5 &&
+        controller.gameScore > 20 &&
+        _pitcher.currentTrajectory != null) {
+      final mass = _pitcher.ballMass;
+      final points = predictTrajectory(
+        start: _pitcher.currentTrajectory!.end!,
+        velocity: controller.getVelocity(
+          _pitcher.currentTrajectory!.start!,
+          _pitcher.currentTrajectory!.end!,
+          mass,
+        ),
+        gravity: gravity.y,
+        min: Vector2(visibleWorldRect.left, visibleWorldRect.top),
+        max: Vector2(visibleWorldRect.right, visibleWorldRect.bottom),
+      );
+      canvas.drawPoints(
+        .polygon,
+        points.map((e) => e.toOffset()).toList(),
+        Paint()..color = Colors.blueGrey,
+      );
+    }
   }
 
   @override
@@ -292,20 +317,21 @@ class Pitcher extends Ball {
     // 添加球到世界
     await world.add(ball);
     // 给球一个初始速度
-    final impulse = calculateImpulse(
+    final impulse = findGameController<ThrowBallGameController>()?.getImpulse(
       ct.start!,
       ct.end!,
-      strength: 1,
-    ) /*Vector2(1, -1)*/;
-    ball.body.applyLinearImpulseEx(
-      impulse,
-      /*point: ball.bodyPosition,*/
-      wake: false,
     );
-    _trajectories.add(ct);
-    currentTrajectory = null;
-    //--
-    baseGameController?.gameScore++;
+    if (impulse != null) {
+      ball.body.applyLinearImpulseEx(
+        impulse,
+        /*point: ball.bodyPosition,*/
+        wake: false,
+      );
+      _trajectories.add(ct);
+      currentTrajectory = null;
+      //--
+      baseGameController?.gameScore++;
+    }
   }
 }
 
