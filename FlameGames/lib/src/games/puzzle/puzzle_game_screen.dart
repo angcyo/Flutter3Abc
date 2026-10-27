@@ -9,6 +9,7 @@ import 'package:flutter3_basics/flutter3_basics.dart' as fb;
 import 'package:flutter3_flame/flutter3_flame.dart';
 
 import '../base_game_mixin.dart';
+import '../game_hud_component.dart';
 
 ///
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
@@ -30,12 +31,6 @@ class PuzzleGameScreen extends StatefulWidget with fb.TranslationTypeMixin {
 
 class _PuzzleGameScreenState extends State<PuzzleGameScreen>
     with BaseGameStateMixin {
-  @override
-  void initState() {
-    fb.setEnabledSystemUIMode();
-    super.initState();
-  }
-
   @override
   Game buildGame() => PuzzleGame(widget.config);
 }
@@ -274,7 +269,7 @@ class PuzzleBoardComponent extends PositionComponent
         )?.tileData,
       );
     }
-    if (controller.isSolved()) {
+    if (controller.isGameSolved) {
       //游戏胜利
       showGameWin();
     }
@@ -360,7 +355,7 @@ class PuzzleTileComponent extends PositionComponent
       canvas.drawImageRect(image, src, dst, paint);
 
       //超多指定步骤后, 提示小数字
-      if ( /*isDebugMode ||*/ puzzleBoard.controller.stepCount >
+      if ( /*isDebugMode ||*/ puzzleBoard.controller.gameScore >
           30 * (puzzleBoard.controller.row - 2) +
               30 * (puzzleBoard.controller.col - 2)) {
         _drawHintNumber(canvas);
@@ -443,7 +438,7 @@ class PuzzleTileComponent extends PositionComponent
     }
     final puzzleBoard = findParent<PuzzleBoardComponent>();
     final controller = puzzleBoard?.controller;
-    if (controller == null || controller.isSolved()) {
+    if (controller == null || controller.isGameSolved) {
       return;
     }
     if (controller.moveTile(tileData)) {
@@ -456,107 +451,33 @@ class PuzzleTileComponent extends PositionComponent
 /// 拼图HUD组件
 /// - 包含用时显示
 /// - 包含步数显示
-class PuzzleHudComponent extends PositionComponent
-    with HasGameReference<PuzzleGame> {
-  final FlameTextComponent timeText = FlameTextComponent(text: "00:00");
-  final FlameTextComponent stepCountText = FlameTextComponent(text: "0");
-
+class PuzzleHudComponent extends GameHudComponent {
   @override
-  FutureOr<void> onLoad() {
-    //TextComponent
-    add(
-      FlowComponent(
-        position: Vector2(10, 10),
-        rowCrossAxisAlignment: .center,
-        children: [
-          FlameTextComponent(text: "用时: "),
-          timeText,
-        ],
-      ),
-    );
-    add(
-      FlowComponent(
-        position: Vector2(10, 40),
-        rowCrossAxisAlignment: .center,
-        children: [
-          FlameTextComponent(text: "步数: "),
-          stepCountText,
-        ],
-      ),
-    );
-    //--控制
+  Future<Iterable<Component>?> loadControlComponent() async {
     final puzzleBoard = findParent<PuzzleBoardComponent>();
-    if (puzzleBoard != null && (isDebugMode || puzzleBoard.index <= 1)) {
-      add(
-        FlowComponent(
-          position: Vector2(10, 10),
-          crossAxisAlignment: .end,
-          maxChildrenPerRow: 1,
-          children: [
-            if (isDebugMode)
-              SpriteComponent(
-                sprite: $gameAssets.gameIcons.returnSprite,
-                scale: Vector2(-1, 1),
-              ).button(() {
-                final controller = puzzleBoard.controller;
-                controller.reInitGame();
-                puzzleBoard.updateAllTilePosition();
-              }),
-            if (isDebugMode)
-              SpriteComponent(
-                sprite: $gameAssets.gameIcons.checkmarkSprite,
-              ).button(() {
-                final controller = puzzleBoard.controller;
-                controller.isSolvedDebug = true;
-                puzzleBoard.showGameWin();
-              }),
-            if (isDebugMode)
-              SpriteComponent(sprite: $gameAssets.gameIcons.pauseSprite).button(
-                () {
-                  game.pauseEngine();
-                },
-              ),
-            //--
-            SpriteComponent(
-              sprite: $gameAssets.isGameMute
-                  ? $gameAssets.gameIcons.audioOffSprite
-                  : $gameAssets.gameIcons.audioOnSprite,
-            ).toggleSprite(() {
-              $gameAssets.isGameMute = !$gameAssets.isGameMute;
-              return $gameAssets.isGameMute
-                  ? $gameAssets.gameIcons.audioOffSprite
-                  : $gameAssets.gameIcons.audioOnSprite;
-            }),
-            //--
-            SpriteComponent(sprite: $gameAssets.gameIcons.returnSprite).button(
-              () {
-                game.resumeEngine();
-                game.pop();
-              },
-            ),
-          ],
-        )..debugMode = false,
-      );
+    final isLeft = puzzleBoard?.index == 1;
+    if (!isLeft) {
+      return null;
     }
-    return super.onLoad();
-  }
-
-  /// 更新游戏数据
-  @override
-  void update(double dt) {
-    super.update(dt);
-    final controller = findParent<PuzzleBoardComponent>()?.controller;
-    if (controller == null || controller.isSolved()) {
-      return;
-    }
-    controller.timeCost += (dt * 1000).toInt();
-    timeText.text = controller.timeCost.toMSTime();
-    stepCountText.text = controller.stepCount.toString();
-  }
-
-  ///
-  @override
-  void render(Canvas canvas) {
-    super.render(canvas);
+    return [
+      if (puzzleBoard != null && isDebugMode)
+        SpriteComponent(
+          sprite: $gameAssets.gameIcons.returnSprite,
+          scale: Vector2(-1, 1),
+        ).button(() {
+          final controller = puzzleBoard.controller;
+          controller.reInitGame();
+          puzzleBoard.updateAllTilePosition();
+        }),
+      if (puzzleBoard != null && isDebugMode)
+        SpriteComponent(sprite: $gameAssets.gameIcons.checkmarkSprite).button(
+          () {
+            final controller = puzzleBoard.controller;
+            controller.isSolvedDebug = true;
+            puzzleBoard.showGameWin();
+          },
+        ),
+      ...?(await super.loadControlComponent()),
+    ];
   }
 }

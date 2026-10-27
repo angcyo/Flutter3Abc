@@ -3,6 +3,9 @@ import 'package:flame_games/src/tiles/game_select_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3_core/flutter3_core.dart';
 
+import 'games/ball/throw_ball_game_config.dart';
+import 'games/ball/throw_ball_game_config_screen.dart';
+import 'games/ball/throw_ball_game_screen.dart';
 import 'games/base_game_scroll_page.dart';
 import 'games/puzzle/puzzle_game_config_screen.dart';
 import 'games/puzzle/puzzle_game_screen.dart';
@@ -39,10 +42,21 @@ class _FlameGamesScreenState extends State<FlameGamesScreen>
           }
         },
       ).rGridTile(gridCount, childAspectRatio: childAspectRatio),
+      GameSelectTile(
+        label: "掷球游戏",
+        onTap: () async {
+          final config = await buildContext?.pushWidget(
+            ThrowBallGameConfigScreen(),
+          );
+          if (config is ThrowBallGameConfig) {
+            buildContext?.pushWidget(ThrowBallGameScreen(config: config));
+          }
+        },
+      ).rGridTile(gridCount),
+      /*if (isDebug) GameSelectTile(label: "拼图游戏").rGridTile(gridCount),
       if (isDebug) GameSelectTile(label: "拼图游戏").rGridTile(gridCount),
       if (isDebug) GameSelectTile(label: "拼图游戏").rGridTile(gridCount),
-      if (isDebug) GameSelectTile(label: "拼图游戏").rGridTile(gridCount),
-      if (isDebug) GameSelectTile(label: "拼图游戏").rGridTile(gridCount),
+      if (isDebug) GameSelectTile(label: "拼图游戏").rGridTile(gridCount),*/
     ];
   }
 }

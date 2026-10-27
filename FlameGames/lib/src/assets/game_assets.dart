@@ -26,6 +26,7 @@ class GameAssets {
     await pixelPlatformer.loadFromAssets(game, prefix: prefix);
 
     //--音效
+    await $audio.initAudioCache(fileNames: Assets.audio.impact.values);
     await $audio.initAudioCache(fileNames: Assets.audio.interface.values);
   }
 
@@ -42,6 +43,26 @@ class GameAssets {
     //$audio.playAudio(Assets.audio.interface.click003);
     //$audio.playAudio(Assets.audio.interface.click004);
     $audio.playAudio(Assets.audio.interface.click005);
+  }
+
+  /// 播放一个撞击音效
+  void playImpactEffect({bool? isMute}) {
+    if (isMute ?? isGameMute) {
+      return;
+    }
+    //$audio.playAudio(Assets.audio.impact.impactBellHeavy000);
+    //$audio.playAudio(Assets.audio.impact.impactBellHeavy001);
+    //$audio.playAudio(Assets.audio.impact.impactBellHeavy002);//.
+    //$audio.playAudio(Assets.audio.impact.impactBellHeavy003);//..
+    $audio.playAudio(Assets.audio.impact.impactBellHeavy004); //...
+  }
+
+  /// 播放一个撞击桶的音效
+  void playImpactBucketEffect({bool? isMute}) {
+    if (isMute ?? isGameMute) {
+      return;
+    }
+    $audio.playAudio(Assets.audio.impact.impactBellHeavy003);
   }
 }
 

@@ -14,6 +14,9 @@ import 'package:flutter/widgets.dart';
 class $AssetsAudioGen {
   const $AssetsAudioGen();
 
+  /// Directory path: assets/audio/impact
+  $AssetsAudioImpactGen get impact => const $AssetsAudioImpactGen();
+
   /// Directory path: assets/audio/interface
   $AssetsAudioInterfaceGen get interface => const $AssetsAudioInterfaceGen();
 }
@@ -53,6 +56,639 @@ class $AssetsSpriteGen {
     pixelPlatformer,
     shapeCharacters,
     shootingGalleryHud,
+  ];
+}
+
+class $AssetsAudioImpactGen {
+  const $AssetsAudioImpactGen();
+
+  /// File path: assets/audio/impact/footstep_carpet_000.ogg
+  String get footstepCarpet000 => 'assets/audio/impact/footstep_carpet_000.ogg';
+
+  /// File path: assets/audio/impact/footstep_carpet_001.ogg
+  String get footstepCarpet001 => 'assets/audio/impact/footstep_carpet_001.ogg';
+
+  /// File path: assets/audio/impact/footstep_carpet_002.ogg
+  String get footstepCarpet002 => 'assets/audio/impact/footstep_carpet_002.ogg';
+
+  /// File path: assets/audio/impact/footstep_carpet_003.ogg
+  String get footstepCarpet003 => 'assets/audio/impact/footstep_carpet_003.ogg';
+
+  /// File path: assets/audio/impact/footstep_carpet_004.ogg
+  String get footstepCarpet004 => 'assets/audio/impact/footstep_carpet_004.ogg';
+
+  /// File path: assets/audio/impact/footstep_concrete_000.ogg
+  String get footstepConcrete000 =>
+      'assets/audio/impact/footstep_concrete_000.ogg';
+
+  /// File path: assets/audio/impact/footstep_concrete_001.ogg
+  String get footstepConcrete001 =>
+      'assets/audio/impact/footstep_concrete_001.ogg';
+
+  /// File path: assets/audio/impact/footstep_concrete_002.ogg
+  String get footstepConcrete002 =>
+      'assets/audio/impact/footstep_concrete_002.ogg';
+
+  /// File path: assets/audio/impact/footstep_concrete_003.ogg
+  String get footstepConcrete003 =>
+      'assets/audio/impact/footstep_concrete_003.ogg';
+
+  /// File path: assets/audio/impact/footstep_concrete_004.ogg
+  String get footstepConcrete004 =>
+      'assets/audio/impact/footstep_concrete_004.ogg';
+
+  /// File path: assets/audio/impact/footstep_grass_000.ogg
+  String get footstepGrass000 => 'assets/audio/impact/footstep_grass_000.ogg';
+
+  /// File path: assets/audio/impact/footstep_grass_001.ogg
+  String get footstepGrass001 => 'assets/audio/impact/footstep_grass_001.ogg';
+
+  /// File path: assets/audio/impact/footstep_grass_002.ogg
+  String get footstepGrass002 => 'assets/audio/impact/footstep_grass_002.ogg';
+
+  /// File path: assets/audio/impact/footstep_grass_003.ogg
+  String get footstepGrass003 => 'assets/audio/impact/footstep_grass_003.ogg';
+
+  /// File path: assets/audio/impact/footstep_grass_004.ogg
+  String get footstepGrass004 => 'assets/audio/impact/footstep_grass_004.ogg';
+
+  /// File path: assets/audio/impact/footstep_snow_000.ogg
+  String get footstepSnow000 => 'assets/audio/impact/footstep_snow_000.ogg';
+
+  /// File path: assets/audio/impact/footstep_snow_001.ogg
+  String get footstepSnow001 => 'assets/audio/impact/footstep_snow_001.ogg';
+
+  /// File path: assets/audio/impact/footstep_snow_002.ogg
+  String get footstepSnow002 => 'assets/audio/impact/footstep_snow_002.ogg';
+
+  /// File path: assets/audio/impact/footstep_snow_003.ogg
+  String get footstepSnow003 => 'assets/audio/impact/footstep_snow_003.ogg';
+
+  /// File path: assets/audio/impact/footstep_snow_004.ogg
+  String get footstepSnow004 => 'assets/audio/impact/footstep_snow_004.ogg';
+
+  /// File path: assets/audio/impact/footstep_wood_000.ogg
+  String get footstepWood000 => 'assets/audio/impact/footstep_wood_000.ogg';
+
+  /// File path: assets/audio/impact/footstep_wood_001.ogg
+  String get footstepWood001 => 'assets/audio/impact/footstep_wood_001.ogg';
+
+  /// File path: assets/audio/impact/footstep_wood_002.ogg
+  String get footstepWood002 => 'assets/audio/impact/footstep_wood_002.ogg';
+
+  /// File path: assets/audio/impact/footstep_wood_003.ogg
+  String get footstepWood003 => 'assets/audio/impact/footstep_wood_003.ogg';
+
+  /// File path: assets/audio/impact/footstep_wood_004.ogg
+  String get footstepWood004 => 'assets/audio/impact/footstep_wood_004.ogg';
+
+  /// File path: assets/audio/impact/impactBell_heavy_000.ogg
+  String get impactBellHeavy000 =>
+      'assets/audio/impact/impactBell_heavy_000.ogg';
+
+  /// File path: assets/audio/impact/impactBell_heavy_001.ogg
+  String get impactBellHeavy001 =>
+      'assets/audio/impact/impactBell_heavy_001.ogg';
+
+  /// File path: assets/audio/impact/impactBell_heavy_002.ogg
+  String get impactBellHeavy002 =>
+      'assets/audio/impact/impactBell_heavy_002.ogg';
+
+  /// File path: assets/audio/impact/impactBell_heavy_003.ogg
+  String get impactBellHeavy003 =>
+      'assets/audio/impact/impactBell_heavy_003.ogg';
+
+  /// File path: assets/audio/impact/impactBell_heavy_004.ogg
+  String get impactBellHeavy004 =>
+      'assets/audio/impact/impactBell_heavy_004.ogg';
+
+  /// File path: assets/audio/impact/impactGeneric_light_000.ogg
+  String get impactGenericLight000 =>
+      'assets/audio/impact/impactGeneric_light_000.ogg';
+
+  /// File path: assets/audio/impact/impactGeneric_light_001.ogg
+  String get impactGenericLight001 =>
+      'assets/audio/impact/impactGeneric_light_001.ogg';
+
+  /// File path: assets/audio/impact/impactGeneric_light_002.ogg
+  String get impactGenericLight002 =>
+      'assets/audio/impact/impactGeneric_light_002.ogg';
+
+  /// File path: assets/audio/impact/impactGeneric_light_003.ogg
+  String get impactGenericLight003 =>
+      'assets/audio/impact/impactGeneric_light_003.ogg';
+
+  /// File path: assets/audio/impact/impactGeneric_light_004.ogg
+  String get impactGenericLight004 =>
+      'assets/audio/impact/impactGeneric_light_004.ogg';
+
+  /// File path: assets/audio/impact/impactGlass_heavy_000.ogg
+  String get impactGlassHeavy000 =>
+      'assets/audio/impact/impactGlass_heavy_000.ogg';
+
+  /// File path: assets/audio/impact/impactGlass_heavy_001.ogg
+  String get impactGlassHeavy001 =>
+      'assets/audio/impact/impactGlass_heavy_001.ogg';
+
+  /// File path: assets/audio/impact/impactGlass_heavy_002.ogg
+  String get impactGlassHeavy002 =>
+      'assets/audio/impact/impactGlass_heavy_002.ogg';
+
+  /// File path: assets/audio/impact/impactGlass_heavy_003.ogg
+  String get impactGlassHeavy003 =>
+      'assets/audio/impact/impactGlass_heavy_003.ogg';
+
+  /// File path: assets/audio/impact/impactGlass_heavy_004.ogg
+  String get impactGlassHeavy004 =>
+      'assets/audio/impact/impactGlass_heavy_004.ogg';
+
+  /// File path: assets/audio/impact/impactGlass_light_000.ogg
+  String get impactGlassLight000 =>
+      'assets/audio/impact/impactGlass_light_000.ogg';
+
+  /// File path: assets/audio/impact/impactGlass_light_001.ogg
+  String get impactGlassLight001 =>
+      'assets/audio/impact/impactGlass_light_001.ogg';
+
+  /// File path: assets/audio/impact/impactGlass_light_002.ogg
+  String get impactGlassLight002 =>
+      'assets/audio/impact/impactGlass_light_002.ogg';
+
+  /// File path: assets/audio/impact/impactGlass_light_003.ogg
+  String get impactGlassLight003 =>
+      'assets/audio/impact/impactGlass_light_003.ogg';
+
+  /// File path: assets/audio/impact/impactGlass_light_004.ogg
+  String get impactGlassLight004 =>
+      'assets/audio/impact/impactGlass_light_004.ogg';
+
+  /// File path: assets/audio/impact/impactGlass_medium_000.ogg
+  String get impactGlassMedium000 =>
+      'assets/audio/impact/impactGlass_medium_000.ogg';
+
+  /// File path: assets/audio/impact/impactGlass_medium_001.ogg
+  String get impactGlassMedium001 =>
+      'assets/audio/impact/impactGlass_medium_001.ogg';
+
+  /// File path: assets/audio/impact/impactGlass_medium_002.ogg
+  String get impactGlassMedium002 =>
+      'assets/audio/impact/impactGlass_medium_002.ogg';
+
+  /// File path: assets/audio/impact/impactGlass_medium_003.ogg
+  String get impactGlassMedium003 =>
+      'assets/audio/impact/impactGlass_medium_003.ogg';
+
+  /// File path: assets/audio/impact/impactGlass_medium_004.ogg
+  String get impactGlassMedium004 =>
+      'assets/audio/impact/impactGlass_medium_004.ogg';
+
+  /// File path: assets/audio/impact/impactMetal_heavy_000.ogg
+  String get impactMetalHeavy000 =>
+      'assets/audio/impact/impactMetal_heavy_000.ogg';
+
+  /// File path: assets/audio/impact/impactMetal_heavy_001.ogg
+  String get impactMetalHeavy001 =>
+      'assets/audio/impact/impactMetal_heavy_001.ogg';
+
+  /// File path: assets/audio/impact/impactMetal_heavy_002.ogg
+  String get impactMetalHeavy002 =>
+      'assets/audio/impact/impactMetal_heavy_002.ogg';
+
+  /// File path: assets/audio/impact/impactMetal_heavy_003.ogg
+  String get impactMetalHeavy003 =>
+      'assets/audio/impact/impactMetal_heavy_003.ogg';
+
+  /// File path: assets/audio/impact/impactMetal_heavy_004.ogg
+  String get impactMetalHeavy004 =>
+      'assets/audio/impact/impactMetal_heavy_004.ogg';
+
+  /// File path: assets/audio/impact/impactMetal_light_000.ogg
+  String get impactMetalLight000 =>
+      'assets/audio/impact/impactMetal_light_000.ogg';
+
+  /// File path: assets/audio/impact/impactMetal_light_001.ogg
+  String get impactMetalLight001 =>
+      'assets/audio/impact/impactMetal_light_001.ogg';
+
+  /// File path: assets/audio/impact/impactMetal_light_002.ogg
+  String get impactMetalLight002 =>
+      'assets/audio/impact/impactMetal_light_002.ogg';
+
+  /// File path: assets/audio/impact/impactMetal_light_003.ogg
+  String get impactMetalLight003 =>
+      'assets/audio/impact/impactMetal_light_003.ogg';
+
+  /// File path: assets/audio/impact/impactMetal_light_004.ogg
+  String get impactMetalLight004 =>
+      'assets/audio/impact/impactMetal_light_004.ogg';
+
+  /// File path: assets/audio/impact/impactMetal_medium_000.ogg
+  String get impactMetalMedium000 =>
+      'assets/audio/impact/impactMetal_medium_000.ogg';
+
+  /// File path: assets/audio/impact/impactMetal_medium_001.ogg
+  String get impactMetalMedium001 =>
+      'assets/audio/impact/impactMetal_medium_001.ogg';
+
+  /// File path: assets/audio/impact/impactMetal_medium_002.ogg
+  String get impactMetalMedium002 =>
+      'assets/audio/impact/impactMetal_medium_002.ogg';
+
+  /// File path: assets/audio/impact/impactMetal_medium_003.ogg
+  String get impactMetalMedium003 =>
+      'assets/audio/impact/impactMetal_medium_003.ogg';
+
+  /// File path: assets/audio/impact/impactMetal_medium_004.ogg
+  String get impactMetalMedium004 =>
+      'assets/audio/impact/impactMetal_medium_004.ogg';
+
+  /// File path: assets/audio/impact/impactMining_000.ogg
+  String get impactMining000 => 'assets/audio/impact/impactMining_000.ogg';
+
+  /// File path: assets/audio/impact/impactMining_001.ogg
+  String get impactMining001 => 'assets/audio/impact/impactMining_001.ogg';
+
+  /// File path: assets/audio/impact/impactMining_002.ogg
+  String get impactMining002 => 'assets/audio/impact/impactMining_002.ogg';
+
+  /// File path: assets/audio/impact/impactMining_003.ogg
+  String get impactMining003 => 'assets/audio/impact/impactMining_003.ogg';
+
+  /// File path: assets/audio/impact/impactMining_004.ogg
+  String get impactMining004 => 'assets/audio/impact/impactMining_004.ogg';
+
+  /// File path: assets/audio/impact/impactPlank_medium_000.ogg
+  String get impactPlankMedium000 =>
+      'assets/audio/impact/impactPlank_medium_000.ogg';
+
+  /// File path: assets/audio/impact/impactPlank_medium_001.ogg
+  String get impactPlankMedium001 =>
+      'assets/audio/impact/impactPlank_medium_001.ogg';
+
+  /// File path: assets/audio/impact/impactPlank_medium_002.ogg
+  String get impactPlankMedium002 =>
+      'assets/audio/impact/impactPlank_medium_002.ogg';
+
+  /// File path: assets/audio/impact/impactPlank_medium_003.ogg
+  String get impactPlankMedium003 =>
+      'assets/audio/impact/impactPlank_medium_003.ogg';
+
+  /// File path: assets/audio/impact/impactPlank_medium_004.ogg
+  String get impactPlankMedium004 =>
+      'assets/audio/impact/impactPlank_medium_004.ogg';
+
+  /// File path: assets/audio/impact/impactPlate_heavy_000.ogg
+  String get impactPlateHeavy000 =>
+      'assets/audio/impact/impactPlate_heavy_000.ogg';
+
+  /// File path: assets/audio/impact/impactPlate_heavy_001.ogg
+  String get impactPlateHeavy001 =>
+      'assets/audio/impact/impactPlate_heavy_001.ogg';
+
+  /// File path: assets/audio/impact/impactPlate_heavy_002.ogg
+  String get impactPlateHeavy002 =>
+      'assets/audio/impact/impactPlate_heavy_002.ogg';
+
+  /// File path: assets/audio/impact/impactPlate_heavy_003.ogg
+  String get impactPlateHeavy003 =>
+      'assets/audio/impact/impactPlate_heavy_003.ogg';
+
+  /// File path: assets/audio/impact/impactPlate_heavy_004.ogg
+  String get impactPlateHeavy004 =>
+      'assets/audio/impact/impactPlate_heavy_004.ogg';
+
+  /// File path: assets/audio/impact/impactPlate_light_000.ogg
+  String get impactPlateLight000 =>
+      'assets/audio/impact/impactPlate_light_000.ogg';
+
+  /// File path: assets/audio/impact/impactPlate_light_001.ogg
+  String get impactPlateLight001 =>
+      'assets/audio/impact/impactPlate_light_001.ogg';
+
+  /// File path: assets/audio/impact/impactPlate_light_002.ogg
+  String get impactPlateLight002 =>
+      'assets/audio/impact/impactPlate_light_002.ogg';
+
+  /// File path: assets/audio/impact/impactPlate_light_003.ogg
+  String get impactPlateLight003 =>
+      'assets/audio/impact/impactPlate_light_003.ogg';
+
+  /// File path: assets/audio/impact/impactPlate_light_004.ogg
+  String get impactPlateLight004 =>
+      'assets/audio/impact/impactPlate_light_004.ogg';
+
+  /// File path: assets/audio/impact/impactPlate_medium_000.ogg
+  String get impactPlateMedium000 =>
+      'assets/audio/impact/impactPlate_medium_000.ogg';
+
+  /// File path: assets/audio/impact/impactPlate_medium_001.ogg
+  String get impactPlateMedium001 =>
+      'assets/audio/impact/impactPlate_medium_001.ogg';
+
+  /// File path: assets/audio/impact/impactPlate_medium_002.ogg
+  String get impactPlateMedium002 =>
+      'assets/audio/impact/impactPlate_medium_002.ogg';
+
+  /// File path: assets/audio/impact/impactPlate_medium_003.ogg
+  String get impactPlateMedium003 =>
+      'assets/audio/impact/impactPlate_medium_003.ogg';
+
+  /// File path: assets/audio/impact/impactPlate_medium_004.ogg
+  String get impactPlateMedium004 =>
+      'assets/audio/impact/impactPlate_medium_004.ogg';
+
+  /// File path: assets/audio/impact/impactPunch_heavy_000.ogg
+  String get impactPunchHeavy000 =>
+      'assets/audio/impact/impactPunch_heavy_000.ogg';
+
+  /// File path: assets/audio/impact/impactPunch_heavy_001.ogg
+  String get impactPunchHeavy001 =>
+      'assets/audio/impact/impactPunch_heavy_001.ogg';
+
+  /// File path: assets/audio/impact/impactPunch_heavy_002.ogg
+  String get impactPunchHeavy002 =>
+      'assets/audio/impact/impactPunch_heavy_002.ogg';
+
+  /// File path: assets/audio/impact/impactPunch_heavy_003.ogg
+  String get impactPunchHeavy003 =>
+      'assets/audio/impact/impactPunch_heavy_003.ogg';
+
+  /// File path: assets/audio/impact/impactPunch_heavy_004.ogg
+  String get impactPunchHeavy004 =>
+      'assets/audio/impact/impactPunch_heavy_004.ogg';
+
+  /// File path: assets/audio/impact/impactPunch_medium_000.ogg
+  String get impactPunchMedium000 =>
+      'assets/audio/impact/impactPunch_medium_000.ogg';
+
+  /// File path: assets/audio/impact/impactPunch_medium_001.ogg
+  String get impactPunchMedium001 =>
+      'assets/audio/impact/impactPunch_medium_001.ogg';
+
+  /// File path: assets/audio/impact/impactPunch_medium_002.ogg
+  String get impactPunchMedium002 =>
+      'assets/audio/impact/impactPunch_medium_002.ogg';
+
+  /// File path: assets/audio/impact/impactPunch_medium_003.ogg
+  String get impactPunchMedium003 =>
+      'assets/audio/impact/impactPunch_medium_003.ogg';
+
+  /// File path: assets/audio/impact/impactPunch_medium_004.ogg
+  String get impactPunchMedium004 =>
+      'assets/audio/impact/impactPunch_medium_004.ogg';
+
+  /// File path: assets/audio/impact/impactSoft_heavy_000.ogg
+  String get impactSoftHeavy000 =>
+      'assets/audio/impact/impactSoft_heavy_000.ogg';
+
+  /// File path: assets/audio/impact/impactSoft_heavy_001.ogg
+  String get impactSoftHeavy001 =>
+      'assets/audio/impact/impactSoft_heavy_001.ogg';
+
+  /// File path: assets/audio/impact/impactSoft_heavy_002.ogg
+  String get impactSoftHeavy002 =>
+      'assets/audio/impact/impactSoft_heavy_002.ogg';
+
+  /// File path: assets/audio/impact/impactSoft_heavy_003.ogg
+  String get impactSoftHeavy003 =>
+      'assets/audio/impact/impactSoft_heavy_003.ogg';
+
+  /// File path: assets/audio/impact/impactSoft_heavy_004.ogg
+  String get impactSoftHeavy004 =>
+      'assets/audio/impact/impactSoft_heavy_004.ogg';
+
+  /// File path: assets/audio/impact/impactSoft_medium_000.ogg
+  String get impactSoftMedium000 =>
+      'assets/audio/impact/impactSoft_medium_000.ogg';
+
+  /// File path: assets/audio/impact/impactSoft_medium_001.ogg
+  String get impactSoftMedium001 =>
+      'assets/audio/impact/impactSoft_medium_001.ogg';
+
+  /// File path: assets/audio/impact/impactSoft_medium_002.ogg
+  String get impactSoftMedium002 =>
+      'assets/audio/impact/impactSoft_medium_002.ogg';
+
+  /// File path: assets/audio/impact/impactSoft_medium_003.ogg
+  String get impactSoftMedium003 =>
+      'assets/audio/impact/impactSoft_medium_003.ogg';
+
+  /// File path: assets/audio/impact/impactSoft_medium_004.ogg
+  String get impactSoftMedium004 =>
+      'assets/audio/impact/impactSoft_medium_004.ogg';
+
+  /// File path: assets/audio/impact/impactTin_medium_000.ogg
+  String get impactTinMedium000 =>
+      'assets/audio/impact/impactTin_medium_000.ogg';
+
+  /// File path: assets/audio/impact/impactTin_medium_001.ogg
+  String get impactTinMedium001 =>
+      'assets/audio/impact/impactTin_medium_001.ogg';
+
+  /// File path: assets/audio/impact/impactTin_medium_002.ogg
+  String get impactTinMedium002 =>
+      'assets/audio/impact/impactTin_medium_002.ogg';
+
+  /// File path: assets/audio/impact/impactTin_medium_003.ogg
+  String get impactTinMedium003 =>
+      'assets/audio/impact/impactTin_medium_003.ogg';
+
+  /// File path: assets/audio/impact/impactTin_medium_004.ogg
+  String get impactTinMedium004 =>
+      'assets/audio/impact/impactTin_medium_004.ogg';
+
+  /// File path: assets/audio/impact/impactWood_heavy_000.ogg
+  String get impactWoodHeavy000 =>
+      'assets/audio/impact/impactWood_heavy_000.ogg';
+
+  /// File path: assets/audio/impact/impactWood_heavy_001.ogg
+  String get impactWoodHeavy001 =>
+      'assets/audio/impact/impactWood_heavy_001.ogg';
+
+  /// File path: assets/audio/impact/impactWood_heavy_002.ogg
+  String get impactWoodHeavy002 =>
+      'assets/audio/impact/impactWood_heavy_002.ogg';
+
+  /// File path: assets/audio/impact/impactWood_heavy_003.ogg
+  String get impactWoodHeavy003 =>
+      'assets/audio/impact/impactWood_heavy_003.ogg';
+
+  /// File path: assets/audio/impact/impactWood_heavy_004.ogg
+  String get impactWoodHeavy004 =>
+      'assets/audio/impact/impactWood_heavy_004.ogg';
+
+  /// File path: assets/audio/impact/impactWood_light_000.ogg
+  String get impactWoodLight000 =>
+      'assets/audio/impact/impactWood_light_000.ogg';
+
+  /// File path: assets/audio/impact/impactWood_light_001.ogg
+  String get impactWoodLight001 =>
+      'assets/audio/impact/impactWood_light_001.ogg';
+
+  /// File path: assets/audio/impact/impactWood_light_002.ogg
+  String get impactWoodLight002 =>
+      'assets/audio/impact/impactWood_light_002.ogg';
+
+  /// File path: assets/audio/impact/impactWood_light_003.ogg
+  String get impactWoodLight003 =>
+      'assets/audio/impact/impactWood_light_003.ogg';
+
+  /// File path: assets/audio/impact/impactWood_light_004.ogg
+  String get impactWoodLight004 =>
+      'assets/audio/impact/impactWood_light_004.ogg';
+
+  /// File path: assets/audio/impact/impactWood_medium_000.ogg
+  String get impactWoodMedium000 =>
+      'assets/audio/impact/impactWood_medium_000.ogg';
+
+  /// File path: assets/audio/impact/impactWood_medium_001.ogg
+  String get impactWoodMedium001 =>
+      'assets/audio/impact/impactWood_medium_001.ogg';
+
+  /// File path: assets/audio/impact/impactWood_medium_002.ogg
+  String get impactWoodMedium002 =>
+      'assets/audio/impact/impactWood_medium_002.ogg';
+
+  /// File path: assets/audio/impact/impactWood_medium_003.ogg
+  String get impactWoodMedium003 =>
+      'assets/audio/impact/impactWood_medium_003.ogg';
+
+  /// File path: assets/audio/impact/impactWood_medium_004.ogg
+  String get impactWoodMedium004 =>
+      'assets/audio/impact/impactWood_medium_004.ogg';
+
+  /// List of all assets
+  List<String> get values => [
+    footstepCarpet000,
+    footstepCarpet001,
+    footstepCarpet002,
+    footstepCarpet003,
+    footstepCarpet004,
+    footstepConcrete000,
+    footstepConcrete001,
+    footstepConcrete002,
+    footstepConcrete003,
+    footstepConcrete004,
+    footstepGrass000,
+    footstepGrass001,
+    footstepGrass002,
+    footstepGrass003,
+    footstepGrass004,
+    footstepSnow000,
+    footstepSnow001,
+    footstepSnow002,
+    footstepSnow003,
+    footstepSnow004,
+    footstepWood000,
+    footstepWood001,
+    footstepWood002,
+    footstepWood003,
+    footstepWood004,
+    impactBellHeavy000,
+    impactBellHeavy001,
+    impactBellHeavy002,
+    impactBellHeavy003,
+    impactBellHeavy004,
+    impactGenericLight000,
+    impactGenericLight001,
+    impactGenericLight002,
+    impactGenericLight003,
+    impactGenericLight004,
+    impactGlassHeavy000,
+    impactGlassHeavy001,
+    impactGlassHeavy002,
+    impactGlassHeavy003,
+    impactGlassHeavy004,
+    impactGlassLight000,
+    impactGlassLight001,
+    impactGlassLight002,
+    impactGlassLight003,
+    impactGlassLight004,
+    impactGlassMedium000,
+    impactGlassMedium001,
+    impactGlassMedium002,
+    impactGlassMedium003,
+    impactGlassMedium004,
+    impactMetalHeavy000,
+    impactMetalHeavy001,
+    impactMetalHeavy002,
+    impactMetalHeavy003,
+    impactMetalHeavy004,
+    impactMetalLight000,
+    impactMetalLight001,
+    impactMetalLight002,
+    impactMetalLight003,
+    impactMetalLight004,
+    impactMetalMedium000,
+    impactMetalMedium001,
+    impactMetalMedium002,
+    impactMetalMedium003,
+    impactMetalMedium004,
+    impactMining000,
+    impactMining001,
+    impactMining002,
+    impactMining003,
+    impactMining004,
+    impactPlankMedium000,
+    impactPlankMedium001,
+    impactPlankMedium002,
+    impactPlankMedium003,
+    impactPlankMedium004,
+    impactPlateHeavy000,
+    impactPlateHeavy001,
+    impactPlateHeavy002,
+    impactPlateHeavy003,
+    impactPlateHeavy004,
+    impactPlateLight000,
+    impactPlateLight001,
+    impactPlateLight002,
+    impactPlateLight003,
+    impactPlateLight004,
+    impactPlateMedium000,
+    impactPlateMedium001,
+    impactPlateMedium002,
+    impactPlateMedium003,
+    impactPlateMedium004,
+    impactPunchHeavy000,
+    impactPunchHeavy001,
+    impactPunchHeavy002,
+    impactPunchHeavy003,
+    impactPunchHeavy004,
+    impactPunchMedium000,
+    impactPunchMedium001,
+    impactPunchMedium002,
+    impactPunchMedium003,
+    impactPunchMedium004,
+    impactSoftHeavy000,
+    impactSoftHeavy001,
+    impactSoftHeavy002,
+    impactSoftHeavy003,
+    impactSoftHeavy004,
+    impactSoftMedium000,
+    impactSoftMedium001,
+    impactSoftMedium002,
+    impactSoftMedium003,
+    impactSoftMedium004,
+    impactTinMedium000,
+    impactTinMedium001,
+    impactTinMedium002,
+    impactTinMedium003,
+    impactTinMedium004,
+    impactWoodHeavy000,
+    impactWoodHeavy001,
+    impactWoodHeavy002,
+    impactWoodHeavy003,
+    impactWoodHeavy004,
+    impactWoodLight000,
+    impactWoodLight001,
+    impactWoodLight002,
+    impactWoodLight003,
+    impactWoodLight004,
+    impactWoodMedium000,
+    impactWoodMedium001,
+    impactWoodMedium002,
+    impactWoodMedium003,
+    impactWoodMedium004,
   ];
 }
 

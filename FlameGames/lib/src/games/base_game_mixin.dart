@@ -10,9 +10,14 @@ import 'package:flutter3_flame/flutter3_flame.dart';
 mixin BaseGameStateMixin<T extends StatefulWidget> on State<T> {
   @override
   void initState() {
-    //setScreenOrientation();
-    //setEnabledSystemUIMode();
     super.initState();
+  }
+
+  /// 初始化游戏屏幕样式
+  @overridePoint
+  void initGameScreenStyle() {
+    //setScreenOrientation();
+    setEnabledSystemUIMode(); //全屏模式
   }
 
   @override

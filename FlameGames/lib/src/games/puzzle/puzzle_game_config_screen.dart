@@ -40,13 +40,6 @@ class _PuzzleGameConfigScreenState extends State<PuzzleGameConfigScreen>
   WidgetList? buildScrollBody(BuildContext context) {
     return [
       //--
-      SpriteWidget(sprite: $gameAssets.gameIcons.returnSprite)
-          .inkWellCircle(() {
-            buildContext?.pop();
-          })
-          .align(.topLeft)
-          .safeArea(),
-      //--
       [
         GameOutlineText(text: "选择游戏人数").center(),
         [

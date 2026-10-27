@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3_core/flutter3_core.dart';
+import 'package:flutter3_flame/flutter3_flame.dart';
+
+import '../assets/game_assets.dart';
 
 ///
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
@@ -26,11 +29,23 @@ mixin BaseGameScrollPage<T extends StatefulWidget> on State<T>, AbsScrollPage {
   @overridePoint
   void updateScreenStyle() {
     setScreenLandscape();
-    //setEnabledSystemUIMode();
+    setEnabledSystemUIMode();
   }
 
   @override
   Widget build(BuildContext context) {
-    return super.build(context).darkStatusBar(context);
+    final body = super.build(context);
+    return [
+      body,
+      //--
+      if (context.isAppBarDismissal)
+        SpriteWidget(sprite: $gameAssets.gameIcons.returnSprite)
+            .inkWellCircle(() {
+              buildContext?.pop();
+            })
+            .material()
+            .align(.topLeft)
+            .safeArea(),
+    ].stack()!.darkStatusBar(context);
   }
 }

@@ -1,11 +1,13 @@
 import 'package:flutter3_core/flutter3_core.dart';
 
+import '../base_game_controller.dart';
+
 ///
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
 /// @date 2026/10/21
 ///
 /// 拼图游戏控制器
-class PuzzleGameController {
+class PuzzleGameController extends BaseGameController {
   /// 加载一张图片, 方便游戏
   static Future<UiImage?> loadImage({double? resize, Object? seed}) async {
     //.resizeAsync(size: fb.minOf(size.x, size.y))
@@ -43,20 +45,17 @@ class PuzzleGameController {
     return result;
   }
 
+  PuzzleGameController() {
+    scoreLabel = "步数: ";
+  }
+
   //MARK: - 游戏
-
-  /// 耗时, 多少毫秒
-  /// - 累加的时间
-  int timeCost = 0;
-
-  /// 已用步数
-  int stepCount = 0;
 
   /// 重置游戏
   void resetGame() {
     isSolvedDebug = null;
-    timeCost = 0;
-    stepCount = 0;
+    gameDuration = 0;
+    gameScore = 0;
   }
 
   //MARK: - 属性
@@ -154,7 +153,7 @@ class PuzzleGameController {
       _swapTiles(tile, emptyTile);
 
       //--步数+1
-      stepCount++;
+      gameScore++;
 
       return true;
     } else {
@@ -207,7 +206,8 @@ class PuzzleGameController {
   bool? isSolvedDebug;
 
   /// 是否完成
-  bool isSolved() {
+  @override
+  bool get isGameSolved {
     if (isSolvedDebug != null) {
       return isSolvedDebug!;
     }

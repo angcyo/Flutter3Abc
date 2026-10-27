@@ -141,9 +141,11 @@ class ShootingGalleryHud {
   Sprite get textCrossSmallSprite =>
       Sprite(image, srcPosition: Vector2(0, 387), srcSize: Vector2(32, 32));
 
+  /// : 冒号
   Sprite get textDotsSprite =>
       Sprite(image, srcPosition: Vector2(372, 38), srcSize: Vector2(23, 39));
 
+  /// : 冒号 小
   Sprite get textDotsSmallSprite =>
       Sprite(image, srcPosition: Vector2(34, 387), srcSize: Vector2(21, 32));
 

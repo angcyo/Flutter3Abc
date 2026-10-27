@@ -386,7 +386,7 @@ packages:
     source: hosted
     version: "2.12.2"
   flame_forge2d:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flame_forge2d
       sha256: aaddb5d1a36855e5791361bc8916fc89be45ae19e4605c84f15929443d0a938d
