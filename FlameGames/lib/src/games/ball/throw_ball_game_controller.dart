@@ -1,5 +1,3 @@
-import 'package:flutter3_flame/flutter3_flame.dart';
-
 import '../base_game_controller.dart';
 
 ///
@@ -13,14 +11,4 @@ class ThrowBallGameController extends BaseGameController {
 
   @override
   String get scoreText => "$innerScore/$gameScore";
-
-  /// 获取一个冲量
-  Vector2 getImpulse(Vector2 p1, Vector2 p2) {
-    return calculateImpulse(p1, p2, strength: 1) /*Vector2(1, -1)*/;
-  }
-
-  /// 获取一个速度
-  Vector2 getVelocity(Vector2 p1, Vector2 p2, double mass) {
-    return calculateVelocity(getImpulse(p1, p2), mass);
-  }
 }

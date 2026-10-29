@@ -31,7 +31,7 @@ class GameAssets {
   }
 
   /// 游戏禁音总开关
-  bool isGameMute = false;
+  bool isGameMute = true;
 
   /// 播放一个点击音效
   void playClickEffect({bool? isMute}) {

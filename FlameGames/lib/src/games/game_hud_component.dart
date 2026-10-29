@@ -18,6 +18,7 @@ class GameHudComponent extends PositionComponent with HasGameReference {
   @override
   FutureOr<void> onLoad() async {
     //TextComponent
+    scale = Vector2.all(pixelsScale);
     add(
       FlowComponent(
         position: Vector2(10, 10),

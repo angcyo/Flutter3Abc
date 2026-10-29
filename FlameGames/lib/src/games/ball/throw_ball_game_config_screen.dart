@@ -33,7 +33,6 @@ class _ThrowBallGameConfigScreenState extends State<ThrowBallGameConfigScreen>
   @override
   WidgetList? buildScrollBody(BuildContext context) {
     return [
-
       //--
       [
         GameOutlineText(text: "选择球的半径").center(),

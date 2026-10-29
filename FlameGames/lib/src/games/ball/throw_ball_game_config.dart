@@ -44,7 +44,7 @@ class ThrowBallGameConfig {
 }
 
 /// 投掷轨迹
-class ThrowBallTrajectory {
+class BallTrajectory {
   /// 起点
   Vector2? start;
 
