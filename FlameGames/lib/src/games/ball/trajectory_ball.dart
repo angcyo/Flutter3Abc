@@ -111,6 +111,7 @@ class TrajectoryBall extends Ball {
     final world = this.world;
     final parent = this.parent;
     final startPosition = world != parent ? parent?.componentPosition : null;
+    final target = parent ?? world;
     //debugger();
     // 创建一个球
     late Ball ball;
@@ -135,7 +136,7 @@ class TrajectoryBall extends Ball {
             }
           };
     // 添加球到世界
-    await world.add(ball);
+    await target.add(ball);
     // 给球一个初始速度
     final controller = findGameController<BaseGameController>();
     if (controller != null) {

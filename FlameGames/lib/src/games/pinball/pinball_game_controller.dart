@@ -67,7 +67,7 @@ class PinballGameController extends BaseGameController {
 
     //创建中间的障碍球
     final bottomList = <ObstacleInfo>[];
-    final yStep = config.ballRadius * (isMinScreen ? 3 : 5);
+    final yStep = config.ballRadius * (isMinScreen ? 3 : 4);
     final topMargin = config.ballRadius * (isMinScreen ? 3 : 5);
     final bottomMargin =
         config.scoringObstacleHeight * (isMinScreen ? 2 / 3 : 1);
@@ -112,7 +112,7 @@ class PinballGameController extends BaseGameController {
 
     final scoringPointCount = kDebugMode
         ? bottomList.length
-        : fb.nextInt(bottomList.length ~/ 2, 1);
+        : fb.nextInt((bottomList.length / 2).ceil(), 1);
     final scoringPointIndexList = List.generate(
       scoringPointCount,
       (index) => fb.nextInt(bottomList.length + 1),

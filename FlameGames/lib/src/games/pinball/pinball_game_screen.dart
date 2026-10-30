@@ -388,7 +388,7 @@ class ScoringBucket extends FBodyComponent<PinballGame> {
           /*Vector2(w - margin, 0),*/
         ],
         shapeDef: ShapeDef(
-          material: SurfaceMaterial(friction: 0, restitution: 0.2),
+          material: SurfaceMaterial(friction: 0, restitution: 0),
           enableContactEvents: false,
           enableSensorEvents: false,
           density: density,
@@ -528,7 +528,7 @@ class PinballHudComponent extends GameHudComponent {
           scale: Vector2(-1, 1),
         ).button(() {
           // 移除所有球
-          findGame()?.world.removeAllChildren((e) => e is Ball && e is! PinballEmitter);
+          parent.removeAllChildren((e) => e is Ball && e is! PinballEmitter);
           //重新加载刚体
           parent.findChild<PinballBoardBody>((e) => e is PinballBoardBody)
             ?..removeAllChildren()
