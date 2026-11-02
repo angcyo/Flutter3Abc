@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 
@@ -17,6 +18,15 @@ class XzqhAbc extends StatefulWidget {
 
 class _XzqhAbcState extends State<XzqhAbc> with BaseAbcStateMixin {
   static final List<XzqhBean> _xzqhList = [];
+
+  /// 点击过的行政区划列表
+  static final Set<XzqhBean> _clickedXzqhList = {};
+
+  /// 需要显示的行政区划列表
+  /// - 过滤后的行政区划列表
+  List<XzqhBean>? _showXzqhList;
+
+  List<XzqhBean> get showXzqhList => _showXzqhList ?? _xzqhList;
 
   @override
   void initState() {
@@ -42,18 +52,21 @@ class _XzqhAbcState extends State<XzqhAbc> with BaseAbcStateMixin {
       if (_xzqhList.isNotEmpty)
         textSpanBuilder((builder) {
           //**3 个省、5 个自治区、4 个直辖市、2 个特别行政区**，合计 **34 个省级行政区**。
-          final provinceCount = _xzqhList
-              .where((e) => e.type == "省")
-              .length; //省
-          final autonomousRegionCount = _xzqhList
+          final provinceList = _xzqhList.where((e) => e.type == "省").toList();
+          final provinceCount = provinceList.length; //省
+          final autonomousRegionList = _xzqhList
               .where((e) => e.type == "自治区")
-              .length; //自治区
-          final municipalityCount = _xzqhList
+              .toList();
+          final autonomousRegionCount = autonomousRegionList.length;
+          final municipalityList = _xzqhList
               .where((e) => e.type == "直辖市")
-              .length; //直辖市
-          final specialAdministrativeRegionCount = _xzqhList
+              .toList();
+          final municipalityCount = municipalityList.length; //直辖市
+          final specialAdministrativeRegionList = _xzqhList
               .where((e) => e.type == "特别行政区")
-              .length; //特别行政区
+              .toList();
+          final specialAdministrativeRegionCount =
+              specialAdministrativeRegionList.length;
           final all =
               provinceCount +
               autonomousRegionCount +
@@ -63,35 +76,84 @@ class _XzqhAbcState extends State<XzqhAbc> with BaseAbcStateMixin {
             fontWeight: .bold,
           );
           builder
-            ..addText("$provinceCount", style: numberStyle)
+            ..addText(
+              "$provinceCount",
+              style: numberStyle,
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  _showXzqhList = provinceList;
+                  updateState();
+                },
+            )
             ..addText(" 个省、") //--
-            ..addText(" $autonomousRegionCount", style: numberStyle)
+            ..addText(
+              " $autonomousRegionCount",
+              style: numberStyle,
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  _showXzqhList = autonomousRegionList;
+                  updateState();
+                },
+            )
             ..addText(" 个自治区、") //--
-            ..addText(" $municipalityCount", style: numberStyle)
+            ..addText(
+              " $municipalityCount",
+              style: numberStyle,
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  _showXzqhList = municipalityList;
+                  updateState();
+                },
+            )
             ..addText(" 个直辖市、") //--
-            ..addText(" $specialAdministrativeRegionCount", style: numberStyle)
+            ..addText(
+              " $specialAdministrativeRegionCount",
+              style: numberStyle,
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  _showXzqhList = specialAdministrativeRegionList;
+                  updateState();
+                },
+            )
             ..addText(" 个特别行政区") //--
             ..addText(" : 合计")
-            ..addText(" $all", style: numberStyle)
+            ..addText(
+              " $all",
+              style: numberStyle,
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  _showXzqhList = null;
+                  updateState();
+                },
+            )
             ..addText(" 个省级行政区") //--
             ;
         }).insets(all: kH),
-      if (_xzqhList.isNotEmpty)
-        ..._xzqhList.map(
-          (e) => XzqhTile(
-            bean: e,
-          ).card().rGridTile($bpGrid(), childAspectRatio: 1 / 0.3),
+      if (showXzqhList.isNotEmpty)
+        ...showXzqhList.map(
+          (e) => XzqhTile(bean: e)
+              .card(
+                margin: isDesktopOrWeb ? insets(h: kH, v: kL) : null,
+              )
+              .rGridTile(
+                $bpGrid(),
+                childAspectRatio: 1 / (isDesktopOrWeb ? 0.3 : 0.4),
+              ),
         ),
-      if (_xzqhList.isEmpty) AdapterStateWidget(widgetState: .loading).rFill(),
+      if (showXzqhList.isEmpty)
+        AdapterStateWidget(widgetState: .loading).rFill(),
     ];
   }
 }
 
 /// 行政区划列表项
 class XzqhTile extends StatefulWidget {
+  /// 是否子项样式
+  final bool? isInChildStyle;
+
   final XzqhBean bean;
 
-  const XzqhTile({required this.bean, super.key});
+  const XzqhTile({required this.bean, this.isInChildStyle, super.key});
 
   @override
   State<XzqhTile> createState() => _XzqhTileState();
@@ -103,12 +165,35 @@ class _XzqhTileState extends State<XzqhTile> {
     final globalTheme = GlobalTheme.of(context);
     final bean = widget.bean;
     final subLength = bean.children?.length ?? 0;
+    final childStyle = widget.isInChildStyle ?? bean.shortName == null;
     return ListTile(
       leading: bean.shortName?.text(style: globalTheme.textTitleBigStyle),
+      trailing: childStyle
+          ? bean.zipCode?.text(style: globalTheme.textTitleStyle)
+          : null,
       title: bean.name?.text(),
       subtitle: bean.type
           ?.connect(subLength > 1 ? " ($subLength)" : null)
           .text(style: globalTheme.textDesStyle),
+      dense: !isDesktopOrWeb,
+      visualDensity: VisualDensity(horizontal: -4, vertical: -4),
+      //最小视觉密度
+      contentPadding: insets(h: kH, v: kL),
+      tileColor: _XzqhAbcState._clickedXzqhList.contains(bean)
+          ? globalTheme.pressColor
+          : null,
+      onTap: () {
+        _XzqhAbcState._clickedXzqhList.add(bean);
+        updateState();
+        if (childStyle) {
+          bean.zipCode?.copy();
+        } else if (!isNil(bean.children)) {
+          XzqhListScreen(
+            title: bean.name,
+            beanList: bean.children!,
+          ).showScreenWidget(context);
+        }
+      },
     );
   }
 }
@@ -156,4 +241,36 @@ class XzqhBean {
             json["children"].map((x) => XzqhBean.fromJson(x)),
           ),
   );
+}
+
+/// 行政区划列表屏幕
+class XzqhListScreen extends StatefulWidget with ScreenMixin {
+  /// 屏幕标题
+  final String? title;
+
+  final List<XzqhBean> beanList;
+
+  @override
+  ScreenType get screenType => .bottomDialog;
+
+  @override
+  String? getTitle(BuildContext? context) => title;
+
+  const XzqhListScreen({super.key, required this.beanList, this.title});
+
+  @override
+  State<XzqhListScreen> createState() => _XzqhListScreenState();
+}
+
+class _XzqhListScreenState extends State<XzqhListScreen> with ScreenStateMixin {
+  @override
+  Widget build(BuildContext context) {
+    return (widget as ScreenMixin).buildScaffold(this, [
+      ...widget.beanList.map(
+        (e) => XzqhTile(bean: e, isInChildStyle: true).card(
+          margin: isDesktopOrWeb ? insets(h: kH, v: kL) : null,
+        ),
+      ),
+    ], expandedScroll: true);
+  }
 }
