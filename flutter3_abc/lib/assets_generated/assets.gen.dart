@@ -33,17 +33,36 @@ class $AssetsAudioGen {
 class $AssetsFlameGen {
   const $AssetsFlameGen();
 
+  /// Directory path: assets/flame/parallax
+  $AssetsFlameParallaxGen get parallax => const $AssetsFlameParallaxGen();
+
   /// File path: assets/flame/player.png
   AssetGenImage get player => const AssetGenImage(
     'assets/flame/player.png',
     size: const Size(48.0, 48.0),
   );
 
+  /// Directory path: assets/flame/sprites
+  $AssetsFlameSpritesGen get sprites => const $AssetsFlameSpritesGen();
+
   /// Directory path: packages/flutter3_abc/assets/flame
   String get path => 'packages/flutter3_abc/assets/flame';
 
   /// List of all assets
   List<AssetGenImage> get values => [player];
+}
+
+class $AssetsJsonGen {
+  const $AssetsJsonGen();
+
+  /// File path: assets/json/xzqh.json
+  String get xzqh => 'packages/flutter3_abc/assets/json/xzqh.json';
+
+  /// Directory path: packages/flutter3_abc/assets/json
+  String get path => 'packages/flutter3_abc/assets/json';
+
+  /// List of all assets
+  List<String> get values => [xzqh];
 }
 
 class $AssetsPngGen {
@@ -289,13 +308,80 @@ class $AssetsWebGen {
   ];
 }
 
-class Assets {
-  const Assets._();
+class $AssetsFlameParallaxGen {
+  const $AssetsFlameParallaxGen();
 
+  /// File path: assets/flame/parallax/bg.png
+  AssetGenImage get bg => const AssetGenImage(
+    'assets/flame/parallax/bg.png',
+    size: const Size(272.0, 160.0),
+  );
+
+  /// File path: assets/flame/parallax/trees.png
+  AssetGenImage get trees => const AssetGenImage(
+    'assets/flame/parallax/trees.png',
+    size: const Size(544.0, 160.0),
+  );
+
+  /// Directory path: packages/flutter3_abc/assets/flame/parallax
+  String get path => 'packages/flutter3_abc/assets/flame/parallax';
+
+  /// List of all assets
+  List<AssetGenImage> get values => [bg, trees];
+}
+
+class $AssetsFlameSpritesGen {
+  const $AssetsFlameSpritesGen();
+
+  /// File path: assets/flame/sprites/chopper.png
+  AssetGenImage get chopper => const AssetGenImage(
+    'assets/flame/sprites/chopper.png',
+    size: const Size(192.0, 48.0),
+  );
+
+  /// File path: assets/flame/sprites/creature.png
+  AssetGenImage get creature => const AssetGenImage(
+    'assets/flame/sprites/creature.png',
+    size: const Size(2910.0, 356.0),
+  );
+
+  /// File path: assets/flame/sprites/ember.png
+  AssetGenImage get ember => const AssetGenImage(
+    'assets/flame/sprites/ember.png',
+    size: const Size(64.0, 16.0),
+  );
+
+  /// File path: assets/flame/sprites/robot-idle.png
+  AssetGenImage get robotIdle => const AssetGenImage(
+    'assets/flame/sprites/robot-idle.png',
+    size: const Size(64.0, 18.0),
+  );
+
+  /// File path: assets/flame/sprites/robot.png
+  AssetGenImage get robot => const AssetGenImage(
+    'assets/flame/sprites/robot.png',
+    size: const Size(128.0, 18.0),
+  );
+
+  /// Directory path: packages/flutter3_abc/assets/flame/sprites
+  String get path => 'packages/flutter3_abc/assets/flame/sprites';
+
+  /// List of all assets
+  List<AssetGenImage> get values => [
+    chopper,
+    creature,
+    ember,
+    robotIdle,
+    robot,
+  ];
+}
+
+abstract final class Assets {
   static const String package = 'flutter3_abc';
 
   static const $AssetsAudioGen audio = $AssetsAudioGen();
   static const $AssetsFlameGen flame = $AssetsFlameGen();
+  static const $AssetsJsonGen json = $AssetsJsonGen();
   static const $AssetsPngGen png = $AssetsPngGen();
   static const $AssetsSvgGen svg = $AssetsSvgGen();
   static const $AssetsWebGen web = $AssetsWebGen();

@@ -1,0 +1,3935 @@
+{
+  "data": {
+    "code": "00",
+    "name": null,
+    "shortName": null,
+    "zipCode": null,
+    "level": 0,
+    "type": "",
+    "children": [
+      {
+        "code": "110000000000",
+        "name": "北京市",
+        "shortName": "京",
+        "zipCode": "100000",
+        "level": 1,
+        "type": "直辖市",
+        "children": [
+          {
+            "code": "110101000000",
+            "name": "东城区",
+            "shortName": null,
+            "zipCode": "100010",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "110102000000",
+            "name": "西城区",
+            "shortName": null,
+            "zipCode": "100032",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "110105000000",
+            "name": "朝阳区",
+            "shortName": null,
+            "zipCode": "100020",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "110106000000",
+            "name": "丰台区",
+            "shortName": null,
+            "zipCode": "100071",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "110107000000",
+            "name": "石景山区",
+            "shortName": null,
+            "zipCode": "100043",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "110108000000",
+            "name": "海淀区",
+            "shortName": null,
+            "zipCode": "100080",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "110109000000",
+            "name": "门头沟区",
+            "shortName": null,
+            "zipCode": "102300",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "110111000000",
+            "name": "房山区",
+            "shortName": null,
+            "zipCode": "102400",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "110112000000",
+            "name": "通州区",
+            "shortName": null,
+            "zipCode": "101100",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "110113000000",
+            "name": "顺义区",
+            "shortName": null,
+            "zipCode": "101300",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "110114000000",
+            "name": "昌平区",
+            "shortName": null,
+            "zipCode": "102200",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "110115000000",
+            "name": "大兴区",
+            "shortName": null,
+            "zipCode": "102600",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "110116000000",
+            "name": "怀柔区",
+            "shortName": null,
+            "zipCode": "101400",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "110117000000",
+            "name": "平谷区",
+            "shortName": null,
+            "zipCode": "101200",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "110118000000",
+            "name": "密云区",
+            "shortName": null,
+            "zipCode": "101500",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "110119000000",
+            "name": "延庆区",
+            "shortName": null,
+            "zipCode": "102100",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          }
+        ]
+      },
+      {
+        "code": "120000000000",
+        "name": "天津市",
+        "shortName": "津",
+        "zipCode": "300000",
+        "level": 1,
+        "type": "直辖市",
+        "children": [
+          {
+            "code": "120101000000",
+            "name": "和平区",
+            "shortName": null,
+            "zipCode": "300041",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "120102000000",
+            "name": "河东区",
+            "shortName": null,
+            "zipCode": "300171",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "120103000000",
+            "name": "河西区",
+            "shortName": null,
+            "zipCode": "300202",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "120104000000",
+            "name": "南开区",
+            "shortName": null,
+            "zipCode": "300100",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "120105000000",
+            "name": "河北区",
+            "shortName": null,
+            "zipCode": "300143",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "120106000000",
+            "name": "红桥区",
+            "shortName": null,
+            "zipCode": "300131",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "120110000000",
+            "name": "东丽区",
+            "shortName": null,
+            "zipCode": "300300",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "120111000000",
+            "name": "西青区",
+            "shortName": null,
+            "zipCode": "300380",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "120112000000",
+            "name": "津南区",
+            "shortName": null,
+            "zipCode": "300350",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "120113000000",
+            "name": "北辰区",
+            "shortName": null,
+            "zipCode": "300400",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "120114000000",
+            "name": "武清区",
+            "shortName": null,
+            "zipCode": "301700",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "120115000000",
+            "name": "宝坻区",
+            "shortName": null,
+            "zipCode": "301800",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "120116000000",
+            "name": "滨海新区",
+            "shortName": null,
+            "zipCode": "300450",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "120117000000",
+            "name": "宁河区",
+            "shortName": null,
+            "zipCode": "301500",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "120118000000",
+            "name": "静海区",
+            "shortName": null,
+            "zipCode": "301600",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "120119000000",
+            "name": "蓟州区",
+            "shortName": null,
+            "zipCode": "301900",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          }
+        ]
+      },
+      {
+        "code": "130000000000",
+        "name": "河北省",
+        "shortName": "冀",
+        "zipCode": null,
+        "level": 1,
+        "type": "省",
+        "children": [
+          {
+            "code": "130100000000",
+            "name": "石家庄市",
+            "shortName": "石",
+            "zipCode": "050000",
+            "level": 2,
+            "type": "地级市",
+            "children": []
+          },
+          {
+            "code": "130200000000",
+            "name": "唐山市",
+            "shortName": "唐",
+            "zipCode": "063000",
+            "level": 2,
+            "type": "地级市",
+            "children": []
+          },
+          {
+            "code": "130300000000",
+            "name": "秦皇岛市",
+            "shortName": "秦",
+            "zipCode": "066000",
+            "level": 2,
+            "type": "地级市",
+            "children": []
+          },
+          {
+            "code": "130400000000",
+            "name": "邯郸市",
+            "shortName": "邯",
+            "zipCode": "056000",
+            "level": 2,
+            "type": "地级市",
+            "children": []
+          },
+          {
+            "code": "130500000000",
+            "name": "邢台市",
+            "shortName": "邢",
+            "zipCode": "054000",
+            "level": 2,
+            "type": "地级市",
+            "children": []
+          },
+          {
+            "code": "130600000000",
+            "name": "保定市",
+            "shortName": "保",
+            "zipCode": "071000",
+            "level": 2,
+            "type": "地级市",
+            "children": []
+          },
+          {
+            "code": "130700000000",
+            "name": "张家口市",
+            "shortName": "张",
+            "zipCode": "075000",
+            "level": 2,
+            "type": "地级市",
+            "children": []
+          },
+          {
+            "code": "130800000000",
+            "name": "承德市",
+            "shortName": "承",
+            "zipCode": "067000",
+            "level": 2,
+            "type": "地级市",
+            "children": []
+          },
+          {
+            "code": "130900000000",
+            "name": "沧州市",
+            "shortName": "沧",
+            "zipCode": "061000",
+            "level": 2,
+            "type": "地级市",
+            "children": []
+          },
+          {
+            "code": "131000000000",
+            "name": "廊坊市",
+            "shortName": "廊",
+            "zipCode": "065000",
+            "level": 2,
+            "type": "地级市",
+            "children": []
+          },
+          {
+            "code": "131100000000",
+            "name": "衡水市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "053000"
+          }
+        ]
+      },
+      {
+        "code": "140000000000",
+        "name": "山西省",
+        "level": 1,
+        "type": "省",
+        "children": [
+          {
+            "code": "140100000000",
+            "name": "太原市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "030000"
+          },
+          {
+            "code": "140200000000",
+            "name": "大同市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "037000"
+          },
+          {
+            "code": "140300000000",
+            "name": "阳泉市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "045000"
+          },
+          {
+            "code": "140400000000",
+            "name": "长治市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "046000"
+          },
+          {
+            "code": "140500000000",
+            "name": "晋城市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "048000"
+          },
+          {
+            "code": "140600000000",
+            "name": "朔州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "036000"
+          },
+          {
+            "code": "140700000000",
+            "name": "晋中市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "030600"
+          },
+          {
+            "code": "140800000000",
+            "name": "运城市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "044000"
+          },
+          {
+            "code": "140900000000",
+            "name": "忻州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "034000"
+          },
+          {
+            "code": "141000000000",
+            "name": "临汾市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "041000"
+          },
+          {
+            "code": "141100000000",
+            "name": "吕梁市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "033000"
+          }
+        ],
+        "shortName": "晋"
+      },
+      {
+        "code": "150000000000",
+        "name": "内蒙古自治区",
+        "level": 1,
+        "type": "自治区",
+        "children": [
+          {
+            "code": "150100000000",
+            "name": "呼和浩特市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "010000"
+          },
+          {
+            "code": "150200000000",
+            "name": "包头市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "014000"
+          },
+          {
+            "code": "150300000000",
+            "name": "乌海市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "016000"
+          },
+          {
+            "code": "150400000000",
+            "name": "赤峰市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "024000"
+          },
+          {
+            "code": "150500000000",
+            "name": "通辽市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "028000"
+          },
+          {
+            "code": "150600000000",
+            "name": "鄂尔多斯市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "017000"
+          },
+          {
+            "code": "150700000000",
+            "name": "呼伦贝尔市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "021000"
+          },
+          {
+            "code": "150800000000",
+            "name": "巴彦淖尔市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "015000"
+          },
+          {
+            "code": "150900000000",
+            "name": "乌兰察布市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "012000"
+          },
+          {
+            "code": "152200000000",
+            "name": "兴安盟",
+            "level": 2,
+            "type": "盟",
+            "children": [],
+            "zipCode": "137400"
+          },
+          {
+            "code": "152500000000",
+            "name": "锡林郭勒盟",
+            "level": 2,
+            "type": "盟",
+            "children": [],
+            "zipCode": "026000"
+          },
+          {
+            "code": "152900000000",
+            "name": "阿拉善盟",
+            "level": 2,
+            "type": "盟",
+            "children": [],
+            "zipCode": "750300"
+          }
+        ],
+        "shortName": "蒙"
+      },
+      {
+        "code": "210000000000",
+        "name": "辽宁省",
+        "level": 1,
+        "type": "省",
+        "children": [
+          {
+            "code": "210100000000",
+            "name": "沈阳市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "110000"
+          },
+          {
+            "code": "210200000000",
+            "name": "大连市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "116000"
+          },
+          {
+            "code": "210300000000",
+            "name": "鞍山市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "114000"
+          },
+          {
+            "code": "210400000000",
+            "name": "抚顺市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "113000"
+          },
+          {
+            "code": "210500000000",
+            "name": "本溪市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "117000"
+          },
+          {
+            "code": "210600000000",
+            "name": "丹东市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "118000"
+          },
+          {
+            "code": "210700000000",
+            "name": "锦州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "121000"
+          },
+          {
+            "code": "210800000000",
+            "name": "营口市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "115000"
+          },
+          {
+            "code": "210900000000",
+            "name": "阜新市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "123000"
+          },
+          {
+            "code": "211000000000",
+            "name": "辽阳市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "111000"
+          },
+          {
+            "code": "211100000000",
+            "name": "盘锦市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "124000"
+          },
+          {
+            "code": "211200000000",
+            "name": "铁岭市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "112000"
+          },
+          {
+            "code": "211300000000",
+            "name": "朝阳市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "122000"
+          },
+          {
+            "code": "211400000000",
+            "name": "葫芦岛市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "125000"
+          }
+        ],
+        "shortName": "辽"
+      },
+      {
+        "code": "220000000000",
+        "name": "吉林省",
+        "level": 1,
+        "type": "省",
+        "children": [
+          {
+            "code": "220100000000",
+            "name": "长春市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "130000"
+          },
+          {
+            "code": "220200000000",
+            "name": "吉林市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "132000"
+          },
+          {
+            "code": "220300000000",
+            "name": "四平市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "136000"
+          },
+          {
+            "code": "220400000000",
+            "name": "辽源市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "136200"
+          },
+          {
+            "code": "220500000000",
+            "name": "通化市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "134000"
+          },
+          {
+            "code": "220600000000",
+            "name": "白山市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "134300"
+          },
+          {
+            "code": "220700000000",
+            "name": "松原市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "138000"
+          },
+          {
+            "code": "220800000000",
+            "name": "白城市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "137000"
+          },
+          {
+            "code": "222400000000",
+            "name": "延边朝鲜族自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "133000"
+          }
+        ],
+        "shortName": "吉"
+      },
+      {
+        "code": "230000000000",
+        "name": "黑龙江省",
+        "level": 1,
+        "type": "省",
+        "children": [
+          {
+            "code": "230100000000",
+            "name": "哈尔滨市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "150000"
+          },
+          {
+            "code": "230200000000",
+            "name": "齐齐哈尔市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "161000"
+          },
+          {
+            "code": "230300000000",
+            "name": "鸡西市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "158100"
+          },
+          {
+            "code": "230400000000",
+            "name": "鹤岗市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "154100"
+          },
+          {
+            "code": "230500000000",
+            "name": "双鸭山市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "155100"
+          },
+          {
+            "code": "230600000000",
+            "name": "大庆市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "163000"
+          },
+          {
+            "code": "230700000000",
+            "name": "伊春市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "153000"
+          },
+          {
+            "code": "230800000000",
+            "name": "佳木斯市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "154000"
+          },
+          {
+            "code": "230900000000",
+            "name": "七台河市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "154600"
+          },
+          {
+            "code": "231000000000",
+            "name": "牡丹江市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "157000"
+          },
+          {
+            "code": "231100000000",
+            "name": "黑河市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "164300"
+          },
+          {
+            "code": "231200000000",
+            "name": "绥化市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "152000"
+          },
+          {
+            "code": "232700000000",
+            "name": "大兴安岭地区",
+            "level": 2,
+            "type": "地区",
+            "children": [],
+            "zipCode": "165000"
+          }
+        ],
+        "shortName": "黑"
+      },
+      {
+        "code": "310000000000",
+        "name": "上海市",
+        "level": 1,
+        "type": "直辖市",
+        "children": [
+          {
+            "code": "310101000000",
+            "name": "黄浦区",
+            "level": 3,
+            "type": "市辖区",
+            "children": [],
+            "zipCode": "200001"
+          },
+          {
+            "code": "310104000000",
+            "name": "徐汇区",
+            "level": 3,
+            "type": "市辖区",
+            "children": [],
+            "zipCode": "200030"
+          },
+          {
+            "code": "310105000000",
+            "name": "长宁区",
+            "level": 3,
+            "type": "市辖区",
+            "children": [],
+            "zipCode": "200050"
+          },
+          {
+            "code": "310106000000",
+            "name": "静安区",
+            "level": 3,
+            "type": "市辖区",
+            "children": [],
+            "zipCode": "200040"
+          },
+          {
+            "code": "310107000000",
+            "name": "普陀区",
+            "level": 3,
+            "type": "市辖区",
+            "children": [],
+            "zipCode": "200062"
+          },
+          {
+            "code": "310109000000",
+            "name": "虹口区",
+            "level": 3,
+            "type": "市辖区",
+            "children": [],
+            "zipCode": "200081"
+          },
+          {
+            "code": "310110000000",
+            "name": "杨浦区",
+            "level": 3,
+            "type": "市辖区",
+            "children": [],
+            "zipCode": "200090"
+          },
+          {
+            "code": "310112000000",
+            "name": "闵行区",
+            "level": 3,
+            "type": "市辖区",
+            "children": [],
+            "zipCode": "201100"
+          },
+          {
+            "code": "310113000000",
+            "name": "宝山区",
+            "level": 3,
+            "type": "市辖区",
+            "children": [],
+            "zipCode": "201900"
+          },
+          {
+            "code": "310114000000",
+            "name": "嘉定区",
+            "level": 3,
+            "type": "市辖区",
+            "children": [],
+            "zipCode": "201800"
+          },
+          {
+            "code": "310115000000",
+            "name": "浦东新区",
+            "level": 3,
+            "type": "市辖区",
+            "children": [],
+            "zipCode": "200120"
+          },
+          {
+            "code": "310116000000",
+            "name": "金山区",
+            "level": 3,
+            "type": "市辖区",
+            "children": [],
+            "zipCode": "201599"
+          },
+          {
+            "code": "310117000000",
+            "name": "松江区",
+            "level": 3,
+            "type": "市辖区",
+            "children": [],
+            "zipCode": "201600"
+          },
+          {
+            "code": "310118000000",
+            "name": "青浦区",
+            "level": 3,
+            "type": "市辖区",
+            "children": [],
+            "zipCode": "201700"
+          },
+          {
+            "code": "310120000000",
+            "name": "奉贤区",
+            "level": 3,
+            "type": "市辖区",
+            "children": [],
+            "zipCode": "201400"
+          },
+          {
+            "code": "310151000000",
+            "name": "崇明区",
+            "level": 3,
+            "type": "市辖区",
+            "children": [],
+            "zipCode": "202150"
+          }
+        ],
+        "shortName": "沪"
+      },
+      {
+        "code": "320000000000",
+        "name": "江苏省",
+        "level": 1,
+        "type": "省",
+        "children": [
+          {
+            "code": "320100000000",
+            "name": "南京市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "210000"
+          },
+          {
+            "code": "320200000000",
+            "name": "无锡市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "214000"
+          },
+          {
+            "code": "320300000000",
+            "name": "徐州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "221000"
+          },
+          {
+            "code": "320400000000",
+            "name": "常州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "213000"
+          },
+          {
+            "code": "320500000000",
+            "name": "苏州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "215000"
+          },
+          {
+            "code": "320600000000",
+            "name": "南通市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "226000"
+          },
+          {
+            "code": "320700000000",
+            "name": "连云港市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "222000"
+          },
+          {
+            "code": "320800000000",
+            "name": "淮安市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "223000"
+          },
+          {
+            "code": "320900000000",
+            "name": "盐城市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "224000"
+          },
+          {
+            "code": "321000000000",
+            "name": "扬州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "225000"
+          },
+          {
+            "code": "321100000000",
+            "name": "镇江市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "212000"
+          },
+          {
+            "code": "321200000000",
+            "name": "泰州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "225300"
+          },
+          {
+            "code": "321300000000",
+            "name": "宿迁市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "223800"
+          }
+        ],
+        "shortName": "苏"
+      },
+      {
+        "code": "330000000000",
+        "name": "浙江省",
+        "level": 1,
+        "type": "省",
+        "children": [
+          {
+            "code": "330100000000",
+            "name": "杭州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "310000"
+          },
+          {
+            "code": "330200000000",
+            "name": "宁波市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "315000"
+          },
+          {
+            "code": "330300000000",
+            "name": "温州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "325000"
+          },
+          {
+            "code": "330400000000",
+            "name": "嘉兴市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "314000"
+          },
+          {
+            "code": "330500000000",
+            "name": "湖州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "313000"
+          },
+          {
+            "code": "330600000000",
+            "name": "绍兴市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "312000"
+          },
+          {
+            "code": "330700000000",
+            "name": "金华市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "321000"
+          },
+          {
+            "code": "330800000000",
+            "name": "衢州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "324000"
+          },
+          {
+            "code": "330900000000",
+            "name": "舟山市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "316000"
+          },
+          {
+            "code": "331000000000",
+            "name": "台州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "318000"
+          },
+          {
+            "code": "331100000000",
+            "name": "丽水市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "323000"
+          }
+        ],
+        "shortName": "浙"
+      },
+      {
+        "code": "340000000000",
+        "name": "安徽省",
+        "level": 1,
+        "type": "省",
+        "children": [
+          {
+            "code": "340100000000",
+            "name": "合肥市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "230000"
+          },
+          {
+            "code": "340200000000",
+            "name": "芜湖市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "241000"
+          },
+          {
+            "code": "340300000000",
+            "name": "蚌埠市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "233000"
+          },
+          {
+            "code": "340400000000",
+            "name": "淮南市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "232000"
+          },
+          {
+            "code": "340500000000",
+            "name": "马鞍山市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "243000"
+          },
+          {
+            "code": "340600000000",
+            "name": "淮北市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "235000"
+          },
+          {
+            "code": "340700000000",
+            "name": "铜陵市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "244000"
+          },
+          {
+            "code": "340800000000",
+            "name": "安庆市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "246000"
+          },
+          {
+            "code": "341000000000",
+            "name": "黄山市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "245000"
+          },
+          {
+            "code": "341100000000",
+            "name": "滁州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "239000"
+          },
+          {
+            "code": "341200000000",
+            "name": "阜阳市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "236000"
+          },
+          {
+            "code": "341300000000",
+            "name": "宿州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "234000"
+          },
+          {
+            "code": "341500000000",
+            "name": "六安市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "237000"
+          },
+          {
+            "code": "341600000000",
+            "name": "亳州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "236800"
+          },
+          {
+            "code": "341700000000",
+            "name": "池州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "247000"
+          },
+          {
+            "code": "341800000000",
+            "name": "宣城市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "242000"
+          }
+        ],
+        "shortName": "皖"
+      },
+      {
+        "code": "350000000000",
+        "name": "福建省",
+        "level": 1,
+        "type": "省",
+        "children": [
+          {
+            "code": "350100000000",
+            "name": "福州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "350000"
+          },
+          {
+            "code": "350200000000",
+            "name": "厦门市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "361000"
+          },
+          {
+            "code": "350300000000",
+            "name": "莆田市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "351100"
+          },
+          {
+            "code": "350400000000",
+            "name": "三明市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "365000"
+          },
+          {
+            "code": "350500000000",
+            "name": "泉州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "362000"
+          },
+          {
+            "code": "350600000000",
+            "name": "漳州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "363000"
+          },
+          {
+            "code": "350700000000",
+            "name": "南平市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "353000"
+          },
+          {
+            "code": "350800000000",
+            "name": "龙岩市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "364000"
+          },
+          {
+            "code": "350900000000",
+            "name": "宁德市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "352100"
+          }
+        ],
+        "shortName": "闽"
+      },
+      {
+        "code": "360000000000",
+        "name": "江西省",
+        "level": 1,
+        "type": "省",
+        "children": [
+          {
+            "code": "360100000000",
+            "name": "南昌市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "330000"
+          },
+          {
+            "code": "360200000000",
+            "name": "景德镇市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "333000"
+          },
+          {
+            "code": "360300000000",
+            "name": "萍乡市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "337000"
+          },
+          {
+            "code": "360400000000",
+            "name": "九江市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "332000"
+          },
+          {
+            "code": "360500000000",
+            "name": "新余市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "338000"
+          },
+          {
+            "code": "360600000000",
+            "name": "鹰潭市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "335000"
+          },
+          {
+            "code": "360700000000",
+            "name": "赣州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "341000"
+          },
+          {
+            "code": "360800000000",
+            "name": "吉安市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "343000"
+          },
+          {
+            "code": "360900000000",
+            "name": "宜春市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "336000"
+          },
+          {
+            "code": "361000000000",
+            "name": "抚州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "344000"
+          },
+          {
+            "code": "361100000000",
+            "name": "上饶市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "334000"
+          }
+        ],
+        "shortName": "赣"
+      },
+      {
+        "code": "370000000000",
+        "name": "山东省",
+        "level": 1,
+        "type": "省",
+        "children": [
+          {
+            "code": "370100000000",
+            "name": "济南市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "250000"
+          },
+          {
+            "code": "370200000000",
+            "name": "青岛市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "266000"
+          },
+          {
+            "code": "370300000000",
+            "name": "淄博市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "255000"
+          },
+          {
+            "code": "370400000000",
+            "name": "枣庄市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "277100"
+          },
+          {
+            "code": "370500000000",
+            "name": "东营市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "257000"
+          },
+          {
+            "code": "370600000000",
+            "name": "烟台市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "264000"
+          },
+          {
+            "code": "370700000000",
+            "name": "潍坊市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "261000"
+          },
+          {
+            "code": "370800000000",
+            "name": "济宁市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "272000"
+          },
+          {
+            "code": "370900000000",
+            "name": "泰安市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "271000"
+          },
+          {
+            "code": "371000000000",
+            "name": "威海市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "264200"
+          },
+          {
+            "code": "371100000000",
+            "name": "日照市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "276800"
+          },
+          {
+            "code": "371300000000",
+            "name": "临沂市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "276000"
+          },
+          {
+            "code": "371400000000",
+            "name": "德州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "253000"
+          },
+          {
+            "code": "371500000000",
+            "name": "聊城市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "252000"
+          },
+          {
+            "code": "371600000000",
+            "name": "滨州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "256600"
+          },
+          {
+            "code": "371700000000",
+            "name": "菏泽市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "274000"
+          }
+        ],
+        "shortName": "鲁"
+      },
+      {
+        "code": "410000000000",
+        "name": "河南省",
+        "level": 1,
+        "type": "省",
+        "children": [
+          {
+            "code": "410100000000",
+            "name": "郑州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "450000"
+          },
+          {
+            "code": "410200000000",
+            "name": "开封市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "475000"
+          },
+          {
+            "code": "410300000000",
+            "name": "洛阳市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "471000"
+          },
+          {
+            "code": "410400000000",
+            "name": "平顶山市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "467000"
+          },
+          {
+            "code": "410500000000",
+            "name": "安阳市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "455000"
+          },
+          {
+            "code": "410600000000",
+            "name": "鹤壁市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "458000"
+          },
+          {
+            "code": "410700000000",
+            "name": "新乡市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "453000"
+          },
+          {
+            "code": "410800000000",
+            "name": "焦作市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "454000"
+          },
+          {
+            "code": "410900000000",
+            "name": "濮阳市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "457000"
+          },
+          {
+            "code": "411000000000",
+            "name": "许昌市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "461000"
+          },
+          {
+            "code": "411100000000",
+            "name": "漯河市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "462000"
+          },
+          {
+            "code": "411200000000",
+            "name": "三门峡市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "472000"
+          },
+          {
+            "code": "411300000000",
+            "name": "南阳市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "473000"
+          },
+          {
+            "code": "411400000000",
+            "name": "商丘市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "476000"
+          },
+          {
+            "code": "411500000000",
+            "name": "信阳市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "464000"
+          },
+          {
+            "code": "411600000000",
+            "name": "周口市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "466000"
+          },
+          {
+            "code": "411700000000",
+            "name": "驻马店市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "463000"
+          },
+          {
+            "code": "419001000000",
+            "name": "济源市",
+            "level": 3,
+            "type": "县级市",
+            "children": [],
+            "zipCode": "454650"
+          }
+        ],
+        "shortName": "豫"
+      },
+      {
+        "code": "420000000000",
+        "name": "湖北省",
+        "level": 1,
+        "type": "省",
+        "children": [
+          {
+            "code": "420100000000",
+            "name": "武汉市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "430000"
+          },
+          {
+            "code": "420200000000",
+            "name": "黄石市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "435000"
+          },
+          {
+            "code": "420300000000",
+            "name": "十堰市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "442000"
+          },
+          {
+            "code": "420500000000",
+            "name": "宜昌市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "443000"
+          },
+          {
+            "code": "420600000000",
+            "name": "襄阳市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "441000"
+          },
+          {
+            "code": "420700000000",
+            "name": "鄂州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "436000"
+          },
+          {
+            "code": "420800000000",
+            "name": "荆门市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "448000"
+          },
+          {
+            "code": "420900000000",
+            "name": "孝感市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "432000"
+          },
+          {
+            "code": "421000000000",
+            "name": "荆州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "434000"
+          },
+          {
+            "code": "421100000000",
+            "name": "黄冈市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "438000"
+          },
+          {
+            "code": "421200000000",
+            "name": "咸宁市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "437000"
+          },
+          {
+            "code": "421300000000",
+            "name": "随州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "441300"
+          },
+          {
+            "code": "422800000000",
+            "name": "恩施土家族苗族自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "445000"
+          },
+          {
+            "code": "429004000000",
+            "name": "仙桃市",
+            "level": 3,
+            "type": "县级市",
+            "children": [],
+            "zipCode": "433000"
+          },
+          {
+            "code": "429005000000",
+            "name": "潜江市",
+            "level": 3,
+            "type": "县级市",
+            "children": [],
+            "zipCode": "433100"
+          },
+          {
+            "code": "429006000000",
+            "name": "天门市",
+            "level": 3,
+            "type": "县级市",
+            "children": [],
+            "zipCode": "431700"
+          },
+          {
+            "code": "429021000000",
+            "name": "神农架林区",
+            "level": 3,
+            "type": "林区",
+            "children": [],
+            "zipCode": "442400"
+          }
+        ],
+        "shortName": "鄂"
+      },
+      {
+        "code": "430000000000",
+        "name": "湖南省",
+        "level": 1,
+        "type": "省",
+        "children": [
+          {
+            "code": "430100000000",
+            "name": "长沙市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "410000"
+          },
+          {
+            "code": "430200000000",
+            "name": "株洲市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "412000"
+          },
+          {
+            "code": "430300000000",
+            "name": "湘潭市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "411100"
+          },
+          {
+            "code": "430400000000",
+            "name": "衡阳市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "421000"
+          },
+          {
+            "code": "430500000000",
+            "name": "邵阳市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "422000"
+          },
+          {
+            "code": "430600000000",
+            "name": "岳阳市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "414000"
+          },
+          {
+            "code": "430700000000",
+            "name": "常德市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "415000"
+          },
+          {
+            "code": "430800000000",
+            "name": "张家界市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "427000"
+          },
+          {
+            "code": "430900000000",
+            "name": "益阳市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "413000"
+          },
+          {
+            "code": "431000000000",
+            "name": "郴州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "423000"
+          },
+          {
+            "code": "431100000000",
+            "name": "永州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "425000"
+          },
+          {
+            "code": "431200000000",
+            "name": "怀化市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "418000"
+          },
+          {
+            "code": "431300000000",
+            "name": "娄底市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "417000"
+          },
+          {
+            "code": "433100000000",
+            "name": "湘西土家族苗族自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "416000"
+          }
+        ],
+        "shortName": "湘"
+      },
+      {
+        "code": "440000000000",
+        "name": "广东省",
+        "level": 1,
+        "type": "省",
+        "children": [
+          {
+            "code": "440100000000",
+            "name": "广州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "510000"
+          },
+          {
+            "code": "440200000000",
+            "name": "韶关市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "512000"
+          },
+          {
+            "code": "440300000000",
+            "name": "深圳市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "518000"
+          },
+          {
+            "code": "440400000000",
+            "name": "珠海市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "519000"
+          },
+          {
+            "code": "440500000000",
+            "name": "汕头市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "515000"
+          },
+          {
+            "code": "440600000000",
+            "name": "佛山市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "528000"
+          },
+          {
+            "code": "440700000000",
+            "name": "江门市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "529000"
+          },
+          {
+            "code": "440800000000",
+            "name": "湛江市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "524000"
+          },
+          {
+            "code": "440900000000",
+            "name": "茂名市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "525000"
+          },
+          {
+            "code": "441200000000",
+            "name": "肇庆市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "526000"
+          },
+          {
+            "code": "441300000000",
+            "name": "惠州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "516000"
+          },
+          {
+            "code": "441400000000",
+            "name": "梅州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "514000"
+          },
+          {
+            "code": "441500000000",
+            "name": "汕尾市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "516600"
+          },
+          {
+            "code": "441600000000",
+            "name": "河源市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "517000"
+          },
+          {
+            "code": "441700000000",
+            "name": "阳江市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "529500"
+          },
+          {
+            "code": "441800000000",
+            "name": "清远市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "511500"
+          },
+          {
+            "code": "441900000000",
+            "name": "东莞市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "523000"
+          },
+          {
+            "code": "442000000000",
+            "name": "中山市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "528400"
+          },
+          {
+            "code": "445100000000",
+            "name": "潮州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "521000"
+          },
+          {
+            "code": "445200000000",
+            "name": "揭阳市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "522000"
+          },
+          {
+            "code": "445300000000",
+            "name": "云浮市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "527300"
+          }
+        ],
+        "shortName": "粤"
+      },
+      {
+        "code": "450000000000",
+        "name": "广西壮族自治区",
+        "level": 1,
+        "type": "自治区",
+        "children": [
+          {
+            "code": "450100000000",
+            "name": "南宁市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "530000"
+          },
+          {
+            "code": "450200000000",
+            "name": "柳州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "545000"
+          },
+          {
+            "code": "450300000000",
+            "name": "桂林市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "541000"
+          },
+          {
+            "code": "450400000000",
+            "name": "梧州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "543000"
+          },
+          {
+            "code": "450500000000",
+            "name": "北海市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "536000"
+          },
+          {
+            "code": "450600000000",
+            "name": "防城港市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "538000"
+          },
+          {
+            "code": "450700000000",
+            "name": "钦州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "535000"
+          },
+          {
+            "code": "450800000000",
+            "name": "贵港市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "537100"
+          },
+          {
+            "code": "450900000000",
+            "name": "玉林市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "537000"
+          },
+          {
+            "code": "451000000000",
+            "name": "百色市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "533000"
+          },
+          {
+            "code": "451100000000",
+            "name": "贺州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "542800"
+          },
+          {
+            "code": "451200000000",
+            "name": "河池市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "547000"
+          },
+          {
+            "code": "451300000000",
+            "name": "来宾市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "546100"
+          },
+          {
+            "code": "451400000000",
+            "name": "崇左市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "532200"
+          }
+        ],
+        "shortName": "桂"
+      },
+      {
+        "code": "460000000000",
+        "name": "海南省",
+        "level": 1,
+        "type": "省",
+        "children": [
+          {
+            "code": "460100000000",
+            "name": "海口市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "570000"
+          },
+          {
+            "code": "460200000000",
+            "name": "三亚市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "572000"
+          },
+          {
+            "code": "460300000000",
+            "name": "三沙市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "573100"
+          },
+          {
+            "code": "460400000000",
+            "name": "儋州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "571700"
+          },
+          {
+            "code": "469001000000",
+            "name": "五指山市",
+            "level": 3,
+            "type": "县级市",
+            "children": [],
+            "zipCode": "572200"
+          },
+          {
+            "code": "469002000000",
+            "name": "琼海市",
+            "level": 3,
+            "type": "县级市",
+            "children": [],
+            "zipCode": "571400"
+          },
+          {
+            "code": "469005000000",
+            "name": "文昌市",
+            "level": 3,
+            "type": "县级市",
+            "children": [],
+            "zipCode": "571300"
+          },
+          {
+            "code": "469006000000",
+            "name": "万宁市",
+            "level": 3,
+            "type": "县级市",
+            "children": [],
+            "zipCode": "571500"
+          },
+          {
+            "code": "469007000000",
+            "name": "东方市",
+            "level": 3,
+            "type": "县级市",
+            "children": [],
+            "zipCode": "572600"
+          },
+          {
+            "code": "469021000000",
+            "name": "定安县",
+            "level": 3,
+            "type": "县",
+            "children": [],
+            "zipCode": "571200"
+          },
+          {
+            "code": "469022000000",
+            "name": "屯昌县",
+            "level": 3,
+            "type": "县",
+            "children": [],
+            "zipCode": "571600"
+          },
+          {
+            "code": "469023000000",
+            "name": "澄迈县",
+            "level": 3,
+            "type": "县",
+            "children": [],
+            "zipCode": "571900"
+          },
+          {
+            "code": "469024000000",
+            "name": "临高县",
+            "level": 3,
+            "type": "县",
+            "children": [],
+            "zipCode": "571800"
+          },
+          {
+            "code": "469025000000",
+            "name": "白沙黎族自治县",
+            "level": 3,
+            "type": "自治县",
+            "children": [],
+            "zipCode": "572800"
+          },
+          {
+            "code": "469026000000",
+            "name": "昌江黎族自治县",
+            "level": 3,
+            "type": "自治县",
+            "children": [],
+            "zipCode": "572700"
+          },
+          {
+            "code": "469027000000",
+            "name": "乐东黎族自治县",
+            "level": 3,
+            "type": "自治县",
+            "children": [],
+            "zipCode": "572500"
+          },
+          {
+            "code": "469028000000",
+            "name": "陵水黎族自治县",
+            "level": 3,
+            "type": "自治县",
+            "children": [],
+            "zipCode": "572400"
+          },
+          {
+            "code": "469029000000",
+            "name": "保亭黎族苗族自治县",
+            "level": 3,
+            "type": "自治县",
+            "children": [],
+            "zipCode": "572300"
+          },
+          {
+            "code": "469030000000",
+            "name": "琼中黎族苗族自治县",
+            "level": 3,
+            "type": "自治县",
+            "children": [],
+            "zipCode": "572900"
+          }
+        ],
+        "shortName": "琼"
+      },
+      {
+        "code": "500000000000",
+        "name": "重庆市",
+        "level": 1,
+        "type": "直辖市",
+        "children": [
+          {
+            "code": "500101000000",
+            "name": "万州区",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "500102000000",
+            "name": "涪陵区",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "500103000000",
+            "name": "渝中区",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "500104000000",
+            "name": "大渡口区",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "500106000000",
+            "name": "沙坪坝区",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "500107000000",
+            "name": "九龙坡区",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "500108000000",
+            "name": "南岸区",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "500109000000",
+            "name": "北碚区",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "500110000000",
+            "name": "綦江区",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "500111000000",
+            "name": "大足区",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "500113000000",
+            "name": "巴南区",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "500114000000",
+            "name": "黔江区",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "500115000000",
+            "name": "长寿区",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "500116000000",
+            "name": "江津区",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "500117000000",
+            "name": "合川区",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "500118000000",
+            "name": "永川区",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "500119000000",
+            "name": "南川区",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "500120000000",
+            "name": "璧山区",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "500151000000",
+            "name": "铜梁区",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "500152000000",
+            "name": "潼南区",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "500153000000",
+            "name": "荣昌区",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "500154000000",
+            "name": "开州区",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "500155000000",
+            "name": "梁平区",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "500156000000",
+            "name": "武隆区",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "500157000000",
+            "name": "两江新区",
+            "level": 3,
+            "type": "市辖区",
+            "children": []
+          },
+          {
+            "code": "500229000000",
+            "name": "城口县",
+            "level": 3,
+            "type": "县",
+            "children": []
+          },
+          {
+            "code": "500230000000",
+            "name": "丰都县",
+            "level": 3,
+            "type": "县",
+            "children": []
+          },
+          {
+            "code": "500231000000",
+            "name": "垫江县",
+            "level": 3,
+            "type": "县",
+            "children": []
+          },
+          {
+            "code": "500233000000",
+            "name": "忠县",
+            "level": 3,
+            "type": "县",
+            "children": []
+          },
+          {
+            "code": "500235000000",
+            "name": "云阳县",
+            "level": 3,
+            "type": "县",
+            "children": []
+          },
+          {
+            "code": "500236000000",
+            "name": "奉节县",
+            "level": 3,
+            "type": "县",
+            "children": []
+          },
+          {
+            "code": "500237000000",
+            "name": "巫山县",
+            "level": 3,
+            "type": "县",
+            "children": []
+          },
+          {
+            "code": "500238000000",
+            "name": "巫溪县",
+            "level": 3,
+            "type": "县",
+            "children": []
+          },
+          {
+            "code": "500240000000",
+            "name": "石柱土家族自治县",
+            "level": 3,
+            "type": "自治县",
+            "children": []
+          },
+          {
+            "code": "500241000000",
+            "name": "秀山土家族苗族自治县",
+            "level": 3,
+            "type": "自治县",
+            "children": []
+          },
+          {
+            "code": "500242000000",
+            "name": "酉阳土家族苗族自治县",
+            "level": 3,
+            "type": "自治县",
+            "children": []
+          },
+          {
+            "code": "500243000000",
+            "name": "彭水苗族土家族自治县",
+            "level": 3,
+            "type": "自治县",
+            "children": []
+          }
+        ],
+        "shortName": "渝"
+      },
+      {
+        "code": "510000000000",
+        "name": "四川省",
+        "level": 1,
+        "type": "省",
+        "children": [
+          {
+            "code": "510100000000",
+            "name": "成都市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "610000"
+          },
+          {
+            "code": "510300000000",
+            "name": "自贡市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "643000"
+          },
+          {
+            "code": "510400000000",
+            "name": "攀枝花市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "617000"
+          },
+          {
+            "code": "510500000000",
+            "name": "泸州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "646000"
+          },
+          {
+            "code": "510600000000",
+            "name": "德阳市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "618000"
+          },
+          {
+            "code": "510700000000",
+            "name": "绵阳市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "621000"
+          },
+          {
+            "code": "510800000000",
+            "name": "广元市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "628000"
+          },
+          {
+            "code": "510900000000",
+            "name": "遂宁市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "629000"
+          },
+          {
+            "code": "511000000000",
+            "name": "内江市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "641000"
+          },
+          {
+            "code": "511100000000",
+            "name": "乐山市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "614000"
+          },
+          {
+            "code": "511300000000",
+            "name": "南充市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "637000"
+          },
+          {
+            "code": "511400000000",
+            "name": "眉山市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "620010"
+          },
+          {
+            "code": "511500000000",
+            "name": "宜宾市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "644000"
+          },
+          {
+            "code": "511600000000",
+            "name": "广安市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "638000"
+          },
+          {
+            "code": "511700000000",
+            "name": "达州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "635000"
+          },
+          {
+            "code": "511800000000",
+            "name": "雅安市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "625000"
+          },
+          {
+            "code": "511900000000",
+            "name": "巴中市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "636000"
+          },
+          {
+            "code": "512000000000",
+            "name": "资阳市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "641300"
+          },
+          {
+            "code": "513200000000",
+            "name": "阿坝藏族羌族自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "624000"
+          },
+          {
+            "code": "513300000000",
+            "name": "甘孜藏族自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "626000"
+          },
+          {
+            "code": "513400000000",
+            "name": "凉山彝族自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "615000"
+          }
+        ],
+        "shortName": "川"
+      },
+      {
+        "code": "520000000000",
+        "name": "贵州省",
+        "level": 1,
+        "type": "省",
+        "children": [
+          {
+            "code": "520100000000",
+            "name": "贵阳市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "550000"
+          },
+          {
+            "code": "520200000000",
+            "name": "六盘水市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "553000"
+          },
+          {
+            "code": "520300000000",
+            "name": "遵义市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "563000"
+          },
+          {
+            "code": "520400000000",
+            "name": "安顺市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "561000"
+          },
+          {
+            "code": "520500000000",
+            "name": "毕节市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "551700"
+          },
+          {
+            "code": "520600000000",
+            "name": "铜仁市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "554300"
+          },
+          {
+            "code": "522300000000",
+            "name": "黔西南布依族苗族自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "562400"
+          },
+          {
+            "code": "522600000000",
+            "name": "黔东南苗族侗族自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "556000"
+          },
+          {
+            "code": "522700000000",
+            "name": "黔南布依族苗族自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "558000"
+          }
+        ],
+        "shortName": "贵"
+      },
+      {
+        "code": "530000000000",
+        "name": "云南省",
+        "level": 1,
+        "type": "省",
+        "children": [
+          {
+            "code": "530100000000",
+            "name": "昆明市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "650000"
+          },
+          {
+            "code": "530300000000",
+            "name": "曲靖市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "655000"
+          },
+          {
+            "code": "530400000000",
+            "name": "玉溪市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "653100"
+          },
+          {
+            "code": "530500000000",
+            "name": "保山市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "678000"
+          },
+          {
+            "code": "530600000000",
+            "name": "昭通市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "657000"
+          },
+          {
+            "code": "530700000000",
+            "name": "丽江市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "674100"
+          },
+          {
+            "code": "530800000000",
+            "name": "普洱市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "665000"
+          },
+          {
+            "code": "530900000000",
+            "name": "临沧市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "677000"
+          },
+          {
+            "code": "532300000000",
+            "name": "楚雄彝族自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "675000"
+          },
+          {
+            "code": "532500000000",
+            "name": "红河哈尼族彝族自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "661100"
+          },
+          {
+            "code": "532600000000",
+            "name": "文山壮族苗族自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "663000"
+          },
+          {
+            "code": "532800000000",
+            "name": "西双版纳傣族自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "666100"
+          },
+          {
+            "code": "532900000000",
+            "name": "大理白族自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "671000"
+          },
+          {
+            "code": "533100000000",
+            "name": "德宏傣族景颇族自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "678400"
+          },
+          {
+            "code": "533300000000",
+            "name": "怒江傈僳族自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "673100"
+          },
+          {
+            "code": "533400000000",
+            "name": "迪庆藏族自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "674400"
+          }
+        ],
+        "shortName": "云"
+      },
+      {
+        "code": "540000000000",
+        "name": "西藏自治区",
+        "level": 1,
+        "type": "自治区",
+        "children": [
+          {
+            "code": "540100000000",
+            "name": "拉萨市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "850000"
+          },
+          {
+            "code": "540200000000",
+            "name": "日喀则市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "857000"
+          },
+          {
+            "code": "540300000000",
+            "name": "昌都市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "854000"
+          },
+          {
+            "code": "540400000000",
+            "name": "林芝市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "860000"
+          },
+          {
+            "code": "540500000000",
+            "name": "山南市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "856000"
+          },
+          {
+            "code": "540600000000",
+            "name": "那曲市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "852000"
+          },
+          {
+            "code": "542500000000",
+            "name": "阿里地区",
+            "level": 2,
+            "type": "地区",
+            "children": [],
+            "zipCode": "859400"
+          }
+        ],
+        "shortName": "藏"
+      },
+      {
+        "code": "610000000000",
+        "name": "陕西省",
+        "level": 1,
+        "type": "省",
+        "children": [
+          {
+            "code": "610100000000",
+            "name": "西安市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "710000"
+          },
+          {
+            "code": "610200000000",
+            "name": "铜川市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "727000"
+          },
+          {
+            "code": "610300000000",
+            "name": "宝鸡市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "721000"
+          },
+          {
+            "code": "610400000000",
+            "name": "咸阳市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "712000"
+          },
+          {
+            "code": "610500000000",
+            "name": "渭南市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "714000"
+          },
+          {
+            "code": "610600000000",
+            "name": "延安市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "716000"
+          },
+          {
+            "code": "610700000000",
+            "name": "汉中市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "723000"
+          },
+          {
+            "code": "610800000000",
+            "name": "榆林市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "719000"
+          },
+          {
+            "code": "610900000000",
+            "name": "安康市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "725000"
+          },
+          {
+            "code": "611000000000",
+            "name": "商洛市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "726000"
+          }
+        ],
+        "shortName": "陕"
+      },
+      {
+        "code": "620000000000",
+        "name": "甘肃省",
+        "level": 1,
+        "type": "省",
+        "children": [
+          {
+            "code": "620100000000",
+            "name": "兰州市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "730000"
+          },
+          {
+            "code": "620200000000",
+            "name": "嘉峪关市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "735100"
+          },
+          {
+            "code": "620300000000",
+            "name": "金昌市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "737100"
+          },
+          {
+            "code": "620400000000",
+            "name": "白银市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "730900"
+          },
+          {
+            "code": "620500000000",
+            "name": "天水市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "741000"
+          },
+          {
+            "code": "620600000000",
+            "name": "武威市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "733000"
+          },
+          {
+            "code": "620700000000",
+            "name": "张掖市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "734000"
+          },
+          {
+            "code": "620800000000",
+            "name": "平凉市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "744000"
+          },
+          {
+            "code": "620900000000",
+            "name": "酒泉市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "735000"
+          },
+          {
+            "code": "621000000000",
+            "name": "庆阳市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "745000"
+          },
+          {
+            "code": "621100000000",
+            "name": "定西市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "743000"
+          },
+          {
+            "code": "621200000000",
+            "name": "陇南市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "746000"
+          },
+          {
+            "code": "622900000000",
+            "name": "临夏回族自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "731100"
+          },
+          {
+            "code": "623000000000",
+            "name": "甘南藏族自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "747000"
+          }
+        ],
+        "shortName": "甘"
+      },
+      {
+        "code": "630000000000",
+        "name": "青海省",
+        "level": 1,
+        "type": "省",
+        "children": [
+          {
+            "code": "630100000000",
+            "name": "西宁市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "810000"
+          },
+          {
+            "code": "630200000000",
+            "name": "海东市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "810600"
+          },
+          {
+            "code": "632200000000",
+            "name": "海北藏族自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "812200"
+          },
+          {
+            "code": "632300000000",
+            "name": "黄南藏族自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "811300"
+          },
+          {
+            "code": "632500000000",
+            "name": "海南藏族自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "813000"
+          },
+          {
+            "code": "632600000000",
+            "name": "果洛藏族自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "814000"
+          },
+          {
+            "code": "632700000000",
+            "name": "玉树藏族自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "815000"
+          },
+          {
+            "code": "632800000000",
+            "name": "海西蒙古族藏族自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "817000"
+          }
+        ],
+        "shortName": "青"
+      },
+      {
+        "code": "640000000000",
+        "name": "宁夏回族自治区",
+        "level": 1,
+        "type": "自治区",
+        "children": [
+          {
+            "code": "640100000000",
+            "name": "银川市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "750000"
+          },
+          {
+            "code": "640200000000",
+            "name": "石嘴山市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "753000"
+          },
+          {
+            "code": "640300000000",
+            "name": "吴忠市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "751100"
+          },
+          {
+            "code": "640400000000",
+            "name": "固原市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "756000"
+          },
+          {
+            "code": "640500000000",
+            "name": "中卫市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "755000"
+          }
+        ],
+        "shortName": "宁"
+      },
+      {
+        "code": "650000000000",
+        "name": "新疆维吾尔自治区",
+        "level": 1,
+        "type": "自治区",
+        "children": [
+          {
+            "code": "650100000000",
+            "name": "乌鲁木齐市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "830000"
+          },
+          {
+            "code": "650200000000",
+            "name": "克拉玛依市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "834000"
+          },
+          {
+            "code": "650400000000",
+            "name": "吐鲁番市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "838000"
+          },
+          {
+            "code": "650500000000",
+            "name": "哈密市",
+            "level": 2,
+            "type": "地级市",
+            "children": [],
+            "zipCode": "839000"
+          },
+          {
+            "code": "652300000000",
+            "name": "昌吉回族自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "831100"
+          },
+          {
+            "code": "652700000000",
+            "name": "博尔塔拉蒙古自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "833400"
+          },
+          {
+            "code": "652800000000",
+            "name": "巴音郭楞蒙古自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "841000"
+          },
+          {
+            "code": "652900000000",
+            "name": "阿克苏地区",
+            "level": 2,
+            "type": "地区",
+            "children": [],
+            "zipCode": "843000"
+          },
+          {
+            "code": "653000000000",
+            "name": "克孜勒苏柯尔克孜自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "845350"
+          },
+          {
+            "code": "653100000000",
+            "name": "喀什地区",
+            "level": 2,
+            "type": "地区",
+            "children": [],
+            "zipCode": "844000"
+          },
+          {
+            "code": "653200000000",
+            "name": "和田地区",
+            "level": 2,
+            "type": "地区",
+            "children": [],
+            "zipCode": "848000"
+          },
+          {
+            "code": "654000000000",
+            "name": "伊犁哈萨克自治州",
+            "level": 2,
+            "type": "自治州",
+            "children": [],
+            "zipCode": "835000"
+          },
+          {
+            "code": "654200000000",
+            "name": "塔城地区",
+            "level": 2,
+            "type": "地区",
+            "children": [],
+            "zipCode": "834700"
+          },
+          {
+            "code": "654300000000",
+            "name": "阿勒泰地区",
+            "level": 2,
+            "type": "地区",
+            "children": [],
+            "zipCode": "836500"
+          },
+          {
+            "code": "659001000000",
+            "name": "石河子市",
+            "level": 3,
+            "type": "县级市",
+            "children": [],
+            "zipCode": "832000"
+          },
+          {
+            "code": "659002000000",
+            "name": "阿拉尔市",
+            "level": 3,
+            "type": "县级市",
+            "children": [],
+            "zipCode": "843300"
+          },
+          {
+            "code": "659003000000",
+            "name": "图木舒克市",
+            "level": 3,
+            "type": "县级市",
+            "children": [],
+            "zipCode": "844000"
+          },
+          {
+            "code": "659004000000",
+            "name": "五家渠市",
+            "level": 3,
+            "type": "县级市",
+            "children": [],
+            "zipCode": "831300"
+          },
+          {
+            "code": "659005000000",
+            "name": "北屯市",
+            "level": 3,
+            "type": "县级市",
+            "children": [],
+            "zipCode": "836000"
+          },
+          {
+            "code": "659006000000",
+            "name": "铁门关市",
+            "level": 3,
+            "type": "县级市",
+            "children": [],
+            "zipCode": "841300"
+          },
+          {
+            "code": "659007000000",
+            "name": "双河市",
+            "level": 3,
+            "type": "县级市",
+            "children": [],
+            "zipCode": "833408"
+          },
+          {
+            "code": "659008000000",
+            "name": "可克达拉市",
+            "level": 3,
+            "type": "县级市",
+            "children": [],
+            "zipCode": "835219"
+          },
+          {
+            "code": "659009000000",
+            "name": "昆玉市",
+            "level": 3,
+            "type": "县级市",
+            "children": [],
+            "zipCode": "844800"
+          },
+          {
+            "code": "659010000000",
+            "name": "胡杨河市",
+            "level": 3,
+            "type": "县级市",
+            "children": [],
+            "zipCode": "834000"
+          },
+          {
+            "code": "659011000000",
+            "name": "新星市",
+            "level": 3,
+            "type": "县级市",
+            "children": [],
+            "zipCode": "835600"
+          },
+          {
+            "code": "659012000000",
+            "name": "白杨市",
+            "level": 3,
+            "type": "县级市",
+            "children": [],
+            "zipCode": "834700"
+          },
+          {
+            "code": "659013000000",
+            "name": "草湖市",
+            "level": 3,
+            "type": "县级市",
+            "children": [],
+            "zipCode": "844000"
+          }
+        ],
+        "shortName": "新"
+      },
+      {
+        "code": "810000000000",
+        "name": "香港特别行政区",
+        "level": 1,
+        "type": "特别行政区",
+        "children": [],
+        "shortName": "港"
+      },
+      {
+        "code": "820000000000",
+        "name": "澳门特别行政区",
+        "level": 1,
+        "type": "特别行政区",
+        "children": [],
+        "shortName": "澳"
+      },
+      {
+        "code": "资料暂缺",
+        "name": "台湾省",
+        "level": 1,
+        "type": "省",
+        "children": null,
+        "shortName": "台"
+      }
+    ]
+  },
+  "message": null,
+  "status": 200,
+  "total": 1,
+  "tag": null
+}

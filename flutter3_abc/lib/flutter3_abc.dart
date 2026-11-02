@@ -27,6 +27,7 @@ import 'package:flutter3_abc/src/skeleton_abc.dart';
 import 'package:flutter3_abc/src/slider_captcha_abc.dart';
 import 'package:flutter3_abc/src/socket_abc.dart';
 import 'package:flutter3_abc/src/udp_service2_abc.dart';
+import 'package:flutter3_abc/src/xzqh_abc.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 import 'package:flutter3_canvas/flutter3_canvas.dart';
 import 'package:flutter3_code/flutter3_code.dart';
@@ -313,6 +314,7 @@ final flutter3AbcRoutes = <AbcRouteConfig>[
   ("/confettiAbc", 'ConfettiAbc', (context) => const ConfettiAbc()),
   ("/liquidGlassAbc", 'LiquidGlassAbc', (context) => const LiquidGlassAbc()),
   ("/hiblobAbc", 'HiblobAbc', (context) => const HiblobAbc()),
+  ("/xzqhAbc", 'XzqhAbc', (context) => const XzqhAbc()),
 ];
 
 //--
