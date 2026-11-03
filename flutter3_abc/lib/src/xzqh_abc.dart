@@ -16,11 +16,32 @@ class XzqhAbc extends StatefulWidget {
   State<XzqhAbc> createState() => _XzqhAbcState();
 }
 
-class _XzqhAbcState extends State<XzqhAbc> with BaseAbcStateMixin {
+class _XzqhAbcState extends State<XzqhAbc>
+    with BaseAbcStateMixin, WidgetsBindingObserver, MediaQueryDataChangeMixin {
   static final List<XzqhBean> _xzqhList = [];
 
   /// 点击过的行政区划列表
   static final Set<XzqhBean> _clickedXzqhList = {};
+
+  /// 省
+  static final Color _provinceStrokeColor = Color(0xff0072b2);
+  static final Color _provinceFillColor = Color(0xffdbeafe);
+
+  /// 自治区
+  static final Color _autonomousRegionStrokeColor = Color(0xff009e73);
+  static final Color _autonomousRegionFillColor = Color(0xffd1fae5);
+
+  /// 直辖市
+  static final Color _municipalityStrokeColor = Color(0xffe69f00);
+  static final Color _municipalityFillColor = Color(0xfffef3c7);
+
+  /// 特别行政区
+  static final Color _specialAdministrativeRegionStrokeColor = Color(
+    0xffcc79a7,
+  );
+  static final Color _specialAdministrativeRegionFillColor = Color(0xfffce7f3);
+
+  //--
 
   /// 需要显示的行政区划列表
   /// - 过滤后的行政区划列表
@@ -48,6 +69,7 @@ class _XzqhAbcState extends State<XzqhAbc> with BaseAbcStateMixin {
   @override
   WidgetList buildBodyList(BuildContext context) {
     final globalTheme = GlobalTheme.of(context);
+    final gridCount = $bpGrid();
     return [
       if (_xzqhList.isNotEmpty)
         textSpanBuilder((builder) {
@@ -79,6 +101,7 @@ class _XzqhAbcState extends State<XzqhAbc> with BaseAbcStateMixin {
             ..addText(
               "$provinceCount",
               style: numberStyle,
+              color: _provinceFillColor,
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
                   _showXzqhList = provinceList;
@@ -89,6 +112,7 @@ class _XzqhAbcState extends State<XzqhAbc> with BaseAbcStateMixin {
             ..addText(
               " $autonomousRegionCount",
               style: numberStyle,
+              color: _autonomousRegionFillColor,
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
                   _showXzqhList = autonomousRegionList;
@@ -98,6 +122,7 @@ class _XzqhAbcState extends State<XzqhAbc> with BaseAbcStateMixin {
             ..addText(" 个自治区、") //--
             ..addText(
               " $municipalityCount",
+              color: _municipalityFillColor,
               style: numberStyle,
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
@@ -107,6 +132,7 @@ class _XzqhAbcState extends State<XzqhAbc> with BaseAbcStateMixin {
             )
             ..addText(" 个直辖市、") //--
             ..addText(
+              color: _specialAdministrativeRegionFillColor,
               " $specialAdministrativeRegionCount",
               style: numberStyle,
               recognizer: TapGestureRecognizer()
@@ -134,10 +160,17 @@ class _XzqhAbcState extends State<XzqhAbc> with BaseAbcStateMixin {
           (e) => XzqhTile(bean: e)
               .card(
                 margin: isDesktopOrWeb ? insets(h: kH, v: kL) : null,
+                color: e.fillColor,
               )
               .rGridTile(
-                $bpGrid(),
-                childAspectRatio: 1 / (isDesktopOrWeb ? 0.3 : 0.4),
+                gridCount,
+                childAspectRatio:
+                    1 /
+                    (gridCount >= 6
+                        ? 0.25
+                        : gridCount >= 3
+                        ? 0.3
+                        : 0.4),
               ),
         ),
       if (showXzqhList.isEmpty)
@@ -167,7 +200,9 @@ class _XzqhTileState extends State<XzqhTile> {
     final subLength = bean.children?.length ?? 0;
     final childStyle = widget.isInChildStyle ?? bean.shortName == null;
     return ListTile(
-      leading: bean.shortName?.text(style: globalTheme.textTitleBigStyle),
+      leading: bean.shortName?.text(
+        style: globalTheme.textTitleBigStyle.copyWith(color: bean.strokeColor),
+      ),
       trailing: childStyle
           ? bean.zipCode?.text(style: globalTheme.textTitleStyle)
           : null,
@@ -216,6 +251,26 @@ class XzqhBean {
   int? level;
   String? type;
   List<XzqhBean>? children;
+
+  Color? get strokeColor => type == "省"
+      ? _XzqhAbcState._provinceStrokeColor
+      : type == "自治区"
+      ? _XzqhAbcState._autonomousRegionStrokeColor
+      : type == "直辖市"
+      ? _XzqhAbcState._municipalityStrokeColor
+      : type == "特别行政区"
+      ? _XzqhAbcState._specialAdministrativeRegionStrokeColor
+      : null;
+
+  Color? get fillColor => type == "省"
+      ? _XzqhAbcState._provinceFillColor
+      : type == "自治区"
+      ? _XzqhAbcState._autonomousRegionFillColor
+      : type == "直辖市"
+      ? _XzqhAbcState._municipalityFillColor
+      : type == "特别行政区"
+      ? _XzqhAbcState._specialAdministrativeRegionFillColor
+      : null;
 
   XzqhBean({
     this.code,
