@@ -94,6 +94,7 @@ class _XzqhAbcState extends State<XzqhAbc>
               autonomousRegionCount +
               municipalityCount +
               specialAdministrativeRegionCount;
+          final allAndSub = all + _xzqhList.fold(0, (a, b) => a + b.childCount);
           final numberStyle = globalTheme.textTitleStyle.copyWith(
             fontWeight: .bold,
           );
@@ -101,7 +102,7 @@ class _XzqhAbcState extends State<XzqhAbc>
             ..addText(
               "$provinceCount",
               style: numberStyle,
-              color: _provinceFillColor,
+              color: _provinceStrokeColor,
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
                   _showXzqhList = provinceList;
@@ -112,7 +113,7 @@ class _XzqhAbcState extends State<XzqhAbc>
             ..addText(
               " $autonomousRegionCount",
               style: numberStyle,
-              color: _autonomousRegionFillColor,
+              color: _autonomousRegionStrokeColor,
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
                   _showXzqhList = autonomousRegionList;
@@ -122,7 +123,7 @@ class _XzqhAbcState extends State<XzqhAbc>
             ..addText(" 个自治区、") //--
             ..addText(
               " $municipalityCount",
-              color: _municipalityFillColor,
+              color: _municipalityStrokeColor,
               style: numberStyle,
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
@@ -132,7 +133,7 @@ class _XzqhAbcState extends State<XzqhAbc>
             )
             ..addText(" 个直辖市、") //--
             ..addText(
-              color: _specialAdministrativeRegionFillColor,
+              color: _specialAdministrativeRegionStrokeColor,
               " $specialAdministrativeRegionCount",
               style: numberStyle,
               recognizer: TapGestureRecognizer()
@@ -153,6 +154,9 @@ class _XzqhAbcState extends State<XzqhAbc>
                 },
             )
             ..addText(" 个省级行政区") //--
+            ..addText(" : 约")
+            ..addText(" $allAndSub", style: numberStyle)
+            ..addText(" 个城市") //--
             ;
         }).insets(all: kH),
       if (showXzqhList.isNotEmpty)
@@ -271,6 +275,9 @@ class XzqhBean {
       : type == "特别行政区"
       ? _XzqhAbcState._specialAdministrativeRegionFillColor
       : null;
+
+  int get childCount =>
+      isNil(children) ? 1 : children!.fold(0, (a, b) => a + b.childCount);
 
   XzqhBean({
     this.code,
