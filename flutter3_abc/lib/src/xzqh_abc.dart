@@ -158,7 +158,7 @@ class _XzqhAbcState extends State<XzqhAbc>
             ..addText(" $allAndSub", style: numberStyle)
             ..addText(" 个城市") //--
             ;
-        }).insets(all: kH),
+        }, textAlign: .center).insets(all: kH),
       if (showXzqhList.isNotEmpty)
         ...showXzqhList.map(
           (e) => XzqhTile(bean: e)
