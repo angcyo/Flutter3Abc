@@ -190,7 +190,16 @@ class XzqhTile extends StatefulWidget {
 
   final XzqhBean bean;
 
-  const XzqhTile({required this.bean, this.isInChildStyle, super.key});
+  /// 领导色
+  @defInjectMark
+  final Color? leadingColor;
+
+  const XzqhTile({
+    required this.bean,
+    this.isInChildStyle,
+    super.key,
+    this.leadingColor,
+  });
 
   @override
   State<XzqhTile> createState() => _XzqhTileState();
@@ -204,11 +213,15 @@ class _XzqhTileState extends State<XzqhTile> {
     final subLength = bean.children?.length ?? 0;
     final childStyle = widget.isInChildStyle ?? bean.shortName == null;
     return ListTile(
-      leading: bean.shortName?.text(
-        style: globalTheme.textTitleBigStyle.copyWith(color: bean.strokeColor),
+      leading: (bean.shortName ?? bean.cityCode)?.text(
+        style: globalTheme.textTitleBigStyle.copyWith(
+          color: widget.leadingColor ?? bean.strokeColor,
+        ),
       ),
       trailing: childStyle
-          ? bean.zipCode?.text(style: globalTheme.textTitleStyle)
+          ? bean.zipCode
+                ?.connect(bean.cityShortName?.wph)
+                .text(style: globalTheme.textTitleStyle)
           : null,
       title: bean.name?.text(),
       subtitle: bean.type
@@ -228,6 +241,7 @@ class _XzqhTileState extends State<XzqhTile> {
           bean.zipCode?.copy();
         } else if (!isNil(bean.children)) {
           XzqhListScreen(
+            parentBean: bean,
             title: bean.name,
             beanList: bean.children!,
           ).showScreenWidget(context);
@@ -245,7 +259,9 @@ class _XzqhTileState extends State<XzqhTile> {
 /// "zipCode": "100000",
 /// "level": 1,
 /// "type": "直辖市",
-/// "children": []
+/// "children": [],
+/// "cityShortName": "京",
+/// "cityCode": "京A"
 /// ```
 class XzqhBean {
   String? code;
@@ -255,6 +271,14 @@ class XzqhBean {
   int? level;
   String? type;
   List<XzqhBean>? children;
+
+  //--
+
+  /// "cityShortName": "京",
+  String? cityShortName;
+
+  /// "cityCode": "京A"
+  String? cityCode;
 
   Color? get strokeColor => type == "省"
       ? _XzqhAbcState._provinceStrokeColor
@@ -287,6 +311,8 @@ class XzqhBean {
     this.level,
     this.type,
     this.children,
+    this.cityShortName,
+    this.cityCode,
   });
 
   /// fromJson
@@ -302,6 +328,8 @@ class XzqhBean {
         : List<XzqhBean>.from(
             json["children"].map((x) => XzqhBean.fromJson(x)),
           ),
+    cityShortName: json["cityShortName"],
+    cityCode: json["cityCode"],
   );
 }
 
@@ -309,6 +337,8 @@ class XzqhBean {
 class XzqhListScreen extends StatefulWidget with ScreenMixin {
   /// 屏幕标题
   final String? title;
+
+  final XzqhBean? parentBean;
 
   final List<XzqhBean> beanList;
 
@@ -318,7 +348,12 @@ class XzqhListScreen extends StatefulWidget with ScreenMixin {
   @override
   String? getTitle(BuildContext? context) => title;
 
-  const XzqhListScreen({super.key, required this.beanList, this.title});
+  const XzqhListScreen({
+    super.key,
+    required this.beanList,
+    this.title,
+    this.parentBean,
+  });
 
   @override
   State<XzqhListScreen> createState() => _XzqhListScreenState();
@@ -329,9 +364,14 @@ class _XzqhListScreenState extends State<XzqhListScreen> with ScreenStateMixin {
   Widget build(BuildContext context) {
     return (widget as ScreenMixin).buildScaffold(this, [
       ...widget.beanList.map(
-        (e) => XzqhTile(bean: e, isInChildStyle: true).card(
-          margin: isDesktopOrWeb ? insets(h: kH, v: kL) : null,
-        ),
+        (e) =>
+            XzqhTile(
+              bean: e,
+              isInChildStyle: true,
+              leadingColor: widget.parentBean?.strokeColor,
+            ).card(
+              margin: isDesktopOrWeb ? insets(h: kH, v: kL) : null,
+            ),
       ),
     ], expandedScroll: true);
   }
