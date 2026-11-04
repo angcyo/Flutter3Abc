@@ -213,7 +213,7 @@ class _XzqhTileState extends State<XzqhTile> {
     final subLength = bean.children?.length ?? 0;
     final childStyle = widget.isInChildStyle ?? bean.shortName == null;
     return ListTile(
-      leading: (bean.shortName ?? bean.cityCode)?.text(
+      leading: (childStyle ? bean.cityCode : bean.shortName)?.text(
         style: globalTheme.textTitleBigStyle.copyWith(
           color: widget.leadingColor ?? bean.strokeColor,
         ),
