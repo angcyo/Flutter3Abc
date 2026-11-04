@@ -39,6 +39,9 @@ abstract class BaseGameController {
   //MARK: method
 
   /// 获取一个球的冲量
+  /// ```
+  /// [Body(120d39fe)]applyLinearImpulseEx: [1.6319999694824219,-1.4880001544952393]
+  /// ```
   Vector2 getBallImpulse(Vector2 p1, Vector2 p2) {
     return calculateImpulse(p1, p2, strength: 1) /*Vector2(1, -1)*/;
   }

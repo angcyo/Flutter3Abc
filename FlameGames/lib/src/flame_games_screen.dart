@@ -3,6 +3,9 @@ import 'package:flame_games/src/tiles/game_select_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3_core/flutter3_core.dart';
 
+import 'games/archery/archery_game_config.dart';
+import 'games/archery/archery_game_config_screen.dart';
+import 'games/archery/archery_game_screen.dart';
 import 'games/ball/throw_ball_game_config.dart';
 import 'games/ball/throw_ball_game_config_screen.dart';
 import 'games/ball/throw_ball_game_screen.dart';
@@ -35,7 +38,7 @@ class _FlameGamesScreenState extends State<FlameGamesScreen>
         : 1.0;
     return [
       GameSelectTile(
-        label: "拼图游戏",
+        label: "拼图",
         onTap: () async {
           final config = await buildContext?.pushWidget(
             PuzzleGameConfigScreen(),
@@ -46,7 +49,7 @@ class _FlameGamesScreenState extends State<FlameGamesScreen>
         },
       ).rGridTile(gridCount, childAspectRatio: childAspectRatio),
       GameSelectTile(
-        label: "掷球游戏",
+        label: "掷球",
         onTap: () async {
           final config = await buildContext?.pushWidget(
             ThrowBallGameConfigScreen(),
@@ -57,13 +60,24 @@ class _FlameGamesScreenState extends State<FlameGamesScreen>
         },
       ).rGridTile(gridCount),
       GameSelectTile(
-        label: "弹球乐游戏",
+        label: "弹球乐",
         onTap: () async {
           final config = await buildContext?.pushWidget(
             PinballGameConfigScreen(),
           );
           if (config is PinballGameConfig) {
             buildContext?.pushWidget(PinballGameScreen(config: config));
+          }
+        },
+      ).rGridTile(gridCount),
+      GameSelectTile(
+        label: "射箭",
+        onTap: () async {
+          final config = await buildContext?.pushWidget(
+            ArcheryGameConfigScreen(),
+          );
+          if (config is ArcheryGameConfig) {
+            buildContext?.pushWidget(ArcheryGameScreen(config: config));
           }
         },
       ).rGridTile(gridCount),

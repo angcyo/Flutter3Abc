@@ -18,21 +18,36 @@ class TrajectoryBall extends Ball {
   final bool collectHistoryTrajectories;
 
   /// 历史发送的轨迹
-  final List<BallTrajectory> _trajectories = [];
+  final List<BallTrajectory> trajectories = [];
 
   /// 当前投掷轨迹
   BallTrajectory? currentTrajectory;
+
+  /// 是否渲染当前轨迹
+  final bool renderCurrentTrajectory;
+
+  /// 是否一直渲染刚体, 否则只在有轨迹时才渲染
+  @fb.defInjectMark
+  final bool? alwaysRenderBody;
 
   TrajectoryBall({
     super.bodyType = .static,
     super.color = Colors.blue,
     super.tag = "轨迹球",
     super.enableContactEvents = false,
+    super.enableSensorEvents = false,
     super.isEnabled = false,
+    super.isSensor = false,
     super.density = 1,
     super.friction = 0.6,
     super.restitution = 0.7,
+    super.position,
+    super.rotation,
+    super.linearVelocity,
+    super.angularVelocity,
+    this.renderCurrentTrajectory = true,
     this.collectHistoryTrajectories = true,
+    this.alwaysRenderBody,
   });
 
   @override
@@ -42,16 +57,17 @@ class TrajectoryBall extends Ball {
     return super.createBody();
   }
 
-  /// no op
   @override
   void update(double dt) {
-    //super.update(dt);
+    if (bodyType != .static) {
+      super.update(dt);
+    }
   }
 
   @override
   void render(Canvas canvas) {
     //绘制历史轨迹
-    for (final trajectory in _trajectories) {
+    for (final trajectory in trajectories) {
       canvas.drawDashedLine(
         (trajectory.start! - position).toOffset(),
         (trajectory.end! - position).toOffset(),
@@ -60,12 +76,16 @@ class TrajectoryBall extends Ball {
         paint: Paint()..color = Colors.grey,
       );
     }
-    if (currentTrajectory != null) {
+    if (renderCurrentTrajectory && currentTrajectory != null) {
       canvas.drawLine(
         (currentTrajectory!.start! - position).toOffset(),
         (currentTrajectory!.end! - position).toOffset(),
         Paint()..color = Colors.grey,
       );
+    }
+    if (alwaysRenderBody == true ||
+        (alwaysRenderBody == null && currentTrajectory != null)) {
+      //渲染刚体
       super.render(canvas);
     }
   }
@@ -103,7 +123,7 @@ class TrajectoryBall extends Ball {
   }
 
   /// 发送一个球
-  void launchBall() async {
+  Future launchBall() async {
     final ct = currentTrajectory;
     if (ct == null) {
       return;
@@ -150,7 +170,7 @@ class TrajectoryBall extends Ball {
         wake: false,
       );
       if (collectHistoryTrajectories) {
-        _trajectories.add(ct);
+        trajectories.add(ct);
       }
       currentTrajectory = null;
       //--

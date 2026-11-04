@@ -7,7 +7,6 @@ import 'package:flutter3_basics/flutter3_basics.dart' as fb;
 ///
 /// 掷球游戏配置
 class ThrowBallGameConfig {
-
   /// 球的半径
   @fb.mm
   double ballRadius = 0.2;
@@ -51,13 +50,20 @@ class BallTrajectory {
   /// 终点
   Vector2? end;
 
-  void startWith(Vector2 position){
+  /// x 距离
+  /// - 可能是负数
+  double get distanceX => (end?.x ?? 0) - (start?.x ?? 0);
+
+  /// y 距离
+  /// - 可能是负数
+  double get distanceY => (end?.y ?? 0) - (start?.y ?? 0);
+
+  void startWith(Vector2 position) {
     start = position;
     end = position;
   }
 
-  void endWith(Vector2 position){
+  void endWith(Vector2 position) {
     end = position;
   }
-
 }

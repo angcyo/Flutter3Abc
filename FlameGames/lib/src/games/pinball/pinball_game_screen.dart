@@ -337,7 +337,7 @@ class ObstacleCircle extends FBodyComponent<PinballGame> {
   }
 
   @override
-  ShapeGeometry? createGeometry(Body body) =>
+  ShapeGeometry? createGeometry(Body body, ShapeDef shapeDef) =>
       Circle(radius: obstacleInfo.size.x);
 }
 
@@ -357,7 +357,7 @@ class ScoringBucket extends FBodyComponent<PinballGame> {
   }
 
   @override
-  ShapeGeometry? createGeometry(Body body) {
+  ShapeGeometry? createGeometry(Body body, ShapeDef shapeDef) {
     final w = obstacleInfo.size.x;
     final h = obstacleInfo.size.y;
     if (obstacleInfo.type == .bottom && w > 0 && h > 0) {

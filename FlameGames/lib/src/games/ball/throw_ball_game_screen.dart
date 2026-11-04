@@ -39,7 +39,7 @@ class _ThrowBallGameScreenState extends State<ThrowBallGameScreen>
 
 /// 投球游戏
 class ThrowBallGame extends BaseForge2DGame {
-  ThrowBallGameController controller = ThrowBallGameController();
+  final controller = ThrowBallGameController();
   final ThrowBallGameConfig config;
 
   ThrowBallGame({
