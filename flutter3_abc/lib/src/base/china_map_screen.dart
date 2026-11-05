@@ -272,7 +272,7 @@ class FeatureElementPainter extends PathElementPainter {
     }
     canvas.drawText(
       (fullName ?? name)?.connect(capital?.wph.connect(null, "\n")),
-      bold: true,
+      bold: isDesktopOrWeb,
       textAlign: .center,
       /*offset: elementsBounds!.center,*/
       alignment: .center,
@@ -284,7 +284,7 @@ class FeatureElementPainter extends PathElementPainter {
               width: elementsBounds!.width,
               height: elementsBounds!.height,
             ),
-      fontSize: kDefaultFontSize / paintMeta.canvasScale,
+      fontSize: (isDesktopOrWeb ? kDefaultFontSize : 8) / paintMeta.canvasScale,
     );
   }
 }
