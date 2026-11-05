@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 
 import '../flutter3_abc.dart';
+import 'base/china_map_screen.dart';
 
 ///
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
@@ -10,6 +11,22 @@ import '../flutter3_abc.dart';
 ///
 /// 行政区划信息页面
 class XzqhAbc extends StatefulWidget {
+  /// 省
+  static final Color provinceStrokeColor = Color(0xff0072b2);
+  static final Color provinceFillColor = Color(0xffdbeafe);
+
+  /// 自治区
+  static final Color autonomousRegionStrokeColor = Color(0xff009e73);
+  static final Color autonomousRegionFillColor = Color(0xffd1fae5);
+
+  /// 直辖市
+  static final Color municipalityStrokeColor = Color(0xffe69f00);
+  static final Color municipalityFillColor = Color(0xfffef3c7);
+
+  /// 特别行政区
+  static final Color specialAdministrativeRegionStrokeColor = Color(0xffcc79a7);
+  static final Color specialAdministrativeRegionFillColor = Color(0xfffce7f3);
+
   const XzqhAbc({super.key});
 
   @override
@@ -22,24 +39,6 @@ class _XzqhAbcState extends State<XzqhAbc>
 
   /// 点击过的行政区划列表
   static final Set<XzqhBean> _clickedXzqhList = {};
-
-  /// 省
-  static final Color _provinceStrokeColor = Color(0xff0072b2);
-  static final Color _provinceFillColor = Color(0xffdbeafe);
-
-  /// 自治区
-  static final Color _autonomousRegionStrokeColor = Color(0xff009e73);
-  static final Color _autonomousRegionFillColor = Color(0xffd1fae5);
-
-  /// 直辖市
-  static final Color _municipalityStrokeColor = Color(0xffe69f00);
-  static final Color _municipalityFillColor = Color(0xfffef3c7);
-
-  /// 特别行政区
-  static final Color _specialAdministrativeRegionStrokeColor = Color(
-    0xffcc79a7,
-  );
-  static final Color _specialAdministrativeRegionFillColor = Color(0xfffce7f3);
 
   //--
 
@@ -102,7 +101,7 @@ class _XzqhAbcState extends State<XzqhAbc>
             ..addText(
               "$provinceCount",
               style: numberStyle,
-              color: _provinceStrokeColor,
+              color: XzqhAbc.provinceStrokeColor,
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
                   _showXzqhList = provinceList;
@@ -113,7 +112,7 @@ class _XzqhAbcState extends State<XzqhAbc>
             ..addText(
               " $autonomousRegionCount",
               style: numberStyle,
-              color: _autonomousRegionStrokeColor,
+              color: XzqhAbc.autonomousRegionStrokeColor,
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
                   _showXzqhList = autonomousRegionList;
@@ -123,7 +122,7 @@ class _XzqhAbcState extends State<XzqhAbc>
             ..addText(" 个自治区、") //--
             ..addText(
               " $municipalityCount",
-              color: _municipalityStrokeColor,
+              color: XzqhAbc.municipalityStrokeColor,
               style: numberStyle,
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
@@ -133,7 +132,7 @@ class _XzqhAbcState extends State<XzqhAbc>
             )
             ..addText(" 个直辖市、") //--
             ..addText(
-              color: _specialAdministrativeRegionStrokeColor,
+              color: XzqhAbc.specialAdministrativeRegionStrokeColor,
               " $specialAdministrativeRegionCount",
               style: numberStyle,
               recognizer: TapGestureRecognizer()
@@ -155,7 +154,14 @@ class _XzqhAbcState extends State<XzqhAbc>
             )
             ..addText(" 个省级行政区") //--
             ..addText(" : 约")
-            ..addText(" $allAndSub", style: numberStyle)
+            ..addText(
+              " $allAndSub",
+              style: numberStyle,
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  buildContext?.pushWidget(ChinaMapScreen());
+                },
+            )
             ..addText(" 个城市") //--
             ;
         }, textAlign: .center).insets(all: kH),
@@ -281,23 +287,23 @@ class XzqhBean {
   String? cityCode;
 
   Color? get strokeColor => type == "省"
-      ? _XzqhAbcState._provinceStrokeColor
+      ? XzqhAbc.provinceStrokeColor
       : type == "自治区"
-      ? _XzqhAbcState._autonomousRegionStrokeColor
+      ? XzqhAbc.autonomousRegionStrokeColor
       : type == "直辖市"
-      ? _XzqhAbcState._municipalityStrokeColor
+      ? XzqhAbc.municipalityStrokeColor
       : type == "特别行政区"
-      ? _XzqhAbcState._specialAdministrativeRegionStrokeColor
+      ? XzqhAbc.specialAdministrativeRegionStrokeColor
       : null;
 
   Color? get fillColor => type == "省"
-      ? _XzqhAbcState._provinceFillColor
+      ? XzqhAbc.provinceFillColor
       : type == "自治区"
-      ? _XzqhAbcState._autonomousRegionFillColor
+      ? XzqhAbc.autonomousRegionFillColor
       : type == "直辖市"
-      ? _XzqhAbcState._municipalityFillColor
+      ? XzqhAbc.municipalityFillColor
       : type == "特别行政区"
-      ? _XzqhAbcState._specialAdministrativeRegionFillColor
+      ? XzqhAbc.specialAdministrativeRegionFillColor
       : null;
 
   int get childCount =>

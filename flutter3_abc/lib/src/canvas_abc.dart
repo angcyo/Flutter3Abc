@@ -14,25 +14,31 @@ class CanvasAbc extends StatefulWidget {
 class _CanvasAbcState extends State<CanvasAbc>
     with BaseAbcStateMixin, CreationMixin {
   late CanvasListener canvasListener2 = CanvasListener(
-      onCanvasViewBoxChangedAction: (canvasViewBox, isInitialize, isCompleted) {
-    assert(() {
-      const deflate = 30.0;
-      canvasViewBox.canvasBounds = canvasViewBox.paintBounds.deflate(deflate);
+    onCanvasViewBoxChangedAction:
+        (canvasViewBox, isInitialize, isFirstInitialize, isCompleted) {
+          assert(() {
+            const deflate = 30.0;
+            canvasViewBox.canvasBounds = canvasViewBox.paintBounds.deflate(
+              deflate,
+            );
 
-      //
-      /*canvasViewBox
+            //
+            /*canvasViewBox
           .updateCanvasContentBounds(const Rect.fromLTWH(100, 100, 1000, 1000));*/
-      return true;
-    }());
-  });
+            return true;
+          }());
+        },
+  );
 
   @override
   void initState() {
     super.initState();
     canvasDelegate.addCanvasListener(canvasListener2);
 
-    loadAssetImage("all_in2.webp", package: Assets.package)
-        .getValue((image, error) async {
+    loadAssetImage("all_in2.webp", package: Assets.package).getValue((
+      image,
+      error,
+    ) async {
       //debugger();
       if (image != null) {
         //final base64 = await image.toBase64();
@@ -44,8 +50,10 @@ class _CanvasAbcState extends State<CanvasAbc>
       }
     });
 
-    loadAssetImage("flutter.png", package: Assets.package)
-        .getValue((image, error) async {
+    loadAssetImage("flutter.png", package: Assets.package).getValue((
+      image,
+      error,
+    ) async {
       //debugger();
       if (image != null) {
         //final base64 = await image.toBase64();
@@ -144,7 +152,8 @@ class _CanvasAbcState extends State<CanvasAbc>
 
     return [
       const DeviceConnectStateInfoTile().stackOf(
-          const DeviceRequestStateTile().position(top: 0, left: 0, right: 0)),
+        const DeviceRequestStateTile().position(top: 0, left: 0, right: 0),
+      ),
       [
         CanvasWidget(canvasDelegate),
         CanvasUndoWidget(canvasDelegate)
@@ -161,8 +170,11 @@ class _CanvasAbcState extends State<CanvasAbc>
           child: "缩放画布".text(),
         ),
         GradientButton.normal(
-          () => canvasDelegate.canvasViewBox
-              .scaleBy(sx: 1.5, sy: 1.5, pivot: const Offset(100, 100)),
+          () => canvasDelegate.canvasViewBox.scaleBy(
+            sx: 1.5,
+            sy: 1.5,
+            pivot: const Offset(100, 100),
+          ),
           child: "定点缩放".text(),
         ),
         GradientButton.normal(
@@ -181,66 +193,50 @@ class _CanvasAbcState extends State<CanvasAbc>
           },
           child: "指令...".text(),
         ),
-        GradientButton.normal(
-          () async {
-            final elementList = canvasDelegate.canvasElementManager
-                .getAllSelectedElement(exportSingleElement: true)
-                ?.filterCast<LpElementMixin>((e) => e is LpElementMixin);
-            if (elementList == null || elementList.isEmpty) {
-              toastInfo('未选择元素');
-            } else if (!$deviceManager.hasDeviceConnected()) {
-              toastInfo('未连接设备');
-            } else {
-              context.showWidgetDialog(SingleEngraveConfigDialog(
-                elementList: elementList,
-              ));
-            }
-          },
-          child: "雕刻...".text(),
-        ),
+        GradientButton.normal(() async {
+          final elementList = canvasDelegate.canvasElementManager
+              .getAllSelectedElement(exportSingleElement: true)
+              ?.filterCast<LpElementMixin>((e) => e is LpElementMixin);
+          if (elementList == null || elementList.isEmpty) {
+            toastInfo('未选择元素');
+          } else if (!$deviceManager.hasDeviceConnected()) {
+            toastInfo('未连接设备');
+          } else {
+            context.showWidgetDialog(
+              SingleEngraveConfigDialog(elementList: elementList),
+            );
+          }
+        }, child: "雕刻...".text()),
         GradientButton.normal(
           () {},
           onContextTap: (context) {
             context.showArrowPopupRoute(
               [
-                GradientButton.normal(
-                  () async {
-                    final list = await context.pushWidget(
-                      const ImportFileManagerPage(
-                        selectFileCount: 1,
-                      ),
-                    );
-                    l.d(list);
-                  },
-                  child: "导入的文件".text(),
-                ),
-                GradientButton.normal(
-                  () {
-                    context.showWidgetDialog(const CanvasEngraveTestDialog());
-                  },
-                  child: "直接雕刻...".text(),
-                ),
-                GradientButton.normal(
-                  () {
-                    context.pushRoute(TestRoute());
-                  },
-                  child: "test-route".text(),
-                ),
+                GradientButton.normal(() async {
+                  final list = await context.pushWidget(
+                    const ImportFileManagerPage(selectFileCount: 1),
+                  );
+                  l.d(list);
+                }, child: "导入的文件".text()),
+                GradientButton.normal(() {
+                  context.showWidgetDialog(const CanvasEngraveTestDialog());
+                }, child: "直接雕刻...".text()),
+                GradientButton.normal(() {
+                  context.pushRoute(TestRoute());
+                }, child: "test-route".text()),
               ].flowLayout(childGap: kL)!,
             );
           },
           child: "更多...".text(),
         ),
-        GradientButton.normal(
-          () {
-            //context.push(TestRoute());
-            //_test(context);
-            buildContext?.showWidgetDialog(
-                CanvasFollowTestDialog(canvasDelegate),
-                barrierColor: Colors.transparent);
-          },
-          child: "test".text(),
-        ),
+        GradientButton.normal(() {
+          //context.push(TestRoute());
+          //_test(context);
+          buildContext?.showWidgetDialog(
+            CanvasFollowTestDialog(canvasDelegate),
+            barrierColor: Colors.transparent,
+          );
+        }, child: "test".text()),
         /*GradientButton.normal( () {
             Matrix4 matrix = Matrix4.identity();
             matrix.translateTo(x: 50, y: 50);
@@ -376,10 +372,18 @@ class _CanvasAbcState extends State<CanvasAbc>
       ..moveTo(-50, -50)
       ..lineTo(-100, -100) /*..close()*/;
 
-    path.eachPathMetrics(
-        (posIndex, ratio, contourIndex, position, angle, isClose) {
-      l.d('$isClose posIndex:$posIndex ratio:$ratio contourIndex:$contourIndex '
-          'position:$position angle:${angle.toDegrees}° $angle ');
+    path.eachPathMetrics((
+      posIndex,
+      ratio,
+      contourIndex,
+      position,
+      angle,
+      isClose,
+    ) {
+      l.d(
+        '$isClose posIndex:$posIndex ratio:$ratio contourIndex:$contourIndex '
+        'position:$position angle:${angle.toDegrees}° $angle ',
+      );
     }, 50);
 
     const width = 100.0;
@@ -403,12 +407,15 @@ class _CanvasAbcState extends State<CanvasAbc>
     //   builder.write("A${width / 2} ${height / 2} 0 0 1 ${p2.dx} ${p2.dy}");
     // }));
 
-    l.d(stringBuilder((builder) {
-      builder.write("M${p1.dx} ${p1.dy}");
-      final c = calculateControlPoints(p1, p2, cc);
-      builder.write(
-          "C${c[0].dx} ${c[0].dy} ${c[1].dx} ${c[1].dy} ${p2.dx} ${p2.dy}");
-    }));
+    l.d(
+      stringBuilder((builder) {
+        builder.write("M${p1.dx} ${p1.dy}");
+        final c = calculateControlPoints(p1, p2, cc);
+        builder.write(
+          "C${c[0].dx} ${c[0].dy} ${c[1].dx} ${c[1].dy} ${p2.dx} ${p2.dy}",
+        );
+      }),
+    );
 
     /*final path = Path()
       ..moveTo(0, 0)
@@ -423,53 +430,63 @@ class _CanvasAbcState extends State<CanvasAbc>
       ..path = (Path()..addOval(const Rect.fromLTWH(0, 0, 10, 10))));*/
 
     final element1 = PathElementPainter()
-      ..updatePaintProperty((PaintProperty()
-        ..angle = 15.hd
-        ..left = -100
-        ..top = -100
-        ..width = 50
-        ..height = 50))
+      ..updatePaintProperty(
+        (PaintProperty()
+          ..angle = 15.hd
+          ..left = -100
+          ..top = -100
+          ..width = 50
+          ..height = 50),
+      )
       ..painterPath = (Path()..addRect(const Rect.fromLTWH(0, 0, 50, 50)));
     final element2 = PathElementPainter()
-      ..updatePaintProperty(PaintProperty()
-        ..angle = 0.hd
-        ..left = -50
-        ..top = -50
-        ..width = 80
-        ..height = 50)
+      ..updatePaintProperty(
+        PaintProperty()
+          ..angle = 0.hd
+          ..left = -50
+          ..top = -50
+          ..width = 80
+          ..height = 50,
+      )
       ..painterPath = (Path()..addOval(const Rect.fromLTWH(0, 0, 80, 50)));
     final rectGroupElement = ElementGroupPainter()
       ..resetChildren([element1, element2]);
     canvasDelegate.canvasElementManager.addElement(rectGroupElement);
 
     final ovalElement = PathElementPainter()
-      ..updatePaintProperty(PaintProperty()
-        ..left = 50
-        ..top = 50
-        ..width = 50
-        ..height = 50)
+      ..updatePaintProperty(
+        PaintProperty()
+          ..left = 50
+          ..top = 50
+          ..width = 50
+          ..height = 50,
+      )
       ..painterPath = (Path()..addOval(const Rect.fromLTWH(0, 0, 50, 50)));
     canvasDelegate.canvasElementManager.addElement(ovalElement);
 
     final rectElement = PathElementPainter()
-      ..updatePaintProperty(PaintProperty()
-        ..angle = 0.hd
-        ..left = 10
-        ..top = 10
-        ..width = 50
-        ..height = 50)
+      ..updatePaintProperty(
+        PaintProperty()
+          ..angle = 0.hd
+          ..left = 10
+          ..top = 10
+          ..width = 50
+          ..height = 50,
+      )
       ..painterPath = (Path()..addRect(const Rect.fromLTWH(0, 0, 50, 50)));
     canvasDelegate.canvasElementManager.addElement(rectElement);
 
     final flipRectElement = PathElementPainter()
-      ..updatePaintProperty(PaintProperty()
-        ..angle = 15.hd
-        ..left = 0
-        ..top = 0
-        ..flipX = true
-        ..flipY = false
-        ..width = 50
-        ..height = 50)
+      ..updatePaintProperty(
+        PaintProperty()
+          ..angle = 15.hd
+          ..left = 0
+          ..top = 0
+          ..flipX = true
+          ..flipY = false
+          ..width = 50
+          ..height = 50,
+      )
       ..painterPath = (Path()..addRect(const Rect.fromLTWH(0, 0, 50, 50)));
     canvasDelegate.canvasElementManager.addElement(flipRectElement);
 
@@ -479,33 +496,44 @@ class _CanvasAbcState extends State<CanvasAbc>
         'چو چپ راست کرد و خم آورد راست، خروش از خم چرخ چاچی بخاست.';
     final textElement = TextElementPainter()
       ..initElementFromText(text)
-      ..paintProperty?.let((it) => it
-        ..angle = 0.hd
-        ..left = 100
-        ..top = 100
-        ..skewX = 0.hd
-        ..flipX = false
-        ..flipY = false);
+      ..paintProperty?.let(
+        (it) => it
+          ..angle = 0.hd
+          ..left = 100
+          ..top = 100
+          ..skewX = 0.hd
+          ..flipX = false
+          ..flipY = false,
+      );
     canvasDelegate.canvasElementManager.addElement(textElement);
 
     Offset startPoint = const Offset(100, 100);
     Offset endPoint = const Offset(300, 100);
     Offset curvePoint = const Offset(120, 80);
 
-    List<Offset> controlPoints =
-        calculateControlPoints(startPoint, endPoint, curvePoint);
+    List<Offset> controlPoints = calculateControlPoints(
+      startPoint,
+      endPoint,
+      curvePoint,
+    );
 
-    l.d(buildString((builder) {
-      builder.addText('M ${startPoint.dx},${startPoint.dy}');
-      builder.addText(
-          'C ${controlPoints[0].dx},${controlPoints[0].dy} ${controlPoints[1].dx},${controlPoints[1].dy} ${endPoint.dx},${endPoint.dy}');
-    }));
+    l.d(
+      buildString((builder) {
+        builder.addText('M ${startPoint.dx},${startPoint.dy}');
+        builder.addText(
+          'C ${controlPoints[0].dx},${controlPoints[0].dy} ${controlPoints[1].dx},${controlPoints[1].dy} ${endPoint.dx},${endPoint.dy}',
+        );
+      }),
+    );
 
     canvasDelegate.canvasElementManager.clearElements();
   }
 
   List<Offset> calculateControlPoints(
-      Offset startPoint, Offset endPoint, Offset curvePoint) {
+    Offset startPoint,
+    Offset endPoint,
+    Offset curvePoint,
+  ) {
     double x1 = startPoint.dx + (2.0 / 3.0) * (curvePoint.dx - startPoint.dx);
     double y1 = startPoint.dy + (2.0 / 3.0) * (curvePoint.dy - startPoint.dy);
 
@@ -561,214 +589,206 @@ class CommandTestPopup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return [
-      GradientButton.normal(
-        () {
-          $deviceManager.sendDeviceRequest(ExitRequest());
-        },
-        child: "退出".text(),
-      ),
-      GradientButton.normal(
-        () {
-          $deviceManager
-              .sendDeviceRequest(QueryRequest(QueryState.work))
-              .get((value, error) {
-            if (value is List) {
-              resultUpdateSignal?.updateValue(value.first);
-            }
-          });
-        },
-        child: "查询状态".text(),
-      ),
-      GradientButton.normal(
-        () {
-          $deviceManager
-              .sendDeviceRequest(QueryRequest(QueryState.setting))
-              .get((value, error) {
-            if (value is List) {
-              resultUpdateSignal?.updateValue(value.first);
-            }
-          });
-        },
-        child: "查询设置".text(),
-      ),
-      GradientButton.normal(
-        () {
-          $deviceManager
-              .sendDeviceRequest(
-            QueryRequest(QueryState.fileList),
-            throwError: true,
-          )
-              .get((value, error) {
-            if (value is List) {
-              resultUpdateSignal?.updateValue(value.first);
-            } else if (error != null) {
-              toastInfo('$error');
-            }
-          });
-        },
-        child: "查询文件列表".text(),
-      ),
-      GradientButton.normal(
-        () {
-          $deviceManager
-              .sendDeviceRequest(
-            QueryRequest(QueryState.fileNameList),
-            throwError: true,
-          )
-              .get((value, error) {
-            //debugger();
-            if (value is List) {
-              resultUpdateSignal?.updateValue(value.first);
-            } else if (error != null) {
-              toastInfo('$error');
-            }
-          });
-        },
-        child: "查询文件名列表".text(),
-      ),
-      GradientButton.normal(
-        () {
-          final bounds = canvasDelegate
-              ?.canvasElementManager.elementSelectComponent?.elementsBounds;
-          if (bounds == null) {
-            toastInfo('未选择元素,预览100,100');
-            final bounds = const Rect.fromLTWH(30, 30, 100, 100).toRectMm();
-            $deviceManager.sendDeviceRequest(PreviewRequest.range(bounds));
-          } else {
-            $deviceManager.sendDeviceRequest(PreviewRequest.range(bounds));
+      GradientButton.normal(() {
+        $deviceManager.sendDeviceRequest(ExitRequest());
+      }, child: "退出".text()),
+      GradientButton.normal(() {
+        $deviceManager.sendDeviceRequest(QueryRequest(QueryState.work)).get((
+          value,
+          error,
+        ) {
+          if (value is List) {
+            resultUpdateSignal?.updateValue(value.first);
           }
-        },
-        child: "预览".text(),
-      ),
-      GradientButton.normal(
-        () async {
-          final elementList = canvasDelegate?.canvasElementManager
-              .getAllSelectedElement(exportSingleElement: true);
-          if (elementList == null || elementList.isEmpty) {
-            toastInfo('未选择元素');
-          } else {
-            final pathList = elementList.getAllElementOutputPathList();
-            if (pathList.isEmpty) {
-              toastInfo('无数据');
-            } else {
-              final bounds = pathList.getExactBounds();
-              final gcode = pathList.toGCodeString();
-              final bytes = gcode!.bytes;
-              final resultList = await $deviceManager
-                  .sendDeviceRequest(DataModeRequest.dataMode(bytes.size()));
-              //debugger();
-              consoleLog(gcode);
-              toastInfo(
-                  '进入大数据模式[${bytes.size().toSizeStr()}]${(!resultList.hasError()).toDC()}');
-              if (!resultList.hasError()) {
-                final index = generateEngraveIndex();
-                final request = DataRequest.gcode(
-                    bytes, bounds, index, gcode.lines().size());
-                final resultList =
-                    await $deviceManager.sendDeviceRequest(request);
-                toastInfo('数据传输:${(!resultList.hasError()).toDC()}');
-                if (!resultList.hasError()) {
-                  //flash预览
-                  final resultList = await $deviceManager
-                      .sendDeviceRequest(PreviewRequest.flash(index));
-                  toastInfo('flash预览:${(!resultList.hasError()).toDC()}');
-                }
-              }
-            }
+        });
+      }, child: "查询状态".text()),
+      GradientButton.normal(() {
+        $deviceManager.sendDeviceRequest(QueryRequest(QueryState.setting)).get((
+          value,
+          error,
+        ) {
+          if (value is List) {
+            resultUpdateSignal?.updateValue(value.first);
           }
-        },
-        child: "矢量预览".text(),
-      ),
-      GradientButton.normal(
-        () {
-          const size = 10;
-          $deviceManager
-              .sendDeviceRequest(DataModeRequest.dataMode(size))
-              .get((value, error) {
-            if (value is List) {
-              final bean = value.first;
-              if (bean is BatchResult) {
-                final response = bean.response;
-                if (response is BytesRequestResponseBean) {
-                  toastInfo(
-                      '进入大数据模式[${size.toSizeStr()}]${response.isSuccess.toDC()}');
-                }
-              }
-            }
-          });
-        },
-        child: "进入大数据模式".text(),
-      ),
-      GradientButton.normal(
-        () async {
-          final elementList = canvasDelegate?.canvasElementManager
-              .getAllSelectedElement(exportSingleElement: true);
-          if (elementList == null || elementList.isEmpty) {
-            toastInfo('未选择元素');
-          } else {
-            final pathList = elementList.getAllElementOutputPathList();
-            if (pathList.isEmpty) {
-              toastInfo('无数据');
-            } else {
-              final bounds = pathList.getExactBounds();
-              final gcode = pathList.toGCodeString();
-              final bytes = gcode!.bytes;
-              final resultList = await $deviceManager
-                  .sendDeviceRequest(DataModeRequest.dataMode(bytes.size()));
-              //debugger();
-              consoleLog(gcode);
-              toastInfo(
-                  '进入大数据模式[${bytes.size().toSizeStr()}]${(!resultList.hasError()).toDC()}');
-              if (!resultList.hasError()) {
-                final index = generateEngraveIndex();
-                final request = DataRequest.gcode(
-                    bytes, bounds, index, gcode.lines().size());
-                final resultList =
-                    await $deviceManager.sendDeviceRequest(request);
-                toastInfo('数据传输:${(!resultList.hasError()).toDC()}');
-                if (!resultList.hasError()) {
-                  //雕刻
-                  final resultList = await $deviceManager.sendDeviceRequest(
-                    EngraveRequest(EngraveRequestState.startEngraveIndex)
-                      ..index = index,
-                  );
-                  toastInfo('雕刻:${(!resultList.hasError()).toDC()}');
-                }
-              }
-            }
-          }
-        },
-        child: "雕刻".text(),
-      ),
-      GradientButton.normal(
-        () async {
-          final elementList =
-              canvasDelegate?.canvasElementManager.getAllSelectedElement(
-            exportSingleElement: true,
-            exportAllElementIfNoSelected: true,
-          );
-          if (elementList == null || elementList.isEmpty) {
-            toastInfo('未选择元素');
-          } else {
-            final manager = DeviceEngraveManager();
-            for (final element in elementList) {
-              if (element is LpElementMixin) {
-                manager.addEspIndexEngraveTask(
-                    ElementEngraveDataProvider(element));
-              }
-            }
-            final result = await manager
-                .start(reason: '开始雕刻元素共:[${elementList.size()}]个')
-                .get((value, error) {
-              if (error != null) {
+        });
+      }, child: "查询设置".text()),
+      GradientButton.normal(() {
+        $deviceManager
+            .sendDeviceRequest(
+              QueryRequest(QueryState.fileList),
+              throwError: true,
+            )
+            .get((value, error) {
+              if (value is List) {
+                resultUpdateSignal?.updateValue(value.first);
+              } else if (error != null) {
                 toastInfo('$error');
               }
             });
+      }, child: "查询文件列表".text()),
+      GradientButton.normal(() {
+        $deviceManager
+            .sendDeviceRequest(
+              QueryRequest(QueryState.fileNameList),
+              throwError: true,
+            )
+            .get((value, error) {
+              //debugger();
+              if (value is List) {
+                resultUpdateSignal?.updateValue(value.first);
+              } else if (error != null) {
+                toastInfo('$error');
+              }
+            });
+      }, child: "查询文件名列表".text()),
+      GradientButton.normal(() {
+        final bounds = canvasDelegate
+            ?.canvasElementManager
+            .elementSelectComponent
+            ?.elementsBounds;
+        if (bounds == null) {
+          toastInfo('未选择元素,预览100,100');
+          final bounds = const Rect.fromLTWH(30, 30, 100, 100).toRectMm();
+          $deviceManager.sendDeviceRequest(PreviewRequest.range(bounds));
+        } else {
+          $deviceManager.sendDeviceRequest(PreviewRequest.range(bounds));
+        }
+      }, child: "预览".text()),
+      GradientButton.normal(() async {
+        final elementList = canvasDelegate?.canvasElementManager
+            .getAllSelectedElement(exportSingleElement: true);
+        if (elementList == null || elementList.isEmpty) {
+          toastInfo('未选择元素');
+        } else {
+          final pathList = elementList.getAllElementOutputPathList();
+          if (pathList.isEmpty) {
+            toastInfo('无数据');
+          } else {
+            final bounds = pathList.getExactBounds();
+            final gcode = pathList.toGCodeString();
+            final bytes = gcode!.bytes;
+            final resultList = await $deviceManager.sendDeviceRequest(
+              DataModeRequest.dataMode(bytes.size()),
+            );
             //debugger();
+            consoleLog(gcode);
+            toastInfo(
+              '进入大数据模式[${bytes.size().toSizeStr()}]${(!resultList.hasError()).toDC()}',
+            );
+            if (!resultList.hasError()) {
+              final index = generateEngraveIndex();
+              final request = DataRequest.gcode(
+                bytes,
+                bounds,
+                index,
+                gcode.lines().size(),
+              );
+              final resultList = await $deviceManager.sendDeviceRequest(
+                request,
+              );
+              toastInfo('数据传输:${(!resultList.hasError()).toDC()}');
+              if (!resultList.hasError()) {
+                //flash预览
+                final resultList = await $deviceManager.sendDeviceRequest(
+                  PreviewRequest.flash(index),
+                );
+                toastInfo('flash预览:${(!resultList.hasError()).toDC()}');
+              }
+            }
           }
-        },
-        child: "雕刻任务".text(),
-      ),
+        }
+      }, child: "矢量预览".text()),
+      GradientButton.normal(() {
+        const size = 10;
+        $deviceManager.sendDeviceRequest(DataModeRequest.dataMode(size)).get((
+          value,
+          error,
+        ) {
+          if (value is List) {
+            final bean = value.first;
+            if (bean is BatchResult) {
+              final response = bean.response;
+              if (response is BytesRequestResponseBean) {
+                toastInfo(
+                  '进入大数据模式[${size.toSizeStr()}]${response.isSuccess.toDC()}',
+                );
+              }
+            }
+          }
+        });
+      }, child: "进入大数据模式".text()),
+      GradientButton.normal(() async {
+        final elementList = canvasDelegate?.canvasElementManager
+            .getAllSelectedElement(exportSingleElement: true);
+        if (elementList == null || elementList.isEmpty) {
+          toastInfo('未选择元素');
+        } else {
+          final pathList = elementList.getAllElementOutputPathList();
+          if (pathList.isEmpty) {
+            toastInfo('无数据');
+          } else {
+            final bounds = pathList.getExactBounds();
+            final gcode = pathList.toGCodeString();
+            final bytes = gcode!.bytes;
+            final resultList = await $deviceManager.sendDeviceRequest(
+              DataModeRequest.dataMode(bytes.size()),
+            );
+            //debugger();
+            consoleLog(gcode);
+            toastInfo(
+              '进入大数据模式[${bytes.size().toSizeStr()}]${(!resultList.hasError()).toDC()}',
+            );
+            if (!resultList.hasError()) {
+              final index = generateEngraveIndex();
+              final request = DataRequest.gcode(
+                bytes,
+                bounds,
+                index,
+                gcode.lines().size(),
+              );
+              final resultList = await $deviceManager.sendDeviceRequest(
+                request,
+              );
+              toastInfo('数据传输:${(!resultList.hasError()).toDC()}');
+              if (!resultList.hasError()) {
+                //雕刻
+                final resultList = await $deviceManager.sendDeviceRequest(
+                  EngraveRequest(EngraveRequestState.startEngraveIndex)
+                    ..index = index,
+                );
+                toastInfo('雕刻:${(!resultList.hasError()).toDC()}');
+              }
+            }
+          }
+        }
+      }, child: "雕刻".text()),
+      GradientButton.normal(() async {
+        final elementList = canvasDelegate?.canvasElementManager
+            .getAllSelectedElement(
+              exportSingleElement: true,
+              exportAllElementIfNoSelected: true,
+            );
+        if (elementList == null || elementList.isEmpty) {
+          toastInfo('未选择元素');
+        } else {
+          final manager = DeviceEngraveManager();
+          for (final element in elementList) {
+            if (element is LpElementMixin) {
+              manager.addEspIndexEngraveTask(
+                ElementEngraveDataProvider(element),
+              );
+            }
+          }
+          final result = await manager
+              .start(reason: '开始雕刻元素共:[${elementList.size()}]个')
+              .get((value, error) {
+                if (error != null) {
+                  toastInfo('$error');
+                }
+              });
+          //debugger();
+        }
+      }, child: "雕刻任务".text()),
     ].flowLayout(childGap: kS)!.material();
   }
 }
@@ -782,10 +802,7 @@ class TestRoute<String> extends OverlayRoute<String> {
   @override
   Iterable<OverlayEntry> createOverlayEntries() {
     return <OverlayEntry>[
-      OverlayEntry(
-        builder: (context) => const TestRoutePage(),
-        opaque: false,
-      ),
+      OverlayEntry(builder: (context) => const TestRoutePage(), opaque: false),
     ];
   }
 }
@@ -797,28 +814,31 @@ class TestRoutePage extends StatelessWidget {
   Widget build(BuildContext context) {
     //IgnorePointer()
     return [
-      GradientButton(
-          onTap: () {
-            toastInfo("...button");
-          },
-          child: "child".text()),
-      GradientButton(
-          onTap: () {
-            toastInfo("...button");
-          },
-          child: "child".text()),
-      GradientButton(
-          onTap: () {
-            toastInfo("...button");
-          },
-          child: "child".text()),
-      "TestRoute"
-          .text()
-          .backgroundDecoration(fillDecoration(color: Colors.redAccent))
-          .ink(() {
-        toastInfo("...text");
-      }),
-    ]
+          GradientButton(
+            onTap: () {
+              toastInfo("...button");
+            },
+            child: "child".text(),
+          ),
+          GradientButton(
+            onTap: () {
+              toastInfo("...button");
+            },
+            child: "child".text(),
+          ),
+          GradientButton(
+            onTap: () {
+              toastInfo("...button");
+            },
+            child: "child".text(),
+          ),
+          "TestRoute"
+              .text()
+              .backgroundDecoration(fillDecoration(color: Colors.redAccent))
+              .ink(() {
+                toastInfo("...text");
+              }),
+        ]
         .scroll(axis: Axis.vertical)!
         .size(height: 80)
         .align(Alignment.bottomCenter)
@@ -857,10 +877,7 @@ class _CanvasEngraveTestDialogState extends State<CanvasEngraveTestDialog> {
   Widget build(BuildContext context) {
     final globalTheme = GlobalTheme.of(context);
     return widget.buildBottomChildrenDialog(context, [
-      const CoreDialogTitle(
-        title: "雕刻在线数据",
-        invisibleTrailing: true,
-      ),
+      const CoreDialogTitle(title: "雕刻在线数据", invisibleTrailing: true),
       SingleInputWidget(
         config: _lastDataUrlConfig,
         maxLines: 6,
@@ -868,33 +885,30 @@ class _CanvasEngraveTestDialogState extends State<CanvasEngraveTestDialog> {
         focusedBorder: underlineInputBorder(color: globalTheme.accentColor),
       ),
       [
-        GradientButton.normal(
-          () async {
-            final text = _lastDataUrlConfig.text;
-            if (text.isHttpUrl) {
-              //在线地址
-              final url = text;
-              final data = await url.dioGetString();
-              //debugger();
-              if (data?.isGCodeContent == true) {
-                _engraveGCodeData(context, data!);
-              } else if (data?.isSvgContent == true) {
-                _handleSvgXmlData(context, data!);
-              } else {
-                toastInfo("无效的在线数据");
-              }
-            } else if (text.isGCodeContent) {
-              //GCode内容
-              _engraveGCodeData(context, text);
-            } else if (text.isSvgContent) {
-              //svg xml内容
-              _handleSvgXmlData(context, text);
+        GradientButton.normal(() async {
+          final text = _lastDataUrlConfig.text;
+          if (text.isHttpUrl) {
+            //在线地址
+            final url = text;
+            final data = await url.dioGetString();
+            //debugger();
+            if (data?.isGCodeContent == true) {
+              _engraveGCodeData(context, data!);
+            } else if (data?.isSvgContent == true) {
+              _handleSvgXmlData(context, data!);
             } else {
-              toastInfo("不支持的数据");
+              toastInfo("无效的在线数据");
             }
-          },
-          child: "雕刻".text(),
-        ),
+          } else if (text.isGCodeContent) {
+            //GCode内容
+            _engraveGCodeData(context, text);
+          } else if (text.isSvgContent) {
+            //svg xml内容
+            _handleSvgXmlData(context, text);
+          } else {
+            toastInfo("不支持的数据");
+          }
+        }, child: "雕刻".text()),
       ].flowLayout(
         padding: const EdgeInsets.all(8),
         childGap: 8,
@@ -937,7 +951,8 @@ class _CanvasEngraveTestDialogState extends State<CanvasEngraveTestDialog> {
 
     //4: 发送雕刻指令
     final laserOption = LpEngraveHelper.findLaserOptionCollectionByDataMode(
-        DeviceDataMode.gcode.name);
+      DeviceDataMode.gcode.name,
+    );
     final engraveRequest = EngraveRequest.engraveIndex(
       index: index,
       laserOption: laserOption,
@@ -948,7 +963,9 @@ class _CanvasEngraveTestDialogState extends State<CanvasEngraveTestDialog> {
       ..onReceiveResponseAction = (deviceId, response, error) {
         if (response.data != null) {
           $deviceManager.updateAnyDeviceWorkState(
-              $operateDeviceId, response.data);
+            $operateDeviceId,
+            response.data,
+          );
           EngraveRestoreDialog.checkDeviceEngraveRestore(
             context,
             $operateDeviceId ?? "",

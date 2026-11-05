@@ -55,6 +55,9 @@ class $AssetsFlameGen {
 class $AssetsJsonGen {
   const $AssetsJsonGen();
 
+  /// File path: assets/json/china.json
+  String get china => 'packages/flutter3_abc/assets/json/china.json';
+
   /// File path: assets/json/xzqh.json
   String get xzqh => 'packages/flutter3_abc/assets/json/xzqh.json';
 
@@ -62,7 +65,7 @@ class $AssetsJsonGen {
   String get path => 'packages/flutter3_abc/assets/json';
 
   /// List of all assets
-  List<String> get values => [xzqh];
+  List<String> get values => [china, xzqh];
 }
 
 class $AssetsPngGen {
