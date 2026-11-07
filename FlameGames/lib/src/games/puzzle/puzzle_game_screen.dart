@@ -278,7 +278,7 @@ class PuzzleBoardComponent extends PositionComponent
   /// 显示游戏胜利
   void showGameWin() {
     final key = ComponentKey.named("game_win_$index");
-    if (hasChild(key)) {
+    if (hasChild(key: key)) {
       return;
     }
     add(

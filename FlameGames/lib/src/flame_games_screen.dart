@@ -15,6 +15,9 @@ import 'games/pinball/pinball_game_config_screen.dart';
 import 'games/pinball/pinball_game_screen.dart';
 import 'games/puzzle/puzzle_game_config_screen.dart';
 import 'games/puzzle/puzzle_game_screen.dart';
+import 'games/ships/ships_game_config.dart';
+import 'games/ships/ships_game_config_screen.dart';
+import 'games/ships/ships_game_screen.dart';
 
 ///
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
@@ -81,10 +84,18 @@ class _FlameGamesScreenState extends State<FlameGamesScreen>
           }
         },
       ).rGridTile(gridCount),
-      /*if (isDebug) GameSelectTile(label: "拼图游戏").rGridTile(gridCount),
-      if (isDebug) GameSelectTile(label: "拼图游戏").rGridTile(gridCount),
-      if (isDebug) GameSelectTile(label: "拼图游戏").rGridTile(gridCount),
-      if (isDebug) GameSelectTile(label: "拼图游戏").rGridTile(gridCount),*/
+      GameSelectTile(
+        label: "飞船",
+        onTap: () async {
+          final config = await buildContext?.pushWidget(
+            ShipsGameConfigScreen(),
+          );
+          if (config is ShipsGameConfig) {
+            buildContext?.pushWidget(ShipsGameScreen(config: config));
+          }
+        },
+      ).rGridTile(gridCount),
+      /*if (isDebug) GameSelectTile(label: "拼图游戏").rGridTile(gridCount),*/
     ];
   }
 }

@@ -14,6 +14,7 @@ import 'base_game_controller.dart';
 class GameHudComponent extends PositionComponent with HasGameReference {
   final FlameTextComponent _durationText = FlameTextComponent(text: "00:00");
   final FlameTextComponent _scoreText = FlameTextComponent(text: "0");
+  final FlameTextComponent _otherText = FlameTextComponent(text: "");
 
   @override
   FutureOr<void> onLoad() async {
@@ -36,6 +37,16 @@ class GameHudComponent extends PositionComponent with HasGameReference {
         children: [
           FlameTextComponent(text: baseGameController?.scoreLabel ?? "分数: "),
           _scoreText,
+        ],
+      ),
+    );
+    add(
+      FlowComponent(
+        position: Vector2(10, 70),
+        rowCrossAxisAlignment: .center,
+        children: [
+          FlameTextComponent(text: baseGameController?.otherLabel),
+          _otherText,
         ],
       ),
     );
@@ -88,7 +99,8 @@ class GameHudComponent extends PositionComponent with HasGameReference {
     }
     controller.gameDuration += (dt * 1000).toInt();
     _durationText.text = controller.durationText;
-    _scoreText.text = controller.scoreText.toString();
+    _scoreText.text = controller.scoreText;
+    _otherText.text = controller.otherText;
   }
 
   ///
@@ -105,6 +117,14 @@ extension GameHudComponentExtension on Component {
       final parent = findParent<PositionComponent>();
       if (parent != null) {
         return (parent as dynamic).controller;
+      }
+    } catch (e) {
+      //no op
+    }
+    try {
+      final world = findParent<World>();
+      if (world != null) {
+        return (world as dynamic).controller;
       }
     } catch (e) {
       //no op

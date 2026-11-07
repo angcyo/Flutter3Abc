@@ -11,6 +11,7 @@ abstract class BaseGameController {
 
   String durationLabel = "用时: ";
   String scoreLabel = "分数: ";
+  String? otherLabel;
 
   //--
 
@@ -35,6 +36,9 @@ abstract class BaseGameController {
 
   /// 游戏得分文本
   String get scoreText => gameScore.toString();
+
+  /// 其他文本
+  String get otherText => "";
 
   //MARK: method
 

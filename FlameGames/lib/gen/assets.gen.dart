@@ -42,6 +42,14 @@ class $AssetsSpriteGen {
   AssetGenImage get pixelPlatformer =>
       const AssetGenImage('assets/sprite/pixel_platformer.png');
 
+  /// File path: assets/sprite/pixel_shmup_ships.png
+  AssetGenImage get pixelShmupShips =>
+      const AssetGenImage('assets/sprite/pixel_shmup_ships.png');
+
+  /// File path: assets/sprite/pixel_shmup_tiles.png
+  AssetGenImage get pixelShmupTiles =>
+      const AssetGenImage('assets/sprite/pixel_shmup_tiles.png');
+
   /// File path: assets/sprite/shape_characters.png
   AssetGenImage get shapeCharacters =>
       const AssetGenImage('assets/sprite/shape_characters.png');
@@ -54,6 +62,8 @@ class $AssetsSpriteGen {
   List<AssetGenImage> get values => [
     gameIconsSheet,
     pixelPlatformer,
+    pixelShmupShips,
+    pixelShmupTiles,
     shapeCharacters,
     shootingGalleryHud,
   ];

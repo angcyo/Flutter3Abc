@@ -8,12 +8,18 @@ import 'package:flutter3_flame/flutter3_flame.dart';
 ///
 /// 游戏基础混入
 mixin BaseGameStateMixin<T extends StatefulWidget> on State<T> {
+  /// 初始化
   @override
   void initState() {
     super.initState();
+    initGameScreenStyle();
   }
 
   /// 初始化游戏屏幕样式
+  /// - [setScreenOrientation]
+  ///   - [setScreenLandscape]
+  ///   - [setScreenPortrait]
+  /// - [setEnabledSystemUIMode]
   @overridePoint
   void initGameScreenStyle() {
     //setScreenOrientation();
