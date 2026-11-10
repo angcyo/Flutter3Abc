@@ -38,6 +38,9 @@ class _ChinaMapScreenState extends State<ChinaMapScreen>
                 );
               },
             );
+          } else if (fromInitialize) {
+            // 初始化完成，跟随画布
+            canvasViewBox.canvasDelegate.followRect();
           }
         },
   );
