@@ -27,6 +27,9 @@ class XzqhAbc extends StatefulWidget {
   static final Color specialAdministrativeRegionStrokeColor = Color(0xffcc79a7);
   static final Color specialAdministrativeRegionFillColor = Color(0xfffce7f3);
 
+  /// 行政区划信息列表
+  static final List<XzqhBean> xzqhList = [];
+
   const XzqhAbc({super.key});
 
   @override
@@ -35,8 +38,6 @@ class XzqhAbc extends StatefulWidget {
 
 class _XzqhAbcState extends State<XzqhAbc>
     with BaseAbcStateMixin, WidgetsBindingObserver, MediaQueryDataChangeMixin {
-  static final List<XzqhBean> _xzqhList = [];
-
   /// 点击过的行政区划列表
   static final Set<XzqhBean> _clickedXzqhList = {};
 
@@ -46,17 +47,17 @@ class _XzqhAbcState extends State<XzqhAbc>
   /// - 过滤后的行政区划列表
   List<XzqhBean>? _showXzqhList;
 
-  List<XzqhBean> get showXzqhList => _showXzqhList ?? _xzqhList;
+  List<XzqhBean> get showXzqhList => _showXzqhList ?? XzqhAbc.xzqhList;
 
   @override
   void initState() {
     super.initState();
-    if (_xzqhList.isEmpty) {
+    if (XzqhAbc.xzqhList.isEmpty) {
       loadAssetString(Assets.json.xzqh).get((value, error) {
         if (!isNil(value)) {
           final json = (value as String).fromJson();
           final children = json["data"]["children"];
-          _xzqhList.resetAll(
+          XzqhAbc.xzqhList.resetAll(
             (children as Iterable).map((e) => XzqhBean.fromJson(e)),
           );
           updateState();
@@ -70,20 +71,22 @@ class _XzqhAbcState extends State<XzqhAbc>
     final globalTheme = GlobalTheme.of(context);
     final gridCount = $bpGrid();
     return [
-      if (_xzqhList.isNotEmpty)
+      if (XzqhAbc.xzqhList.isNotEmpty)
         textSpanBuilder((builder) {
           //**3 个省、5 个自治区、4 个直辖市、2 个特别行政区**，合计 **34 个省级行政区**。
-          final provinceList = _xzqhList.where((e) => e.type == "省").toList();
+          final provinceList = XzqhAbc.xzqhList
+              .where((e) => e.type == "省")
+              .toList();
           final provinceCount = provinceList.length; //省
-          final autonomousRegionList = _xzqhList
+          final autonomousRegionList = XzqhAbc.xzqhList
               .where((e) => e.type == "自治区")
               .toList();
           final autonomousRegionCount = autonomousRegionList.length;
-          final municipalityList = _xzqhList
+          final municipalityList = XzqhAbc.xzqhList
               .where((e) => e.type == "直辖市")
               .toList();
           final municipalityCount = municipalityList.length; //直辖市
-          final specialAdministrativeRegionList = _xzqhList
+          final specialAdministrativeRegionList = XzqhAbc.xzqhList
               .where((e) => e.type == "特别行政区")
               .toList();
           final specialAdministrativeRegionCount =
@@ -93,7 +96,8 @@ class _XzqhAbcState extends State<XzqhAbc>
               autonomousRegionCount +
               municipalityCount +
               specialAdministrativeRegionCount;
-          final allAndSub = all + _xzqhList.fold(0, (a, b) => a + b.childCount);
+          final allAndSub =
+              all + XzqhAbc.xzqhList.fold(0, (a, b) => a + b.childCount);
           final numberStyle = globalTheme.textTitleStyle.copyWith(
             fontWeight: .bold,
           );

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3_basics/flutter3_basics.dart';
+import 'package:flutter3_app/flutter3_app.dart';
 import 'package:flutter3_canvas/flutter3_canvas.dart';
 
 import '../../flutter3_abc.dart';
@@ -56,7 +56,8 @@ class _ChinaMapScreenState extends State<ChinaMapScreen>
       ..axisUnit = .dp
       ..enableElementExactSelect = true
       ..enableHoverTopDraw = isDesktopOrWeb
-      ..enablePureMode();
+      ..enablePureMode()
+      ..enableElementSelectedMode();
     canvasDelegate.canvasElementManager.addElement(loadingPainter);
     loadData();
   }
@@ -89,7 +90,21 @@ class _ChinaMapScreenState extends State<ChinaMapScreen>
     canvasDelegate.canvasElementManager.removeAllElement();
     await for (final feature in features.stream) {
       canvasDelegate.canvasElementManager.addElement(
-        FeatureElementPainter(feature),
+        FeatureElementPainter(
+          feature,
+          onTap: (painter) {
+            final bean = XzqhAbc.xzqhList.findFirst(
+              (e) => e.name == painter.fullName,
+            );
+            if (bean != null) {
+              XzqhListScreen(
+                parentBean: bean,
+                title: painter.fullName,
+                beanList: bean.children!,
+              ).showScreenWidget(context);
+            }
+          },
+        ),
       );
     }
     if (reload == true) {
@@ -216,6 +231,8 @@ class FeatureElementPainter extends PathElementPainter {
 
   //String? get capital => capitalMap[fullName];
 
+  final void Function(FeatureElementPainter painter)? onTap;
+
   Color? get fillColor => fullName?.endsWith("省") == true
       ? XzqhAbc.provinceFillColor
       : fullName?.endsWith("市") == true
@@ -236,7 +253,7 @@ class FeatureElementPainter extends PathElementPainter {
       ? XzqhAbc.specialAdministrativeRegionStrokeColor
       : null;
 
-  FeatureElementPainter(this.feature) {
+  FeatureElementPainter(this.feature, {this.onTap}) {
     final properties = feature["properties"];
     name = properties?["name"];
     fullName = properties?["fullname"];
@@ -289,5 +306,11 @@ class FeatureElementPainter extends PathElementPainter {
             ),
       fontSize: (isDesktopOrWeb ? kDefaultFontSize : 8) / paintMeta.canvasScale,
     );
+  }
+
+  @override
+  bool onSelfHandlePointerClick(PointerEvent event, Offset point) {
+    onTap?.call(this);
+    return true;
   }
 }
