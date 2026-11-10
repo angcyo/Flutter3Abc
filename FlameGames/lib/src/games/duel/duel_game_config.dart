@@ -26,13 +26,13 @@ class DuelGameConfig {
   int baseHPStep = 50;
 
   /// 暴击率增加步长
-  double baseCritChanceStep = 0.02;
+  double baseCritChanceStep = 0.01;
 
   /// 命中率增加步长
   double accuracyStep = 0.1;
 
   /// 闪避率增加步长
-  double dodgeChanceStep = 0.02;
+  double dodgeChanceStep = 0.01;
 
   /// 防御穿透增加步长
   double penetrationStep = 5;

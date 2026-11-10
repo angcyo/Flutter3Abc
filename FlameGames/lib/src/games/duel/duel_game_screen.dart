@@ -6,6 +6,7 @@ import 'package:flutter3_flame/flutter3_flame.dart';
 
 import '../../assets/soldier_orc_assets.dart';
 import '../base_game_mixin.dart';
+import '../game_over_component.dart';
 import 'component/duel_components.dart';
 import 'duel_game_config.dart';
 import 'duel_game_controller.dart';
@@ -44,6 +45,9 @@ class DuelGame extends BaseFlameGame<DuelWorld> {
     camera.viewfinder.anchor = .topLeft;
     await $soldierOrcAssets.loadFromAssets(this);
     add(DuelHudComponent());
+    /*if (isDebugMode) {
+      add(GameOverComponent(*//*maskColor: Colors.blue*//*));
+    }*/
     return super.onLoad();
   }
 }

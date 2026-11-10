@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flame_games/src/assets/game_assets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter3_flame/flutter3_flame.dart';
 
 import 'game_hud_component.dart';
@@ -11,6 +13,11 @@ import 'game_hud_component.dart';
 ///
 /// 游戏结束组件
 class GameOverComponent extends PositionComponent {
+  /// 蒙层颜色
+  final Color? maskColor;
+
+  /// 模糊半径
+  final double maskBlurSigma;
   final Vector2 gameOverScale;
 
   GameOverComponent({
@@ -19,6 +26,8 @@ class GameOverComponent extends PositionComponent {
     super.size,
     super.scale,
     super.angle,
+    this.maskColor = Colors.black26,
+    this.maskBlurSigma = 10,
   }) : gameOverScale = gameOverScale ?? Vector2.all(1.2);
 
   @override
@@ -52,5 +61,20 @@ class GameOverComponent extends PositionComponent {
     );
 
     return super.onLoad();
+  }
+
+  @override
+  void render(Canvas canvas) {
+    if (maskColor != null) {
+      final paint = Paint()
+        ..color = maskColor!
+        ..style = .fill
+        ..imageFilter = ImageFilter.blur(
+          sigmaX: maskBlurSigma,
+          sigmaY: maskBlurSigma,
+        );
+      canvas.drawRect(Rect.fromLTWH(0, 0, size.x, size.y), paint);
+    }
+    super.render(canvas);
   }
 }

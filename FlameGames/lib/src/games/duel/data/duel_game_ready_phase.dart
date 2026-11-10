@@ -124,10 +124,11 @@ class DuelCombatStatsTapEditComponent extends PositionComponent {
             : gameDifficulty > 1
             ? 4
             : 3);
-    final fontSize = fb.isMobile ? 14.0 : 24.0;
+    final fontSize = (fb.isMobile && gameDifficulty > 2) ? 16.0 : 24.0;
     final padding = fb.isMobile
-        ? fb.insets(h: 16, v: 2)
+        ? fb.insets(h: 16, v: gameDifficulty > 2 ? 4 : 6)
         : fb.insets(h: 16, v: 8);
+    //--
     append(
       GameButtonComponent(
         text: '攻击 +${controller.config.baseAttackStep}',
@@ -284,7 +285,7 @@ class DuelCombatStatsInfoComponent extends PositionComponent {
   late final TextComponent _textComponent = TextComponent(
     textRenderer: TextAlignPaint(
       textAlign: isRight ? .end : .start,
-      fontSize: fb.isMobile ? 14 : 18,
+      fontSize: fb.isMobile ? 16 : 18,
     ),
   );
 

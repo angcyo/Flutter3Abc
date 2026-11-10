@@ -28,7 +28,7 @@ class DuelGameController extends BaseGameController {
     baseDefense: 5,
     baseHP: 100,
     baseCritChance: 0.1,
-    accuracy: 0.8,
+    accuracy: 0.5,
     dodgeChance: 0.1,
   );
 
@@ -37,7 +37,7 @@ class DuelGameController extends BaseGameController {
     baseDefense: 5,
     baseHP: 100,
     baseCritChance: 0.1,
-    accuracy: 0.8,
+    accuracy: 0.5,
     dodgeChance: 0.1,
     penetration: 1,
     lifesteal: 0.1,
