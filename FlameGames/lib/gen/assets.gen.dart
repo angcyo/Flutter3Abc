@@ -38,6 +38,26 @@ class $AssetsSpriteGen {
   AssetGenImage get gameIconsSheet =>
       const AssetGenImage('assets/sprite/game_icons_sheet.png');
 
+  /// File path: assets/sprite/orc_attack02_sprite_sheet.png
+  AssetGenImage get orcAttack02SpriteSheet =>
+      const AssetGenImage('assets/sprite/orc_attack02_sprite_sheet.png');
+
+  /// File path: assets/sprite/orc_death_sprite_sheet.png
+  AssetGenImage get orcDeathSpriteSheet =>
+      const AssetGenImage('assets/sprite/orc_death_sprite_sheet.png');
+
+  /// File path: assets/sprite/orc_hurt_sprite_sheet.png
+  AssetGenImage get orcHurtSpriteSheet =>
+      const AssetGenImage('assets/sprite/orc_hurt_sprite_sheet.png');
+
+  /// File path: assets/sprite/orc_idle_sprite_sheet.png
+  AssetGenImage get orcIdleSpriteSheet =>
+      const AssetGenImage('assets/sprite/orc_idle_sprite_sheet.png');
+
+  /// File path: assets/sprite/orc_walk_sprite_sheet.png
+  AssetGenImage get orcWalkSpriteSheet =>
+      const AssetGenImage('assets/sprite/orc_walk_sprite_sheet.png');
+
   /// File path: assets/sprite/pixel_platformer.png
   AssetGenImage get pixelPlatformer =>
       const AssetGenImage('assets/sprite/pixel_platformer.png');
@@ -58,14 +78,44 @@ class $AssetsSpriteGen {
   AssetGenImage get shootingGalleryHud =>
       const AssetGenImage('assets/sprite/shooting_gallery_hud.png');
 
+  /// File path: assets/sprite/soldier_attack02_sprite_sheet.png
+  AssetGenImage get soldierAttack02SpriteSheet =>
+      const AssetGenImage('assets/sprite/soldier_attack02_sprite_sheet.png');
+
+  /// File path: assets/sprite/soldier_death_sprite_sheet.png
+  AssetGenImage get soldierDeathSpriteSheet =>
+      const AssetGenImage('assets/sprite/soldier_death_sprite_sheet.png');
+
+  /// File path: assets/sprite/soldier_hurt_sprite_sheet.png
+  AssetGenImage get soldierHurtSpriteSheet =>
+      const AssetGenImage('assets/sprite/soldier_hurt_sprite_sheet.png');
+
+  /// File path: assets/sprite/soldier_idle_sprite_sheet.png
+  AssetGenImage get soldierIdleSpriteSheet =>
+      const AssetGenImage('assets/sprite/soldier_idle_sprite_sheet.png');
+
+  /// File path: assets/sprite/soldier_walk_sprite_sheet.png
+  AssetGenImage get soldierWalkSpriteSheet =>
+      const AssetGenImage('assets/sprite/soldier_walk_sprite_sheet.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
     gameIconsSheet,
+    orcAttack02SpriteSheet,
+    orcDeathSpriteSheet,
+    orcHurtSpriteSheet,
+    orcIdleSpriteSheet,
+    orcWalkSpriteSheet,
     pixelPlatformer,
     pixelShmupShips,
     pixelShmupTiles,
     shapeCharacters,
     shootingGalleryHud,
+    soldierAttack02SpriteSheet,
+    soldierDeathSpriteSheet,
+    soldierHurtSpriteSheet,
+    soldierIdleSpriteSheet,
+    soldierWalkSpriteSheet,
   ];
 }
 

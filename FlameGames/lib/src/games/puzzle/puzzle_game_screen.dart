@@ -292,7 +292,7 @@ class PuzzleBoardComponent extends PositionComponent
         crossAxisSpacing: 20,
         children: [
           SpriteComponent(
-            sprite: $gameAssets.shootingGalleryHud.textGameoverSprite,
+            sprite: $gameAssets.shootingGalleryHud.textGameOverSprite,
           ),
           SpriteComponent(
             sprite: $gameAssets.gameIcons.returnSprite,

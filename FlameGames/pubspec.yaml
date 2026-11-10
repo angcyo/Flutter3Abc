@@ -65,6 +65,9 @@ dev_dependencies:
   # https://pub.dev/packages/flutter_gen_runner
   flutter_gen_runner: any
 
+  # in flutter3_code / lp_canvas
+  image: any
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

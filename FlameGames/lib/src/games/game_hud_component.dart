@@ -12,12 +12,21 @@ import 'base_game_controller.dart';
 ///
 /// 游戏通用HUD显示组件
 class GameHudComponent extends PositionComponent with HasGameReference {
-  final FlameTextComponent _durationText = FlameTextComponent(text: "00:00");
-  final FlameTextComponent _scoreText = FlameTextComponent(text: "0");
-  final FlameTextComponent _otherText = FlameTextComponent(text: "");
+  /// 对应的文本组件
+  final FlameTextComponent durationTextComponent = FlameTextComponent(
+    text: "00:00",
+  );
+  final FlameTextComponent scoreTextComponent = FlameTextComponent(text: "0");
+  final FlameTextComponent otherTextComponent = FlameTextComponent(text: "");
 
   @override
   FutureOr<void> onLoad() async {
+    await initHudComponents();
+    return super.onLoad();
+  }
+
+  /// 初始化HUD组件
+  FutureOr<void> initHudComponents() async {
     //TextComponent
     scale = Vector2.all(pixelsScale);
     add(
@@ -26,7 +35,7 @@ class GameHudComponent extends PositionComponent with HasGameReference {
         rowCrossAxisAlignment: .center,
         children: [
           FlameTextComponent(text: baseGameController?.durationLabel ?? "用时: "),
-          _durationText,
+          durationTextComponent,
         ],
       ),
     );
@@ -36,7 +45,7 @@ class GameHudComponent extends PositionComponent with HasGameReference {
         rowCrossAxisAlignment: .center,
         children: [
           FlameTextComponent(text: baseGameController?.scoreLabel ?? "分数: "),
-          _scoreText,
+          scoreTextComponent,
         ],
       ),
     );
@@ -46,7 +55,7 @@ class GameHudComponent extends PositionComponent with HasGameReference {
         rowCrossAxisAlignment: .center,
         children: [
           FlameTextComponent(text: baseGameController?.otherLabel),
-          _otherText,
+          otherTextComponent,
         ],
       ),
     );
@@ -59,7 +68,6 @@ class GameHudComponent extends PositionComponent with HasGameReference {
         children: await loadControlComponent(),
       )..debugMode = false,
     );
-    return super.onLoad();
   }
 
   /// 加载控制组件列表
@@ -98,9 +106,9 @@ class GameHudComponent extends PositionComponent with HasGameReference {
       return;
     }
     controller.gameDuration += (dt * 1000).toInt();
-    _durationText.text = controller.durationText;
-    _scoreText.text = controller.scoreText;
-    _otherText.text = controller.otherText;
+    durationTextComponent.text = controller.durationText;
+    scoreTextComponent.text = controller.scoreText;
+    otherTextComponent.text = controller.otherText;
   }
 
   ///
@@ -132,7 +140,11 @@ extension GameHudComponentExtension on Component {
     try {
       final game = findGame();
       if (game != null) {
-        return (game as dynamic).controller;
+        try {
+          return (game as dynamic).controller;
+        } catch (e) {
+          return (game.world as dynamic).controller;
+        }
       }
     } catch (e) {
       //no op
@@ -144,5 +156,28 @@ extension GameHudComponentExtension on Component {
   T? findGameController<T>() {
     final controller = baseGameController;
     return controller is T ? controller as T : null;
+  }
+
+  /// 获取游戏世界
+  T? findGameWorld<T>() {
+    try {
+      final world = findParent<World>();
+      if (world is T) {
+        return world as T;
+      }
+    } catch (e) {
+      //no op
+    }
+    try {
+      final game = findGame();
+      if (game != null) {
+        if (game.world is T) {
+          return game.world as T;
+        }
+      }
+    } catch (e) {
+      //no op
+    }
+    return null;
   }
 }

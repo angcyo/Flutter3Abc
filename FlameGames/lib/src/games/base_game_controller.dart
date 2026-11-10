@@ -21,6 +21,9 @@ abstract class BaseGameController {
   /// 游戏得分
   int gameScore = 0;
 
+  /// 重新开始游戏的回调
+  void Function(Component? from)? onRestartGame;
+
   //MARK: temp
 
   /// 发射的球是否停止了移动

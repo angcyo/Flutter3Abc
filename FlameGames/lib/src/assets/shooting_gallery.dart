@@ -149,18 +149,24 @@ class ShootingGalleryHud {
   Sprite get textDotsSmallSprite =>
       Sprite(image, srcPosition: Vector2(34, 387), srcSize: Vector2(21, 32));
 
-  Sprite get textGameoverSprite =>
+  /// Game Over
+  Sprite get textGameOverSprite =>
       Sprite(image, srcPosition: Vector2(0, 0), srcSize: Vector2(348, 71));
 
+  /// Go
   Sprite get textGoSprite =>
       Sprite(image, srcPosition: Vector2(0, 319), srcSize: Vector2(111, 66));
+
+  /// +
 
   Sprite get textPlusSprite =>
       Sprite(image, srcPosition: Vector2(118, 278), srcSize: Vector2(39, 38));
 
+  /// + 小
   Sprite get textPlusSmallSprite =>
       Sprite(image, srcPosition: Vector2(359, 348), srcSize: Vector2(28, 28));
 
+  /// Ready
   Sprite get textReadySprite =>
       Sprite(image, srcPosition: Vector2(0, 144), srcSize: Vector2(230, 66));
 

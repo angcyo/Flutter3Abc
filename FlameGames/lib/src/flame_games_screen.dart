@@ -10,6 +10,9 @@ import 'games/ball/throw_ball_game_config.dart';
 import 'games/ball/throw_ball_game_config_screen.dart';
 import 'games/ball/throw_ball_game_screen.dart';
 import 'games/base_game_scroll_page.dart';
+import 'games/duel/duel_game_config.dart';
+import 'games/duel/duel_game_config_screen.dart';
+import 'games/duel/duel_game_screen.dart';
 import 'games/pinball/pinball_game_config.dart';
 import 'games/pinball/pinball_game_config_screen.dart';
 import 'games/pinball/pinball_game_screen.dart';
@@ -92,6 +95,15 @@ class _FlameGamesScreenState extends State<FlameGamesScreen>
           );
           if (config is ShipsGameConfig) {
             buildContext?.pushWidget(ShipsGameScreen(config: config));
+          }
+        },
+      ).rGridTile(gridCount),
+      GameSelectTile(
+        label: "对决",
+        onTap: () async {
+          final config = await buildContext?.pushWidget(DuelGameConfigScreen());
+          if (config is DuelGameConfig) {
+            buildContext?.pushWidget(DuelGameScreen(config: config));
           }
         },
       ).rGridTile(gridCount),
