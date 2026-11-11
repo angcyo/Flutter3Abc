@@ -15,18 +15,18 @@ import 'duel_game_screen.dart';
 /// 游戏控制
 class DuelGameController extends BaseGameController {
   static CombatStats get defCombatStats1 => CombatStats(
+    baseHP: 500,
     baseAttack: 10,
     baseDefense: 5,
-    baseHP: 100,
     baseCritChance: 0,
     accuracy: 1,
     dodgeChance: 0,
   );
 
   static CombatStats get defCombatStats2 => CombatStats(
-    baseAttack: 10,
-    baseDefense: 5,
-    baseHP: 100,
+    baseHP: defCombatStats1.baseHP,
+    baseAttack: defCombatStats1.baseAttack,
+    baseDefense: defCombatStats1.baseDefense,
     //--
     baseCritChance: 0,
     accuracy: 0.1,
@@ -34,13 +34,13 @@ class DuelGameController extends BaseGameController {
   );
 
   static CombatStats get defCombatStats3 => CombatStats(
-    baseAttack: 10,
-    baseDefense: 5,
-    baseHP: 100,
+    baseHP: defCombatStats2.baseHP,
+    baseAttack: defCombatStats2.baseAttack,
+    baseDefense: defCombatStats2.baseDefense,
     //--
-    baseCritChance: 0,
-    accuracy: 0.1,
-    dodgeChance: 0,
+    baseCritChance: defCombatStats2.baseCritChance,
+    accuracy: defCombatStats2.accuracy,
+    dodgeChance: defCombatStats2.dodgeChance,
     //--
     penetration: 0,
     lifesteal: 0,

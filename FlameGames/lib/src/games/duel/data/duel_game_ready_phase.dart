@@ -494,7 +494,7 @@ class DuelCombatStatsInfoComponent extends PositionComponent {
     if (gameDifficulty > 2) {
       textList.add(
         fb.ListString([
-          "穿透",
+          "穿透防御",
           ":",
           " ",
           combatStats.penetration.toInt(),

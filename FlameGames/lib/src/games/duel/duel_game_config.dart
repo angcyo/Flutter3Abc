@@ -39,7 +39,7 @@ class DuelGameConfig {
   double penetrationStep = 2;
 
   /// 吸血增长比例
-  double lifestealStep = 0.01;
+  double lifestealStep = 0.05;
 
   /// 反伤增长比例
   double reflectStep = 0.02;
@@ -50,13 +50,13 @@ class DuelGameConfig {
   double maxCritChance = 0.9;
 
   /// 最大命中率
-  double maxAccuracy = 1;
+  double maxAccuracy = 0.9;
 
   /// 最大闪避率
   double maxDodgeChance = 0.4;
 
   /// 最大吸血率
-  double maxLifesteal = 0.8;
+  double maxLifesteal = 0.9;
 
   /// 最大反伤率
   double maxReflect = 0.9;
