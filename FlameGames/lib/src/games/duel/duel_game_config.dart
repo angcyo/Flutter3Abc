@@ -30,13 +30,13 @@ class DuelGameConfig {
   double baseCritChanceStep = 0.01;
 
   /// 命中率增加步长
-  double accuracyStep = 0.1;
+  double accuracyStep = 0.05;
 
   /// 闪避率增加步长
   double dodgeChanceStep = 0.01;
 
   /// 防御穿透增加步长
-  double penetrationStep = 5;
+  double penetrationStep = 2;
 
   /// 吸血增长比例
   double lifestealStep = 0.01;

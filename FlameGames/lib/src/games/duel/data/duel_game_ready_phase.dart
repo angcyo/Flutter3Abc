@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:ui';
 
 import 'package:flame_games/src/games/duel/duel_game_config.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter3_basics/flutter3_basics.dart' as fb;
 import 'package:flutter3_flame/flutter3_flame.dart';
 
@@ -44,11 +45,12 @@ class DuelGameReadyPhase extends DuelGamePhase {
       duration: config.phase1Duration * config.gameDifficulty,
       fontSize: 80,
       onComplete: onComplete,
-    );
-    world.add(
-      countdownComponent /*..debugMode = isDebugMode*/
-        ..anchor = .center
-        ..position = world.findGame()!.canvasSize / 2,
+      shadows: [
+        fb.kBoxShadow.copyWith(
+          color: GameTextColors.defense,
+          /*offset: Offset(0, 2),*/
+        ),
+      ],
     );
     //--固定模式
     // 剩余点击次数
@@ -107,6 +109,13 @@ class DuelGameReadyPhase extends DuelGamePhase {
     );
     world.add(soldierInfo);
     world.add(orcInfo..position = Vector2(w - orcInfo.size.x, 0));
+
+    //--
+    world.add(
+      countdownComponent /*..debugMode = isDebugMode*/
+        ..anchor = .center
+        ..position = world.findGame()!.canvasSize / 2,
+    );
   }
 
   @override
@@ -149,7 +158,7 @@ class DuelCombatStatsTapEditComponent extends PositionComponent {
   FutureOr<void> onLoad() {
     final sh = fb.$screenHeight;
     final isSmallScreen = sh < 500;
-    final startLeft = size.x / 3;
+    final startLeft = size.x * 1 / 2;
     final startTop = isSmallScreen && gameDifficulty > 2
         ? size.y / 10
         : (size.y /
@@ -388,6 +397,12 @@ class DuelCombatStatsInfoComponent extends PositionComponent {
     textRenderer: TextAlignPaint(
       textAlign: isRight ? .end : .start,
       fontSize: fb.isMobile ? 16 : 18,
+      shadows: [
+        fb.kBoxShadow.copyWith(
+          color: GameTextColors.healing,
+          offset: Offset(0, 2),
+        ),
+      ],
     ),
   );
 
