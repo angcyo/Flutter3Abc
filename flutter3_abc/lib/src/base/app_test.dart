@@ -120,7 +120,7 @@ class AppTest {
           ..addText(
               ' h:${mediaData.size.height.toDigits()}/${(mediaData.size.height * mediaData.devicePixelRatio).toInt()}/${deviceHeightPixel.toInt()}') //高度没有包含导航栏
           ..addText(
-              ' s:${mediaData.devicePixelRatio} sf:${mediaData.textScaleFactor}')
+              ' dpr:${mediaData.devicePixelRatio} tsf:${mediaData.textScaleFactor}')
           ..newLine()
           ..addText(
               '$appFlavor ${$buildFlavor} M3:${themeData.useMaterial3} ${themeData.colorScheme.brightness}')
