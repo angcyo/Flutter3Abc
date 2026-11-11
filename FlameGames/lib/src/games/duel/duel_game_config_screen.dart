@@ -32,6 +32,7 @@ class _DuelGameConfigScreenState extends State<DuelGameConfigScreen>
     return [
       //--
       [
+        //--
         GameOutlineText(text: "选择游戏难度").center(),
         [
           GameSelectChip(
@@ -60,6 +61,28 @@ class _DuelGameConfigScreenState extends State<DuelGameConfigScreen>
               $gameAssets.playClickEffect();
             },
             child: GameOutlineText.item(text: "困难"),
+          ),
+        ].row(mainAxisAlignment: .center, gap: 20)!,
+        //--
+        GameOutlineText(text: "选择游戏模式").center(),
+        [
+          GameSelectChip(
+            isSelected: duelGameConfig.gameMode == .speed,
+            onSelected: (selected) {
+              duelGameConfig.gameMode = selected ? .speed : .fixed;
+              updateState();
+              $gameAssets.playClickEffect();
+            },
+            child: GameOutlineText.item(text: "竞速"),
+          ),
+          GameSelectChip(
+            isSelected: duelGameConfig.gameMode == .fixed,
+            onSelected: (selected) {
+              duelGameConfig.gameMode = selected ? .fixed : .speed;
+              updateState();
+              $gameAssets.playClickEffect();
+            },
+            child: GameOutlineText.item(text: "固定"),
           ),
         ].row(mainAxisAlignment: .center, gap: 20)!,
         //--

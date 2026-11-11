@@ -1,3 +1,4 @@
+import 'package:flutter3_basics/flutter3_basics.dart';
 import 'package:flutter3_flame/flutter3_flame.dart';
 
 ///
@@ -9,10 +10,10 @@ class DuelGameConfig {
   //--
 
   /// 士兵精灵缩放比例
-  static double soldierScale = 3;
+  static double soldierScale = 6;
 
   /// 兽人精灵缩放比例
-  static double orcScale = 3;
+  static double orcScale = soldierScale;
 
   //--
 
@@ -46,31 +47,59 @@ class DuelGameConfig {
   //--
 
   /// 最大暴击率
-  double maxCritChance = 1;
+  double maxCritChance = 0.9;
+
+  /// 最大命中率
+  double maxAccuracy = 1;
 
   /// 最大闪避率
-  double maxDodgeChance = 0.5;
+  double maxDodgeChance = 0.4;
 
   /// 最大吸血率
   double maxLifesteal = 0.8;
 
   /// 最大反伤率
-  double maxReflect = 0.8;
+  double maxReflect = 0.9;
 
   //--
 
+  /// [DuelGameMode.speed]模式下
   /// 第一阶段的持续时间 s
+  @configProperty
   double phase1Duration = isDebugMode ? 1 : 10;
 
+  /// [DuelGameMode.fixed]模式下
+  /// 第一阶段的操作次数
+  @configProperty
+  int phase1Count = isDebugMode ? 3 : 10;
+
+  /// 最大点击次数
+  int get maxTapCount => gameDifficulty * phase1Count;
+
   /// 战斗移动时间 s
+  @configProperty
   double combatMoveTime = 1;
 
   /// 战斗每回合结算时间 s
+  @configProperty
   double combatTurnTime = 1;
 
   //--
 
   /// 游戏难度等级, 1-5
   /// - 值越小，难度越小
+  @configProperty
   int gameDifficulty = 1;
+
+  /// 游戏模式
+  @configProperty
+  DuelGameMode gameMode = DuelGameMode.speed;
+}
+
+enum DuelGameMode {
+  /// 竞速模式
+  speed,
+
+  /// 固定模式
+  fixed,
 }

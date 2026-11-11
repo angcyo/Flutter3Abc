@@ -93,7 +93,7 @@ class DuelGameController extends BaseGameController {
   /// 游戏结束
   void endGame(DuelWorld world) {
     isGameOver = true;
-    world.add(GameOverComponent());
+    world.add(GameOverComponent(gap: 100));
   }
 
   /// 更新

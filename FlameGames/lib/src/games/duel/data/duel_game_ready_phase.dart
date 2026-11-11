@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:flame_games/src/games/duel/duel_game_config.dart';
 import 'package:flutter3_basics/flutter3_basics.dart' as fb;
 import 'package:flutter3_flame/flutter3_flame.dart';
 
@@ -36,17 +37,35 @@ class DuelGameReadyPhase extends DuelGamePhase {
         : gameDifficulty > 1
         ? DuelGameController.defCombatStats2
         : DuelGameController.defCombatStats1;
+    //游戏模式
     //-- 添加倒计时组件
+    final countdownComponent = CountdownComponent(
+      autoStart: config.gameMode == .speed,
+      duration: config.phase1Duration * config.gameDifficulty,
+      fontSize: 80,
+      onComplete: onComplete,
+    );
     world.add(
-      CountdownComponent(
-          duration: config.phase1Duration * config.gameDifficulty,
-          fontSize: 80,
-          onComplete: onComplete,
-        )
-        /*..debugMode = isDebugMode*/
+      countdownComponent /*..debugMode = isDebugMode*/
         ..anchor = .center
         ..position = world.findGame()!.canvasSize / 2,
     );
+    //--固定模式
+    // 剩余点击次数
+    int soldierRemainingTapCount = config.maxTapCount;
+    int orcRemainingTapCount = config.maxTapCount;
+    void updateFixedModeText() {
+      if (config.gameMode == .fixed) {
+        countdownComponent.text =
+            '$soldierRemainingTapCount ：$orcRemainingTapCount';
+        if (soldierRemainingTapCount <= 0 && orcRemainingTapCount <= 0) {
+          countdownComponent.onSelfComplete();
+        }
+      }
+    }
+
+    updateFixedModeText();
+
     final w = world.gameCanvasSize.x;
     final h = world.gameCanvasSize.y;
     final soldierInfo = DuelCombatStatsInfoComponent(
@@ -62,7 +81,9 @@ class DuelGameReadyPhase extends DuelGamePhase {
       DuelCombatStatsTapEditComponent(
           controller,
           controller.combatStatsSoldier,
-          onChanged: () {
+          onChanged: (tapCount) {
+            soldierRemainingTapCount = config.maxTapCount - tapCount;
+            updateFixedModeText();
             soldierInfo.updateText();
           },
         )
@@ -74,7 +95,9 @@ class DuelGameReadyPhase extends DuelGamePhase {
           controller,
           controller.combatStatsOrc,
           isRight: true,
-          onChanged: () {
+          onChanged: (tapCount) {
+            orcRemainingTapCount = config.maxTapCount - tapCount;
+            updateFixedModeText();
             orcInfo.updateText();
           },
         )
@@ -102,10 +125,13 @@ class DuelCombatStatsTapEditComponent extends PositionComponent {
 
   final bool isRight;
 
-  final void Function()? onChanged;
+  final void Function(int tapCount)? onChanged;
+
+  /// 游戏配置
+  DuelGameConfig get config => controller.config;
 
   /// 游戏难度
-  int get gameDifficulty => controller.config.gameDifficulty;
+  int get gameDifficulty => config.gameDifficulty;
 
   DuelCombatStatsTapEditComponent(
     this.controller,
@@ -114,28 +140,51 @@ class DuelCombatStatsTapEditComponent extends PositionComponent {
     this.onChanged,
   }) : super();
 
+  int get maxTapCount => config.maxTapCount;
+
+  /// 点击次数
+  int _tapCount = 0;
+
   @override
   FutureOr<void> onLoad() {
+    final sh = fb.$screenHeight;
+    final isSmallScreen = sh < 500;
     final startLeft = size.x / 3;
-    final startTop =
-        size.y /
-        (gameDifficulty > 2
-            ? 5
-            : gameDifficulty > 1
-            ? 4
-            : 3);
+    final startTop = isSmallScreen && gameDifficulty > 2
+        ? size.y / 10
+        : (size.y /
+              (gameDifficulty > 2
+                  ? 5
+                  : gameDifficulty > 1
+                  ? 4
+                  : 3));
     final fontSize = (fb.isMobile && gameDifficulty > 2) ? 16.0 : 24.0;
     final padding = fb.isMobile
-        ? fb.insets(h: 16, v: gameDifficulty > 2 ? 4 : 6)
+        ? fb.insets(
+            h: 16,
+            v: gameDifficulty > 2
+                ? isSmallScreen
+                      ? 2
+                      : 4
+                : 6,
+          )
         : fb.insets(h: 16, v: 8);
+    final gameDifficultyGap = /*isSmallScreen ? 10.0 :*/ 10.0 * 3;
     //--
     append(
       GameButtonComponent(
-        text: '攻击 +${controller.config.baseAttackStep}',
+        text: '攻击 +${config.baseAttackStep}',
         color: GameAttributeColors.attack,
         onPressed: () {
-          combatStats.baseAttack += controller.config.baseAttackStep;
-          onChanged?.call();
+          if (config.gameMode == .fixed) {
+            if (_tapCount < maxTapCount) {
+              combatStats.baseAttack += config.baseAttackStep;
+              _tapCount++;
+            }
+          } else {
+            combatStats.baseAttack += config.baseAttackStep;
+          }
+          onChanged?.call(_tapCount);
         },
         fontSize: fontSize,
         padding: padding,
@@ -143,11 +192,18 @@ class DuelCombatStatsTapEditComponent extends PositionComponent {
     );
     append(
       GameButtonComponent(
-        text: '防御 +${controller.config.baseDefenseStep}',
+        text: '防御 +${config.baseDefenseStep}',
         color: GameAttributeColors.defense,
         onPressed: () {
-          combatStats.baseDefense += controller.config.baseDefenseStep;
-          onChanged?.call();
+          if (config.gameMode == .fixed) {
+            if (_tapCount < maxTapCount) {
+              combatStats.baseDefense += config.baseDefenseStep;
+              _tapCount++;
+            }
+          } else {
+            combatStats.baseDefense += config.baseDefenseStep;
+          }
+          onChanged?.call(_tapCount);
         },
         fontSize: fontSize,
         padding: padding,
@@ -156,11 +212,18 @@ class DuelCombatStatsTapEditComponent extends PositionComponent {
     );
     append(
       GameButtonComponent(
-        text: '血量 +${controller.config.baseHPStep}',
+        text: '血量 +${config.baseHPStep}',
         color: GameAttributeColors.health,
         onPressed: () {
-          combatStats.baseHP += controller.config.baseHPStep;
-          onChanged?.call();
+          if (config.gameMode == .fixed) {
+            if (_tapCount < maxTapCount) {
+              combatStats.baseHP += config.baseHPStep;
+              _tapCount++;
+            }
+          } else {
+            combatStats.baseHP += config.baseHPStep;
+          }
+          onChanged?.call(_tapCount);
         },
         fontSize: fontSize,
         padding: padding,
@@ -171,29 +234,46 @@ class DuelCombatStatsTapEditComponent extends PositionComponent {
     if (gameDifficulty > 1) {
       append(
         GameButtonComponent(
-          text: '暴击率 +${controller.config.baseCritChanceStep.percent}',
+          text: '暴击率 +${config.baseCritChanceStep.percent}',
           color: GameAttributeColors.criticalRate,
           onPressed: () {
-            combatStats.baseCritChance += controller.config.baseCritChanceStep;
+            if (config.gameMode == .fixed) {
+              if (_tapCount < maxTapCount) {
+                combatStats.baseCritChance += config.baseCritChanceStep;
+                _tapCount++;
+              }
+            } else {
+              combatStats.baseCritChance += config.baseCritChanceStep;
+            }
             combatStats.baseCritChance = combatStats.baseCritChance.clamp(
               0,
-              controller.config.maxDodgeChance,
+              config.maxCritChance,
             );
-            onChanged?.call();
+            onChanged?.call(_tapCount);
           },
           fontSize: fontSize,
           padding: padding,
         ),
-        offset: Vector2(0, 10),
+        offset: Vector2(0, gameDifficultyGap),
       );
       append(
         GameButtonComponent(
-          text: '命中率 +${controller.config.accuracyStep.percent}',
+          text: '命中率 +${config.accuracyStep.percent}',
           color: GameAttributeColors.hitRate,
           onPressed: () {
-            combatStats.accuracy += controller.config.accuracyStep;
-            combatStats.accuracy = combatStats.accuracy.clamp(0, 1);
-            onChanged?.call();
+            if (config.gameMode == .fixed) {
+              if (_tapCount < maxTapCount) {
+                combatStats.accuracy += config.accuracyStep;
+                _tapCount++;
+              }
+            } else {
+              combatStats.accuracy += config.accuracyStep;
+            }
+            combatStats.accuracy = combatStats.accuracy.clamp(
+              0,
+              config.maxAccuracy,
+            );
+            onChanged?.call(_tapCount);
           },
           fontSize: fontSize,
           padding: padding,
@@ -202,15 +282,22 @@ class DuelCombatStatsTapEditComponent extends PositionComponent {
       );
       append(
         GameButtonComponent(
-          text: '闪避率 +${controller.config.dodgeChanceStep.percent}',
+          text: '闪避率 +${config.dodgeChanceStep.percent}',
           color: GameAttributeColors.dodgeRate,
           onPressed: () {
-            combatStats.dodgeChance += controller.config.dodgeChanceStep;
+            if (config.gameMode == .fixed) {
+              if (_tapCount < maxTapCount) {
+                combatStats.dodgeChance += config.dodgeChanceStep;
+                _tapCount++;
+              }
+            } else {
+              combatStats.dodgeChance += config.dodgeChanceStep;
+            }
             combatStats.dodgeChance = combatStats.dodgeChance.clamp(
               0,
-              controller.config.maxDodgeChance,
+              config.maxDodgeChance,
             );
-            onChanged?.call();
+            onChanged?.call(_tapCount);
           },
           fontSize: fontSize,
           padding: padding,
@@ -221,28 +308,42 @@ class DuelCombatStatsTapEditComponent extends PositionComponent {
     if (gameDifficulty > 2) {
       append(
         GameButtonComponent(
-          text: '穿透 +${controller.config.penetrationStep.toInt()}',
+          text: '穿透 +${config.penetrationStep.toInt()}',
           color: GameAttributeColors.defensePenetration,
           onPressed: () {
-            combatStats.penetration += controller.config.penetrationStep;
-            onChanged?.call();
+            if (config.gameMode == .fixed) {
+              if (_tapCount < maxTapCount) {
+                combatStats.penetration += config.penetrationStep;
+                _tapCount++;
+              }
+            } else {
+              combatStats.penetration += config.penetrationStep;
+            }
+            onChanged?.call(_tapCount);
           },
           fontSize: fontSize,
           padding: padding,
         ),
-        offset: Vector2(0, 10),
+        offset: Vector2(0, gameDifficultyGap),
       );
       append(
         GameButtonComponent(
-          text: '吸血 +${controller.config.lifestealStep.percent}',
+          text: '吸血 +${config.lifestealStep.percent}',
           color: GameAttributeColors.lifesteal,
           onPressed: () {
-            combatStats.lifesteal += controller.config.lifestealStep;
+            if (config.gameMode == .fixed) {
+              if (_tapCount < maxTapCount) {
+                combatStats.lifesteal += config.lifestealStep;
+                _tapCount++;
+              }
+            } else {
+              combatStats.lifesteal += config.lifestealStep;
+            }
             combatStats.lifesteal = combatStats.lifesteal.clamp(
               0,
-              controller.config.maxLifesteal,
+              config.maxLifesteal,
             );
-            onChanged?.call();
+            onChanged?.call(_tapCount);
           },
           fontSize: fontSize,
           padding: padding,
@@ -251,15 +352,22 @@ class DuelCombatStatsTapEditComponent extends PositionComponent {
       );
       append(
         GameButtonComponent(
-          text: '反伤 +${controller.config.reflectStep.percent}',
+          text: '反伤 +${config.reflectStep.percent}',
           color: GameAttributeColors.reflectDamage,
           onPressed: () {
-            combatStats.reflect += controller.config.reflectStep;
+            if (config.gameMode == .fixed) {
+              if (_tapCount < maxTapCount) {
+                combatStats.reflect += config.reflectStep;
+                _tapCount++;
+              }
+            } else {
+              combatStats.reflect += config.reflectStep;
+            }
             combatStats.reflect = combatStats.reflect.clamp(
               0,
-              controller.config.maxReflect,
+              config.maxReflect,
             );
-            onChanged?.call();
+            onChanged?.call(_tapCount);
           },
           fontSize: fontSize,
           padding: padding,
@@ -289,8 +397,11 @@ class DuelCombatStatsInfoComponent extends PositionComponent {
     ),
   );
 
+  /// 游戏配置
+  DuelGameConfig get config => controller.config;
+
   /// 游戏难度
-  int get gameDifficulty => controller.config.gameDifficulty;
+  int get gameDifficulty => config.gameDifficulty;
 
   DuelCombatStatsInfoComponent(
     this.controller,
@@ -309,41 +420,84 @@ class DuelCombatStatsInfoComponent extends PositionComponent {
   }
 
   void updateText() {
-    if (isRight) {
-      _textComponent.text =
-          '${hp ?? combatStats.baseHP.toInt()} :血量\n'
-          '${combatStats.baseAttack.toInt()} :攻击\n'
-          '${combatStats.baseDefense.toInt()} :防御';
-      if (gameDifficulty > 1) {
-        _textComponent.text +=
-            '\n${combatStats.baseCritChance.percent} :暴击率\n'
-            '${combatStats.accuracy.percent} :命中率\n'
-            '${combatStats.dodgeChance.percent} :闪避率';
-      }
-      if (gameDifficulty > 2) {
-        _textComponent.text +=
-            '\n${combatStats.penetration.toInt()} :穿透\n'
-            '${combatStats.lifesteal.percent} :吸血\n'
-            '${combatStats.reflect.percent} :反伤';
-      }
-    } else {
-      _textComponent.text =
-          '血量: ${hp ?? combatStats.baseHP.toInt()}\n'
-          '攻击: ${combatStats.baseAttack.toInt()}\n'
-          '防御: ${combatStats.baseDefense.toInt()}';
-      if (gameDifficulty > 1) {
-        _textComponent.text +=
-            '\n暴击率: ${combatStats.baseCritChance.percent}\n'
-            '命中率: ${combatStats.accuracy.percent}\n'
-            '闪避率: ${combatStats.dodgeChance.percent}';
-      }
-      if (gameDifficulty > 2) {
-        _textComponent.text +=
-            '\n穿透: ${combatStats.penetration.toInt()}\n'
-            '吸血: ${combatStats.lifesteal.percent}\n'
-            '反伤: ${combatStats.reflect.percent}';
-      }
+    final textList = <fb.ListString>[];
+    textList.add(
+      fb.ListString([
+        "血量",
+        ":",
+        " ",
+        hp ?? combatStats.baseHP.toInt(),
+      ], reverse: isRight),
+    );
+    textList.add(
+      fb.ListString([
+        "攻击",
+        ":",
+        " ",
+        combatStats.baseAttack.toInt(),
+      ], reverse: isRight),
+    );
+    textList.add(
+      fb.ListString([
+        "防御",
+        ":",
+        " ",
+        combatStats.baseDefense.toInt(),
+      ], reverse: isRight),
+    );
+    if (gameDifficulty > 1) {
+      textList.add(
+        fb.ListString([
+          "暴击率(${config.maxCritChance.percent})",
+          ":",
+          " ",
+          combatStats.baseCritChance.percent,
+        ], reverse: isRight),
+      );
+      textList.add(
+        fb.ListString([
+          "命中率(${config.maxAccuracy.percent})",
+          ":",
+          " ",
+          combatStats.accuracy.percent,
+        ], reverse: isRight),
+      );
+      textList.add(
+        fb.ListString([
+          "闪避率(${config.maxDodgeChance.percent})",
+          ":",
+          " ",
+          combatStats.dodgeChance.percent,
+        ], reverse: isRight),
+      );
     }
+    if (gameDifficulty > 2) {
+      textList.add(
+        fb.ListString([
+          "穿透",
+          ":",
+          " ",
+          combatStats.penetration.toInt(),
+        ], reverse: isRight),
+      );
+      textList.add(
+        fb.ListString([
+          "吸血(${config.maxLifesteal.percent})",
+          ":",
+          " ",
+          combatStats.lifesteal.percent,
+        ], reverse: isRight),
+      );
+      textList.add(
+        fb.ListString([
+          "反伤(${config.maxReflect.percent})",
+          ":",
+          " ",
+          combatStats.reflect.percent,
+        ], reverse: isRight),
+      );
+    }
+    _textComponent.text = textList.join('\n');
     size = _textComponent.size;
   }
 }

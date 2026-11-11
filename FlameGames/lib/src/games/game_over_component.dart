@@ -18,7 +18,14 @@ class GameOverComponent extends PositionComponent {
 
   /// 模糊半径
   final double maskBlurSigma;
+
+  /// 游戏结束文字缩放
   final Vector2 gameOverScale;
+
+  /// GameOver
+  /// !gap!
+  /// Go
+  final double gap;
 
   GameOverComponent({
     Vector2? gameOverScale,
@@ -28,6 +35,7 @@ class GameOverComponent extends PositionComponent {
     super.angle,
     this.maskColor = Colors.black26,
     this.maskBlurSigma = 10,
+    this.gap = 0,
   }) : gameOverScale = gameOverScale ?? Vector2.all(1.2);
 
   @override
@@ -38,6 +46,7 @@ class GameOverComponent extends PositionComponent {
     final onRestartGameFn = baseGameController?.onRestartGame;
     double offsetY = 0;
     if (onRestartGameFn != null) {
+      //go
       offsetY = $gameAssets.shootingGalleryHud.textGoSprite.srcSize.y;
       add(
         SpriteComponent(
@@ -45,13 +54,14 @@ class GameOverComponent extends PositionComponent {
           ).button(() {
             onRestartGameFn.call(this);
           })
-          ..center = Vector2(size.x / 2, size.y / 2 + offsetY),
+          ..center = Vector2(size.x / 2, size.y / 2 + offsetY + gap / 2),
       );
     }
+    //game over
     add(
       SpriteComponent(sprite: $gameAssets.shootingGalleryHud.textGameOverSprite)
         ..scaleTo(gameOverScale)
-        ..center = Vector2(size.x / 2, size.y / 2 - offsetY)
+        ..center = Vector2(size.x / 2, size.y / 2 - offsetY - gap / 2)
         ..add(
           ScaleEffect.by(
             Vector2.all(1.2),

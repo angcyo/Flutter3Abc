@@ -57,6 +57,6 @@ class FlameGamesApp extends StatelessWidget {
         initGlobalAppAtContext(ctx);
         return const FlameGamesScreen();
       }),
-    ).wrapDebugPage(context);
+    ) /*.wrapDebugPage(context)*/;
   }
 }

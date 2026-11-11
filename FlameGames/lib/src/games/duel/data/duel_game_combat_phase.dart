@@ -42,6 +42,7 @@ class DuelGameCombatPhase extends DuelGamePhase {
     //--添加士兵 / 兽人
     final cx = w / 2;
     final cy = h / 2;
+    final gap = 80.0;
     final soldier = SoldierSprite(
       Combatant(id: 'soldier', stats: controller.combatStatsSoldier),
     );
@@ -56,7 +57,10 @@ class DuelGameCombatPhase extends DuelGamePhase {
         ..currentState = SpriteState.walk.name
         ..add(
           MoveToEffect(
-            Vector2(cx - soldier.size.x - soldier.size.x / 2, soldierY),
+            Vector2(
+              cx - soldier.size.x - soldier.size.x / 2 - gap / 2,
+              soldierY,
+            ),
             EffectController(duration: controller.config.combatMoveTime),
             onComplete: () {
               soldier.currentState = SpriteState.attack.name;
@@ -77,7 +81,7 @@ class DuelGameCombatPhase extends DuelGamePhase {
         ..currentState = SpriteState.walk.name
         ..add(
           MoveToEffect(
-            Vector2(cx + orc.size.x / 2, orcY),
+            Vector2(cx + orc.size.x / 2 + gap / 2, orcY),
             EffectController(duration: controller.config.combatMoveTime),
             onComplete: () {
               orc.currentState = SpriteState.attack.name;
@@ -164,7 +168,9 @@ class DuelGameCombatPhase extends DuelGamePhase {
   ) {
     double delay = 0.0;
     int index = 1;
-    final moveYByDown = 80.0;
+    final moveYByUp = -140.0;
+    final moveYByDown = 140.0;
+    final fontSizeScale = 2.0;
     if (combatResult.isHit) {
       //命中了, 则在目标处显示效果
       if (combatResult.isDodged) {
@@ -182,32 +188,38 @@ class DuelGameCombatPhase extends DuelGamePhase {
           DamageTextComponent(
             type: combatResult.isCritical ? .critical : .normal,
             text: "-${combatResult.hpDamage}",
-            fontSizeScale: combatResult.isCritical ? 1.1 : 1,
+            moveYBy: moveYByUp,
+            fontSizeScale: combatResult.isCritical
+                ? fontSizeScale + 0.5
+                : fontSizeScale,
             position: to.center,
           ),
         );
       }
       //--吸血
-      if (combatResult.isHealed) {
+      if (combatResult.isHealed || isDebugMode) {
         world.add(
           DamageTextComponent(
             type: .heal,
             text: "+${combatResult.healed}",
             moveYBy: moveYByDown,
-            fontSizeScale: 1.1,
+            fontSizeScale: fontSizeScale + 0.2,
             position: from.center,
             delay: delay * index++,
           ),
         );
-      } //--反伤
-      if (combatResult.isReflected) {
+      }
+      //--反伤
+      if (combatResult.isReflected || isDebugMode) {
         world.add(
           DamageTextComponent(
             type: .normal,
             text: "-${combatResult.reflectedDamage}",
             moveYBy: moveYByDown,
-            fontSizeScale: 1,
-            position: from.center,
+            fontSizeScale: fontSizeScale,
+            position:
+                from.center +
+                Vector2(0, combatResult.isHealed ? from.height : 0),
             delay: delay * index++,
           ),
         );
@@ -219,7 +231,7 @@ class DuelGameCombatPhase extends DuelGamePhase {
           type: .miss,
           text: "miss",
           moveYBy: moveYByDown,
-          /*fontSizeScale: 0.5,*/
+          fontSizeScale: fontSizeScale,
           position: from.center,
           delay: delay * index++,
         ),
