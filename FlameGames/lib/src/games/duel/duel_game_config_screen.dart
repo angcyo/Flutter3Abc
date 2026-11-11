@@ -85,6 +85,39 @@ class _DuelGameConfigScreenState extends State<DuelGameConfigScreen>
             child: GameOutlineText.item(text: "固定"),
           ),
         ].row(mainAxisAlignment: .center, gap: 20)!,
+        if (duelGameConfig.gameMode == .fixed) ...[
+          //--
+          GameOutlineText(text: "固定操作基数").center(),
+          [
+            GameSelectChip(
+              isSelected: duelGameConfig.phase1TapCount == 10,
+              onSelected: (selected) {
+                duelGameConfig.phase1TapCount = selected ? 10 : 0;
+                updateState();
+                $gameAssets.playClickEffect();
+              },
+              child: GameOutlineText.item(text: "10"),
+            ),
+            GameSelectChip(
+              isSelected: duelGameConfig.phase1TapCount == 20,
+              onSelected: (selected) {
+                duelGameConfig.phase1TapCount = selected ? 20 : 0;
+                updateState();
+                $gameAssets.playClickEffect();
+              },
+              child: GameOutlineText.item(text: "20"),
+            ),
+            GameSelectChip(
+              isSelected: duelGameConfig.phase1TapCount == 30,
+              onSelected: (selected) {
+                duelGameConfig.phase1TapCount = selected ? 30 : 0;
+                updateState();
+                $gameAssets.playClickEffect();
+              },
+              child: GameOutlineText.item(text: "30"),
+            ),
+          ].row(mainAxisAlignment: .center, gap: 20)!,
+        ],
         //--
         GameSelectChip(
           onSelected: (selected) {

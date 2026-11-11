@@ -158,18 +158,12 @@ class DuelCombatStatsTapEditComponent extends PositionComponent {
                   : gameDifficulty > 1
                   ? 4
                   : 3));
-    final fontSize = (fb.isMobile && gameDifficulty > 2) ? 16.0 : 24.0;
-    final padding = fb.isMobile
-        ? fb.insets(
-            h: 16,
-            v: gameDifficulty > 2
-                ? isSmallScreen
-                      ? 2
-                      : 4
-                : 6,
-          )
+    final fontSize = (isSmallScreen && gameDifficulty > 2) ? 16.0 : 24.0;
+    final padding = isSmallScreen
+        ? fb.insets(h: 16, v: gameDifficulty > 2 ? 4 : 6)
         : fb.insets(h: 16, v: 8);
-    final gameDifficultyGap = /*isSmallScreen ? 10.0 :*/ 10.0 * 3;
+    final stepGap = isSmallScreen ? 10.0 : 15.0;
+    final gameDifficultyGap = /*isSmallScreen ? 10.0 :*/ stepGap * 3;
     //--
     append(
       GameButtonComponent(
@@ -208,7 +202,7 @@ class DuelCombatStatsTapEditComponent extends PositionComponent {
         fontSize: fontSize,
         padding: padding,
       ),
-      offset: Vector2(0, 10),
+      offset: Vector2(0, stepGap),
     );
     append(
       GameButtonComponent(
@@ -228,7 +222,7 @@ class DuelCombatStatsTapEditComponent extends PositionComponent {
         fontSize: fontSize,
         padding: padding,
       ),
-      offset: Vector2(0, 10),
+      offset: Vector2(0, stepGap),
     );
     //--
     if (gameDifficulty > 1) {
@@ -278,7 +272,7 @@ class DuelCombatStatsTapEditComponent extends PositionComponent {
           fontSize: fontSize,
           padding: padding,
         ),
-        offset: Vector2(0, 10),
+        offset: Vector2(0, stepGap),
       );
       append(
         GameButtonComponent(
@@ -302,7 +296,7 @@ class DuelCombatStatsTapEditComponent extends PositionComponent {
           fontSize: fontSize,
           padding: padding,
         ),
-        offset: Vector2(0, 10),
+        offset: Vector2(0, stepGap),
       );
     }
     if (gameDifficulty > 2) {
@@ -348,7 +342,7 @@ class DuelCombatStatsTapEditComponent extends PositionComponent {
           fontSize: fontSize,
           padding: padding,
         ),
-        offset: Vector2(0, 10),
+        offset: Vector2(0, stepGap),
       );
       append(
         GameButtonComponent(
@@ -372,7 +366,7 @@ class DuelCombatStatsTapEditComponent extends PositionComponent {
           fontSize: fontSize,
           padding: padding,
         ),
-        offset: Vector2(0, 10),
+        offset: Vector2(0, stepGap),
       );
     }
     return super.onLoad();

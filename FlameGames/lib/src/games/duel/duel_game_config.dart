@@ -71,10 +71,10 @@ class DuelGameConfig {
   /// [DuelGameMode.fixed]模式下
   /// 第一阶段的操作次数
   @configProperty
-  int phase1Count = isDebugMode ? 3 : 10;
+  int phase1TapCount = /*isDebugMode ? 3 :*/ 10;
 
   /// 最大点击次数
-  int get maxTapCount => gameDifficulty * phase1Count;
+  int get maxTapCount => gameDifficulty * phase1TapCount;
 
   /// 战斗移动时间 s
   @configProperty
