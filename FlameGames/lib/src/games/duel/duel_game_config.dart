@@ -33,7 +33,7 @@ class DuelGameConfig {
   double accuracyStep = 0.05;
 
   /// 闪避率增加步长
-  double dodgeChanceStep = 0.01;
+  double dodgeChanceStep = 0.02;
 
   /// 防御穿透增加步长
   double penetrationStep = 2;
@@ -42,7 +42,7 @@ class DuelGameConfig {
   double lifestealStep = 0.01;
 
   /// 反伤增长比例
-  double reflectStep = 0.01;
+  double reflectStep = 0.02;
 
   //--
 

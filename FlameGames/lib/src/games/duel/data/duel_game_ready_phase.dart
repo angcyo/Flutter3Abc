@@ -158,6 +158,7 @@ class DuelCombatStatsTapEditComponent extends PositionComponent {
   FutureOr<void> onLoad() {
     final sh = fb.$screenHeight;
     final isSmallScreen = sh < 500;
+    final isMobile = fb.isMobile /*|| fb.isDebug*/;
     final startLeft = size.x * 1 / 2;
     final startTop = isSmallScreen && gameDifficulty > 2
         ? size.y / 10
@@ -167,12 +168,17 @@ class DuelCombatStatsTapEditComponent extends PositionComponent {
                   : gameDifficulty > 1
                   ? 4
                   : 3));
-    final fontSize = (isSmallScreen && gameDifficulty > 2) ? 16.0 : 24.0;
-    final padding = isSmallScreen
+    final fontSize = (isMobile && gameDifficulty > 2)
+        ? isSmallScreen
+              ? 16.0
+              : 20.0
+        : 24.0;
+    final padding = isMobile
         ? fb.insets(h: 16, v: gameDifficulty > 2 ? 4 : 6)
         : fb.insets(h: 16, v: 8);
-    final stepGap = isSmallScreen ? 10.0 : 15.0;
-    final gameDifficultyGap = /*isSmallScreen ? 10.0 :*/ stepGap * 3;
+    final stepGap = isMobile ? 10.0 : 15.0;
+    final gameDifficultyGap = /*isSmallScreen ? 10.0 :*/
+        stepGap * (isSmallScreen ? 2 : 3);
     //--
     append(
       GameButtonComponent(
@@ -241,7 +247,8 @@ class DuelCombatStatsTapEditComponent extends PositionComponent {
           color: GameAttributeColors.criticalRate,
           onPressed: () {
             if (config.gameMode == .fixed) {
-              if (_tapCount < maxTapCount) {
+              if (combatStats.baseCritChance < config.maxCritChance &&
+                  _tapCount < maxTapCount) {
                 combatStats.baseCritChance += config.baseCritChanceStep;
                 _tapCount++;
               }
@@ -265,7 +272,8 @@ class DuelCombatStatsTapEditComponent extends PositionComponent {
           color: GameAttributeColors.hitRate,
           onPressed: () {
             if (config.gameMode == .fixed) {
-              if (_tapCount < maxTapCount) {
+              if (combatStats.accuracy < config.maxAccuracy &&
+                  _tapCount < maxTapCount) {
                 combatStats.accuracy += config.accuracyStep;
                 _tapCount++;
               }
@@ -289,7 +297,8 @@ class DuelCombatStatsTapEditComponent extends PositionComponent {
           color: GameAttributeColors.dodgeRate,
           onPressed: () {
             if (config.gameMode == .fixed) {
-              if (_tapCount < maxTapCount) {
+              if (combatStats.dodgeChance < config.maxDodgeChance &&
+                  _tapCount < maxTapCount) {
                 combatStats.dodgeChance += config.dodgeChanceStep;
                 _tapCount++;
               }
@@ -335,7 +344,8 @@ class DuelCombatStatsTapEditComponent extends PositionComponent {
           color: GameAttributeColors.lifesteal,
           onPressed: () {
             if (config.gameMode == .fixed) {
-              if (_tapCount < maxTapCount) {
+              if (combatStats.lifesteal < config.maxLifesteal &&
+                  _tapCount < maxTapCount) {
                 combatStats.lifesteal += config.lifestealStep;
                 _tapCount++;
               }
@@ -359,7 +369,8 @@ class DuelCombatStatsTapEditComponent extends PositionComponent {
           color: GameAttributeColors.reflectDamage,
           onPressed: () {
             if (config.gameMode == .fixed) {
-              if (_tapCount < maxTapCount) {
+              if (combatStats.reflect < config.maxReflect &&
+                  _tapCount < maxTapCount) {
                 combatStats.reflect += config.reflectStep;
                 _tapCount++;
               }
