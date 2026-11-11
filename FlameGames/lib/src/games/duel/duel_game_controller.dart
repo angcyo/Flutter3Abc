@@ -27,21 +27,24 @@ class DuelGameController extends BaseGameController {
     baseAttack: 10,
     baseDefense: 5,
     baseHP: 100,
-    baseCritChance: 0.1,
-    accuracy: 0.5,
-    dodgeChance: 0.1,
+    //--
+    baseCritChance: 0,
+    accuracy: 0.1,
+    dodgeChance: 0,
   );
 
   static CombatStats get defCombatStats3 => CombatStats(
     baseAttack: 10,
     baseDefense: 5,
     baseHP: 100,
-    baseCritChance: 0.1,
-    accuracy: 0.5,
-    dodgeChance: 0.1,
-    penetration: 1,
-    lifesteal: 0.1,
-    reflect: 0.1,
+    //--
+    baseCritChance: 0,
+    accuracy: 0.1,
+    dodgeChance: 0,
+    //--
+    penetration: 0,
+    lifesteal: 0,
+    reflect: 0,
   );
 
   /// 游戏配置
