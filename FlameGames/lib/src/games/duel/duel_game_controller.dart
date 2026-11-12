@@ -24,19 +24,19 @@ class DuelGameController extends BaseGameController {
   );
 
   static CombatStats get defCombatStats2 => CombatStats(
-    baseHP: defCombatStats1.baseHP,
-    baseAttack: defCombatStats1.baseAttack,
-    baseDefense: defCombatStats1.baseDefense,
+    baseHP: defCombatStats1.baseHP * 2,
+    baseAttack: defCombatStats1.baseAttack * 2,
+    baseDefense: defCombatStats1.baseDefense * 2,
     //--
     baseCritChance: 0,
-    accuracy: 0.1,
+    accuracy: 0.3,
     dodgeChance: 0,
   );
 
   static CombatStats get defCombatStats3 => CombatStats(
-    baseHP: defCombatStats2.baseHP,
-    baseAttack: defCombatStats2.baseAttack,
-    baseDefense: defCombatStats2.baseDefense,
+    baseHP: defCombatStats2.baseHP * 2,
+    baseAttack: defCombatStats2.baseAttack * 2,
+    baseDefense: defCombatStats2.baseDefense * 2,
     //--
     baseCritChance: defCombatStats2.baseCritChance,
     accuracy: defCombatStats2.accuracy,

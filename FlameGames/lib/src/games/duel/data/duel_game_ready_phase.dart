@@ -6,6 +6,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter3_basics/flutter3_basics.dart' as fb;
 import 'package:flutter3_flame/flutter3_flame.dart';
 
+import '../../game_go_component.dart';
 import '../duel_game_controller.dart';
 import '../duel_game_screen.dart';
 import 'duel_game_phase.dart';
@@ -59,7 +60,7 @@ class DuelGameReadyPhase extends DuelGamePhase {
     void updateFixedModeText() {
       if (config.gameMode == .fixed) {
         countdownComponent.text =
-            '$soldierRemainingTapCount ：$orcRemainingTapCount';
+            '$soldierRemainingTapCount:$orcRemainingTapCount';
         if (soldierRemainingTapCount <= 0 && orcRemainingTapCount <= 0) {
           countdownComponent.onSelfComplete();
         }
@@ -116,6 +117,17 @@ class DuelGameReadyPhase extends DuelGamePhase {
         ..anchor = .center
         ..position = world.findGame()!.canvasSize / 2,
     );
+    if (isDebugMode || true) {
+      /*countdownComponent.debugMode = true;*/
+      world.append(
+        GameGoComponent(
+          onGoTapAction: () {
+            countdownComponent.onSelfComplete();
+          },
+        ),
+        offset: Vector2(-60, 0),
+      );
+    }
   }
 
   @override
@@ -124,6 +136,7 @@ class DuelGameReadyPhase extends DuelGamePhase {
     world.removeWhereType<CountdownComponent>();
     world.removeWhereType<DuelCombatStatsTapEditComponent>();
     world.removeWhereType<DuelCombatStatsInfoComponent>();
+    world.removeWhereType<GameGoComponent>();
   }
 }
 

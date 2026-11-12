@@ -90,31 +90,49 @@ class _DuelGameConfigScreenState extends State<DuelGameConfigScreen>
           GameOutlineText(text: "固定操作基数").center(),
           [
             GameSelectChip(
-              isSelected: duelGameConfig.phase1TapCount == 10,
+              isSelected:
+                  duelGameConfig.phase1TapCount ==
+                  DuelGameConfig.kTapCountList[0],
               onSelected: (selected) {
-                duelGameConfig.phase1TapCount = selected ? 10 : 0;
+                duelGameConfig.phase1TapCount = selected
+                    ? DuelGameConfig.kTapCountList[0]
+                    : 0;
                 updateState();
                 $gameAssets.playClickEffect();
               },
-              child: GameOutlineText.item(text: "10"),
+              child: GameOutlineText.item(
+                text: "${DuelGameConfig.kTapCountList[0]}",
+              ),
             ),
             GameSelectChip(
-              isSelected: duelGameConfig.phase1TapCount == 20,
+              isSelected:
+                  duelGameConfig.phase1TapCount ==
+                  DuelGameConfig.kTapCountList[1],
               onSelected: (selected) {
-                duelGameConfig.phase1TapCount = selected ? 20 : 0;
+                duelGameConfig.phase1TapCount = selected
+                    ? DuelGameConfig.kTapCountList[1]
+                    : 0;
                 updateState();
                 $gameAssets.playClickEffect();
               },
-              child: GameOutlineText.item(text: "20"),
+              child: GameOutlineText.item(
+                text: "${DuelGameConfig.kTapCountList[1]}",
+              ),
             ),
             GameSelectChip(
-              isSelected: duelGameConfig.phase1TapCount == 30,
+              isSelected:
+                  duelGameConfig.phase1TapCount ==
+                  DuelGameConfig.kTapCountList[2],
               onSelected: (selected) {
-                duelGameConfig.phase1TapCount = selected ? 30 : 0;
+                duelGameConfig.phase1TapCount = selected
+                    ? DuelGameConfig.kTapCountList[2]
+                    : 0;
                 updateState();
                 $gameAssets.playClickEffect();
               },
-              child: GameOutlineText.item(text: "30"),
+              child: GameOutlineText.item(
+                text: "${DuelGameConfig.kTapCountList[2]}",
+              ),
             ),
           ].row(mainAxisAlignment: .center, gap: 20)!,
         ],

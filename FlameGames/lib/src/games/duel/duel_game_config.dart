@@ -15,16 +15,18 @@ class DuelGameConfig {
   /// 兽人精灵缩放比例
   static double orcScale = soldierScale;
 
+  static List<int> kTapCountList = [20, 30, 50];
+
   //--
 
   /// 基础攻击增加步长
-  int baseAttackStep = 10;
+  int baseAttackStep = 5;
 
   /// 基础防御增加步长
   int baseDefenseStep = 5;
 
   /// 基础HP增加步长
-  int baseHPStep = 50;
+  int baseHPStep = 100;
 
   /// 暴击率增加步长
   double baseCritChanceStep = 0.01;
@@ -36,13 +38,13 @@ class DuelGameConfig {
   double dodgeChanceStep = 0.02;
 
   /// 防御穿透增加步长
-  double penetrationStep = 2;
+  double penetrationStep = 10;
 
   /// 吸血增长比例
-  double lifestealStep = 0.05;
+  double lifestealStep = 0.1;
 
   /// 反伤增长比例
-  double reflectStep = 0.02;
+  double reflectStep = 0.1;
 
   //--
 
@@ -50,16 +52,16 @@ class DuelGameConfig {
   double maxCritChance = 0.9;
 
   /// 最大命中率
-  double maxAccuracy = 0.9;
+  double maxAccuracy = 0.7;
 
   /// 最大闪避率
   double maxDodgeChance = 0.4;
 
   /// 最大吸血率
-  double maxLifesteal = 0.9;
+  double maxLifesteal = 5;
 
   /// 最大反伤率
-  double maxReflect = 0.9;
+  double maxReflect = 5;
 
   //--
 
@@ -71,7 +73,7 @@ class DuelGameConfig {
   /// [DuelGameMode.fixed]模式下
   /// 第一阶段的操作次数
   @configProperty
-  int phase1TapCount = /*isDebugMode ? 3 :*/ 10;
+  int phase1TapCount = /*isDebugMode ? 3 :*/ kTapCountList.first;
 
   /// 最大点击次数
   int get maxTapCount => gameDifficulty * phase1TapCount;
